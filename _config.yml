@@ -27,7 +27,7 @@ github_username: egorpol
 
 
 # Build settings
-theme: minima
+# theme: minima
 plugins:
   - jekyll-feed
 

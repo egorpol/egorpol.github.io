@@ -1,5 +1,5 @@
 ---
-layout: default
+layout: null
 ---
 
 <!DOCTYPE html>
@@ -7,7 +7,7 @@ layout: default
 <head>
     <meta charset="utf-8">
     <meta name="viewport" content="width=device-width, initial-scale=1">
-    <title>{% if page.title %}{{ page.title | escape }}{% else %}{{ site.title | escape }}{% endif %}</title>
+    <title>{{ site.title | escape }}</title>
     <style>
         body {
             font-family: Arial, sans-serif;
@@ -47,7 +47,7 @@ layout: default
         <p>{{ site.description }}</p>
         <nav>
             {% for page in site.pages %}
-              {% if page.title %}
+              {% if page.title and page.title != site.title %}
                 <a href="{{ page.url | relative_url }}">{{ page.title | escape }}</a>
               {% endif %}
             {% endfor %}
