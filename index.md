@@ -12,5 +12,5 @@ Exploring analytical and practical aspects of human-computer interactions in mus
 
 ## Contact
 
-Email: [info@egorpol.de](mailto:info@egorpol.de)
+Email: [egor.polyakov@hmt-leipzig.de](mailto:egor.polyakov@hmt-leipzig.de)
 GitHub: [egorpol](https://github.com/egorpol)
