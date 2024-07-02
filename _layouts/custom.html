@@ -47,7 +47,7 @@ layout: null
         <p>{{ site.description }}</p>
         <nav>
             {% for page in site.pages %}
-              {% if page.title and page.title != site.title %}
+              {% if page.title and page.title != site.title and page.title != "About" %}
                 <a href="{{ page.url | relative_url }}">{{ page.title | escape }}</a>
               {% endif %}
             {% endfor %}
