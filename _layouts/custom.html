@@ -101,8 +101,9 @@ layout: null
         <nav>
             <a href="{{ '/' | relative_url }}">Home</a>
             <a href="{{ '/blog' | relative_url }}">Blog</a>
-            {% for page in site.pages %}
-              {% if page.title and page.title != site.title and page.title != "Blog" and page.title != "Home" %}
+            {% assign sorted_pages = site.pages | sort: "order" %}
+            {% for page in sorted_pages %}
+              {% if page.title and page.layout == 'page' and page.menu != 'exclude' %}
                 <a href="{{ page.url | relative_url }}">{{ page.title | escape }}</a>
               {% endif %}
             {% endfor %}
