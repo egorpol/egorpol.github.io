@@ -21,15 +21,22 @@
 title: Egor Polyakov
 email: egor.polyakov@hmt-leipzig.de
 description: Composer | Musicologist | Sound Engineer | Performer
+author: Egor Polyakov
 baseurl: "" # the subpath of your site, e.g. /blog
 url: "https://egorpol.github.io" # the base hostname & protocol for your site
 github_username: egorpol
+lang: en
+timezone: Europe/Berlin
+permalink: /blog/:year/:month/:day/:title
 
 
 # Build settings
 # theme: minima
+
 plugins:
   - jekyll-feed
+  - jekyll-seo-tag
+  - jekyll-paginate
 
 # Exclude from processing.
 # The following items will not be processed, by default.
