@@ -102,7 +102,7 @@ layout: null
             <a href="{{ '/' | relative_url }}">Home</a>
             <a href="{{ '/blog' | relative_url }}">Blog</a>
             {% for page in site.pages %}
-              {% if page.title and page.title != site.title and page.title != "Blog" %}
+              {% if page.title and page.title != site.title and page.title != "Blog" and page.title != "Home" %}
                 <a href="{{ page.url | relative_url }}">{{ page.title | escape }}</a>
               {% endif %}
             {% endfor %}
@@ -110,7 +110,7 @@ layout: null
     </header>
 
     <main>
-        {% if page.layout == 'post' or page.layout == 'custom' and page.title %}
+        {% if page.layout == 'post' or page.layout == 'page' %}
             <article>
                 <h1>{{ page.title }}</h1>
                 {% if page.date %}
