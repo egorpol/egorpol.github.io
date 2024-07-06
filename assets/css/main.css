@@ -1,0 +1,230 @@
+/* Light theme (default) */
+:root {
+    --bg-color: #ffffff;
+    --text-color: #333333;
+    --primary-color: #0066cc;
+    --secondary-color: #f4f4f4;
+    --link-color: #0066cc;
+    --link-visited-color: #551a8b;
+    --code-bg: #f4f4f4;
+    --code-color: #666666;
+    --border-color: #dddddd;
+    --footer-color: #777777;
+    --hover-color: #004080;
+}
+
+/* Dark theme */
+[data-theme="dark"] {
+    --bg-color: #1a1a1a;
+    --text-color: #f0f0f0;
+    --primary-color: #4d94ff;
+    --secondary-color: #2a2a2a;
+    --link-color: #4d94ff;
+    --link-visited-color: #9d7fff;  /* Lighter purple for visited links in dark mode */
+    --code-bg: #2a2a2a;
+    --code-color: #f0f0f0;
+    --border-color: #444444;
+    --footer-color: #b0b0b0;
+    --hover-color: #66a3ff;
+}
+
+body {
+    font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+    line-height: 1.6;
+    color: var(--text-color);
+    max-width: 800px;
+    margin: 0 auto;
+    padding: 20px;
+    background-color: var(--bg-color);
+}
+
+header {
+    border-bottom: 2px solid var(--secondary-color);
+    padding-bottom: 20px;
+    margin-bottom: 30px;
+}
+
+.header-content {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+}
+
+h1, h2, h3 {
+    color: var(--primary-color);
+}
+
+h1 {
+    margin-bottom: 10px;
+    margin-right: 15px;
+}
+
+nav {
+    margin-top: 15px;
+}
+
+nav a {
+    margin-right: 15px;
+    text-decoration: none;
+    font-weight: bold;
+    transition: color 0.3s ease;
+}
+
+main {
+    background-color: var(--secondary-color);
+    padding: 20px;
+    border-radius: 5px;
+}
+
+article {
+    background-color: var(--bg-color);
+    padding: 20px;
+    border-radius: 5px;
+    margin-bottom: 20px;
+}
+
+footer {
+    margin-top: 40px;
+    text-align: center;
+    font-size: 0.9em;
+    color: var(--footer-color);
+}
+
+.social-links {
+    margin-top: 20px;
+}
+
+.social-links a {
+    font-size: 1.5em;
+    margin-right: 15px;
+    transition: color 0.3s ease;
+}
+
+.post-meta {
+    color: var(--footer-color);
+    font-size: 0.9em;
+}
+
+@media (max-width: 600px) {
+    body {
+        padding: 10px;
+    }
+    nav a {
+        display: block;
+        margin-bottom: 10px;
+    }
+}
+
+/* Code block styles */
+pre {
+    background-color: var(--code-bg);
+    border: 1px solid var(--border-color);
+    border-left: 3px solid #f36d33;
+    color: var(--code-color);
+    page-break-inside: avoid;
+    font-family: monospace;
+    font-size: 15px;
+    line-height: 1.6;
+    margin-bottom: 1.6em;
+    max-width: 100%;
+    overflow: auto;
+    padding: 1em 1.5em;
+    display: block;
+    word-wrap: break-word;
+}
+
+code {
+    background-color: var(--code-bg);
+    border-radius: 3px;
+    color: var(--code-color);
+    font-family: monospace;
+    padding: 0.2em 0.5em;
+}
+
+/* Add more language-specific styling as needed */
+.language-python .k { color: #008000; font-weight: bold; } /* Keywords */
+.language-python .s { color: #d14; } /* Strings */
+.language-python .c1 { color: #998; font-style: italic; } /* Comments */
+
+/* Line numbers */
+.line-numbers {
+    counter-reset: line;
+}
+
+.line-numbers > span {
+    counter-increment: line;
+}
+
+.line-numbers > span::before {
+    content: counter(line);
+    display: inline-block;
+    width: 2em;
+    padding-right: 0.5em;
+    margin-right: 0.5em;
+    color: #999;
+    border-right: 1px solid var(--border-color);
+}
+
+/* Highlight specific lines */
+.highlight-lines .highlight-line {
+    background-color: #fffbdd;
+}
+
+/* Theme toggle button */
+.theme-toggle {
+    background: none;
+    border: none;
+    color: var(--text-color);
+    font-size: 1.2em;
+    cursor: pointer;
+    padding: 5px;
+    margin-left: 15px;
+    transition: color 0.3s ease;
+}
+
+.theme-toggle:hover {
+    color: var(--primary-color);
+}
+
+/* Default state (light mode) */
+.theme-toggle i {
+    display: inline-block;
+}
+
+.theme-toggle i.fa-sun {
+    display: none;
+}
+
+/* Dark mode */
+[data-theme="dark"] .theme-toggle i.fa-moon {
+    display: none;
+}
+
+[data-theme="dark"] .theme-toggle i.fa-sun {
+    display: inline-block;
+}
+
+/* Updated link styles */
+a {
+    color: var(--link-color);
+    text-decoration: none;
+    transition: color 0.3s ease;
+}
+
+a:visited {
+    color: var(--link-visited-color);
+}
+
+a:hover, a:focus {
+    color: var(--hover-color);
+    text-decoration: underline;
+}
+
+/* Specific styles for navigation links */
+nav a, nav a:visited {
+    color: var(--link-color);
+}
+
+nav a:hover, nav a:focus {
+    color: var(--hover-color);
+}
