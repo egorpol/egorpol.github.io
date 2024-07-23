@@ -170,6 +170,27 @@ code {
     background-color: #fffbdd;
 }
 
+.highlight {
+    margin: 0;
+    padding: 0;
+  }
+  
+.highlight pre {
+    margin: 0;
+    padding: 1em;
+  }
+  
+.highlight code {
+    padding: 0;
+    margin: 0;
+    display: block;
+  }
+  
+.highlighter-rouge .highlight {
+    background-color: var(--code-bg);
+    color: var(--code-color);
+  }
+
 /* Theme toggle button */
 .theme-toggle {
     background: none;
