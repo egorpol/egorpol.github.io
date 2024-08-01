@@ -11,6 +11,9 @@
     --border-color: #dddddd;
     --footer-color: #777777;
     --hover-color: #004080;
+    --blockquote-bg: #f9f9f9; /* Light background color */
+    --blockquote-border: #ccc; /* Light border color */
+    --blockquote-text: #000; /* Light text color */
 }
 
 /* Dark theme */
@@ -26,6 +29,9 @@
     --border-color: #444444;
     --footer-color: #b0b0b0;
     --hover-color: #66a3ff;
+    --blockquote-bg: #2e2e2e; /* Dark background color */
+    --blockquote-border: #555; /* Dark border color */
+    --blockquote-text: #fff; /* Dark text color */
 }
 
 body {
@@ -248,4 +254,19 @@ nav a, nav a:visited {
 
 nav a:hover, nav a:focus {
     color: var(--hover-color);
+}
+
+/* Blockquote styles */
+blockquote {
+    border-left: 4px solid var(--blockquote-border);
+    margin: 1.5em 10px;
+    padding: 0.5em 10px;
+    quotes: "\201C""\201D""\2018""\2019";
+    background-color: var(--blockquote-bg);
+    border-radius: 5px;
+    color: var(--blockquote-text);
+}
+
+blockquote p {
+    display: inline;
 }
