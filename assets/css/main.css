@@ -6,14 +6,14 @@
     --secondary-color: #f4f4f4;
     --link-color: #0066cc;
     --link-visited-color: #551a8b;
-    --code-bg: #f4f4f4;
-    --code-color: #666666;
+    --code-bg: #f8f8f8; /* Matches lightfair theme */
+    --code-color: #383a42; /* Matches lightfair theme */
     --border-color: #dddddd;
     --footer-color: #777777;
     --hover-color: #004080;
-    --blockquote-bg: #f9f9f9; /* Light background color */
-    --blockquote-border: #ccc; /* Light border color */
-    --blockquote-text: #000; /* Light text color */
+    --blockquote-bg: #f6f8fa;
+    --blockquote-border: #0066cc;
+    --blockquote-text: #333333;
 }
 
 /* Dark theme */
@@ -23,15 +23,15 @@
     --primary-color: #4d94ff;
     --secondary-color: #2a2a2a;
     --link-color: #4d94ff;
-    --link-visited-color: #9d7fff;  /* Lighter purple for visited links in dark mode */
-    --code-bg: #2a2a2a;
-    --code-color: #f0f0f0;
+    --link-visited-color: #9d7fff;
+    --code-bg: #282c34; /* Darker background for better contrast */
+    --code-color: #abb2bf; /* Lighter text for better contrast */
     --border-color: #444444;
     --footer-color: #b0b0b0;
     --hover-color: #66a3ff;
-    --blockquote-bg: #2e2e2e; /* Dark background color */
-    --blockquote-border: #555; /* Dark border color */
-    --blockquote-text: #fff; /* Dark text color */
+    --blockquote-bg: #2a2a2a;
+    --blockquote-border: #4d94ff;
+    --blockquote-text: #f0f0f0;
 }
 
 body {
@@ -45,7 +45,7 @@ body {
 }
 
 header {
-    border-bottom: 2px solid var(--secondary-color);
+    border-bottom: 2px solid var(--primary-color);
     padding-bottom: 20px;
     margin-bottom: 30px;
 }
@@ -125,7 +125,7 @@ footer {
 pre {
     background-color: var(--code-bg);
     border: 1px solid var(--border-color);
-    border-left: 3px solid #f36d33;
+    border-left: 3px solid var(--primary-color);
     color: var(--code-color);
     page-break-inside: avoid;
     font-family: monospace;
@@ -147,11 +147,6 @@ code {
     padding: 0.2em 0.5em;
 }
 
-/* Add more language-specific styling as needed */
-.language-python .k { color: #008000; font-weight: bold; } /* Keywords */
-.language-python .s { color: #d14; } /* Strings */
-.language-python .c1 { color: #998; font-style: italic; } /* Comments */
-
 /* Line numbers */
 .line-numbers {
     counter-reset: line;
@@ -167,35 +162,35 @@ code {
     width: 2em;
     padding-right: 0.5em;
     margin-right: 0.5em;
-    color: #999;
+    color: var(--footer-color);
     border-right: 1px solid var(--border-color);
 }
 
 /* Highlight specific lines */
 .highlight-lines .highlight-line {
-    background-color: #fffbdd;
+    background-color: var(--secondary-color);
 }
 
 .highlight {
     margin: 0;
     padding: 0;
-  }
-  
+}
+
 .highlight pre {
     margin: 0;
     padding: 1em;
-  }
-  
+}
+
 .highlight code {
     padding: 0;
     margin: 0;
     display: block;
-  }
-  
+}
+
 .highlighter-rouge .highlight {
     background-color: var(--code-bg);
     color: var(--code-color);
-  }
+}
 
 /* Theme toggle button */
 .theme-toggle {
@@ -258,7 +253,7 @@ nav a:hover, nav a:focus {
 
 /* Blockquote styles */
 blockquote {
-    border-left: 4px solid var(--blockquote-border);
+    border-left: 4px solid var(--primary-color);
     margin: 1.5em 10px;
     padding: 0.5em 10px;
     quotes: "\201C""\201D""\2018""\2019";
@@ -269,4 +264,101 @@ blockquote {
 
 blockquote p {
     display: inline;
+}
+
+/* Base styles for code blocks */
+details pre {
+    background-color: var(--code-bg);
+    border-top: 1px solid var(--border-color);
+    padding: 1em 1.5em;
+    margin-bottom: 0;
+}
+
+details > summary {
+    background-color: var(--secondary-color);
+    padding: 0.5em 1em;
+    cursor: pointer;
+}
+
+/* Highlight.js specific styles */
+/* Light theme styles (default) */
+.hljs {
+    background-color: var(--code-bg);
+    color: var(--code-color);
+}
+
+/* Dark theme styles */
+[data-theme="dark"] .hljs {
+    background-color: var(--code-bg);
+    color: var(--code-color);
+}
+
+/* Highlight.js lightfair theme overrides */
+.hljs-comment,
+.hljs-quote {
+    color: #a0a1a7;
+    font-style: italic;
+}
+
+.hljs-doctag,
+.hljs-keyword,
+.hljs-formula {
+    color: var(--primary-color);
+}
+
+.hljs-section,
+.hljs-name,
+.hljs-selector-tag,
+.hljs-deletion,
+.hljs-subst {
+    color: #e45649;
+}
+
+.hljs-literal {
+    color: #0184bb;
+}
+
+.hljs-string,
+.hljs-regexp,
+.hljs-addition,
+.hljs-attribute,
+.hljs-meta-string {
+    color: #50a14f;
+}
+
+.hljs-built_in,
+.hljs-class .hljs-title {
+    color: #c18401;
+}
+
+.hljs-attr,
+.hljs-variable,
+.hljs-template-variable,
+.hljs-type,
+.hljs-selector-class,
+.hljs-selector-attr,
+.hljs-selector-pseudo,
+.hljs-number {
+    color: #986801;
+}
+
+.hljs-symbol,
+.hljs-bullet,
+.hljs-link,
+.hljs-meta,
+.hljs-selector-id,
+.hljs-title {
+    color: #4078f2;
+}
+
+.hljs-emphasis {
+    font-style: italic;
+}
+
+.hljs-strong {
+    font-weight: bold;
+}
+
+.hljs-link {
+    text-decoration: underline;
 }
