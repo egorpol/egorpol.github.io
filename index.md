@@ -47,11 +47,6 @@ My research explores the analytical and practical aspects of human-computer inte
 
 From 2013 to 2025, I served as an Artistic Associate and Researcher at HMT Leipzig. My responsibilities included leading seminars in electroacoustics and musicology, and providing artistic and technical supervision for student projects in live electronics and audiovisual media.
 
-## Contact
-
-- **Email:** [egor.polyakov@hmt-leipzig.de](mailto:egor.polyakov@hmt-leipzig.de)
-- **GitHub:** [@egorpol](https://github.com/egorpol){:target="_blank"}
-
 ---
 
 **Note on Name Transliteration:** Due to an official change in my documents, my surname has been transliterated from “Poliakov” to “Polyakov.” While my name in Cyrillic remains the same, publications and mentions under the former transliteration exist. I am now consistently using “Polyakov.”
