@@ -4,63 +4,54 @@ layout: custom
 
 ## About Me
 
-Ukraine-born composer and researcher specializing in human-computer interactions in music. Currently pursuing post-doctoral research at HMT Leipzig, Germany. Proud father of two.
+I am a Ukrainian-born composer and researcher specializing in the application of computational methods to musicology. My work focuses on human-computer interaction in music, from performance and composition to advanced computational analysis. I am a proud father of two.
 
-## Research Focus
+## Upcoming Position and Research
 
-My research explores analytical and practical aspects of human-computer interactions in music. Over the course of my music career, my focus has evolved through the following stages:
+Beginning in September 2025, I will be undertaking a full-time post-doctoral research position at the University of Music FRANZ LISZT Weimar (HfM Weimar), working on a DFG-funded project in collaboration with **Prof. Dr. Martin Pfleiderer**.
 
-- Performing (cello and piano)
-- Composing
-- Composing with electroacoustic media
-- Performing with electroacoustic media
-- Analyzing and understanding music with computers
-- Incorporating Python and machine learning into creative and analytical music processes
+The project, titled **"Entwicklung einer umfassenden Cloud-basierten Toolbox für Notenanalyse"** (Development of a Comprehensive Cloud-Based Toolbox for Music Score Analysis), aims to create a user-friendly, open-source software toolbox for the annotation, statistical analysis, visualization, and pattern recognition within musical scores. A key objective is to make these powerful tools accessible to music researchers, including those without programming expertise, by leveraging the [Jupyter4NFDI platform](https://base4nfdi.de/projects/jupyter4nfdi){:target="_blank"}.
 
-## Academic Background
+This initiative will be conducted in close collaboration with [Prof. Dr. Anna Plaksin](https://www.uni-paderborn.de/person/102981){:target="_blank"} (Paderborn University) and [Jürgen Diet](https://www.bsb-muenchen.de/ueber-uns/direktionabteilungen/musik/juergen-diet-lebenslauf-und-publikationen/?key=1-13){:target="_blank"} of the Bavarian State Library (BSB). The project will utilize established data formats like MusicXML and MEI to analyze key musical corpora. These include OMR (Optical Music Recognition) data of the *Denkmäler deutscher Tonkunst* provided by the BSB and selected compositions from the early 20th century. A significant part of our work will also be to enhance the [mei-friend](https://mei-friend.mdw.ac.at/) web editor by implementing new, powerful functionalities for annotation and search.
 
-- **2013–2018:** Doctorate in Musicology (Dr. phil.), HMT Leipzig
-  - Dissertation: "Computer-Based Analysis and Visual Representations of Music in the Context of the Latest Developments in Computer/Multimedia and Their Integration into Musicological Research and Teaching"
-  - Supervisors: Prof. Dr. Gesine Schröder (HMT Leipzig) and Prof. Dr. Martin Supper (UdK Berlin)
-- **2011–2014:** Master's in Composition, State University of Music and Performing Arts Stuttgart
-  - Under Prof. Marco Stroppa
-- **2010–2013:** Meisterklasse in Electroacoustics, HMT Leipzig
-  - Under Prof. Ipke Starke
-- **2004–2010:** Diploma in Composition, HMT Leipzig
-  - Under Prof. Peter Herrmann and Prof. Ipke Starke
+## Research Interests
 
-## Current Position
+My research explores the analytical and practical aspects of human-computer interaction in music. My career has progressed through several stages of focus:
 
-Since 2013, I have been serving as an Artistic Associate and Researcher at HMT Leipzig. My responsibilities include:
-
-- Leading seminars in electroacoustics and musicology
-- Providing artistic and technical supervision for student projects involving live electronics and audiovisual media in electroacoustic and composition courses
+*   Classical performance (Cello and Piano)
+*   Acoustic and electroacoustic composition
+*   Live electronic music performance
+*   Computer-assisted music analysis
+*   Application of Python and machine learning in creative and analytical musical contexts
 
 ## Current Projects
 
-1. **CAMAT:** A Python-based symbolic music toolbox
-   - Collaboration with Martin Pfleiderer at HfM Weimar
-   - [Learn more about CAMAT](https://analyse.hfm-weimar.de/doku.php?id=en:start)
+1.  **CAMAT:** A Python-based symbolic music toolbox developed in collaboration with Prof. Dr. Martin Pfleiderer (University of Music FRANZ LISZT Weimar).
+    [Learn more about CAMAT](https://analyse.hfm-weimar.de/doku.php?id=en:start){:target="_blank"}.
+2.  **AudioSpylt:** A Python toolbox for in-depth audio analysis, advanced processing, and interactive visualization, inspired by AudioSculpt/OM.
+    [Explore AudioSpylt on GitHub](https://github.com/egorpol/audiospylt){:target="_blank"}.
 
-2. **AudioSpylt:** A Python toolbox inspired by AudioSculpt/OM
-   - Designed for in-depth audio analysis, advanced processing, and interactive visualization
-   - [Explore AudioSpylt on GitHub](https://github.com/egorpol/audiospylt)
+## Academic Background
 
-## Latest Updates
+*   **2013–2018:** Doctorate in Musicology (Dr. phil.), HMT Leipzig
+    *   Dissertation: “Computer-Based Analysis and Visual Representations of Music in the Context of the Latest Developments in Computer/Multimedia and Their Integration into Musicological Research and Teaching”
+    *   Supervisors: Prof. Dr. Gesine Schröder (HMT Leipzig) and Prof. Dr. Martin Supper (UdK Berlin)
+*   **2011–2014:** Master’s in Composition, State University of Music and Performing Arts Stuttgart
+    *   Under the supervision of Prof. Marco Stroppa
+*   **2010–2013:** Meisterklasse in Electroacoustics, HMT Leipzig
+    *   Under the supervision of Prof. Ipke Starke
+*   **2004–2010:** Diploma in Composition, HMT Leipzig
+    *   Under the supervision of Prof. Peter Herrmann and Prof. Ipke Starke
 
-I recently attended the InMusic24 conference ([https://www.inmusicconference.com/](https://www.inmusicconference.com/)) in Oslo, and it was a blast! I met many wonderful people and presented my project on ML-based sound generation approaches (“Exploration of Timbre by Analysis and Synthesis” using Python, Ableton, and ChatGPT). The project employs various global optimization algorithms with the primary goal of synthesizing a DFT frame within a restricted FM/AM setup, optionally aimed for use within Ableton/Operator.
+## Previous Positions
 
-You can check the corresponding repository with PowerPoint slides and accompanying Jupyter notebooks: [GitHub Repository](https://github.com/egorpol/audiospylt/tree/main/exploration_of_timbre).
+From 2013 to 2025, I served as an Artistic Associate and Researcher at HMT Leipzig. My responsibilities included leading seminars in electroacoustics and musicology, and providing artistic and technical supervision for student projects in live electronics and audiovisual media.
 
-### Upcoming Talks
+## Contact
 
-- **"Exploring Electroacoustic Music Analysis with Multimodal Large Language Models"**  
-  Jahrestagung der Gesellschaft für Musikforschung, Köln, 11–14 September 2024
-
-- **"How Constant Is Your Beat?  
-  Computer-Assisted Analysis of Beat and Tempo Fluctuations from Acousmatic Music to Minimal Techno with the 'beat_it' Toolbox."**  
-  Rhythm under the Microscope Conference, Vienna, 25–27 September 2024
+- **Email:** [egor.polyakov@hmt-leipzig.de](mailto:egor.polyakov@hmt-leipzig.de)
+- **GitHub:** [@egorpol](https://github.com/egorpol){:target="_blank"}
 
 ---
 
-**Note on Name Change:** Due to a change in my documents, my last name has been transliterated from "Poliakov" to "Polyakov" (while staying the same in Cyrillic). I am now using "Polyakov" consistently, so several publications and mentions may be inconsistent. Let's hope for no more changes in the future! 😊
+**Note on Name Transliteration:** Due to an official change in my documents, my surname has been transliterated from “Poliakov” to “Polyakov.” While my name in Cyrillic remains the same, publications and mentions under the former transliteration exist. I am now consistently using “Polyakov.”
