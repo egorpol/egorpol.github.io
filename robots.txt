@@ -1,0 +1,10 @@
+User-agent: *
+Allow: /
+
+# Sitemap
+Sitemap: https://egorpol.github.io/sitemap.xml
+
+# Disallow temporary files
+Disallow: /_site/
+Disallow: /.jekyll-cache/
+Disallow: /.ipynb_checkpoints/
