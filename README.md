@@ -49,7 +49,7 @@ egorpol.github.io/
 ### Jekyll Plugins
 - `jekyll-feed`: RSS/Atom feed generation
 - `jekyll-seo-tag`: SEO optimization
-- `jekyll-paginate`: Blog pagination
+- `jekyll-paginate`: Blog pagination (optional; currently disabled)
 
 ### External Libraries
 - Font Awesome 6.4.0 (CDN)
@@ -96,7 +96,7 @@ bundle exec jekyll build
 2. Use the following front matter format:
    ```yaml
    ---
-   layout: custom
+   layout: post
    title: "Your Post Title"
    date: YYYY-MM-DD
    categories: [category1, category2]

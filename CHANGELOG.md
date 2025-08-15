@@ -1,5 +1,21 @@
 # Changelog
 
+## [2025-08-15] - Navigation, SEO, and Layout Standardization
+
+### ✨ Added
+- Injected `{% seo %}` and `{% feed_meta %}` into `default.html` and `custom.html`.
+
+### 🎨 Improved
+- Reworked header title to a linked `.site-title` and added corresponding CSS.
+- Modernized code highlighting initialization (`hljs.highlightAll`) and deferred script loading.
+- Navigation now auto-lists `page` layout entries and excludes the Blog page via `menu: exclude`.
+- Standardized blog usage to `layout: post`; adjusted README example accordingly.
+- Demoted post-level H1 in `2023-07-03-blog1.md` to avoid duplicate H1s.
+- `blog.md` now has `permalink: /blog/`.
+
+### 🔧 Fixed
+- Removed unused pagination settings from `_config.yml` (left commented for future use).
+
 ## [2025-08-15] - Major Site Refactoring
 
 ### ✨ Added

@@ -1,6 +1,8 @@
 ---
 layout: page
 title: Blog
+permalink: /blog/
+menu: exclude
 ---
 
 # Blog Posts

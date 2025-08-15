@@ -42,7 +42,6 @@ kramdown:
 plugins:
   - jekyll-feed
   - jekyll-seo-tag
-  - jekyll-paginate
 
 # SEO settings
 google_analytics: # Add your GA tracking ID here if needed
@@ -53,9 +52,9 @@ feed:
   path: atom.xml
   limit: 10
 
-# Pagination settings
-paginate: 5
-paginate_path: "/blog/page:num/"
+# Pagination (disabled; enable if you add paginated blog index)
+# paginate: 5
+# paginate_path: "/blog/page:num/"
 
 # Collections
 collections:

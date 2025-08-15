@@ -1,63 +1,23 @@
 <!DOCTYPE html>
-<html lang="en">
+<html lang="{{ site.lang | default: 'en' }}">
 <head>
     <meta charset="utf-8">
     <meta name="viewport" content="width=device-width, initial-scale=1">
     <title>{% if page.title %}{{ page.title | escape }} - {% endif %}{{ site.title | escape }}</title>
-    <meta name="description" content="{{ page.excerpt | default: site.description | strip_html | normalize_whitespace | truncate: 160 | escape }}">
-    
-    <!-- SEO Meta Tags -->
-    <meta name="author" content="{{ site.author }}">
-    <meta name="robots" content="index, follow">
-    <link rel="canonical" href="{{ page.url | replace:'index.html','' | absolute_url }}">
-    
-    <!-- Open Graph / Facebook -->
-    <meta property="og:type" content="website">
-    <meta property="og:url" content="{{ page.url | replace:'index.html','' | absolute_url }}">
-    <meta property="og:title" content="{% if page.title %}{{ page.title | escape }}{% else %}{{ site.title | escape }}{% endif %}">
-    <meta property="og:description" content="{{ page.excerpt | default: site.description | strip_html | normalize_whitespace | truncate: 160 | escape }}">
-    <meta property="og:site_name" content="{{ site.title | escape }}">
-    
-    <!-- Twitter -->
-    <meta property="twitter:card" content="summary_large_image">
-    <meta property="twitter:url" content="{{ page.url | replace:'index.html','' | absolute_url }}">
-    <meta property="twitter:title" content="{% if page.title %}{{ page.title | escape }}{% else %}{{ site.title | escape }}{% endif %}">
-    <meta property="twitter:description" content="{{ page.excerpt | default: site.description | strip_html | normalize_whitespace | truncate: 160 | escape }}">
-    
-    <!-- Structured Data -->
-    <script type="application/ld+json">
-    {
-        "@context": "https://schema.org",
-        "@type": "Person",
-        "name": "{{ site.author }}",
-        "url": "{{ site.url }}",
-        "email": "{{ site.email }}",
-        "jobTitle": "Musicologist | Composer | Sound Engineer | Performer",
-        "worksFor": {
-            "@type": "Organization",
-            "name": "University of Music FRANZ LISZT Weimar"
-        },
-        "sameAs": [
-            "https://github.com/{{ site.github_username }}"
-        ]
-    }
-    </script>
+    {% seo %}
+    {% feed_meta %}
     
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
     <link rel="stylesheet" href="{{ '/assets/css/main.css' | relative_url }}">
     <link rel="icon" type="image/x-icon" href="{{ '/favicon.ico' | relative_url }}">
-    <script src="{{ '/assets/js/theme.js' | relative_url }}"></script>
-    <script src="{{ '/assets/js/image-viewer.js' | relative_url }}"></script>
-    
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/highlight.js/11.9.0/styles/lightfair.min.css">
-    <script src="https://cdnjs.cloudflare.com/ajax/libs/highlight.js/11.9.0/highlight.min.js"></script>
 
 </head>
 <body>
     <a href="#main-content" class="skip-link">Skip to main content</a>
     <header>
         <div class="header-content">
-            <h1>{{ site.title }}</h1>
+            <a class="site-title" href="{{ '/' | relative_url }}">{{ site.title }}</a>
             <button id="theme-toggle" class="theme-toggle" aria-label="Toggle theme">
                 <span class="theme-icon sun-icon">☀</span>
                 <span class="theme-icon moon-icon">☾</span>
@@ -67,6 +27,12 @@
         <nav>
             <a href="{{ '/' | relative_url }}">Home</a>
             <a href="{{ '/blog' | relative_url }}">Blog</a>
+            {% assign sorted_pages = site.pages | sort: 'order' %}
+            {% for page in sorted_pages %}
+              {% if page.title and page.layout == 'page' and page.menu != 'exclude' %}
+                <a href="{{ page.url | relative_url }}">{{ page.title | escape }}</a>
+              {% endif %}
+            {% endfor %}
         </nav>
     </header>
     <main id="main-content">
@@ -80,12 +46,19 @@
         <p>&copy; {{ site.time | date: '%Y' }} {{ site.title | escape }}. All rights reserved.</p>
     </footer>
 
+    <script defer src="https://cdnjs.cloudflare.com/ajax/libs/highlight.js/11.9.0/highlight.min.js"></script>
+    <script defer src="{{ '/assets/js/theme.js' | relative_url }}"></script>
+    <script defer src="{{ '/assets/js/image-viewer.js' | relative_url }}"></script>
     <script>
-        document.addEventListener('DOMContentLoaded', (event) => {
-          document.querySelectorAll('pre code').forEach((block) => {
-            hljs.highlightBlock(block);
-          });
+        document.addEventListener('DOMContentLoaded', () => {
+            if (window.hljs && typeof hljs.highlightAll === 'function') {
+                hljs.highlightAll();
+            } else if (window.hljs) {
+                document.querySelectorAll('pre code').forEach((block) => {
+                    hljs.highlightElement(block);
+                });
+            }
         });
-        </script>
+    </script>
 </body>
 </html>
