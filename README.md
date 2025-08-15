@@ -171,4 +171,4 @@ While this is a personal website, suggestions and improvements are welcome. Plea
 
 ---
 
-*Last updated: {{ site.time | date: "%B %d, %Y" }}*
+*Last updated: August 15, 2025*
