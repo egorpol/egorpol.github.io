@@ -25,7 +25,7 @@ document.addEventListener('DOMContentLoaded', () => {
     };
 
     const toggleTheme = () => {
-        const currentTheme = localStorage.getItem('theme') || (systemPrefersDark.matches ? 'dark' : 'light');
+        const currentTheme = document.documentElement.getAttribute('data-theme') || localStorage.getItem('theme') || 'light';
         const newTheme = currentTheme === 'dark' ? 'light' : 'dark';
         setTheme(newTheme);
     };
@@ -35,7 +35,7 @@ document.addEventListener('DOMContentLoaded', () => {
         if (savedTheme) {
             setTheme(savedTheme);
         } else {
-            setTheme(systemPrefersDark.matches ? 'dark' : 'light');
+            setTheme('light');
         }
     };
 
@@ -44,7 +44,9 @@ document.addEventListener('DOMContentLoaded', () => {
     }
 
     systemPrefersDark.addEventListener('change', (e) => {
-        setTheme(e.matches ? 'dark' : 'light');
+        if (!localStorage.getItem('theme')) {
+            setTheme(e.matches ? 'dark' : 'light');
+        }
     });
 
     loadTheme();

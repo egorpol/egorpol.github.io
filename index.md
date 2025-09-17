@@ -1,6 +1,10 @@
----
+﻿---
 layout: page
 ---
+
+<div class="profile-intro">
+    <img src="{{ '/avatar.png' | relative_url }}" alt="Portrait of Egor Polyakov" class="profile-avatar">
+</div>
 
 ## About Me
 
@@ -29,7 +33,9 @@ My research explores the analytical and practical aspects of human-computer inte
 1.  **CAMAT:** A Python-based symbolic music toolbox developed in collaboration with Prof. Dr. Martin Pfleiderer (University of Music FRANZ LISZT Weimar).
     [Learn more about CAMAT](https://analyse.hfm-weimar.de/doku.php?id=en:start){:target="_blank"}.
 2.  **AudioSpylt:** A Python toolbox for in-depth audio analysis, advanced processing, and interactive visualization, inspired by AudioSculpt/OM.
-    [Explore AudioSpylt on GitHub](https://github.com/egorpol/audiospylt){:target="_blank"}.
+    [AudioSpylt on GitHub](https://github.com/egorpol/audiospylt){:target="_blank"}.
+3. **FFTimbre:** A toolkit of notebooks and utilities for spectral matching via FM and additive synthesis using various objective metrics and optimizers. A powerful evaluation tool with a wide variety of metrics included. 
+    [FFTimbre on GitHub](https://github.com/egorpol/FFTimbre){:target="_blank"}.
 
 ## Academic Background
 
