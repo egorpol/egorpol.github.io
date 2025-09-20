@@ -11,11 +11,13 @@ I am a Ukrainian-born composer and researcher specializing in the application of
 ```
 egorpol.github.io/
 ├── _layouts/          # Jekyll layout templates
+├── _plugins/          # Custom plugins (currently empty)
 ├── _posts/           # Blog posts (Markdown)
 ├── assets/           # Static assets
 │   ├── css/         # Stylesheets
 │   ├── js/          # JavaScript files
 │   └── images/      # Images
+├── _site/            # Built site output (do not edit; generated)
 ├── _config.yml      # Jekyll configuration
 ├── index.md         # Homepage
 ├── blog.md          # Blog listing page
@@ -27,7 +29,7 @@ egorpol.github.io/
 ## 🚀 Features
 
 - **Responsive Design**: Works on desktop, tablet, and mobile devices
-- **Dark/Light Theme**: Toggle between themes with system preference detection
+- **Dark/Light Theme**: Persistent toggle with saved preference (light by default)
 - **Interactive Image Viewer**: Click any image to view in full-screen with navigation
 - **Accessibility**: WCAG compliant with skip links, focus indicators, and semantic HTML
 - **SEO Optimized**: Meta tags, structured data, sitemap, and robots.txt
@@ -37,8 +39,8 @@ egorpol.github.io/
 
 ## 🛠️ Technology Stack
 
-- **Jekyll 4.3.3**: Static site generator
-- **GitHub Pages**: Hosting platform
+- **GitHub Pages (github-pages gem)**: Production runtime that pins Jekyll and plugins
+- **Jekyll**: Static site generator (version pinned by GitHub Pages)
 - **CSS3**: Custom styling with CSS variables for theming
 - **JavaScript**: Vanilla JS for theme switching and interactions
 - **Font Awesome**: Icons
@@ -62,7 +64,7 @@ egorpol.github.io/
 ## 🏃‍♂️ Local Development
 
 ### Prerequisites
-- Ruby 2.6 or higher
+- Ruby 2.7+ (matches GitHub Pages runtime)
 - Bundler gem
 
 ### Setup
@@ -88,6 +90,8 @@ egorpol.github.io/
 ```bash
 bundle exec jekyll build
 ```
+
+The built site is output to `_site/`. Do not edit files in that directory manually.
 
 ## 📝 Content Management
 
@@ -138,6 +142,7 @@ Key settings in `_config.yml`:
 - GitHub username for social links
 - Jekyll plugins and settings
 - SEO and analytics configuration
+- Markdown engine (`kramdown`) and syntax highlighter (`rouge`)
 
 ## 📊 Performance
 
@@ -171,4 +176,4 @@ While this is a personal website, suggestions and improvements are welcome. Plea
 
 ---
 
-*Last updated: August 15, 2025*
+*Last updated: September 17, 2025*
