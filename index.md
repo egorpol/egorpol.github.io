@@ -1,58 +1,151 @@
 ﻿---
 layout: page
+title: Egor Polyakov
+description: "Computational musicologist and postdoctoral researcher at HfM Weimar. Open-source tools for symbolic/audio analysis and applied machine learning in music."
+permalink: /
+image: /avatar.png
+tags:
+  - computational musicology
+  - audio analysis
+  - symbolic music
+  - machine learning
+  - python
+structured_data:
+  '@context': 'https://schema.org'
+  '@type': 'Person'
+  name: 'Egor Polyakov'
+  alternateName: 'Egor Poliakov'
+  description: 'Postdoctoral researcher in computational musicology building open tools for score and audio analysis, machine learning, and creative practice.'
+  image: 'https://egorpol.github.io/avatar.png'
+  url: 'https://egorpol.github.io'
+  jobTitle: 'Postdoctoral Researcher in Computational Musicology'
+  worksFor:
+    '@type': 'Organization'
+    name: 'University of Music FRANZ LISZT Weimar'
+    url: 'https://www.hfm-weimar.de/'
+    sameAs: 'https://www.hfm-weimar.de/'
+  workLocation:
+    '@type': 'Place'
+    name: 'University of Music FRANZ LISZT Weimar'
+    address:
+      '@type': 'PostalAddress'
+      streetAddress: 'Platz der Demokratie 2/3'
+      addressLocality: 'Weimar'
+      addressRegion: 'Thuringia'
+      postalCode: '99423'
+      addressCountry: 'DE'
+  email: 'mailto:egor.polyakov@hfm-weimar.de'
+  nationality:
+    '@type': 'Country'
+    name: 'Ukraine'
+  knowsAbout:
+    - 'Computational Musicology'
+    - 'Machine Learning'
+    - 'Audio Analysis'
+    - 'Symbolic Music'
+    - 'Python Programming'
+    - 'Digital Humanities'
+  sameAs:
+    - 'https://github.com/egorpol'
+    - 'https://www.linkedin.com/in/egor-polyakov-6a2114315/'
+  alumniOf:
+    - '@type': 'EducationalOrganization'
+      name: 'University of Music and Theatre Leipzig'
+    - '@type': 'EducationalOrganization'
+      name: 'University of Music and Performing Arts Stuttgart'
+  award:
+    - '@type': 'EducationalOccupationalCredential'
+      name: 'PhD in Musicology'
+      provider: 'University of Music and Theatre Leipzig'
+
+# Additional structured data for local SEO
+local_business_schema:
+  '@context': 'https://schema.org'
+  '@type': 'EducationalOrganization'
+  name: 'University of Music FRANZ LISZT Weimar'
+  url: 'https://www.hfm-weimar.de/'
+  logo: 'https://egorpol.github.io/avatar.png'
+  description: 'Leading institution for music education and research in Germany'
+  address:
+    '@type': 'PostalAddress'
+    streetAddress: 'Platz der Demokratie 2/3'
+    addressLocality: 'Weimar'
+    addressRegion: 'Thuringia'
+    postalCode: '99423'
+    addressCountry: 'DE'
+  geo:
+    '@type': 'GeoCoordinates'
+    latitude: 50.9787
+    longitude: 11.3290
+  sameAs:
+    - 'https://www.hfm-weimar.de/'
 ---
 
-<div class="profile-intro">
-    <img src="{{ '/avatar.png' | relative_url }}" alt="Portrait of Egor Polyakov" class="profile-avatar">
+<div class='profile-intro'>
+    <img src='{{ '/avatar.png' | relative_url }}' alt='Portrait of Egor Polyakov - Computational Musicologist and Postdoctoral Researcher' class='profile-avatar' loading='eager' width='160' height='160'>
 </div>
 
-## About Me
+# Computational Musicology & Creative Technology
 
-I am a Ukrainian-born composer and researcher specializing in the application of computational methods to musicology. My work focuses on human-computer interaction in music, from performance and composition to advanced computational analysis. I am a proud father of two.
+I am a Ukrainian-born composer, researcher, and postdoctoral fellow at the University of Music FRANZ LISZT Weimar. My work bridges computational musicology, machine learning, and artistic practice to make advanced analysis workflows accessible to scholars, students, and performers. I bring more than a decade of experience leading research-driven teaching, building open-source tooling, and supporting live electronic music production.
 
-## Upcoming Position and Research
+## Current Role
 
-Beginning in September 2025, I will be undertaking a full-time post-doctoral research position at the University of Music FRANZ LISZT Weimar (HfM Weimar), working on a DFG-funded project in collaboration with **Prof. Dr. Martin Pfleiderer**.
+- **Postdoctoral Researcher, HfM Weimar (since 2025):** Lead investigator on the DFG-funded project *Development of a Comprehensive Cloud-Based Toolbox for Music Score Analysis*, co-led with Prof. Dr. Martin Pfleiderer. I oversee a multidisciplinary team delivering collaborative annotation, statistical modelling, and pattern discovery workflows for MEI and MusicXML corpora via Jupyter4NFDI. My focus lies on method design, Python-based toolchains, and the integration of enhanced mei-friend capabilities for optical music recognition data.
 
-The project, titled **"Entwicklung einer umfassenden Cloud-basierten Toolbox für Notenanalyse"** (Development of a Comprehensive Cloud-Based Toolbox for Music Score Analysis), aims to create a user-friendly, open-source software toolbox for the annotation, statistical analysis, visualization, and pattern recognition within musical scores. A key objective is to make these powerful tools accessible to music researchers, including those without programming expertise, by leveraging the [Jupyter4NFDI platform](https://base4nfdi.de/projects/jupyter4nfdi){:target="_blank"}.
+## Research Themes
 
-This initiative will be conducted in close collaboration with [Prof. Dr. Anna Plaksin](https://www.uni-paderborn.de/person/102981){:target="_blank"} (Paderborn University) and [Jürgen Diet](https://www.bsb-muenchen.de/ueber-uns/direktionabteilungen/musik/juergen-diet-lebenslauf-und-publikationen/?key=1-13){:target="_blank"} of the Bavarian State Library (BSB). The project will utilize established data formats like MusicXML and MEI to analyze key musical corpora. These include OMR (Optical Music Recognition) data of the *Denkmäler deutscher Tonkunst* provided by the BSB and selected compositions from the early 20th century. A significant part of our work will also be to enhance the [mei-friend](https://mei-friend.mdw.ac.at/) web editor by implementing new, powerful functionalities for annotation and search.
+- Symbolic and audio feature engineering for computational musicology
+- Machine learning for timbre, rhythm, and structure analysis
+- Human-computer interaction for performance, composition, and pedagogy
+- Reproducible, notebook-driven research infrastructures for musicology and music theory
 
-## Research Interests
+## Technical & Artistic Competencies
 
-My research explores the analytical and practical aspects of human-computer interaction in music. My career has progressed through several stages of focus:
+- **Analytical stack:** Python (pandas, Jupyter, music21, librosa); OpenMusic (Lisp).
+- **Audio production:** Ableton Live, Logic Pro, Max/MSP, Sonic Visualiser; IRCAM tools (AudioSculpt, SuperVP, Partiels, SPAT); hardware/software live-electronics and multichannel audio rig design.
+- **Research transfer:** Open science practices, reproducible pipelines, curriculum development, project mentoring.
 
-*   Classical performance (Cello and Piano)
-*   Acoustic and electroacoustic composition
-*   Live electronic music performance
-*   Computer-assisted music analysis
-*   Application of Python and machine learning in creative and analytical musical contexts
+## Selected Tools & Projects
 
-## Current Projects
+1. **CAMAT:** Python toolbox for symbolic repertoire analysis, co-developed with Prof. Dr. Martin Pfleiderer and Christon-Ragavan Nadar. [Explore CAMAT](https://analyse.hfm-weimar.de/doku.php?id=en:start){:target='_blank'}.
+2. **AudioSpylt:** Advanced toolkit for audio feature extraction, interactive visualisation, and creative prototyping. [View on GitHub](https://github.com/egorpol/audiospylt){:target='_blank'}.
+3. **FFTimbre:** Suite of notebooks and utilities for FM and additive synthesis-assisted timbre matching, offering multi-metric evaluation. [View on GitHub](https://github.com/egorpol/FFTimbre){:target='_blank'}.
+4. **beat_it:** Jupyter notebooks for analyzing beat and tempo fluctuations. [View on GitHub](https://github.com/egorpol/beat_it){:target='_blank'}.
 
-1.  **CAMAT:** A Python-based symbolic music toolbox developed in collaboration with Prof. Dr. Martin Pfleiderer (University of Music FRANZ LISZT Weimar).
-    [Learn more about CAMAT](https://analyse.hfm-weimar.de/doku.php?id=en:start){:target="_blank"}.
-2.  **AudioSpylt:** A Python toolbox for in-depth audio analysis, advanced processing, and interactive visualization, inspired by AudioSculpt/OM.
-    [AudioSpylt on GitHub](https://github.com/egorpol/audiospylt){:target="_blank"}.
-3. **FFTimbre:** A toolkit of notebooks and utilities for spectral matching via FM and additive synthesis using various objective metrics and optimizers. A powerful evaluation tool with a wide variety of metrics included. 
-    [FFTimbre on GitHub](https://github.com/egorpol/FFTimbre){:target="_blank"}.
+## Academic Appointments
 
-## Academic Background
+- **2013-2025 - Researcher & Artistic Associate, HMT Leipzig (University of Music and Theatre Leipzig):** Designed and delivered seminars in computer-assisted analysis and electroacoustics; one-to-one teaching and supervision in electroacoustic composition; management and maintenance of the electroacoustic studios; support for in-house and off-site concert events involving media and spatial audio.
+- **2021-2022 - Researcher, HfM Weimar:** Developed the CAMAT toolbox and piloted teaching applications across music programs.
 
-*   **2013–2018:** Doctorate in Musicology (Dr. phil.), HMT Leipzig
-    *   Dissertation: “Computer-Based Analysis and Visual Representations of Music in the Context of the Latest Developments in Computer/Multimedia and Their Integration into Musicological Research and Teaching”
-    *   Supervisors: Prof. Dr. Gesine Schröder (HMT Leipzig) and Prof. Dr. Martin Supper (UdK Berlin)
-*   **2011–2014:** Master’s in Composition, State University of Music and Performing Arts Stuttgart
-    *   Under the supervision of Prof. Marco Stroppa
-*   **2010–2013:** Meisterklasse in Electroacoustics, HMT Leipzig
-    *   Under the supervision of Prof. Ipke Starke
-*   **2004–2010:** Diploma in Composition, HMT Leipzig
-    *   Under the supervision of Prof. Peter Herrmann and Prof. Ipke Starke
+## Education
 
-## Previous Positions
+- **PhD in Musicology (Dr. phil.), HMT Leipzig, 2018** - Dissertation on computer-based analysis and visualisation of music; supervised by Prof. Dr. Gesine Schroeder and Prof. Dr. Martin Supper.
+- **Master of Composition, University of Music and Performing Arts Stuttgart, 2014** - Studied with Prof. Marco Stroppa.
+- **Postgraduate Artist Diploma (Meisterklasse) in Electroacoustic Music, HMT Leipzig, 2013** - Mentored by Prof. Ipke Starke.
+- **Diploma in Composition, HMT Leipzig, 2010** - Studied with Prof. Peter Herrmann and Prof. Ipke Starke.
 
-From 2013 to 2025, I served as an Artistic Associate and Researcher at HMT Leipzig. My responsibilities included leading seminars in electroacoustics and musicology, and providing artistic and technical supervision for student projects in live electronics and audiovisual media.
+## Languages & Memberships
 
----
+- Languages: German (professional), English (professional), Russian (native)
+- Professional bodies: [GMTH](https://www.gmth.de){:target='_blank'} (since 2016), [DEGEM](https://www.degem.de){:target='_blank'} (since 2018), [GfM](https://www.musikforschung.de){:target='_blank'} (since 2024)
 
-**Note on Name Transliteration:** Due to an official change in my documents, my surname has been transliterated from “Poliakov” to “Polyakov.” While my name in Cyrillic remains the same, publications and mentions under the former transliteration exist. I am now consistently using “Polyakov.”
+## Contact {#contact}
+
+<div class="contact-buttons">
+    <a class="contact-button" href="mailto:egor.polyakov@hfm-weimar.de">
+        <i class="fas fa-envelope"></i>
+        Email
+    </a>
+    <a class="contact-button" href="https://github.com/egorpol" target="_blank" rel="noopener">
+        <i class="fab fa-github"></i>
+        GitHub
+    </a>
+    <a class="contact-button linkedin" href="https://www.linkedin.com/in/egor-polyakov-6a2114315/" target="_blank" rel="noopener">
+        <i class="fab fa-linkedin"></i>
+        LinkedIn
+    </a>
+</div>
+
+*See my [full CV]({{ '/cv/' | relative_url }}) for a complete list of projects and publications.*
+

@@ -1,54 +1,24 @@
-# Blog Post Categories Guide
+# Categories
 
-## How to Define Categories
+This page lists all the categories used on this site, along with links to posts in each category.
 
-Categories should be defined as YAML arrays in the front matter of your blog posts.
+## Research
+Posts about academic research, computational musicology, and related topics.
 
-### ✅ Correct Format
-```yaml
----
-layout: post
-title: "Your Post Title"
-date: 2024-07-23
-categories: [machine-learning, deep-learning, vae, mnist]
-excerpt: "Your excerpt here"
----
-```
+- [Update Public Domain Sheet Music Finder]({{ '/blog/2023/07/03/blog1/' | relative_url }})
 
-### ❌ Incorrect Format
-```yaml
----
-layout: post
-title: "Your Post Title"
-date: 2024-07-23
-categories: machine learning  # This creates separate categories "machine" and "learning"
-excerpt: "Your excerpt here"
----
-```
+## Machine Learning
+Posts about machine learning, deep learning, neural networks, and AI applications.
 
-## Category Naming Conventions
+- [Constructing a VAE-based MNIST number generation Jupyter notebook]({{ '/blog/2024/07/23/blog2/' | relative_url }})
 
-- Use **kebab-case** for multi-word categories: `machine-learning`, `deep-learning`
-- Use **single words** when possible: `research`, `music`, `tools`
-- Be **specific** but not too granular
-- Use **lowercase** letters
+## Tools & Software
+Posts about software tools, programming, and technical implementations.
 
-## Current Categories
+- [Update Public Domain Sheet Music Finder]({{ '/blog/2023/07/03/blog1/' | relative_url }})
 
-- `machine-learning` - Machine learning topics
-- `deep-learning` - Deep learning and neural networks
-- `vae` - Variational Autoencoders
-- `mnist` - MNIST dataset related
-- `research` - Research projects and papers
-- `music` - Music-related content
-- `public-domain` - Public domain music and tools
-- `tools` - Software tools and utilities
+## Music Technology
+Posts about music technology, audio analysis, and computational musicology tools.
 
-## Display
-
-Categories are automatically displayed on the blog page with:
-- Hyphens converted to spaces
-- First letter capitalized
-- Styled as tags
-
-Example: `machine-learning` displays as "Machine Learning"
+- [Update Public Domain Sheet Music Finder]({{ '/blog/2023/07/03/blog1/' | relative_url }})
+- [Constructing a VAE-based MNIST number generation Jupyter notebook]({{ '/blog/2024/07/23/blog2/' | relative_url }})

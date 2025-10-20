@@ -7,20 +7,50 @@
     <title>{% if page.title %}{{ page.title | escape }} - {% endif %}{{ site.title | escape }}</title>
     {% seo %}
     {% feed_meta %}
-    <script>
-        (function() {
-            try {
-                var saved = localStorage.getItem('theme');
-                var theme = saved ? saved : 'light';
-                document.documentElement.setAttribute('data-theme', theme);
-            } catch (e) {}
-        })();
+
+    <!-- Custom meta tags for SEO -->
+    {% if page.google_site_verification %}
+    <meta name="google-site-verification" content="{{ page.google_site_verification }}" />
+    {% endif %}
+    {% if page.bing_site_verification %}
+    <meta name="msvalidate.01" content="{{ page.bing_site_verification }}" />
+    {% endif %}
+
+    <!-- Enhanced Open Graph tags -->
+    <meta property="og:site_name" content="{{ site.title | escape }}" />
+    <meta property="og:locale" content="en_US" />
+    <meta name="twitter:site" content="@egorpol" />
+    <meta name="twitter:creator" content="@egorpol" />
+    {% if page.structured_data %}
+    <script type="application/ld+json">
+    {{ page.structured_data | jsonify }}
     </script>
-    
+    {% endif %}
+    {% if page.local_business_schema %}
+    <script type="application/ld+json">
+    {{ page.local_business_schema | jsonify }}
+    </script>
+    {% endif %}
+    {% if site.social and site.social.links %}
+    {% for link in site.social.links %}
+    <link rel="me" href="{{ link }}">
+    {% endfor %}
+    {% endif %}
+    <!-- Preconnect for performance -->
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link rel="preconnect" href="https://cdnjs.cloudflare.com">
+    <link rel="dns-prefetch" href="https://fonts.googleapis.com">
+
+    <!-- Stylesheets -->
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
     <link rel="stylesheet" href="{{ '/assets/css/main.css' | relative_url }}">
     <link rel="icon" type="image/x-icon" href="{{ '/favicon.ico' | relative_url }}">
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/highlight.js/11.9.0/styles/lightfair.min.css">
+
+    <!-- Theme color for mobile browsers -->
+    <meta name="theme-color" content="#B5651D">
+    <meta name="msapplication-TileColor" content="#B5651D">
 
 </head>
 <body>
@@ -37,19 +67,44 @@
         <nav>
             <a href="{{ '/' | relative_url }}">Home</a>
             <a href="{{ '/blog' | relative_url }}">Blog</a>
+            <a href="{{ '/cv/' | relative_url }}">CV</a>
+            <a href="{{ '/' | relative_url }}#contact">Contact</a>
         </nav>
     </header>
     <main id="main-content">
+        {% if page.breadcrumb %}
+        <nav aria-label="Breadcrumb" class="breadcrumb">
+            <ol>
+                <li><a href="{{ '/' | relative_url }}">Home</a></li>
+                {% for crumb in page.breadcrumb %}
+                <li>{% if crumb.url %}<a href="{{ crumb.url | relative_url }}">{{ crumb.title }}</a>{% else %}{{ crumb.title }}{% endif %}</li>
+                {% endfor %}
+            </ol>
+        </nav>
+        {% endif %}
         {{ content }}
     </main>
     <footer>
         <div class="social-links">
             <a href="mailto:{{ site.email }}" aria-label="Email"><i class="fas fa-envelope"></i></a>
             <a href="https://github.com/{{ site.github_username }}" aria-label="GitHub"><i class="fab fa-github"></i></a>
+            <a href="https://www.linkedin.com/in/egor-polyakov-6a2114315/" aria-label="LinkedIn"><i class="fab fa-linkedin"></i></a>
         </div>
         <p>&copy; {{ site.time | date: '%Y' }} {{ site.title | escape }}. All rights reserved.</p>
     </footer>
 
+    <!-- Critical scripts (inline) -->
+    <script>
+        (function() {
+            try {
+                var saved = localStorage.getItem('theme');
+                var theme = saved ? saved : 'light';
+                document.documentElement.setAttribute('data-theme', theme);
+            } catch (e) {}
+        })();
+    </script>
+
+    <!-- Deferred scripts for non-critical functionality -->
     <script defer src="https://cdnjs.cloudflare.com/ajax/libs/highlight.js/11.9.0/highlight.min.js"></script>
     <script defer src="{{ '/assets/js/theme.js' | relative_url }}"></script>
     <script defer src="{{ '/assets/js/image-viewer.js' | relative_url }}"></script>

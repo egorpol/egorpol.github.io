@@ -313,6 +313,22 @@ blockquote p {
     margin: 1em auto;
 }
 
+/* Image lazy loading styles */
+img[loading="lazy"] {
+    opacity: 0;
+    transition: opacity 0.3s ease;
+}
+
+img[loading="lazy"].loaded {
+    opacity: 1;
+}
+
+/* Optimize image loading performance */
+img {
+    loading: lazy;
+    decode: async;
+}
+
 /* Base styles for code blocks */
 details pre {
     background-color: var(--code-bg);
@@ -529,6 +545,47 @@ select:focus {
     }
 }
 
+/* Breadcrumb navigation */
+.breadcrumb {
+    margin-bottom: 20px;
+    padding: 10px 0;
+    border-bottom: 1px solid var(--border-color);
+}
+
+.breadcrumb ol {
+    list-style: none;
+    margin: 0;
+    padding: 0;
+    display: flex;
+    flex-wrap: wrap;
+    gap: 5px;
+}
+
+.breadcrumb li {
+    display: flex;
+    align-items: center;
+}
+
+.breadcrumb li:not(:last-child)::after {
+    content: ">";
+    margin: 0 8px;
+    color: var(--muted-text-color);
+    font-weight: normal;
+}
+
+.breadcrumb a {
+    color: var(--primary-color);
+    text-decoration: none;
+    padding: 4px 8px;
+    border-radius: 4px;
+    transition: background-color 0.3s ease;
+}
+
+.breadcrumb a:hover {
+    background-color: var(--secondary-color);
+    text-decoration: none;
+}
+
 /* Blog post styles */
 .blog-post {
     border: 1px solid var(--border-color);
@@ -715,6 +772,56 @@ select:focus {
 
 .clickable-image:hover::after {
     opacity: 1;
+}
+
+.contact-buttons {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 12px;
+    margin-top: 12px;
+}
+
+.contact-button {
+    display: inline-flex;
+    align-items: center;
+    gap: 8px;
+    padding: 10px 18px;
+    border-radius: 999px;
+    border: none;
+    background-color: var(--primary-color);
+    color: var(--surface-color);
+    text-decoration: none;
+    font-weight: 600;
+    box-shadow: 0 6px 14px var(--shadow-strong);
+    transition: transform 0.2s ease, box-shadow 0.2s ease, background-color 0.2s ease;
+}
+
+.contact-button i {
+    font-size: 1rem;
+    color: inherit;
+}
+
+.contact-button:hover,
+.contact-button:focus {
+    transform: translateY(-2px);
+    box-shadow: 0 12px 24px var(--shadow-strong);
+    background-color: var(--hover-color);
+}
+
+.contact-button:focus {
+    outline: 2px solid var(--focus-outline);
+    outline-offset: 2px;
+}
+
+.contact-button.linkedin {
+    background-color: #0a66c2;
+    box-shadow: 0 6px 14px rgba(10, 102, 194, 0.4);
+}
+
+.contact-button.linkedin:hover,
+.contact-button.linkedin:focus {
+    background-color: #084d91;
+    box-shadow: 0 12px 24px rgba(8, 77, 145, 0.5);
 }
 
 /* Reduced motion support */

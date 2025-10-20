@@ -19,8 +19,8 @@
 # in the templates via {{ site.myvariable }}.
 
 title: Egor Polyakov
-email: egor.polyakov@hmt-leipzig.de
-description: Musicologist | Composer | Sound Engineer | Performer
+email: egor.polyakov@hfm-weimar.de
+description: Computational musicologist, composer, and postdoctoral researcher focused on symbolic and audio music analysis.
 author: Egor Polyakov
 baseurl: "" # the subpath of your site, e.g. /blog
 url: "https://egorpol.github.io" # the base hostname & protocol for your site
@@ -43,9 +43,28 @@ plugins:
   - jekyll-feed
   - jekyll-seo-tag
 
+logo: /avatar.png
+social:
+  name: Egor Polyakov
+  links:
+    - https://github.com/egorpol
+    - https://www.linkedin.com/in/egor-polyakov-6a2114315/
+    - https://egorpol.github.io
+
 # SEO settings
-google_analytics: # Add your GA tracking ID here if needed
+google_analytics: G-XXXXXXXXXX # Replace with your actual Google Analytics 4 measurement ID
 google_analytics_anonymize_ip: true
+
+# Additional analytics and tracking
+gtag: G-XXXXXXXXXX # Google Analytics 4 measurement ID for gtag
+
+# Open Graph and Twitter Card settings
+twitter:
+  username: egorpol
+  card: summary_large_image
+facebook:
+  app_id: # Add your Facebook App ID if needed
+  admins: # Add Facebook admin IDs if needed
 
 # Feed settings
 feed:
@@ -61,6 +80,9 @@ collections:
   posts:
     output: true
     permalink: /blog/:year/:month/:day/:title/
+  categories:
+    output: true
+    permalink: /categories/:name/
 
 # Exclude from processing.
 # The following items will not be processed, by default.
@@ -70,7 +92,8 @@ collections:
 # Excluded items can be processed by explicitly listing the directories or
 # their entries' file path in the `include:` list.
 #
-# exclude:
+exclude:
+  - _site/
 #   - .sass-cache/
 #   - .jekyll-cache/
 #   - gemfiles/

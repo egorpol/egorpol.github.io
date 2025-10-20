@@ -1,10 +1,24 @@
+# Robots.txt for Egor Polyakov's GitHub Pages site
+# https://egorpol.github.io/robots.txt
+
 User-agent: *
 Allow: /
-
-# Sitemap
-Sitemap: https://egorpol.github.io/sitemap.xml
-
-# Disallow temporary files
+# Prevent crawling of build and cache directories if published
 Disallow: /_site/
 Disallow: /.jekyll-cache/
-Disallow: /.ipynb_checkpoints/
+Disallow: /.sass-cache/
+Crawl-delay: 1
+
+# Sitemap location
+Sitemap: https://egorpol.github.io/sitemap.xml
+
+# Specific directives for major bots
+User-agent: Googlebot
+Allow: /
+Disallow: /_site/
+Disallow: /.jekyll-cache/
+
+User-agent: Bingbot
+Allow: /
+Disallow: /_site/
+Disallow: /.jekyll-cache/

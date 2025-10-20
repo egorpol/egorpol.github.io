@@ -32,10 +32,11 @@ egorpol.github.io/
 - **Dark/Light Theme**: Persistent toggle with saved preference (light by default)
 - **Interactive Image Viewer**: Click any image to view in full-screen with navigation
 - **Accessibility**: WCAG compliant with skip links, focus indicators, and semantic HTML
-- **SEO Optimized**: Meta tags, structured data, sitemap, and robots.txt
+- **SEO Optimized**: jekyll-seo-tag, JSON‑LD structured data (via page front matter), sitemap, and robots.txt
 - **Blog System**: Jekyll-powered blog with categories and excerpts
 - **Code Highlighting**: Syntax highlighting for code blocks
 - **Print Styles**: Optimized for printing
+ - **Rel=me Links**: Social verification links emitted from `_config.yml` social links
 
 ## 🛠️ Technology Stack
 
@@ -45,6 +46,7 @@ egorpol.github.io/
 - **JavaScript**: Vanilla JS for theme switching and interactions
 - **Font Awesome**: Icons
 - **Highlight.js**: Code syntax highlighting
+ - **jekyll-seo-tag**: Open Graph/Twitter meta and SEO helpers
 
 ## 📦 Dependencies
 
@@ -114,6 +116,8 @@ The built site is output to `_site/`. Do not edit files in that directory manual
 - Edit `_config.yml` for site-wide settings
 - Modify `index.md` for homepage content
 - Update `assets/css/main.css` for styling changes
+ - Navigation and contact anchor are defined in `_layouts/default.html` (Contact links to `{{ '/' | relative_url }}#contact`)
+ - Per‑page JSON‑LD can be added under `structured_data:` (and optional `local_business_schema:`) in front matter
 
 ## 🎨 Customization
 
@@ -141,8 +145,9 @@ Key settings in `_config.yml`:
 - Site title, description, and author
 - GitHub username for social links
 - Jekyll plugins and settings
-- SEO and analytics configuration
+- SEO and analytics configuration (GA4 placeholders: `google_analytics` and `gtag`)
 - Markdown engine (`kramdown`) and syntax highlighter (`rouge`)
+- `social.name` and `social.links` (used for rel=me links in the layout)
 
 ## 📊 Performance
 
@@ -155,9 +160,9 @@ The site is optimized for performance with:
 
 ## 🔒 Security
 
-- No client-side data collection
+- No client-side data collection by default
 - HTTPS enforced by GitHub Pages
-- No external analytics (configurable)
+- Analytics are disabled unless GA4 IDs are provided
 - Secure external dependencies
 
 ## 📄 License
@@ -170,10 +175,10 @@ While this is a personal website, suggestions and improvements are welcome. Plea
 
 ## 📞 Contact
 
-- **Email**: egor.polyakov@hmt-leipzig.de
+- **Email**: egor.polyakov@hfm-weimar.de
 - **GitHub**: [@egorpol](https://github.com/egorpol)
 - **Website**: [egorpol.github.io](https://egorpol.github.io)
 
 ---
 
-*Last updated: September 17, 2025*
+*Last updated: October 20, 2025*
