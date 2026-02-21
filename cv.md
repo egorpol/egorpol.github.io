@@ -40,16 +40,17 @@ structured_data:
 
 ## Profile
 
-Postdoctoral researcher in computational musicology focusing on audio and symbolic score analysis across popular and electroacoustic music. Expertise in Python toolchains (music21, librosa), machine‑learning methods, and notebook‑driven, reproducible research. Proven record in third‑party funding (DFG), university teaching, and technically informed artistic practice.
+Postdoctoral researcher in computational musicology focusing on audio and symbolic score analysis spanning popular and electroacoustic repertoires. Expertise in Python toolchains, machine-learning methods, and notebook-driven, reproducible research. Proven track record in third-party funding (DFG), university teaching, and technically informed artistic practice.
 
 ## Core Competencies
 
-- **Analytical stack:** Python (pandas, Jupyter, music21, librosa); OpenMusic (Lisp).
-- **AI‑supported analysis:** Timbre, rhythm, and structure; audio embeddings; evaluation pipelines for MEI/MusicXML corpora.
-- **Audio analysis and production:** Ableton Live, Logic Pro, Max/MSP, Sonic Visualiser; studio supervision; front‑of‑house support for electroacoustic projects.
-- **Research transfer:** Open Science (Git/GitHub), reproducible notebooks, curriculum design, cross‑institutional collaborations.
-- **University teaching:** Course design, research‑led teaching, student project supervision.
-- **Research IT:** Docker‑based deployment; cloud services.
+- **Analytical stack:** Python · Lisp (OpenMusic).
+- **Symbolic music analysis:** Statistical and corpus-based analysis.
+- **AI-supported analysis:** Timbre, rhythm, and structure; audio embeddings; generative models.
+- **Audio analysis and production:** Ableton Live, Logic Pro, Max/MSP, Sonic Visualiser; studio supervision; front-of-house support for electroacoustic projects.
+- **Research transfer:** Open science (Git/GitHub), reproducible notebooks, curriculum design, cross-institutional collaborations.
+- **University teaching:** Course design, research-led teaching, student project supervision.
+- **Research IT:** Docker · CI/CD · cloud services.
 
 ## Professional Experience
 
@@ -57,14 +58,14 @@ Postdoctoral researcher in computational musicology focusing on audio and symbol
 
 - Scientific conception and execution of the DFG project *Development of a Comprehensive Cloud-Based Toolbox for Sheet Music Analysis* (co-applicant with Prof. Dr. Martin Pfleiderer).
 - Project coordination and team leadership: supervision of doctoral candidates and student assistants; alignment of research goals and deliverables.
-- Methods and tooling development: Python workflows for MEI/MusicXML analytics, mei-friend enhancements for OMR corpora, packaging and delivery via Jupyter4NFDI; use of MEI/Verovio for interactive score representation.
+- Methods and tooling development: Python workflows for MEI/MusicXML analytics; mei-friend enhancements for OMR corpora; packaging and delivery via Jupyter4NFDI; interactive score representation with MEI/Verovio.
 - Contribution to national research infrastructure and transfer to teaching.
 
 ### Researcher and Artistic Associate - University of Music and Theatre Leipzig (2013–2025)
 
 - Teaching: independent design and delivery of seminars in computer-assisted analysis, AI for musicology, popular and electronic music, and electroacoustics.
-- Coordination and supervision of the electroacoustic studio; support for numerous student productions; maintenance of live‑electronics hardware/software.
-- Broad research profile: conception and development of computer‑assisted methods from audio synthesis (e.g., FFTimbre) and visualisation (AudioSpylt) to AI‑assisted analysis; applied to a wide range of repertoires.
+- Coordination and supervision of the electroacoustic studio; support for numerous student productions; maintenance of live-electronics hardware/software.
+- Broad research profile: conception and development of computer-assisted methods — from audio synthesis (FFTimbre) and visualisation (AudioSpylt) to AI-assisted analysis — applied to a wide range of repertoires.
 
 ### Research Associate - University of Music FRANZ LISZT Weimar (2021–2022)
 
@@ -76,15 +77,15 @@ Postdoctoral researcher in computational musicology focusing on audio and symbol
 
 ## Teaching Highlights
 
-- *Hearing (and analyzing) in time* - Groove and metric analysis in electronic music (SS 2025).
-- *Algorithmic music models: from analysis to style transfer with Python/AI* - probabilistic and machine learning techniques (WS 2024/25).
-- *AI and statistical analysis in musicological research* - score and audio pipelines with machine learning (WS 2023/24).
-- *From track to DJ set, from sample to live performance* - macroform concepts in popular electronic music (SS 2023).
-- Annual foundational seminar *Electroacoustic Music I and II* (2013–2025) covering acoustics, digital production, and live electronics practice.
+- *Hearing (and analyzing) in time* — Groove and metric analysis in electronic music (SS 2025).
+- *Algorithmic music models: from analysis to style transfer with Python/AI* — Probabilistic and machine-learning techniques (WS 2024/25).
+- *AI and statistical analysis in musicological research* — Score and audio pipelines with machine learning (WS 2023/24).
+- *From track to DJ set, from sample to live performance* — Macroform concepts in popular electronic music (SS 2023).
+- *Electroacoustic Music I and II* — Annual foundational seminar (2013–2025) covering acoustics, digital production, and live-electronics practice.
 
 ## Education
 
-- **PhD in Musicology (Dr. phil.)**, University of Music and Theatre “Felix Mendelssohn Bartholdy” Leipzig (HMT Leipzig), 2018 — Dissertation on computer-based analysis and visualisation; supervisors: Prof. Dr. Gesine Schröder and Prof. Dr. Martin Supper.
+- **PhD in Musicology (Dr. phil.)**, University of Music and Theatre “Felix Mendelssohn Bartholdy” Leipzig (HMT Leipzig), 2018 — Dissertation on computer-based analysis and visualisation of music; supervisors: Prof. Dr. Gesine Schröder and Prof. Dr. Martin Supper.
 - **Master of Music in Composition/Electroacoustic Music**, State University of Music and Performing Arts Stuttgart (HMDK Stuttgart), 2014 — Prof. Marco Stroppa.
 - **Postgraduate Artist Diploma (Meisterklasse) in Electroacoustic Music**, University of Music and Theatre “Felix Mendelssohn Bartholdy” Leipzig (HMT Leipzig), 2013 — Prof. Ipke Starke.
 - **Diploma in Composition**, University of Music and Theatre “Felix Mendelssohn Bartholdy” Leipzig (HMT Leipzig), 2010 — Profs. Peter Herrmann and Ipke Starke.
@@ -95,19 +96,18 @@ Postdoctoral researcher in computational musicology focusing on audio and symbol
 - Pfleiderer, M.; Polyakov, E.; Nadar, C. (2024). *Analyze! Development and integration of software-based tools for musicology and music theory*. In: Innovation in Music: Technology and Creativity. Routledge.
 - Polyakov, E. (2021). Articles on George Crumb, loudspeaker orchestras, orchestras and new media, and recording technology. In: *Lexikon des Orchesters*. Laaber-Verlag.
 - Polyakov, E. (2020). *Computerbasierte Analyse und visuelle Repräsentationsformen der Musik*. Dissertation, University of Music and Theatre Leipzig.
- - Polyakov, E. (2019). “Immer ungenau und mangelhaft.” In: Proceedings of ‘Rimsky-Korsakov at 175’. St. Petersburg.
+- Polyakov, E. (2019). “Immer ungenau und mangelhaft.” In: Proceedings of ‘Rimsky-Korsakov at 175’. St. Petersburg.
 
 ## In Press / Accepted
 
 - Polyakov, E. (forthcoming). “Exploration of Timbre by Analysis and Synthesis Using Python, Ableton, and Large Language Models.” In: Proceedings of Innovation in Music 2024. Routledge.
 - Polyakov, E. (forthcoming). “Evaluation of Modern Computer-Aided Sheet Music Analysis Methods in a Practical Context.” In: GMTH Proceedings.
-
-## Under Review
-
-- Polyakov, E. (under review). “Evaluating the Generalization Capabilities of Diffusion Models for Stylistically Constrained Symbolic Music Generation.” Submitted to Transactions of the International Society for Music Information Retrieval (TISMIR).
-- Polyakov, E. (under review). “Understanding and Emulating Time: Analyzing and Simulating Musical Microrhythm Timing with the beat_it Toolbox.” Submitted to Proceedings of Innovation in Music 2025. Routledge.
+- Polyakov, E. (forthcoming). “Understanding and Emulating Time: Analyzing and Simulating Musical Microrhythm Timing with the beat_it Toolbox.” In: Proceedings of Innovation in Music 2025. Routledge.
 
 ## Talks and Conferences
+
+- 2026 (accepted) — Talk: “Beyond the Black Box: Democratizing Musical Analysis and Creative Workflows via LLM-Empowered Cloud-Based Jupyter Setups,” InMusic26, Aalborg, Denmark, 18–20 June 2026.
+- 2026 (accepted) — Poster/Demo: “Bridging Algorithmic Power and Visual Interactivity: A Hybrid Python–MEI Workflow Using CAMAT and mei-friend,” MEC2026, Tokyo, Japan, 26–29 May 2026.
 
 - 2025 — Talk: “How Machines Listen,” 25th Annual Congress of the Society for Music Theory (GMTH), Lübeck, 17–19 October 2025.
 - 2025 — Symposium organisation: “Challenges of Computer-Assisted Score Analysis,” Society for Music Research (GfM) annual conference, Weimar, 6–9 October 2025.
@@ -125,28 +125,28 @@ Postdoctoral researcher in computational musicology focusing on audio and symbol
 
 ## Artistic and Technical Support (Selection)
 
-- 2018 - *die maschine steht still* (Johanna Wokalek, Fabian Russ). Role: live electronics realisation, stem mastering. Premiere: Futurium Berlin.
-- 2016 - *Fuer Tuba mit Hegel* (Georg Katzer). Role: rehearsal, live electronics, restoration. Performance: University of Music and Theatre Leipzig.
-- 2015 - *Butterfly under glass* (Fabian Russ, Laurie Young, Frieder Weiss). Role: live electronics and stem mastering. Premiere: Scala Esslingen.
- - 2017 - *Black is the Colour* (Fabian Russ). Role: restoration and mastering for CD and online release. Label: Neue Meister (Edel).
- - 2015 - *Harmonia Mundi* (Fabian Russ). Role: live electronics realisation, stem mastering. Premiere: Montforthaus Feldkirch.
- - 2013 - *Inside Partita* (Folkert Uhde, Midori Seiler, Fabian Russ). Role: live electronics realisation, stem mastering. Premiere: St. Elisabethkirche, Berlin.
- - 2009 - *Utopia* (Thomas Kessler). Role: rehearsal and technical assistance. Premiere: Viehauktionshalle Weimar.
+- 2018 — *die maschine steht still* (Johanna Wokalek, Fabian Russ). Role: live electronics realisation, stem mastering. Premiere: Futurium Berlin.
+- 2017 — *Black is the Colour* (Fabian Russ). Role: restoration and mastering for CD and online release. Label: Neue Meister (Edel).
+- 2016 — *Fuer Tuba mit Hegel* (Georg Katzer). Role: rehearsal, live electronics, restoration. Performance: University of Music and Theatre Leipzig.
+- 2015 — *Butterfly under glass* (Fabian Russ, Laurie Young, Frieder Weiss). Role: live electronics and stem mastering. Premiere: Scala Esslingen.
+- 2015 — *Harmonia Mundi* (Fabian Russ). Role: live electronics realisation, stem mastering. Premiere: Montforthaus Feldkirch.
+- 2013 — *Inside Partita* (Folkert Uhde, Midori Seiler, Fabian Russ). Role: live electronics realisation, stem mastering. Premiere: St. Elisabethkirche, Berlin.
+- 2009 — *Utopia* (Thomas Kessler). Role: rehearsal and technical assistance. Premiere: Viehauktionshalle Weimar.
 
 ## Artistic Works (Selection)
 
- - 2013 — “Core v2” for oboe, English horn, and 8‑channel live electronics.
- - 2012 — “Manuals” for Paetzold recorder quartet and 4‑channel live electronics.
- - 2011 — “Core v1” for oboe, English horn, and 4‑channel live electronics.
- - — “Stereo‑Type II” for 2‑channel tape.
- - 2010 — “Stereo‑Type” for 2‑channel tape.
- - 2009 — “Double Helix” for oboe, cello, and 4‑channel live electronics.
- - 2008 — “Schrittmacher,” 4‑channel sound installation.
+- 2013 — “Core v2” for oboe, English horn, and 8-channel live electronics.
+- 2012 — “Manuals” for Paetzold recorder quartet and 4-channel live electronics.
+- 2011 — “Core v1” for oboe, English horn, and 4-channel live electronics.
+- 2011 — “Stereo-Type II” for 2-channel tape.
+- 2010 — “Stereo-Type” for 2-channel tape.
+- 2009 — “Double Helix” for oboe, cello, and 4-channel live electronics.
+- 2008 — “Schrittmacher,” 4-channel sound installation.
 
 ## Releases (Electronic Music)
 
- - 2009 — Two Unknown Guys — “Swirl Planet EP,” Ornithopter Records (OR 005).
- - 2008 — Two Unknown Guys — “The Rubber Duck Massacre EP,” Sinergy Networks (SN056).
+- 2009 — Two Unknown Guys — “Swirl Planet EP,” Ornithopter Records (OR 005).
+- 2008 — Two Unknown Guys — “The Rubber Duck Massacre EP,” Sinergy Networks (SN056).
 
 ## Professional Memberships
 
@@ -161,9 +161,9 @@ Postdoctoral researcher in computational musicology focusing on audio and symbol
 
 ## Languages
 
-- German - professional fluency.
-- English - professional fluency.
-- Russian - native speaker.
+- German — professional fluency.
+- English — professional fluency.
+- Russian — native speaker.
 
 ## Contact
 

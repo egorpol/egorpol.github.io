@@ -52,19 +52,14 @@ social:
     - https://egorpol.github.io
 
 # SEO settings
-google_analytics: G-XXXXXXXXXX # Replace with your actual Google Analytics 4 measurement ID
-google_analytics_anonymize_ip: true
+# google_analytics: G-XXXXXXXXXX  # Uncomment and replace with your actual GA4 measurement ID
+# google_analytics_anonymize_ip: true
+# gtag: G-XXXXXXXXXX
 
-# Additional analytics and tracking
-gtag: G-XXXXXXXXXX # Google Analytics 4 measurement ID for gtag
-
-# Open Graph and Twitter Card settings
-twitter:
-  username: egorpol
-  card: summary_large_image
-facebook:
-  app_id: # Add your Facebook App ID if needed
-  admins: # Add Facebook admin IDs if needed
+# Open Graph settings
+# twitter:
+#   username: egorpol  # Uncomment if you create a Twitter/X account
+#   card: summary_large_image
 
 # Feed settings
 feed:

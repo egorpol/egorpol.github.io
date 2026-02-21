@@ -87,11 +87,11 @@ local_business_schema:
 
 # Computational Musicology & Creative Technology
 
-I am a Ukrainian-born composer, researcher, and postdoctoral fellow at the University of Music FRANZ LISZT Weimar. My work bridges computational musicology, machine learning, and artistic practice to make advanced analysis workflows accessible to scholars, students, and performers. I bring more than a decade of experience leading research-driven teaching, building open-source tooling, and supporting live electronic music production.
+I am a composer, researcher, and postdoctoral fellow at the University of Music FRANZ LISZT Weimar. Born in Ukraine, I bridge computational musicology, machine learning, and artistic practice — making advanced analysis workflows accessible to scholars, students, and performers. Over the past decade I have led research-driven teaching, built open-source tooling, and supported live electronic music production.
 
 ## Current Role
 
-- **Postdoctoral Researcher, HfM Weimar (since 2025):** Lead investigator on the DFG-funded project *Development of a Comprehensive Cloud-Based Toolbox for Music Score Analysis*, co-led with Prof. Dr. Martin Pfleiderer. I oversee a multidisciplinary team delivering collaborative annotation, statistical modelling, and pattern discovery workflows for MEI and MusicXML corpora via Jupyter4NFDI. My focus lies on method design, Python-based toolchains, and the integration of enhanced mei-friend capabilities for optical music recognition data.
+**Postdoctoral Researcher, HfM Weimar (since 2025).** Lead investigator on the DFG-funded project *Development of a Comprehensive Cloud-Based Toolbox for Music Score Analysis*, co-led with Prof. Dr. Martin Pfleiderer. I oversee a multidisciplinary team delivering collaborative annotation, statistical modelling, and pattern-discovery workflows for MEI and MusicXML corpora via Jupyter4NFDI, with a focus on method design, Python-based toolchains, and the integration of enhanced mei-friend capabilities for optical music recognition data.
 
 ## Research Themes
 
@@ -100,30 +100,30 @@ I am a Ukrainian-born composer, researcher, and postdoctoral fellow at the Unive
 - Human-computer interaction for performance, composition, and pedagogy
 - Reproducible, notebook-driven research infrastructures for musicology and music theory
 
-## Technical & Artistic Competencies
+## Technical Stack
 
-- **Analytical stack:** Python (pandas, Jupyter, music21, librosa); OpenMusic (Lisp).
-- **Audio production:** Ableton Live, Logic Pro, Max/MSP, Sonic Visualiser; IRCAM tools (AudioSculpt, SuperVP, Partiels, SPAT); hardware/software live-electronics and multichannel audio rig design.
-- **Research transfer:** Open science practices, reproducible pipelines, curriculum development, project mentoring.
+- **Analytical:** Python (pandas, Jupyter, music21, librosa) · Lisp (OpenMusic).
+- **Audio production:** Ableton Live, Logic Pro, Max/MSP, Sonic Visualiser · IRCAM tools (AudioSculpt, SuperVP, Partiels, SPAT) · live-electronics and multichannel rig design.
+- **Research transfer:** Open-science practices, reproducible pipelines, curriculum development, project mentoring.
 
 ## Selected Tools & Projects
 
-1. **CAMAT:** Python toolbox for symbolic repertoire analysis, co-developed with Prof. Dr. Martin Pfleiderer and Christon-Ragavan Nadar. [Explore CAMAT](https://analyse.hfm-weimar.de/doku.php?id=en:start){:target='_blank'}.
-2. **AudioSpylt:** Advanced toolkit for audio feature extraction, interactive visualisation, and creative prototyping. [View on GitHub](https://github.com/egorpol/audiospylt){:target='_blank'}.
-3. **FFTimbre:** Suite of notebooks and utilities for FM and additive synthesis-assisted timbre matching, offering multi-metric evaluation. [View on GitHub](https://github.com/egorpol/FFTimbre){:target='_blank'}.
-4. **beat_it:** Jupyter notebooks for analyzing beat and tempo fluctuations. [View on GitHub](https://github.com/egorpol/beat_it){:target='_blank'}.
+- **CAMAT** — Python toolbox for symbolic repertoire analysis, co-developed with Prof. Dr. Martin Pfleiderer and Christon-Ragavan Nadar. [Explore CAMAT](https://analyse.hfm-weimar.de/doku.php?id=en:start){:target='_blank'}
+- **AudioSpylt** — Toolkit for audio feature extraction, interactive visualisation, and creative prototyping. [View on GitHub](https://github.com/egorpol/audiospylt){:target='_blank'}
+- **FFTimbre** — Notebooks and utilities for FM/additive-synthesis timbre matching with multi-metric evaluation. [View on GitHub](https://github.com/egorpol/FFTimbre){:target='_blank'}
+- **beat_it** — Jupyter notebooks for analysing beat and tempo fluctuations. [View on GitHub](https://github.com/egorpol/beat_it){:target='_blank'}
 
 ## Academic Appointments
 
-- **2013-2025 - Researcher & Artistic Associate, HMT Leipzig (University of Music and Theatre Leipzig):** Designed and delivered seminars in computer-assisted analysis and electroacoustics; one-to-one teaching and supervision in electroacoustic composition; management and maintenance of the electroacoustic studios; support for in-house and off-site concert events involving media and spatial audio.
-- **2021-2022 - Researcher, HfM Weimar:** Developed the CAMAT toolbox and piloted teaching applications across music programs.
+- **2013–2025 — Researcher & Artistic Associate, HMT Leipzig:** Seminars in computer-assisted analysis and electroacoustics; supervision of electroacoustic composition; management of the electroacoustic studios; technical support for concert events involving media and spatial audio.
+- **2021–2022 — Researcher, HfM Weimar:** Developed the CAMAT toolbox and piloted teaching applications across music programmes.
 
 ## Education
 
-- **PhD in Musicology (Dr. phil.), HMT Leipzig, 2018** - Dissertation on computer-based analysis and visualisation of music; supervised by Prof. Dr. Gesine Schroeder and Prof. Dr. Martin Supper.
-- **Master of Composition, University of Music and Performing Arts Stuttgart, 2014** - Studied with Prof. Marco Stroppa.
-- **Postgraduate Artist Diploma (Meisterklasse) in Electroacoustic Music, HMT Leipzig, 2013** - Mentored by Prof. Ipke Starke.
-- **Diploma in Composition, HMT Leipzig, 2010** - Studied with Prof. Peter Herrmann and Prof. Ipke Starke.
+- **PhD in Musicology (Dr. phil.), HMT Leipzig, 2018** — Dissertation on computer-based analysis and visualisation of music; supervisors: Prof. Dr. Gesine Schröder and Prof. Dr. Martin Supper.
+- **Master of Composition, HMDK Stuttgart, 2014** — Studied with Prof. Marco Stroppa.
+- **Postgraduate Artist Diploma (Meisterklasse) in Electroacoustic Music, HMT Leipzig, 2013** — Mentored by Prof. Ipke Starke.
+- **Diploma in Composition, HMT Leipzig, 2010** — Studied with Prof. Peter Herrmann and Prof. Ipke Starke.
 
 ## Languages & Memberships
 
