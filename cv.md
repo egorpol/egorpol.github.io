@@ -44,9 +44,9 @@ Postdoctoral researcher in computational musicology focusing on audio and symbol
 
 ## Core Competencies
 
-- **Analytical stack:** Python · Lisp (OpenMusic).
+- **Analytical stack:** Python (NumPy, SciPy, pandas, scikit-learn, Jupyter, music21, librosa, PyTorch) · Lisp (OpenMusic).
 - **Symbolic music analysis:** Statistical and corpus-based analysis.
-- **AI-supported analysis:** Timbre, rhythm, and structure; audio embeddings; generative models.
+- **AI-supported analysis:** Timbre, rhythm, and structure; audio embeddings; PyTorch-based modelling; generative models.
 - **Audio analysis and production:** Ableton Live, Logic Pro, Max/MSP, Sonic Visualiser; studio supervision; front-of-house support for electroacoustic projects.
 - **Research transfer:** Open science (Git/GitHub), reproducible notebooks, curriculum design, cross-institutional collaborations.
 - **University teaching:** Course design, research-led teaching, student project supervision.

@@ -87,7 +87,7 @@ local_business_schema:
 
 # Computational Musicology & Creative Technology
 
-I am a composer, researcher, and postdoctoral fellow at the University of Music FRANZ LISZT Weimar. Born in Ukraine, I bridge computational musicology, machine learning, and artistic practice — making advanced analysis workflows accessible to scholars, students, and performers. Over the past decade I have led research-driven teaching, built open-source tooling, and supported live electronic music production.
+I am a composer, researcher, and postdoctoral fellow at the University of Music FRANZ LISZT Weimar. Born in Ukraine, I bridge computational musicology, machine learning, and artistic practice — making advanced analysis workflows accessible to scholars, students, and performers. Over the past decade I have led research-driven teaching, built open-source tooling, and realised/assisted various live electronic media/music prjects.
 
 ## Current Role
 
@@ -102,9 +102,15 @@ I am a composer, researcher, and postdoctoral fellow at the University of Music 
 
 ## Technical Stack
 
-- **Analytical:** Python (pandas, Jupyter, music21, librosa) · Lisp (OpenMusic).
+- **Analytical:** Python (NumPy, SciPy, pandas, scikit-learn, Jupyter, music21, librosa, PyTorch) · Lisp (OpenMusic).
 - **Audio production:** Ableton Live, Logic Pro, Max/MSP, Sonic Visualiser · IRCAM tools (AudioSculpt, SuperVP, Partiels, SPAT) · live-electronics and multichannel rig design.
 - **Research transfer:** Open-science practices, reproducible pipelines, curriculum development, project mentoring.
+
+## Methodological Profile
+
+- Scientific Python workflows for feature extraction, statistical modelling, and experimental evaluation in music research.
+- PyTorch-based prototyping for machine-learning tasks, including timbre and rhythm analysis.
+- Reproducible notebook-driven environments for teaching, research dissemination, and collaborative development.
 
 ## Selected Tools & Projects
 
@@ -148,4 +154,3 @@ I am a composer, researcher, and postdoctoral fellow at the University of Music 
 </div>
 
 *See my [full CV]({{ '/cv/' | relative_url }}) for a complete list of projects and publications.*
-
