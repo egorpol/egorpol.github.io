@@ -99,18 +99,21 @@ The built site is output to `_site/`. Do not edit files in that directory manual
 
 ### Adding Blog Posts
 1. Create a new Markdown file in `_posts/` directory
-2. Use the following front matter format:
+2. Start from `POST_TEMPLATE.md` and copy it into `_posts/YYYY-MM-DD-your-title.md`
+3. Use the following front matter format:
    ```yaml
    ---
    layout: post
    title: "Your Post Title"
    date: YYYY-MM-DD
    categories: [category1, category2]
+   tags: [tag1, tag2, tag3]
    excerpt: "Brief description of the post"
    ---
    ```
 
 **Important**: Categories must be defined as YAML arrays (with square brackets). See `CATEGORIES.md` for detailed guidelines.
+**Recommended**: Keep 1-3 categories and 3-6 tags for clean taxonomy pages and blog filtering.
 
 ### Updating Site Information
 - Edit `_config.yml` for site-wide settings

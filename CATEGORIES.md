@@ -1,24 +1,49 @@
-# Categories
+---
+layout: page
+title: Categories
+description: "Browse blog posts by categories and tags."
+permalink: /categories/
+breadcrumb:
+  - title: Categories
+    url: /categories/
+---
 
-This page lists all the categories used on this site, along with links to posts in each category.
+# Categories and Tags
 
-## Research
-Posts about academic research, computational musicology, and related topics.
+Use this page to browse posts by topic.
 
-- [Update Public Domain Sheet Music Finder]({{ '/blog/2023/07/03/blog1/' | relative_url }})
+## Categories
 
-## Machine Learning
-Posts about machine learning, deep learning, neural networks, and AI applications.
+{% assign sorted_categories = site.categories | sort %}
+{% if sorted_categories and sorted_categories.size > 0 %}
+{% for category_pair in sorted_categories %}
+{% assign category_name = category_pair[0] %}
+{% assign posts_in_category = category_pair[1] | sort: "date" | reverse %}
+### {{ category_name | replace: '-', ' ' | capitalize }} {#{{ category_name | slugify }}}
 
-- [Constructing a VAE-based MNIST number generation Jupyter notebook]({{ '/blog/2024/07/23/blog2/' | relative_url }})
+{% for post in posts_in_category %}
+- [{{ post.title }}]({{ post.url | relative_url }}) <small>({{ post.date | date: "%Y-%m-%d" }})</small>
+{% endfor %}
 
-## Tools & Software
-Posts about software tools, programming, and technical implementations.
+{% endfor %}
+{% else %}
+No categories yet.
+{% endif %}
 
-- [Update Public Domain Sheet Music Finder]({{ '/blog/2023/07/03/blog1/' | relative_url }})
+## Tags
 
-## Music Technology
-Posts about music technology, audio analysis, and computational musicology tools.
+{% assign sorted_tags = site.tags | sort %}
+{% if sorted_tags and sorted_tags.size > 0 %}
+{% for tag_pair in sorted_tags %}
+{% assign tag_name = tag_pair[0] %}
+{% assign posts_with_tag = tag_pair[1] | sort: "date" | reverse %}
+### {{ tag_name | replace: '-', ' ' | capitalize }} {#{{ tag_name | slugify }}}
 
-- [Update Public Domain Sheet Music Finder]({{ '/blog/2023/07/03/blog1/' | relative_url }})
-- [Constructing a VAE-based MNIST number generation Jupyter notebook]({{ '/blog/2024/07/23/blog2/' | relative_url }})
+{% for post in posts_with_tag %}
+- [{{ post.title }}]({{ post.url | relative_url }}) <small>({{ post.date | date: "%Y-%m-%d" }})</small>
+{% endfor %}
+
+{% endfor %}
+{% else %}
+No tags yet.
+{% endif %}
