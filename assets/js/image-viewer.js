@@ -19,15 +19,15 @@ class ImageViewer {
 
     createViewer() {
         const viewerHTML = `
-            <div class="image-viewer" id="image-viewer">
+            <div class="image-viewer" id="image-viewer" role="dialog" aria-modal="true" aria-label="Image viewer" aria-hidden="true">
                 <button class="close-btn" id="close-viewer" aria-label="Close image viewer">
-                    <i class="fas fa-times"></i>
+                    <span aria-hidden="true">×</span>
                 </button>
                 <button class="nav-btn prev-btn" id="prev-image" aria-label="Previous image">
-                    <i class="fas fa-chevron-left"></i>
+                    <span aria-hidden="true">‹</span>
                 </button>
                 <button class="nav-btn next-btn" id="next-image" aria-label="Next image">
-                    <i class="fas fa-chevron-right"></i>
+                    <span aria-hidden="true">›</span>
                 </button>
                 <div class="image-counter" id="image-counter"></div>
                 <img id="viewer-image" src="" alt="">
@@ -47,7 +47,8 @@ class ImageViewer {
         
         let processedIndex = 0; // Use separate counter for processed images
         
-        contentImages.forEach((img, originalIndex) => {
+        contentImages.forEach((img) => {
+            if (img.hasAttribute('data-no-viewer')) return;
             // Skip only actual icons/favicons, not small images
             if (img.src.includes('favicon') ||
                 img.src.includes('icon') ||
@@ -187,20 +188,38 @@ class ImageViewer {
                 case 'ArrowRight':
                     this.showNext();
                     break;
+                case 'Tab': {
+                    const controls = [...this.viewer.querySelectorAll('button:not([hidden])')];
+                    const first = controls[0];
+                    const last = controls[controls.length - 1];
+                    if (e.shiftKey && document.activeElement === first) {
+                        e.preventDefault();
+                        last.focus();
+                    } else if (!e.shiftKey && document.activeElement === last) {
+                        e.preventDefault();
+                        first.focus();
+                    }
+                    break;
+                }
             }
         });
     }
 
     openViewer(index) {
+        this.previouslyFocused = document.activeElement;
         this.currentIndex = index;
         this.updateImage();
         this.viewer.classList.add('active');
-        document.body.style.overflow = 'hidden'; // Prevent scrolling
+        this.viewer.setAttribute('aria-hidden', 'false');
+        document.body.classList.add('viewer-open');
+        document.getElementById('close-viewer').focus();
     }
 
     closeViewer() {
         this.viewer.classList.remove('active');
-        document.body.style.overflow = ''; // Restore scrolling
+        this.viewer.setAttribute('aria-hidden', 'true');
+        document.body.classList.remove('viewer-open');
+        this.previouslyFocused?.focus();
     }
 
     showPrevious() {
@@ -226,9 +245,10 @@ class ImageViewer {
         const prevBtn = document.getElementById('prev-image');
         const nextBtn = document.getElementById('next-image');
         
-        prevBtn.style.display = this.images.length > 1 ? 'block' : 'none';
-        nextBtn.style.display = this.images.length > 1 ? 'block' : 'none';
-        counter.style.display = this.images.length > 1 ? 'block' : 'none';
+        const hasMultipleImages = this.images.length > 1;
+        prevBtn.hidden = !hasMultipleImages;
+        nextBtn.hidden = !hasMultipleImages;
+        counter.hidden = !hasMultipleImages;
     }
 }
 

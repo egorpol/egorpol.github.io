@@ -1,124 +1,90 @@
-<!DOCTYPE html>
+<!doctype html>
 <html lang="{{ site.lang | default: 'en' }}">
 <head>
     <meta charset="utf-8">
     <meta name="viewport" content="width=device-width, initial-scale=1">
     <meta name="color-scheme" content="light dark">
-    <title>{% if page.title %}{{ page.title | escape }} - {% endif %}{{ site.title | escape }}</title>
+    <meta name="referrer" content="strict-origin-when-cross-origin">
+    {% if page.robots %}<meta name="robots" content="{{ page.robots | escape }}">{% elsif page.sitemap == false %}<meta name="robots" content="noindex, nofollow">{% endif %}
+    <meta http-equiv="Content-Security-Policy" content="default-src 'self'; img-src 'self' data:; style-src 'self'; script-src 'self' 'unsafe-inline'; font-src 'self'; connect-src 'none'; object-src 'none'; base-uri 'self'; form-action 'self'; upgrade-insecure-requests">
     {% seo %}
-    {% feed_meta %}
 
-    <!-- Custom meta tags for SEO -->
     {% if page.google_site_verification %}
-    <meta name="google-site-verification" content="{{ page.google_site_verification }}" />
+    <meta name="google-site-verification" content="{{ page.google_site_verification | escape }}">
     {% endif %}
     {% if page.bing_site_verification %}
-    <meta name="msvalidate.01" content="{{ page.bing_site_verification }}" />
+    <meta name="msvalidate.01" content="{{ page.bing_site_verification | escape }}">
     {% endif %}
 
-    <!-- Enhanced Open Graph tags -->
-    <meta property="og:site_name" content="{{ site.title | escape }}" />
-    <meta property="og:locale" content="en_US" />
+    <meta property="og:site_name" content="{{ site.title | escape }}">
+    <meta property="og:locale" content="en_US">
 
     {% if page.structured_data %}
-    <script type="application/ld+json">
-    {{ page.structured_data | jsonify }}
-    </script>
-    {% endif %}
-    {% if page.local_business_schema %}
-    <script type="application/ld+json">
-    {{ page.local_business_schema | jsonify }}
-    </script>
+    <script type="application/ld+json">{{ page.structured_data | jsonify }}</script>
     {% endif %}
     {% if site.social and site.social.links %}
     {% for link in site.social.links %}
     <link rel="me" href="{{ link }}">
     {% endfor %}
     {% endif %}
-    <!-- Preconnect for performance -->
-    <link rel="preconnect" href="https://fonts.googleapis.com">
-    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-    <link rel="preconnect" href="https://cdnjs.cloudflare.com">
-    <link rel="dns-prefetch" href="https://fonts.googleapis.com">
-    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&display=swap" rel="stylesheet">
 
-    <!-- Stylesheets -->
-    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    <script src="{{ '/assets/js/theme-init.js' | relative_url }}"></script>
     <link rel="stylesheet" href="{{ '/assets/css/main.css' | relative_url }}">
-    <link rel="icon" type="image/x-icon" href="{{ '/favicon.ico' | relative_url }}">
-    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/highlight.js/11.9.0/styles/lightfair.min.css">
-
-    <!-- Theme color for mobile browsers -->
-    <meta name="theme-color" content="#B5651D">
-    <meta name="msapplication-TileColor" content="#B5651D">
-
+    <link rel="icon" href="{{ '/favicon.ico' | relative_url }}" sizes="any">
+    <meta name="theme-color" content="#102b3f">
 </head>
 <body>
     <a href="#main-content" class="skip-link">Skip to main content</a>
-    <header>
-        <div class="header-content">
-            <a class="site-title" href="{{ '/' | relative_url }}">{{ site.title }}</a>
-            <button id="theme-toggle" class="theme-toggle" aria-label="Toggle theme">
-                <span class="theme-icon sun-icon">☀</span>
-                <span class="theme-icon moon-icon">☾</span>
+
+    <header class="site-header">
+        <div class="site-header-inner">
+            <div class="site-identity">
+                <a class="site-title" href="{{ '/' | relative_url }}">{{ site.title }}</a>
+                <span>Research · composition · technology</span>
+            </div>
+            <nav class="site-nav" aria-label="Primary navigation">
+                <a href="{{ '/' | relative_url }}"{% if page.url == '/' %} class="active" aria-current="page"{% endif %}>Home</a>
+                <a href="{{ '/cv/' | relative_url }}"{% if page.url == '/cv/' %} class="active" aria-current="page"{% endif %}>CV</a>
+                <a href="{{ '/projects/' | relative_url }}"{% if page.url == '/projects/' %} class="active" aria-current="page"{% endif %}>Projects</a>
+                <a href="{{ '/' | relative_url }}#contact">Contact</a>
+            </nav>
+            <button id="theme-toggle" class="theme-toggle" type="button" aria-label="Use dark theme" aria-pressed="false">
+                <span class="theme-icon sun-icon" aria-hidden="true">☀</span>
+                <span class="theme-icon moon-icon" aria-hidden="true">☾</span>
             </button>
         </div>
-        <p>{{ site.description }}</p>
-        <nav aria-label="Primary">
-            <a href="{{ '/' | relative_url }}"{% if page.url == '/' %} class="active"{% endif %}>Home</a>
-            <a href="{{ '/cv/' | relative_url }}"{% if page.url == '/cv/' %} class="active"{% endif %}>CV</a>
-            <a href="{{ '/projects/' | relative_url }}"{% if page.url == '/projects/' %} class="active"{% endif %}>Projects</a>
-            <a href="{{ '/blog/' | relative_url }}"{% if page.url == '/blog/' or page.layout == 'post' %} class="active"{% endif %}>Blog</a>
-            <a href="{{ '/' | relative_url }}#contact">Contact</a>
-        </nav>
     </header>
-    <main id="main-content">
+
+    <main id="main-content" class="site-main">
         {% if page.breadcrumb %}
         <nav aria-label="Breadcrumb" class="breadcrumb">
             <ol>
                 <li><a href="{{ '/' | relative_url }}">Home</a></li>
                 {% for crumb in page.breadcrumb %}
-                <li>{% if crumb.url %}<a href="{{ crumb.url | relative_url }}">{{ crumb.title }}</a>{% else %}{{ crumb.title }}{% endif %}</li>
+                <li aria-current="page">{{ crumb.title }}</li>
                 {% endfor %}
             </ol>
         </nav>
         {% endif %}
         {{ content }}
     </main>
-    <footer>
-        <div class="social-links">
-            <a href="mailto:{{ site.email }}" aria-label="Email"><i class="fas fa-envelope"></i></a>
-            <a href="https://github.com/{{ site.github_username }}" aria-label="GitHub"><i class="fab fa-github"></i></a>
-            <a href="https://www.linkedin.com/in/egor-polyakov-6a2114315/" aria-label="LinkedIn"><i class="fab fa-linkedin"></i></a>
-        </div>
-        <p>&copy; {{ site.time | date: '%Y' }} {{ site.title | escape }}. All rights reserved.</p>
+
+    <footer class="site-footer">
+        <p><strong>{{ site.title }}</strong><br><span>{{ site.description }}</span></p>
+        <nav aria-label="Professional profiles">
+            <a href="mailto:{{ site.email }}">Email</a>
+            <a href="{{ site.data.cv.contact.orcid | default: site.orcid }}" target="_blank" rel="noopener noreferrer">ORCID</a>
+            <a href="https://github.com/{{ site.github_username }}" target="_blank" rel="noopener noreferrer">GitHub</a>
+            {% if site.data.cv.contact.linkedin %}
+            <a href="{{ site.data.cv.contact.linkedin }}" target="_blank" rel="noopener noreferrer">LinkedIn</a>
+            {% endif %}
+        </nav>
+        <p class="copyright">© {{ site.time | date: '%Y' }} {{ site.title | escape }}</p>
     </footer>
 
-    <!-- Critical scripts (inline) -->
-    <script>
-        (function() {
-            try {
-                var saved = localStorage.getItem('theme');
-                var theme = saved ? saved : 'light';
-                document.documentElement.setAttribute('data-theme', theme);
-            } catch (e) {}
-        })();
-    </script>
-
-    <!-- Deferred scripts for non-critical functionality -->
-    <script defer src="https://cdnjs.cloudflare.com/ajax/libs/highlight.js/11.9.0/highlight.min.js"></script>
     <script defer src="{{ '/assets/js/theme.js' | relative_url }}"></script>
+    {% if page.collection == 'posts' %}
     <script defer src="{{ '/assets/js/image-viewer.js' | relative_url }}"></script>
-    <script>
-        document.addEventListener('DOMContentLoaded', () => {
-            if (window.hljs && typeof hljs.highlightAll === 'function') {
-                hljs.highlightAll();
-            } else if (window.hljs) {
-                document.querySelectorAll('pre code').forEach((block) => {
-                    hljs.highlightElement(block);
-                });
-            }
-        });
-    </script>
+    {% endif %}
 </body>
 </html>

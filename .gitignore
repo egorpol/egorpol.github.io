@@ -29,7 +29,30 @@ Thumbs.db
 __pycache__/
 *.pyc
 
-# Environment files
+# CV LaTeX build artifacts. Keep Makefile, README, archive/, and generated cv.tex tracked.
+# Public download lives at assets/cv/Egor_Polyakov_CV.pdf.
+/cv/*.pdf
+/cv/*.aux
+/cv/*.log
+/cv/*.out
+/cv/*.fls
+/cv/*.fdb_latexmk
+/cv/*.synctex.gz
+/cv/*.xdv
+/cv/xelatex*.fls
+
+# Environment and local credential files
 .env
-.env.local
-.env.*.local
+.env.*
+!.env.example
+/.netrc
+/.npmrc
+/.pypirc
+*.key
+*.pem
+*.p12
+*.pfx
+id_dsa
+id_ecdsa
+id_ed25519
+id_rsa

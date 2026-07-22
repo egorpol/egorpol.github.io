@@ -1,187 +1,59 @@
-# Egor Polyakov - Personal Website
+# Egor Polyakov — professional website
 
-This is the source code for my personal academic website hosted on GitHub Pages. The site showcases my work as a musicologist, composer, and researcher specializing in computational musicology.
+Source for [egorpol.github.io](https://egorpol.github.io), a Jekyll site presenting research, software projects, and an academic CV in computational musicology.
 
-## 🎵 About
+## Local development
 
-I am a Ukrainian-born composer and researcher specializing in the application of computational methods to musicology. My work focuses on human-computer interaction in music, from performance and composition to advanced computational analysis.
+Requires Ruby, Bundler, and the dependency versions pinned by `Gemfile.lock`.
 
-## 🏗️ Site Structure
-
-```
-egorpol.github.io/
-├── _layouts/          # Jekyll layout templates
-├── _plugins/          # Custom plugins (currently empty)
-├── _posts/           # Blog posts (Markdown)
-├── assets/           # Static assets
-│   ├── css/         # Stylesheets
-│   ├── js/          # JavaScript files
-│   └── images/      # Images
-├── _site/            # Built site output (do not edit; generated)
-├── _config.yml      # Jekyll configuration
-├── index.md         # Homepage
-├── blog.md          # Blog listing page
-├── sitemap.xml      # XML sitemap
-├── robots.txt       # Search engine directives
-└── README.md        # This file
+```bash
+bundle install
+bundle exec jekyll serve
 ```
 
-## 🚀 Features
+The generated site is written to `_site/`.
 
-- **Responsive Design**: Works on desktop, tablet, and mobile devices
-- **Dark/Light Theme**: Persistent toggle with saved preference (light by default)
-- **Interactive Image Viewer**: Click any image to view in full-screen with navigation
-- **Accessibility**: WCAG compliant with skip links, focus indicators, and semantic HTML
-- **SEO Optimized**: jekyll-seo-tag, JSON‑LD structured data (via page front matter), sitemap, and robots.txt
-- **Blog System**: Jekyll-powered blog with categories and excerpts
-- **Code Highlighting**: Syntax highlighting for code blocks
-- **Print Styles**: Optimized for printing
- - **Rel=me Links**: Social verification links emitted from `_config.yml` social links
+## Updating professional information
 
-## 🛠️ Technology Stack
+`_data/cv.yml` is the single source for homepage highlights, web CV content, projects, and the downloadable English CV. After editing it, regenerate the PDF:
 
-- **GitHub Pages (github-pages gem)**: Production runtime that pins Jekyll and plugins
-- **Jekyll**: Static site generator (version pinned by GitHub Pages)
-- **CSS3**: Custom styling with CSS variables for theming
-- **JavaScript**: Vanilla JS for theme switching and interactions
-- **Font Awesome**: Icons
-- **Highlight.js**: Code syntax highlighting
- - **jekyll-seo-tag**: Open Graph/Twitter meta and SEO helpers
+```bash
+ruby scripts/generate_cv_tex.rb --build
+```
 
-## 📦 Dependencies
+This requires `latexmk` and a TeX Live installation containing `moderncv`, `lmodern`, `eurosym`, and `csquotes`.
 
-### Jekyll Plugins
-- `jekyll-feed`: RSS/Atom feed generation
-- `jekyll-seo-tag`: SEO optimization
-- `jekyll-paginate`: Blog pagination (optional; currently disabled)
+Key files:
 
-### External Libraries
-- Font Awesome 6.4.0 (CDN)
-- Highlight.js 11.9.0 (CDN)
+- `index.md` — homepage structure
+- `cv.md` — web CV structure
+- `projects.md` — project overview
+- `_data/cv.yml` — shared professional content
+- `_layouts/default.html` — metadata, navigation, and site shell
+- `assets/css/main.css` — responsive, dark-theme, and print styles
+- `cv/cv.tex` — generated LaTeX source (rebuild artifacts under `cv/` are gitignored)
+- `cv/Makefile` / `cv/README.md` — local PDF build helpers
+- `assets/cv/Egor_Polyakov_CV.pdf` — published PDF
 
-### Custom JavaScript
-- `theme.js`: Theme switching functionality
-- `image-viewer.js`: Interactive image viewer with navigation
+## Privacy and security
 
-## 🏃‍♂️ Local Development
+- The public CV includes limited family context but omits family members’ names and ages, as well as a street address, telephone number, and full birth date.
+- LaTeX build outputs under `cv/` (PDF/aux/log) are gitignored; Makefile, README, archive sources, and generated `cv.tex` stay in the repo. Only `assets/cv/Egor_Polyakov_CV.pdf` is published.
+- The site has no analytics and makes no third-party font, icon, or script requests.
+- A browser-enforced Content Security Policy is included in the shared layout. `_headers` provides stronger HTTP headers on compatible hosts; GitHub Pages itself does not apply Netlify-style `_headers` files.
+- External links opened in a new tab use `rel="noopener noreferrer"`.
+- Blog and category pages are currently excluded from indexing.
 
-### Prerequisites
-- Ruby 2.7+ (matches GitHub Pages runtime)
-- Bundler gem
+## Deployment
 
-### Setup
-1. Clone the repository:
-   ```bash
-   git clone https://github.com/egorpol/egorpol.github.io.git
-   cd egorpol.github.io
-   ```
+GitHub Pages builds the default branch. Before publishing, run:
 
-2. Install dependencies:
-   ```bash
-   bundle install
-   ```
-
-3. Start the development server:
-   ```bash
-   bundle exec jekyll serve
-   ```
-
-4. Open your browser and navigate to `http://localhost:4000`
-
-### Build for Production
 ```bash
 bundle exec jekyll build
+ruby scripts/generate_cv_tex.rb --build
+git diff --check
 ```
 
-The built site is output to `_site/`. Do not edit files in that directory manually.
+## License
 
-## 📝 Content Management
-
-### Adding Blog Posts
-1. Create a new Markdown file in `_posts/` directory
-2. Start from `POST_TEMPLATE.md` and copy it into `_posts/YYYY-MM-DD-your-title.md`
-3. Use the following front matter format:
-   ```yaml
-   ---
-   layout: post
-   title: "Your Post Title"
-   date: YYYY-MM-DD
-   categories: [category1, category2]
-   tags: [tag1, tag2, tag3]
-   excerpt: "Brief description of the post"
-   ---
-   ```
-
-**Important**: Categories must be defined as YAML arrays (with square brackets). See `CATEGORIES.md` for detailed guidelines.
-**Recommended**: Keep 1-3 categories and 3-6 tags for clean taxonomy pages and blog filtering.
-
-### Updating Site Information
-- Edit `_config.yml` for site-wide settings
-- Modify `index.md` for homepage content
-- Update `assets/css/main.css` for styling changes
- - Navigation and contact anchor are defined in `_layouts/default.html` (Contact links to `{{ '/' | relative_url }}#contact`)
- - Per‑page JSON‑LD can be added under `structured_data:` (and optional `local_business_schema:`) in front matter
-
-## 🎨 Customization
-
-### Themes
-The site uses CSS custom properties for theming. Colors are defined in `assets/css/main.css`:
-
-```css
-:root {
-    --bg-color: #ffffff;
-    --text-color: #333333;
-    --primary-color: #0066cc;
-    /* ... more variables */
-}
-```
-
-### Layouts
-- `default.html`: Standard page layout
-- `custom.html`: Enhanced layout with additional navigation
-- `post.html`: Blog post layout
-- `page.html`: Simple page layout
-
-## 🔧 Configuration
-
-Key settings in `_config.yml`:
-- Site title, description, and author
-- GitHub username for social links
-- Jekyll plugins and settings
-- SEO and analytics configuration (GA4 placeholders: `google_analytics` and `gtag`)
-- Markdown engine (`kramdown`) and syntax highlighter (`rouge`)
-- `social.name` and `social.links` (used for rel=me links in the layout)
-
-## 📊 Performance
-
-The site is optimized for performance with:
-- Minimal external dependencies
-- Optimized images
-- Efficient CSS and JavaScript
-- CDN-hosted libraries
-- Static generation for fast loading
-
-## 🔒 Security
-
-- No client-side data collection by default
-- HTTPS enforced by GitHub Pages
-- Analytics are disabled unless GA4 IDs are provided
-- Secure external dependencies
-
-## 📄 License
-
-This project is open source and available under the [MIT License](LICENSE).
-
-## 🤝 Contributing
-
-While this is a personal website, suggestions and improvements are welcome. Please feel free to open issues or submit pull requests.
-
-## 📞 Contact
-
-- **Email**: egor.polyakov@hfm-weimar.de
-- **GitHub**: [@egorpol](https://github.com/egorpol)
-- **Website**: [egorpol.github.io](https://egorpol.github.io)
-
----
-
-*Last updated: October 20, 2025*
+Site source is available under the [MIT License](LICENSE).

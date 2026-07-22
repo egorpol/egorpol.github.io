@@ -1,0 +1,349 @@
+﻿\documentclass[11pt,a4paper,sans]{moderncv}
+\moderncvstyle{classic}
+\moderncvcolor{blue}
+\setlength{\hintscolumnwidth}{3.8cm} % a bit wider for nicer dates/labels
+% \nopagenumbers{}
+
+% ===== XeLaTeX setup =====
+\usepackage{fontspec}
+\defaultfontfeatures{Ligatures=TeX}
+\setsansfont{Latin Modern Sans}
+
+\usepackage[scale=0.9]{geometry}
+
+% Language & quotes
+\usepackage{polyglossia}
+\setmainlanguage{german}
+\usepackage{csquotes}
+
+% Links
+\usepackage{needspace}
+\usepackage{etoolbox}
+
+\preto{\section}{%
+  \Needspace{6\baselineskip}%
+  \par\vspace{0.6\baselineskip}%
+}
+
+% \preto{\subsection}{%
+%   \Needspace{5\baselineskip}%
+%   \vspace{0.3\baselineskip}%
+% }
+
+% ===== Personal data =====
+\firstname{Egor}
+\familyname{Polyakov}
+\title{Tabellarischer Lebenslauf}
+\address{Region Leipzig, Deutschland}{}
+\email{egor.polyakov@hfm-weimar.de}
+\homepage{egorpol.github.io}
+
+% ===== Typography & Links (Load last) =====
+\usepackage{microtype}
+\usepackage[pdfpagelabels=false]{hyperref}
+\hypersetup{
+    hidelinks,
+    pdfauthor={Egor Polyakov},
+    pdftitle={Lebenslauf - Egor Polyakov},
+    pdfcreator={LaTeX with moderncv},
+    pdfproducer={XeLaTeX}
+}
+
+\begin{document}
+\makecvtitle
+\pagenumbering{arabic}
+
+% =========== Profil ===========
+\section{Profil}
+\cvitem{}{Postdoc in der \textbf{Musikwissenschaft} an der Schnittstelle zu den \textbf{Digital Humanities}. Forschungsschwerpunkt in der \textbf{computergestützten Analyse} von zeitgenössischer Musik. Expertise in der Entwicklung von \textbf{Python}-basierten Analyse-Tools, in der Anwendung von \textbf{KI/ML-Methoden} zur Audio- und Notentextanalyse sowie in der Aufbereitung und Kuration digitaler Daten. Mehrjährige \textbf{Forschungserfahrung} mit erfolgreicher \textbf{Drittmitteleinwerbung (DFG)} und umfassende \textbf{Lehrerfahrung} in der forschungsnahen, interdisziplinären Lehre.}
+
+% =========== Kompetenzen ===========
+\section{Kompetenzen}
+\cvdoubleitem{Programmier-Stack}{\begin{tabular}[t]{@{}l@{}}Python (Pandas, Jupyter,\\music21, librosa)\\OpenMusic (Lisp)\end{tabular}}{Audio-Analyse \& Produktion}{\begin{tabular}[t]{@{}l@{}}Ableton Live\\Logic Pro\\Max/MSP\\Sonic Visualiser\end{tabular}}
+\cvdoubleitem{KI-gest\"utzte Analyse}{\begin{tabular}[t]{@{}l@{}}Timbre-, Rhythmus- \&\\Strukturanalyse\\Audio-Embeddings\end{tabular}}{Forschungstransfer}{\begin{tabular}[t]{@{}l@{}}Open Science (Git/GitHub)\\Reproducible Notebooks (Jupyter)\end{tabular}}
+\cvdoubleitem{Hochschullehre}{\begin{tabular}[t]{@{}l@{}}Curriculum-Design\\forschungsnahe Lehre\\Projektbetreuung\end{tabular}}{Wissenschafts-IT}{\begin{tabular}[t]{@{}l@{}}Docker\\Cloud-Services\end{tabular}}
+
+% =========== Sprachen ===========
+\section{Sprachen}
+\cvitem{Deutsch}{Verhandlungssicher in Wort und Schrift}
+\cvitem{Englisch}{Verhandlungssicher in Wort und Schrift}
+\cvitem{Russisch}{Muttersprache}
+
+% =========== Beruflicher Werdegang ===========
+\section{Beruflicher Werdegang}
+\cventry{seit 2025}{Post-Doc Researcher (DFG-Projekt)}{HfM Weimar}{Weimar}{}{
+  \begin{itemize}\itemsep0.2em
+    \item \textbf{Wissenschaftliche Konzeption und Durchführung} des DFG-Projekts zur Entwicklung einer cloud-basierten Analyse-Toolbox (mit Prof. Dr. Martin Pfleiderer eingeworben).
+    \item \textbf{Projektkoordination und Team-Anleitung}: Fachliche Anleitung eines Teams aus Doktoranden und studentischen Mitarbeitern; operative Steuerung der Forschungsziele.
+    \item \textbf{Methoden- und Werkzeugentwicklung}: Implementierung von Python-Workflows zur symbolischen Musikanalyse (MEI/Verovio) sowie Erweiterung von \textit{mei-friend} für OMR-basierte Workflows (Korpus: \textit{musiconn}/Denkmäler Deutscher Tonkunst).
+    \item \textbf{Beitrag zur nationalen Forschungs-Infrastruktur}: Bereitstellung der Analyse-Tools in Jupyter4NFDI-Umgebungen und Transfer der Projektergebnisse in die Lehre.
+  \end{itemize}}
+
+\cventry{2013–2025}{Wissenschaftlicher und küstlerischer Mitarbeiter}{HMT Leipzig}{Leipzig}{}{
+  \begin{itemize}\itemsep0.2em
+    \item \textbf{Lehre}: Eigenständige Konzeption und Durchführung von Seminaren in Musikwissenschaft und Elektroakustik (u.a. KI-gestützte Analyse, Algorithmik, Analyse zeitgenössischer Musik).
+    \item \textbf{Koordination und Betreuung EA-Studio}: Technische und künstlerische Betreuung des Studios für Elektroakustische Musik; Management und Unterstützung zahlreicher studentischer Projekte.
+    \item \textbf{Breites Forschungsprofil}: Konzeption und Entwicklung computergestützter Methoden von der Audio-Synthese (z.B. \textit{FFTimbre}) und -Visualisierung (\textit{audiospylt}) bis zur KI-gestützten Analyse; Anwendung auf ein breites Spektrum musikalischer Genres.
+  \end{itemize}}
+
+\cventry{2021–2022}{Wissenschaftlicher Mitarbeiter}{HfM Weimar}{Weimar}{}{
+  \begin{itemize}\itemsep0.2em
+    \item \textbf{Forschung und Entwicklung} der \textit{CAMAT}-Toolbox für die computergestützte Musikanalyse sowie deren praktische Erprobung und Evaluation in Lehrveranstaltungen.
+  \end{itemize}}
+
+% =========== Drittmittelprojekte ===========
+\section{Drittmittelprojekte}
+
+\cventry{2025–2028}{DFG-Projekt: \emph{Development of a Comprehensive Cloud-Based Toolbox for Sheet Music Analysis}}{}{}{}{
+  \begin{itemize}\itemsep0.2em
+    \item \textbf{Eigene Rolle:} Wissenschaftliche Konzeption, Durchführung und Projektkoordination.
+    \item \textbf{Förderung:} DFG (443.458 €), eingeworben mit Prof. Dr. Martin Pfleiderer.
+  \end{itemize}
+}
+
+\cventry{2021–2022}{Fellowship: \emph{Computergestützte Musikanalyse}}{}{}{}{
+  \begin{itemize}\itemsep0.2em
+    \item \textbf{Eigene Rolle:} Wissenschaftlicher Mitarbeiter für Forschung und Entwicklung der \textit{CAMAT}-Toolbox; Erprobung und Evaluation in der Lehre.
+    \item \textbf{Förderung:} Thüringer Ministerium für Wirtschaft, Wissenschaft und Digitale Gesellschaft (TMWWDG) und Stifterverband.
+  \end{itemize}
+}
+
+% =========== Lehrerfahrung ===========
+\section{Lehrerfahrung}
+
+\cvitem{2013–2025}{Langjährige Lehrerfahrung (HMT Leipzig) an der Schnittstelle von \textbf{Musikwissenschaft}, \textbf{Digital Humanities} und \textbf{künstlerischer Praxis}. Konzeption und Leitung von Seminaren zur Vermittlung \textbf{digitaler Methoden} für die Analyse von \textbf{zeitgenössischer Musik} mit den Schwerpunkten: Computational Musicology (Python/KI), kritischer Umgang mit digitalen Werkzeugen und projektbasiertes, forschendes Lernen.}
+
+\subsection{Auswahl der Lehrveranstaltungen}
+
+\cvitem{SS 2025}{\enquote{Hearing (and analyzing) in time} – Computergestützte Metrik- und Groove-Analyse in elektronischer Musik.}
+\cvitem{WS 2024/25}{\enquote{Algorithmische Musikmodelle – von Analyse bis Stilkopie mit Python/AI}: Einführung in probabilistische Modelle und Machine-Learning-Techniken.}
+\cvitem{WS 2023/24}{\enquote{KI und statistische Analyse in der musikologischen Forschung}: Noten- \& Audioanalyse mit KI-Verfahren.}
+\cvitem{SS 2023}{\enquote{Von Track zu DJ-Set, von Sample zu Live-Performance}: Makroform-Konzepte in populärer elektronischer Musik.}
+
+\cvitem{2013–2025}{\enquote{Grundlagen der Elektroakustischen Musik I und II} \newline Jährliches Seminar zur Vermittlung von Grundlagen der Akustik, digitalen Audiotechnik und computergestützten Musikproduktion (Ableton Live, Max/MSP, Python).}
+
+% =========== Ausbildung ===========
+\section{Ausbildung}
+\cventry{2013–2018}{Promotion Musikwissenschaft}{HMT Leipzig}{Leipzig}{}{Diss.: \enquote{Computerbasierte Analyse und visuelle Repräsentationsformen der Musik}; Betreuung: Prof.~Dr.~Gesine Schröder, Prof.~Dr.~Martin Supper.}
+\cventry{2011–2014}{Master Komposition/Elektroakustische Musik}{HMDK Stuttgart}{Stuttgart}{}{bei Prof.~Marco Stroppa.}
+\cventry{2010–2013}{Meisterklasse Elektroakustik}{HMT Leipzig}{Leipzig}{}{bei Prof.~Ipke Starke.}
+\cventry{2004–2010}{Diplom Komposition}{HMT Leipzig}{Leipzig}{}{bei Prof.~Peter Herrmann / Prof.~Ipke Starke.}
+\cventry{2002–2004}{Abitur}{RHS Markkleeberg}{Markkleeberg}{}{Leistungsfächer: Mathematik, Musik, Geschichte.}
+\cventry{2000–2002}{Sächsisches Landesgymnasium f.\,Musik}{Dresden}{}{Klavier bei Prof.~Marlies Jacob; Komposition bei Prof.~Jörg Herchet.}{}
+\cventry{1995–1998}{Spezialschule f.\,Musik/Gymnasium am Leningrader Konservatorium}{St.~Petersburg}{}{Komposition bei Prof.~Alexander Mnatsakanjan; Klavier bei Prof.~Marina Padszarova.}{}
+\cventry{1990–1995}{Privatunterricht}{}{}{Cello, Klavier, Komposition.}{}
+
+% =========== Publikationen ===========
+\section{Publikationen}
+
+\subsection{Veröffentlichte Schriften}
+
+\cventry{2025}{\textbf{Polyakov, E.}}{}{}{}{
+  \begin{itemize}\itemsep0.2em
+    \item \enquote{Encoding the New Frontier: Adapting MEI and Verovio for Post-Tonal and Spectral Notations}. In: Lewis, D., Plaksin, A., \& Stremel, S. (Hg.), \emph{Music Encoding Conference 2025 - Book of Abstracts}. \href{https://doi.org/10.17613/20s0d-gq678}{DOI: 10.17613/20s0d-gq678}.
+  \end{itemize}
+}
+
+\cventry{2024}{Pfleiderer, M.; \textbf{Polyakov, E.}; Nadar, C.\,R.}{}{}{}{
+  \begin{itemize}\itemsep0.2em
+    \item \enquote{Analyze! Development and integration of software-based tools for musicology and music theory}. In: J.-O. Gullo et al. (Hg.), \emph{Innovation in Music: Technology and Creativity}. Routledge.
+  \end{itemize}
+}
+
+\cventry{2021}{\textbf{Polyakov, E.}}{}{}{}{
+  \begin{itemize}\itemsep0.2em
+    \item Artikel: \enquote{Crumb, George}, \enquote{Lautsprecherorchester}, \enquote{Orchester (neue Medien, Internet)}, \enquote{Tonaufzeichnung/Tontechnik}. In: Heidlberger; Schröder; Wünsch (Hrsg.), \emph{Lexikon des Orchesters}. Laaber-Verlag.
+  \end{itemize}
+}
+
+\cventry{2020}{\textbf{Polyakov, E.}}{}{}{}{
+  \begin{itemize}\itemsep0.2em
+    \item \emph{Computerbasierte Analyse und visuelle Repräsentationsformen der Musik}. Monographie (Dissertation), HMT Leipzig.
+  \end{itemize}
+}
+
+\cventry{2019}{\textbf{Polyakov, E.}}{}{}{}{
+  \begin{itemize}\itemsep0.2em
+    \item \enquote{Immer ungenau und mangelhaft}. In: \emph{Proceedings of ‘Rimsky-Korsakov at 175’}. SPbGMTiMI, St. Petersburg.
+  \end{itemize}
+}
+
+
+\subsection{Im Druck / Angenommen zur Publikation}
+
+\cventry{(im Druck)}{\textbf{Polyakov, E.}}{}{}{}{
+  \begin{itemize}\itemsep0.2em
+    \item \enquote{Exploration of Timbre by Analysis and Synthesis Using Python, Ableton, and Large Language Models}. Erscheint in: \emph{Proceedings of Innovation in Music 2024}. Routledge.
+  \end{itemize}
+}
+
+\cventry{(im Druck)}{\textbf{Polyakov, E.}}{}{}{}{
+  \begin{itemize}\itemsep0.2em
+    \item \enquote{Evaluation of Modern Computer-Aided Sheet Music Analysis Methods in a Practical Context}. Erscheint in: \emph{GMTH Proceedings}.
+  \end{itemize}
+}
+
+
+\subsection{Zur Begutachtung eingereicht (im Peer Review)}
+
+\cventry{(eingereicht)}{\textbf{Polyakov, E.}}{}{}{}{
+  \begin{itemize}\itemsep0.2em
+    \item \enquote{Evaluating the Generalization Capabilities of Diffusion Models for Stylistically Constrained Symbolic Music Generation}. Eingereicht bei: \emph{Transactions of the International Society for Music Information Retrieval (TISMIR)}.
+  \end{itemize}
+}
+
+\cventry{(eingereicht)}{\textbf{Polyakov, E.}}{}{}{}{
+  \begin{itemize}\itemsep0.2em
+    \item \enquote{Understanding and Emulating Time: Analyzing and Simulating Musical Microrhythm Timing with the \texttt{beat\_it} Toolbox}. Eingereicht bei: \emph{Proceedings of Innovation in Music 2025}. Routledge.
+  \end{itemize}
+}
+
+% =========== Vorträge und Konferenzbeiträge (Auswahl) ===========
+\section{Vorträge und Konferenzbeiträge (Auswahl)}
+
+\cventry{2025}{Symposiumorganisation: \enquote{Herausforderungen der computergestützten Notentextanalyse}}{}{}{}{
+  \begin{itemize}\itemsep0.2em
+    \item 77. Jahrestagung der Gesellschaft für Musikforschung (GfM), Weimar, 6.–9. Oktober 2025.
+  \end{itemize}
+}
+\cventry{}{Vortrag: \enquote{Binäre Notentextrepräsenationsformenen – eine interaktive Methode für verschiedene Formen der Motiv-, Akkord-, Funktions- und Textursuche innerhalb der symbolischen Notentextrepräsentationen}}{}{}{}{
+  \begin{itemize}\itemsep0.2em
+    \item Auf o.g. Tagung (GfM), Weimar, 6.–9. Oktober 2025.
+  \end{itemize}
+}
+\cventry{}{Vortrag: \enquote{Wie die Maschinen hören}}{}{}{}{
+  \begin{itemize}\itemsep0.2em
+    \item 25. Jahreskongress der Gesellschaft für Musiktheorie (GMTH), Lübeck, 17.–19. Oktober 2025.
+  \end{itemize}
+}
+\cventry{}{Vortrag: \enquote{Understanding and Emulating Time: Analyzing and Simulating Musical Microrhythm Timing with the \texttt{beat\_it} Toolbox}}{}{}{}{
+  \begin{itemize}\itemsep0.2em
+    \item Innovation In Music 2025, Bath (UK), 20.–22. Juni 2025.
+  \end{itemize}
+}
+\cventry{}{Poster: \enquote{Encoding the New Frontier: Adapting MEI and Verovio for Post-Tonal and Spectral Notations}}{}{}{}{
+  \begin{itemize}\itemsep0.2em
+    \item Music Encoding Conference 2025, London, 3.–6. Juni 2025.
+  \end{itemize}
+}
+
+\cventry{2024}{Vortrag: \enquote{How Constant Is Your Beat? Computer-Assisted Analysis of Beat and Tempo Fluctuations from Acousmatic Music to Minimal Techno with the \texttt{beat\_it} Toolbox}}{}{}{}{
+  \begin{itemize}\itemsep0.2em
+    \item Konferenz: \emph{Rhythm under the Microscope: Microrhythm and Groove in Popular Music}, mdw Wien, 25.–27. September 2024.
+  \end{itemize}
+}
+\cventry{}{Vortrag: \enquote{Exploring Electroacoustic Music Analysis with Multimodal Large Language Models}}{}{}{}{
+  \begin{itemize}\itemsep0.2em
+    \item Jahrestagung der Gesellschaft für Musikforschung (GfM), HfM Köln, 11.–14. September 2024.
+  \end{itemize}
+}
+\cventry{}{Workshop: \enquote{AI for Music Theory}}{}{}{}{
+  \begin{itemize}\itemsep0.2em
+    \item 24. Jahreskongress der Gesellschaft für Musiktheorie (GMTH), Cottbus, 4.–6. Oktober 2024.
+  \end{itemize}
+}
+
+\cventry{2023}{Vortrag: \enquote{Reconstruct and Decompose: Extracting and Sonifying Rhythmic, Melodic and Spectral Patterns for Analytical and Creative Use}}{}{}{}{
+  \begin{itemize}\itemsep0.2em
+    \item 23. Jahreskongress der Gesellschaft für Musiktheorie (GMTH), Freiburg, 22.–24. September 2023.
+  \end{itemize}
+}
+
+\cventry{2022}{Workshop: \enquote{Evaluation of computer-assisted music score analysis methods within the Fellowship project Computer-assisted music analysis at music university Weimar}}{}{}{}{
+  \begin{itemize}\itemsep0.2em
+    \item 22. Jahreskongress der Gesellschaft für Musiktheorie (GMTH), Salzburg, 30. Sept.–2. Okt. 2022.
+  \end{itemize}
+}
+\cventry{}{Vortrag: \enquote{Analyze! Development and integration of software-based tools for musicological and music theoretical needs}}{}{}{}{
+  \begin{itemize}\itemsep0.2em
+    \item (mit M. Pfleiderer und C. Nadar) Auf: \emph{Innovation in Music Conference 2022}, Stockholm, 17.–19. Juni 2022.
+  \end{itemize}
+}
+
+\cventry{2019}{Vortrag: \enquote{„Immer ungenau und mangelhaft“ – Beschreibung der instrumentalen Klangfarben in „Grundlagen der Orchestration“ von N. A. Rimsky-Korssakow im Kontext der aktuellen Entwicklungen der computerbasierten Klanganalyse}}{}{}{}{
+  \begin{itemize}\itemsep0.2em
+    \item Konferenz: \emph{Rimsky-Korsakov at 175}, St. Petersburg, 18.–21. März 2019.
+  \end{itemize}
+}
+
+\cventry{2017}{Vortrag: \enquote{Self-Similarity-Matrix im Kontext der computerbasierten Klanganalyse und deren Einsatz in der Lehre}}{}{}{}{
+  \begin{itemize}\itemsep0.2em
+    \item Symposium: \emph{Populäre Musik und ihre Theorien}, Jahreskongress der GMTH, Graz, 17.–19. November 2017.
+  \end{itemize}
+}
+
+% =========== Technische und künstlerische Betreuung (Auswahl) ===========
+\section{Technische und künstlerische Betreuung (Auswahl)}
+
+\cventry{2018}{\enquote{die maschine steht still} (Johanna Wokalek, Fabian Russ)}{}{}{}{
+  \begin{itemize}\itemsep0.2em
+    \item \textbf{Rolle:} Realisation der Live-Elektronik, STEM-Mastering.
+    \item \textbf{UA:} 01.06.2018, Futurium Berlin.
+  \end{itemize}
+}
+
+\cventry{2017}{\enquote{Black is the Colour} (Fabian Russ)}{}{}{}{
+  \begin{itemize}\itemsep0.2em
+    \item \textbf{Rolle:} Restauration, Mastering für CD- und Online-Release.
+    \item \textbf{VÖ:} 03.03.2017, Neue Meister (Edel).
+  \end{itemize}
+}
+
+\cventry{2016}{\enquote{Für Tuba mit Hegel} (Georg Katzer, 2008)}{}{}{}{
+  \begin{itemize}\itemsep0.2em
+    \item \textbf{Rolle:} Einstudierung, Realisation und Restauration der Live-Elektronik.
+    \item \textbf{Aufführung:} 31.03.2016, HMT Leipzig.
+  \end{itemize}
+}
+
+\cventry{2015}{\enquote{Butterfly under glass} (Fabian Russ, Laurie Young, Frieder Weiss)}{}{}{}{
+  \begin{itemize}\itemsep0.2em
+    \item \textbf{Rolle:} Realisation der Live-Elektronik, STEM-Mastering.
+    \item \textbf{UA:} 18.04.2015, Scala Esslingen.
+  \end{itemize}
+}
+
+\cventry{}{\enquote{Harmonia Mundi} (Fabian Russ)}{}{}{}{
+  \begin{itemize}\itemsep0.2em
+    \item \textbf{Rolle:} Realisation der Live-Elektronik, STEM-Mastering.
+    \item \textbf{UA:} 28.02.2015, Montforthaus Feldkirch.
+  \end{itemize}
+}
+
+\cventry{2013}{\enquote{Inside Partita} (Folkert Uhde, Midori Seiler, Fabian Russ)}{}{}{}{
+  \begin{itemize}\itemsep0.2em
+    \item \textbf{Rolle:} Realisation der Live-Elektronik, STEM-Mastering.
+    \item \textbf{UA:} 11.06.2013, St. Elisabethkirche, Berlin.
+  \end{itemize}
+}
+
+\cventry{2009}{\enquote{Utopia} (Thomas Kessler)}{}{}{}{
+  \begin{itemize}\itemsep0.2em
+    \item \textbf{Rolle:} Einstudierung, Technischer Assistent.
+    \item \textbf{UA:} 23.08.2009, Viehauktionshalle Weimar.
+  \end{itemize}
+}
+
+% =========== Künstlerisches Schaffen (Auswahl) ===========
+\section{Künstlerisches Schaffen (Auswahl)}
+
+\subsection{Konzertwerke}
+\cventry{2013}{\enquote{Core v2}}{}{}{}{für Oboe, Englischhorn und 8-Kanal-Live-Elektronik.}
+\cventry{2012}{\enquote{Manuals}}{}{}{}{für Paetzold-Blockflöten-Quartett und 4-Kanal-Live-Elektronik.}
+\cventry{2011}{\enquote{Core v1}}{}{}{}{für Oboe, Englischhorn und 4-Kanal-Live-Elektronik.}
+\cventry{}{}{\enquote{Stereo-Type II}}{}{}{für 2-Kanal-Tonband.}
+\cventry{2010}{\enquote{Stereo-Type}}{}{}{}{für 2-Kanal-Tonband.}
+\cventry{2009}{\enquote{Double Helix}}{}{}{}{für Oboe, Cello und 4-Kanal-Live-Elektronik.}
+\cventry{2008}{\enquote{Schrittmacher}}{}{}{}{4-Kanal-Klanginstallation.}
+
+\subsection{Veröffentlichungen (Elektronische Musik)}
+\cventry{2009}{\enquote{Two Unknown Guys} – \emph{Swirl Planet EP}}{}{}{}{VÖ: 02.02.2009, Ornithopter Records (OR 005).}
+\cventry{2008}{\enquote{Two Unknown Guys} – \emph{The Rubber Duck Massacre EP}}{}{}{}{VÖ: 14.04.2008, Sinergy Networks (SN056).}
+
+% =========== Mitgliedschaften ===========
+\section{Mitgliedschaften}
+\cvitem{seit 2016}{GMTH (Gesellschaft für Musiktheorie e.\,V.)}
+\cvitem{seit 2018}{DEGEM (Deutsche Gesellschaft für Elektroakustische Musik e.\,V.)}
+\cvitem{seit 2024}{GfM (Gesellschaft für Musikforschung e.\,V.)}
+
+\end{document}

@@ -1,0 +1,475 @@
+# Single source of truth for the English web CV and PDF.
+# Edit this file, then: ruby scripts/generate_cv_tex.rb --build
+# (or: make -C cv regenerate && make -C cv pdf)
+
+name: Egor Polyakov
+title: Curriculum Vitae
+job_title: Postdoctoral Researcher in Computational Musicology
+affiliation: University of Music FRANZ LISZT Weimar
+
+profile: >-
+  Composer, computational musicologist, and research software developer connecting
+  creative practice with analytical methods. My work has grown from electroacoustic
+  composition, synthesis, interactive systems, studio teaching, and the realisation
+  of concert and installation works into Python-based music encoding, audio and score
+  analysis, and AI. Rather than treating creative and analytical work as separate
+  specialisms, I use practice-based knowledge to shape research tools and teaching.
+  I currently serve as scientific co-lead of a DFG-funded project at HfM Weimar.
+
+note: >-
+  Born in Bakhmut, Ukraine. Based in the Leipzig region, Germany.
+  Publications may appear under the former transliteration “Poliakov.”
+
+contact:
+  email: egor.polyakov@hfm-weimar.de
+  orcid: https://orcid.org/0000-0003-0913-0429
+  github: https://github.com/egorpol
+  linkedin: https://www.linkedin.com/in/egor-polyakov-6a2114315/
+  homepage: https://egorpol.github.io
+  location: Leipzig region, Germany
+
+pdf:
+  path: /assets/cv/Egor_Polyakov_CV.pdf
+  filename: Egor_Polyakov_CV.pdf
+
+trajectory:
+  - stage: Composition
+    text: Classical and electroacoustic composition, fixed media, live electronics, and multichannel work
+  - stage: Systems
+    text: Max/MSP, OpenMusic, synthesis, hardware, and interactive analysis–synthesis workflows
+  - stage: Realisation
+    text: Studio teaching and the artistic-technical realisation of concerts, installations, and productions
+  - stage: Computation
+    text: Python, music encoding, reproducible audio and score analysis, and machine learning
+  - stage: Current research
+    text: Practice-informed computational musicology, open research software, infrastructure, and team leadership
+
+competencies:
+  - label: Composition and artistic practice
+    text: Electroacoustic composition; fixed-media, live-electronic, multichannel, and installation formats; work across contemporary classical and electronic music
+  - label: Synthesis and hardware
+    text: Analogue and digital synthesis; hardware-based sound generation and processing; studio signal flow; multichannel routing; hybrid hardware/software setups
+  - label: Interactive music systems
+    text: Max/MSP and OpenMusic (Lisp); real-time audio, live electronics, algorithmic composition, and analysis–synthesis workflows
+  - label: Concert, installation, and spatial-audio realisation
+    text: Artistic-technical realisation, rehearsal and system setup, live electronics, multichannel and spatial-audio system design and operation, restoration, and stem mastering
+  - label: Computational musicology
+    text: Python, MEI/MusicXML, music21, and Verovio; corpus analysis, pattern discovery, and reproducible notebooks
+  - label: Audio analysis and AI
+    text: NumPy, SciPy, pandas, scikit-learn, librosa, and PyTorch; timbre, rhythm, structure, embeddings, and generative modelling
+  - label: Teaching and studio leadership
+    text: Research-led course design, project supervision, electroacoustic studio coordination, and technical mentoring
+  - label: Research leadership and infrastructure
+    text: Grant development, team supervision, open science, Docker, cloud services, and Jupyter4NFDI
+
+experience:
+  - dates: 2025–present
+    role: Postdoctoral Researcher
+    org: University of Music FRANZ LISZT Weimar
+    location: Weimar
+    bullets:
+      - >-
+        Serve as scientific co-lead of the DFG project
+        *Development of a Comprehensive Cloud-Based Toolbox for Music Score Analysis*,
+        alongside project head Prof. Dr. Martin Pfleiderer; responsible for scientific
+        conception and research execution. Co-applicant; total funding: €443,458.
+      - >-
+        Coordinate the research programme and supervise doctoral candidates and
+        student assistants across technical and scholarly work packages.
+      - >-
+        Develop Python workflows for MEI/MusicXML analysis, extend *mei-friend* for
+        OMR corpora (*musiconn* / Denkmäler Deutscher Tonkunst), and deliver
+        interactive score workflows through MEI, Verovio, and Jupyter4NFDI.
+      - Integrate project methods into national research infrastructure and university teaching.
+
+  - dates: 2013–2025
+    role: Researcher and Artistic Associate
+    org: University of Music and Theatre Leipzig
+    location: Leipzig
+    bullets:
+      - >-
+        Designed and taught courses in electroacoustics, popular and electronic
+        music, computer-assisted analysis, and AI for musicology; supervised
+        electroacoustic composition projects.
+      - >-
+        Coordinated the electroacoustic studio, supported student productions, and
+        maintained analogue, digital, and live-electronics infrastructure.
+      - >-
+        Realised and supported electronic works for concerts and installations,
+        including rehearsal, system setup, multichannel and spatial-audio playback,
+        restoration, and stem mastering.
+      - >-
+        Developed tools spanning synthesis (*FFTimbre*), visualisation (*AudioSpylt*),
+        and AI-assisted analysis across multiple repertoires.
+
+  - dates: 2021–2022
+    role: Research Associate
+    org: University of Music FRANZ LISZT Weimar
+    location: Weimar
+    bullets:
+      - Concurrent with the Researcher and Artistic Associate role at HMT Leipzig.
+      - >-
+        Developed and evaluated CAMAT research and teaching pilots with faculty and
+        students, including workshops on computational score analysis.
+
+career_context:
+  dates: Family context
+  text: >-
+    I am married and have two children. Between 2018 and 2022, family responsibilities
+    and COVID-19 restrictions reduced the time available for conference travel and
+    public-facing artistic production. I nevertheless remained professionally active
+    at HMT Leipzig and, from 2021 to 2022, in the CAMAT research appointment at HfM
+    Weimar.
+
+funding:
+  - dates: 2025–2028
+    title: Development of a Comprehensive Cloud-Based Toolbox for Music Score Analysis
+    text: >-
+      DFG grant (€443,458) — co-applicant and scientific co-lead; project head and
+      organisational lead: Prof. Dr. Martin Pfleiderer.
+  - dates: 2021–2022
+    title: Computergestützte Musikanalyse
+    text: >-
+      Fellowship funding (TMWWDG / Stifterverband) secured by Prof. Dr. Martin
+      Pfleiderer, who led the project. Contributed as scientific assistant to CAMAT
+      research, development, and curricular evaluation.
+
+teaching:
+  summary: >-
+    More than a decade of teaching across electroacoustic composition and production,
+    popular and electronic music, computer-assisted analysis, digital humanities,
+    and AI at HMT Leipzig (2013–2025) and HfM Weimar (since 2025), combining artistic
+    practice with research-led technical instruction.
+  items:
+    - term: WS 2026/27
+      title: >-
+        Von der digitalen Edition zur computergestützten Musikanalyse: Einführung in
+        Musik-Encoding und Tools für die Notentextanalyse
+      detail: >-
+        Introductory seminar on music encoding and digital tools for computational
+        score analysis at HfM Weimar.
+    - term: SS 2025
+      title: Hearing (and analyzing) in time
+      detail: Groove and metric analysis in electronic music.
+    - term: WS 2024/25
+      title: "Algorithmic music models: from analysis to style transfer with Python/AI"
+      detail: Probabilistic and machine-learning techniques.
+    - term: WS 2023/24
+      title: AI and statistical analysis in musicological research
+      detail: Score and audio pipelines with machine learning.
+    - term: SS 2023
+      title: From track to DJ set, from sample to live performance
+      detail: Macroform concepts in popular electronic music.
+    - term: 2013–2025
+      title: Electroacoustic Music I and II
+      detail: >-
+        Annual foundational seminar covering acoustics, digital production, and
+        live-electronics practice.
+
+education:
+  - dates: 2013–2018
+    degree: PhD in Musicology (Dr. phil.)
+    org: University of Music and Theatre “Felix Mendelssohn Bartholdy” Leipzig (HMT Leipzig)
+    detail: >-
+      Dissertation on computer-based analysis and visualisation of music;
+      supervisors: Prof. Dr. Gesine Schröder and Prof. Dr. Martin Supper.
+  - dates: 2011–2014
+    degree: Master’s studies in Composition and Electroacoustic Music
+    org: State University of Music and Performing Arts Stuttgart (HMDK Stuttgart)
+    detail: Studied with Prof. Marco Stroppa.
+  - dates: 2010–2013
+    degree: Postgraduate Artist Diploma (Meisterklasse) in Electroacoustic Music
+    org: University of Music and Theatre “Felix Mendelssohn Bartholdy” Leipzig (HMT Leipzig)
+    detail: Prof. Ipke Starke.
+  - dates: 2004–2010
+    degree: Diploma in Composition
+    org: University of Music and Theatre “Felix Mendelssohn Bartholdy” Leipzig (HMT Leipzig)
+    detail: Profs. Peter Herrmann and Ipke Starke.
+
+publications:
+  published:
+    - year: "2026"
+      citation: >-
+        Polyakov, E. (2026). *FFTimbre: Exploration of Timbre by Analysis and
+        Synthesis Using Python, Ableton, and Large Language Models*. In:
+        Innovation in Music: Current Research Perspectives (pp. 121–134).
+        Focal Press / Routledge. DOI: 10.4324/9781003475675-11.
+      doi: https://doi.org/10.4324/9781003475675-11
+    - year: "2026"
+      citation: >-
+        Polyakov, E. (2026). *Understanding and Emulating Time: Analyzing and
+        Simulating Musical Microrhythm Timing with the beat_it Toolbox*. In:
+        Innovation in Music: Sound and Place. Focal Press / Routledge.
+      url: https://www.routledge.com/Innovation-in-Music-Sound-and-Place/Lovett-Gullo-Hepworth-Sawyer-Toulson-Paterson-Marrington/p/book/9781041014072
+    - year: "2025"
+      citation: >-
+        Polyakov, E. (2025). *Encoding the New Frontier: Adapting MEI and Verovio
+        for Post-Tonal and Spectral Notations*. Music Encoding Conference 2025
+        Book of Abstracts. DOI: 10.17613/20s0d-gq678.
+      doi: https://doi.org/10.17613/20s0d-gq678
+    - year: "2024"
+      citation: >-
+        Pfleiderer, M.; Polyakov, E.; Nadar, C. (2024). *Analyze! Development and
+        integration of software-based tools for musicology and music theory*. In:
+        Innovation in Music: Technology and Creativity. Routledge.
+    - year: "2021"
+      citation: >-
+        Polyakov, E. (2021). Articles on George Crumb, loudspeaker orchestras,
+        orchestras and new media, and recording technology. In: *Lexikon des
+        Orchesters*. Laaber-Verlag.
+    - year: "2020"
+      citation: >-
+        Polyakov, E. (2020). *Computerbasierte Analyse und visuelle
+        Repräsentationsformen der Musik*. Dissertation, University of Music and
+        Theatre Leipzig.
+    - year: "2019"
+      citation: >-
+        Polyakov, E. (2019). “Immer ungenau und mangelhaft.” In: Proceedings of
+        ‘Rimsky-Korsakov at 175’. St. Petersburg.
+
+  in_press:
+    - year: forthcoming
+      citation: >-
+        Polyakov, E. (forthcoming). “Evaluation of Modern Computer-Aided Sheet
+        Music Analysis Methods in a Practical Context.” In: GMTH Proceedings.
+
+  under_review:
+    - year: submitted
+      citation: >-
+        Polyakov, E. “Large Language Models as Access Layers for a Cloud-Based
+        Music Workflow: An Exploratory Case Study.” Submitted to *Proceedings of
+        Innovation in Music 2026* (InMusic26).
+
+
+talks:
+  - year: "2026"
+    status: accepted
+    kind: Workshop
+    title: Computergestützte Musikanalyse in der Cloud
+    venue: GfM annual conference, Frankfurt am Main, 29 September–2 October 2026
+  - year: "2026"
+    status: accepted
+    kind: Talk
+    title: "CAMAT_v2: Cloud-Based Tools for Collaborative Music Score Analysis"
+    venue: ICCCM26, Würzburg, 21–23 September 2026
+  - year: "2026"
+    status: presented
+    kind: Talk
+    title: >-
+      Beyond the Black Box: Democratizing Musical Analysis and Creative Workflows
+      via LLM-Empowered Cloud-Based Jupyter Setups
+    venue: InMusic26, Aalborg, Denmark, 18–20 June 2026
+  - year: "2025"
+    kind: Talk
+    title: How Machines Listen
+    venue: 25th Annual Congress of the Society for Music Theory (GMTH), Lübeck, 17–19 October 2025
+  - year: "2025"
+    kind: Symposium organisation
+    title: Challenges of Computer-Assisted Score Analysis
+    venue: Society for Music Research (GfM) annual conference, Weimar, 6–9 October 2025
+  - year: "2025"
+    kind: Talk
+    title: >-
+      Binary score representations — an interactive method for motif, chord,
+      function, and texture search in symbolic score representations
+    venue: GfM annual conference, Weimar, 6–9 October 2025
+  - year: "2025"
+    kind: Talk
+    title: >-
+      Understanding and Emulating Time: Analyzing and Simulating Musical
+      Microrhythm Timing with the beat_it Toolbox
+    venue: Innovation in Music 2025, Bath (UK), 20–22 June 2025
+  - year: "2025"
+    kind: Poster
+    title: >-
+      Encoding the New Frontier: Adapting MEI and Verovio for Post-Tonal and
+      Spectral Notations
+    venue: Music Encoding Conference 2025, London, 3–6 June 2025
+  - year: "2024"
+    kind: Workshop
+    title: AI for Music Theory
+    venue: 24th Annual Congress of the Society for Music Theory (GMTH), Cottbus, 4–6 October 2024
+  - year: "2024"
+    kind: Talk
+    title: >-
+      How Constant Is Your Beat? Computer-Assisted Analysis of Beat and Tempo
+      Fluctuations from Acousmatic Music to Minimal Techno with the beat_it Toolbox
+    venue: >-
+      Rhythm under the Microscope: Microrhythm and Groove in Popular Music,
+      mdw Vienna, 25–27 September 2024
+  - year: "2024"
+    kind: Talk
+    title: Exploring Electroacoustic Music Analysis with Multimodal Large Language Models
+    venue: GfM annual conference, HfM Cologne, 11–14 September 2024
+  - year: "2023"
+    kind: Talk
+    title: >-
+      Reconstruct and Decompose: Extracting and Sonifying Rhythmic, Melodic and
+      Spectral Patterns for Analytical and Creative Use
+    venue: GMTH annual conference, Freiburg, 22–24 September 2023
+  - year: "2022"
+    kind: Workshop
+    title: >-
+      Evaluation of computer-assisted music score analysis methods within the
+      Fellowship project Computer-assisted music analysis at music university Weimar
+    venue: GMTH annual conference, Salzburg, 30 September–2 October 2022
+  - year: "2022"
+    kind: Talk
+    title: >-
+      Analyze! Development and integration of software-based tools for
+      musicological and music theoretical needs
+    venue: Innovation in Music Conference 2022, Stockholm, 17–19 June 2022
+    note: with M. Pfleiderer and C. Nadar
+  - year: "2019"
+    kind: Talk
+    title: >-
+      Immer ungenau und mangelhaft — description of instrumental tone colours in
+      Rimsky-Korsakov’s ‘Principles of Orchestration’ in the context of current
+      developments in computer-based timbre analysis
+    venue: Rimsky-Korsakov at 175, St. Petersburg, 18–21 March 2019
+  - year: "2017"
+    kind: Talk
+    title: >-
+      Self-similarity matrix in the context of computer-based timbre analysis and
+      its use in teaching
+    venue: "Symposium: Popular Music and its Theories, GMTH annual congress, Graz, 17–19 November 2017"
+
+artistic_support:
+  - year: "2018"
+    title: die maschine steht still
+    artists: Johanna Wokalek, Fabian Russ
+    role: live electronics realisation, stem mastering
+    venue: Premiere — Futurium Berlin
+  - year: "2017"
+    title: Black is the Colour
+    artists: Fabian Russ
+    role: restoration and mastering for CD and online release
+    venue: "Label: Neue Meister (Edel)"
+  - year: "2016"
+    title: Für Tuba mit Hegel
+    artists: Georg Katzer
+    role: rehearsal, live electronics, restoration
+    venue: University of Music and Theatre Leipzig
+  - year: "2015"
+    title: Butterfly under glass
+    artists: Fabian Russ, Laurie Young, Frieder Weiss
+    role: live electronics and stem mastering
+    venue: Premiere — Scala Esslingen
+  - year: "2015"
+    title: Harmonia Mundi
+    artists: Fabian Russ
+    role: live electronics realisation, stem mastering
+    venue: Premiere — Montforthaus Feldkirch
+  - year: "2013"
+    title: Inside Partita
+    artists: Folkert Uhde, Midori Seiler, Fabian Russ
+    role: live electronics realisation, stem mastering
+    venue: Premiere — St. Elisabethkirche, Berlin
+  - year: "2009"
+    title: Utopia
+    artists: Thomas Kessler
+    role: rehearsal and technical assistance
+    venue: Premiere — Viehauktionshalle Weimar
+
+artistic_works:
+  - year: "2013"
+    title: Core v2
+    detail: for oboe, English horn, and 8-channel live electronics
+  - year: "2012"
+    title: Manuals
+    detail: for Paetzold recorder quartet and 4-channel live electronics
+  - year: "2011"
+    title: Core v1
+    detail: for oboe, English horn, and 4-channel live electronics
+  - year: "2011"
+    title: Stereo-Type II
+    detail: for 2-channel tape
+  - year: "2010"
+    title: Stereo-Type
+    detail: for 2-channel tape
+  - year: "2009"
+    title: Double Helix
+    detail: for oboe, cello, and 4-channel live electronics
+  - year: "2008"
+    title: Schrittmacher
+    detail: 4-channel sound installation
+
+releases:
+  - year: "2009"
+    artist: Two Unknown Guys
+    title: Swirl Planet EP
+    label: Ornithopter Records (OR 005)
+  - year: "2008"
+    artist: Two Unknown Guys
+    title: The Rubber Duck Massacre EP
+    label: Sinergy Networks (SN056)
+
+memberships:
+  - name: Gesellschaft für Musiktheorie (GMTH)
+    url: https://www.gmth.de
+    since: "2016"
+  - name: Deutsche Gesellschaft für Elektroakustische Musik (DEGEM)
+    url: https://www.degem.de
+    since: "2018"
+  - name: Gesellschaft für Musikforschung (GfM)
+    url: https://www.musikforschung.de
+    since: "2024"
+
+languages:
+  - language: German
+    level: professional fluency
+  - language: English
+    level: professional fluency
+  - language: Russian
+    level: native speaker
+
+# Homepage / projects short copy (kept aligned with CV facts)
+homepage:
+  tagline: >-
+    I work in computational musicology and research software, drawing on composition
+    and electroacoustic practice to build open tools for analysis, research, and teaching.
+  current_work: >-
+    At the University of Music FRANZ LISZT Weimar, I serve as scientific co-lead of
+    the DFG project
+    *Development of a Comprehensive Cloud-Based Toolbox for Music Score Analysis*
+    (2025–2028) with project head Prof. Dr. Martin Pfleiderer. My role
+    centres on scientific conception, research coordination, and technical delivery. We are building
+    collaborative annotation, statistical modelling, and pattern-discovery workflows
+    for MEI and MusicXML corpora through Jupyter4NFDI.
+  highlights:
+    - "2026 — Accepted workshop, *Computergestützte Musikanalyse in der Cloud*, GfM annual conference, Frankfurt am Main"
+    - "2026 — Accepted talk, *CAMAT_v2: Cloud-Based Tools for Collaborative Music Score Analysis*, ICCCM26, Würzburg"
+    - "2026 — Presented *Beyond the Black Box…*, InMusic26, Aalborg"
+    - "2026 — Two chapters published in Routledge *Innovation in Music* volumes"
+
+projects:
+  - name: CAMAT
+    url: https://analyse.hfm-weimar.de/doku.php?id=en:start
+    blurb: >-
+      Symbolic repertoire analysis with MEI/MusicXML, co-developed with
+      Prof. Dr. Martin Pfleiderer and Christon-Ragavan Nadar.
+    detail: >-
+      Cloud-oriented toolbox for symbolic score analysis with MEI and MusicXML
+      workflows — repertoire statistics, pattern discovery, and teaching transfer.
+      Co-developed with Prof. Dr. Martin Pfleiderer and Christon-Ragavan Nadar;
+      currently extended in the DFG cloud-toolbox project at HfM Weimar, secured
+      together with Prof. Dr. Martin Pfleiderer.
+  - name: AudioSpylt
+    url: https://github.com/egorpol/audiospylt
+    blurb: Audio feature extraction and interactive visualisation for analysis close to listening practice.
+    detail: >-
+      Python toolkit for audio feature extraction, interactive visualisation, and
+      creative prototyping — analysis workflows that stay close to listening and
+      studio practice.
+  - name: FFTimbre
+    url: https://github.com/egorpol/FFTimbre
+    blurb: FM/additive timbre matching with multi-metric evaluation.
+    detail: >-
+      Notebooks and utilities for FM and additive-synthesis timbre matching, with
+      multi-metric evaluation. Bridges analysis and synthesis for research and teaching.
+  - name: beat_it
+    url: https://github.com/egorpol/beat_it
+    blurb: Beat and tempo fluctuation analysis across electroacoustic and electronic repertoires.
+    detail: >-
+      Research notebooks for analysing beat and tempo fluctuations from acousmatic
+      music to electronic dance music.
