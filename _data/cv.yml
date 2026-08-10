@@ -249,7 +249,7 @@ talks:
     venue: GfM annual conference, Frankfurt am Main, 29 September–2 October 2026
   - year: "2026"
     status: accepted
-    kind: Talk
+    kind: Poster
     title: "CAMAT_v2: Cloud-Based Tools for Collaborative Music Score Analysis"
     venue: ICCCM26, Würzburg, 21–23 September 2026
   - year: "2026"
@@ -438,7 +438,7 @@ homepage:
     for MEI and MusicXML corpora through Jupyter4NFDI.
   highlights:
     - "2026 — Accepted workshop, *Computergestützte Musikanalyse in der Cloud*, GfM annual conference, Frankfurt am Main"
-    - "2026 — Accepted talk, *CAMAT_v2: Cloud-Based Tools for Collaborative Music Score Analysis*, ICCCM26, Würzburg"
+    - "2026 — Accepted poster, *CAMAT_v2: Cloud-Based Tools for Collaborative Music Score Analysis*, ICCCM26, Würzburg"
     - "2026 — Presented *Beyond the Black Box…*, InMusic26, Aalborg"
     - "2026 — Two chapters published in Routledge *Innovation in Music* volumes"
 
