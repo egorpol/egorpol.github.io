@@ -1,0 +1,12 @@
+<button id="nav-toggle" class="nav-toggle" type="button" aria-expanded="false" aria-controls="site-nav" hidden>
+    <span class="nav-toggle-bars" aria-hidden="true"><span></span><span></span><span></span></span>
+    Menu
+</button>
+<nav id="site-nav" class="site-nav" aria-label="Primary navigation">
+    {%- for item in site.data.nav -%}
+    {%- assign is_current = false -%}
+    {%- if page.url == item.url -%}{%- assign is_current = true -%}{%- endif -%}
+    {%- if item.url == '/notes/' and page.collection == 'posts' -%}{%- assign is_current = true -%}{%- endif -%}
+    <a href="{{ item.url | relative_url }}"{% if is_current %} class="active" aria-current="page"{% endif %}>{{ item.title }}</a>
+    {%- endfor -%}
+</nav>

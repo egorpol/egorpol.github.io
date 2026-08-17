@@ -29,8 +29,11 @@
     {% endif %}
 
     <script src="{{ '/assets/js/theme-init.js' | relative_url }}"></script>
+    <link rel="preload" href="{{ '/assets/fonts/IBMPlexSans-Regular.woff2' | relative_url }}" as="font" type="font/woff2" crossorigin>
     <link rel="stylesheet" href="{{ '/assets/css/main.css' | relative_url }}">
+    <link rel="icon" href="{{ '/assets/images/favicon.svg' | relative_url }}" type="image/svg+xml">
     <link rel="icon" href="{{ '/favicon.ico' | relative_url }}" sizes="any">
+    <link rel="apple-touch-icon" href="{{ '/assets/images/apple-touch-icon.png' | relative_url }}">
     <meta name="theme-color" content="#102b3f">
 </head>
 <body>
@@ -42,12 +45,7 @@
                 <a class="site-title" href="{{ '/' | relative_url }}">{{ site.title }}</a>
                 <span>Research · composition · technology</span>
             </div>
-            <nav class="site-nav" aria-label="Primary navigation">
-                <a href="{{ '/' | relative_url }}"{% if page.url == '/' %} class="active" aria-current="page"{% endif %}>Home</a>
-                <a href="{{ '/cv/' | relative_url }}"{% if page.url == '/cv/' %} class="active" aria-current="page"{% endif %}>CV</a>
-                <a href="{{ '/projects/' | relative_url }}"{% if page.url == '/projects/' %} class="active" aria-current="page"{% endif %}>Projects</a>
-                <a href="{{ '/' | relative_url }}#contact">Contact</a>
-            </nav>
+            {% include site-nav.html %}
             <button id="theme-toggle" class="theme-toggle" type="button" aria-label="Use dark theme" aria-pressed="false">
                 <span class="theme-icon sun-icon" aria-hidden="true">☀</span>
                 <span class="theme-icon moon-icon" aria-hidden="true">☾</span>
@@ -63,6 +61,13 @@
                 {% for crumb in page.breadcrumb %}
                 <li aria-current="page">{{ crumb.title }}</li>
                 {% endfor %}
+            </ol>
+        </nav>
+        {% elsif page.collection == 'posts' %}
+        <nav aria-label="Breadcrumb" class="breadcrumb">
+            <ol>
+                <li><a href="{{ '/' | relative_url }}">Home</a></li>
+                <li><a href="{{ '/notes/' | relative_url }}">Notes</a></li>
             </ol>
         </nav>
         {% endif %}
@@ -83,6 +88,7 @@
     </footer>
 
     <script defer src="{{ '/assets/js/theme.js' | relative_url }}"></script>
+    <script defer src="{{ '/assets/js/nav.js' | relative_url }}"></script>
     {% if page.collection == 'posts' %}
     <script defer src="{{ '/assets/js/image-viewer.js' | relative_url }}"></script>
     {% endif %}

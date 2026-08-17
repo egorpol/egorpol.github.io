@@ -1,0 +1,79 @@
+.image-viewer {
+    position: fixed;
+    inset: 0;
+    z-index: 100;
+    display: none;
+    align-items: center;
+    justify-content: center;
+    background: rgba(6, 12, 14, 0.94);
+}
+
+.image-viewer.active {
+    display: flex;
+}
+
+.viewer-open {
+    overflow: hidden;
+}
+
+.image-viewer img {
+    max-width: min(92vw, 1400px);
+    max-height: 88vh;
+    object-fit: contain;
+}
+
+.image-viewer button {
+    position: absolute;
+    border: 0;
+    background: rgba(255, 255, 255, 0.1);
+    color: #fff;
+    cursor: pointer;
+}
+
+.image-viewer .close-btn {
+    top: 1.25rem;
+    right: 1.25rem;
+    width: 3rem;
+    height: 3rem;
+    border-radius: 50%;
+    font-size: 2rem;
+}
+
+.image-viewer .nav-btn {
+    top: 50%;
+    width: 3rem;
+    height: 4.5rem;
+    transform: translateY(-50%);
+    font-size: 2.5rem;
+}
+
+.image-viewer .prev-btn {
+    left: 1rem;
+}
+
+.image-viewer .next-btn {
+    right: 1rem;
+}
+
+.image-viewer .image-counter {
+    position: absolute;
+    bottom: 1rem;
+    left: 50%;
+    padding: 0.35rem 0.7rem;
+    border-radius: 1rem;
+    background: rgba(0, 0, 0, 0.55);
+    color: #fff;
+    font-family: var(--font-mono);
+    font-size: 0.8rem;
+    transform: translateX(-50%);
+}
+
+.clickable-image {
+    cursor: zoom-in;
+}
+
+@media (max-width: 620px) {
+    .image-viewer .nav-btn {
+        width: 2.5rem;
+    }
+}

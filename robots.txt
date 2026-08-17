@@ -2,8 +2,6 @@
 
 User-agent: *
 Allow: /
-Disallow: /blog/
-Disallow: /categories/
 Disallow: /_site/
 Disallow: /.jekyll-cache/
 Disallow: /.sass-cache/

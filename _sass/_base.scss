@@ -1,0 +1,154 @@
+*,
+*::before,
+*::after {
+    box-sizing: border-box;
+}
+
+html {
+    scroll-behavior: smooth;
+    scroll-padding-top: 1rem;
+}
+
+body {
+    margin: 0;
+    background: var(--background);
+    color: var(--text);
+    font-family: var(--font-sans);
+    font-size: 1rem;
+    font-weight: var(--weight-normal);
+    line-height: 1.7;
+    text-rendering: optimizeLegibility;
+    -webkit-font-smoothing: antialiased;
+}
+
+a {
+    color: var(--accent-strong);
+    text-decoration-thickness: 0.08em;
+    text-underline-offset: 0.18em;
+}
+
+a:hover {
+    color: var(--accent);
+}
+
+:focus-visible {
+    outline: 3px solid var(--focus);
+    outline-offset: 3px;
+    border-radius: 2px;
+}
+
+img {
+    max-width: 100%;
+    height: auto;
+}
+
+h1,
+h2,
+h3 {
+    color: var(--heading);
+    font-weight: var(--weight-strong);
+    line-height: 1.18;
+    letter-spacing: -0.02em;
+}
+
+h1 {
+    margin: 0 0 1.25rem;
+    font-size: var(--step-h1);
+}
+
+h2 {
+    margin: 0 0 1.25rem;
+    font-size: var(--step-h2);
+}
+
+h3 {
+    margin: 0 0 0.5rem;
+    font-size: var(--step-h3);
+    letter-spacing: -0.012em;
+}
+
+p,
+ul,
+ol,
+dl {
+    margin-top: 0;
+}
+
+li + li {
+    margin-top: 0.45rem;
+}
+
+.skip-link {
+    position: fixed;
+    top: 0.75rem;
+    left: 0.75rem;
+    z-index: 1000;
+    padding: 0.65rem 0.9rem;
+    border-radius: 0.35rem;
+    background: var(--heading);
+    color: var(--surface);
+    transform: translateY(-160%);
+}
+
+.skip-link:focus {
+    transform: translateY(0);
+}
+
+[hidden] {
+    display: none !important;
+}
+
+.visually-hidden {
+    position: absolute;
+    width: 1px;
+    height: 1px;
+    overflow: hidden;
+    clip-path: inset(50%);
+    white-space: nowrap;
+}
+
+blockquote {
+    margin: 2rem 0;
+    padding: 1rem 1.5rem;
+    border-left: 3px solid var(--accent);
+    background: var(--surface-soft);
+    color: var(--text-muted);
+}
+
+pre,
+code {
+    font-family: var(--font-mono);
+}
+
+code {
+    padding: 0.15em 0.35em;
+    border-radius: 0.2rem;
+    background: var(--surface-soft);
+    font-size: 0.9em;
+}
+
+pre {
+    max-width: 100%;
+    overflow: auto;
+    padding: 1.25rem;
+    border: 1px solid var(--border);
+    border-radius: 0.4rem;
+    background: var(--surface);
+    line-height: 1.55;
+}
+
+pre code {
+    padding: 0;
+    background: transparent;
+}
+
+@media (prefers-reduced-motion: reduce) {
+    *,
+    *::before,
+    *::after {
+        scroll-behavior: auto !important;
+        transition-duration: 0.01ms !important;
+        animation-duration: 0.01ms !important;
+        animation-iteration-count: 1 !important;
+    }
+}

@@ -3,7 +3,6 @@ layout: page
 title: Curriculum Vitae
 description: "CV of Egor Polyakov — composition, electronic music practice, computational musicology, research software, teaching, and artistic-technical realisation."
 permalink: /cv/
-image: /assets/images/avatar.jpg
 breadcrumb:
   - title: CV
 structured_data:

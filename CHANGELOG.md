@@ -1,5 +1,25 @@
 # Changelog
 
+## [2026-08-17] - Section Pages, Self-Hosted Type, and Asset Overhaul
+
+### ✨ Added
+- Publications, Teaching, and Works pages, all generated from existing `_data/cv.yml` content.
+- Self-hosted IBM Plex Sans and Mono (SIL OFL 1.1) replacing the system font stack, with a mono "machine" layer for labels and metadata.
+- Data-driven primary navigation (`_data/nav.yml`, `_includes/site-nav.html`) with a progressively enhanced mobile disclosure menu.
+- 1200×630 Open Graph card, SVG favicon, and apple-touch-icon.
+- `assets/audio/` with documented support for optional work excerpts.
+
+### 🎨 Improved
+- Split the single stylesheet into `_sass/` partials compiled from `assets/css/main.scss`, with a design-token layer.
+- Reduced the hero and page-intro type scale, and normalised font weights to the two shipped cuts.
+- Revived the blog as **Notes** at `/notes/`, indexed again and linked from the primary navigation.
+- Sitemap now generates from pages and posts instead of being hand-maintained.
+
+### 🔧 Fixed
+- Converted 43 blog PNGs to WebP (12.9 MB → 3.1 MB) with intrinsic dimensions and lazy loading.
+- Replaced the 107 KB favicon with a 15 KB multi-size ICO.
+- Removed the dead `categories` collection config and stale `robots.txt` disallow rules.
+
 ## [2025-08-15] - Navigation, SEO, and Layout Standardization
 
 ### ✨ Added

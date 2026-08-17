@@ -140,6 +140,14 @@ teaching:
     popular and electronic music, computer-assisted analysis, digital humanities,
     and AI at HMT Leipzig (2013–2025) and HfM Weimar (since 2025), combining artistic
     practice with research-led technical instruction.
+  # Shown on the Teaching page only; not included in the generated PDF.
+  supervision: >-
+    My appointment at HfM Weimar is a full research position. There I supervise
+    students working within the project, and the seminars I teach serve as a
+    practical setting in which to test the methods and concepts the project develops.
+    Earlier, at HMT Leipzig, I supervised electroacoustic composition projects and
+    coordinated the electroacoustic studio, including student productions and
+    live-electronics infrastructure.
   items:
     - term: WS 2026/27
       title: >-

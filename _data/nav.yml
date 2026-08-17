@@ -1,0 +1,13 @@
+# Primary navigation. The site title links home, so Home is not repeated here.
+- title: Projects
+  url: /projects/
+- title: Publications
+  url: /publications/
+- title: Teaching
+  url: /teaching/
+- title: Works
+  url: /works/
+- title: CV
+  url: /cv/
+- title: Notes
+  url: /notes/

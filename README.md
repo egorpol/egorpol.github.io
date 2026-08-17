@@ -27,10 +27,15 @@ Key files:
 
 - `index.md` — homepage structure
 - `cv.md` — web CV structure
-- `projects.md` — project overview
+- `projects.md`, `publications.md`, `teaching.md`, `works.md` — section pages, all generated from `_data/cv.yml`
+- `notes.md` — index for the `_posts` collection
 - `_data/cv.yml` — shared professional content
+- `_data/nav.yml` — primary navigation items
 - `_layouts/default.html` — metadata, navigation, and site shell
-- `assets/css/main.css` — responsive, dark-theme, and print styles
+- `_includes/site-nav.html` — primary navigation markup
+- `assets/css/main.scss` + `_sass/` — design tokens, layout, components, and print styles
+- `assets/fonts/` — self-hosted IBM Plex subset (SIL Open Font License 1.1)
+- `assets/audio/` — excerpts for the Works page (see the README there)
 - `cv/cv.tex` — generated LaTeX source (rebuild artifacts under `cv/` are gitignored)
 - `cv/Makefile` / `cv/README.md` — local PDF build helpers
 - `assets/cv/Egor_Polyakov_CV.pdf` — published PDF
@@ -42,7 +47,7 @@ Key files:
 - The site has no analytics and makes no third-party font, icon, or script requests.
 - A browser-enforced Content Security Policy is included in the shared layout. `_headers` provides stronger HTTP headers on compatible hosts; GitHub Pages itself does not apply Netlify-style `_headers` files.
 - External links opened in a new tab use `rel="noopener noreferrer"`.
-- Blog and category pages are currently excluded from indexing.
+- Fonts are self-hosted, so the site still issues no third-party requests of any kind.
 
 ## Deployment
 

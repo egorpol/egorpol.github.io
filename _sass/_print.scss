@@ -1,0 +1,83 @@
+@media print {
+    :root,
+    [data-theme="dark"] {
+        --background: #fff;
+        --surface: #fff;
+        --surface-soft: #fff;
+        --text: #000;
+        --text-muted: #333;
+        --heading: #000;
+        --accent: #000;
+        --accent-strong: #000;
+        --border: #aaa;
+        color-scheme: light;
+    }
+
+    @page {
+        margin: 15mm;
+    }
+
+    body {
+        font-size: 9.5pt;
+        line-height: 1.45;
+    }
+
+    .site-header,
+    .site-footer,
+    .breadcrumb,
+    .cv-actions,
+    .cv-toc,
+    .skip-link,
+    .nav-toggle,
+    .image-viewer,
+    .work-audio {
+        display: none !important;
+    }
+
+    .site-main,
+    .cv-page {
+        width: 100%;
+        max-width: none;
+        padding: 0;
+    }
+
+    .cv-intro {
+        padding-bottom: 1.5rem;
+    }
+
+    .cv-intro h1 {
+        font-size: 28pt;
+    }
+
+    .cv-section {
+        padding-block: 1.5rem;
+    }
+
+    .cv-section > h2 {
+        margin-bottom: 0.75rem;
+        font-size: 15pt;
+    }
+
+    .cv-entry,
+    .dated-list li,
+    .reference-list li,
+    .works-list li {
+        grid-template-columns: 28mm 1fr;
+        gap: 5mm;
+        break-inside: avoid;
+    }
+
+    .cv-entry {
+        padding: 0.8rem 0;
+    }
+
+    .project-card,
+    .cv-note {
+        box-shadow: none;
+    }
+
+    a {
+        color: #000;
+        text-decoration: none;
+    }
+}

@@ -3,7 +3,6 @@ layout: page
 title: Egor Polyakov
 description: "Postdoctoral researcher in computational musicology connecting research software, music analysis, electroacoustic practice, and teaching."
 permalink: /
-image: /assets/images/avatar.jpg
 tags:
   - computational musicology
   - audio analysis
@@ -97,8 +96,13 @@ structured_data:
 </section>
 
 <section class="content-section" aria-labelledby="highlights-title">
-  <p class="section-label">Selected activity</p>
-  <h2 id="highlights-title">Recent highlights</h2>
+  <div class="section-heading">
+    <div>
+      <p class="section-label">Selected activity</p>
+      <h2 id="highlights-title">Recent highlights</h2>
+    </div>
+    <a class="text-link" href="{{ '/publications/' | relative_url }}">All publications <span aria-hidden="true">→</span></a>
+  </div>
   <ul class="highlight-list">
     {% for item in cv.homepage.highlights %}
     <li>{{ item | markdownify | remove: '<p>' | remove: '</p>' }}</li>
