@@ -30,6 +30,7 @@
 
     <script src="{{ '/assets/js/theme-init.js' | relative_url }}"></script>
     <link rel="preload" href="{{ '/assets/fonts/IBMPlexSans-Regular.woff2' | relative_url }}" as="font" type="font/woff2" crossorigin>
+    <link rel="preload" href="{{ '/assets/fonts/Silkscreen-Regular.woff2' | relative_url }}" as="font" type="font/woff2" crossorigin>
     <link rel="stylesheet" href="{{ '/assets/css/main.css' | relative_url }}">
     <link rel="icon" href="{{ '/assets/images/favicon.svg' | relative_url }}" type="image/svg+xml">
     <link rel="icon" href="{{ '/favicon.ico' | relative_url }}" sizes="any">
@@ -39,6 +40,9 @@
 <body>
     <a href="#main-content" class="skip-link">Skip to main content</a>
 
+    <div class="zx-border zx-border-left" aria-hidden="true"><span class="zx-fill"><span class="zx-tape"></span></span></div>
+    <div class="zx-border zx-border-right" aria-hidden="true"><span class="zx-fill"><span class="zx-tape"></span></span></div>
+
     <header class="site-header">
         <div class="site-header-inner">
             <div class="site-identity">
@@ -46,10 +50,52 @@
                 <span>Research · composition · technology</span>
             </div>
             {% include site-nav.html %}
-            <button id="theme-toggle" class="theme-toggle" type="button" aria-label="Use dark theme" aria-pressed="false">
-                <span class="theme-icon sun-icon" aria-hidden="true">☀</span>
-                <span class="theme-icon moon-icon" aria-hidden="true">☾</span>
-            </button>
+            <div class="header-controls">
+                {% include pixel-toggle-defs.html %}
+                <button id="chrome-toggle" class="theme-toggle chrome-toggle" type="button" aria-label="Turn studio chrome off" aria-pressed="true">
+                    <svg class="toggle-smooth" viewBox="0 0 24 24" aria-hidden="true" focusable="false">
+                        <circle cx="12" cy="12" r="7" fill="none" stroke="currentColor" stroke-width="2"></circle>
+                        <circle class="chrome-tip" cx="12" cy="12" r="2.9" fill="currentColor"></circle>
+                    </svg>
+                    <svg class="toggle-pixel" viewBox="0 0 16 16" aria-hidden="true" focusable="false">
+                        <g class="toggle-pixels">
+                            <use href="#px-disc" class="toggle-fill"/>
+                            <use href="#px-ring"/>
+                            <use href="#px-tip" class="chrome-tip"/>
+                        </g>
+                    </svg>
+                </button>
+                <button id="theme-toggle" class="theme-toggle" type="button" aria-label="Use dark theme" aria-pressed="false">
+                    <svg class="toggle-smooth theme-mark" viewBox="0 0 24 24" aria-hidden="true" focusable="false">
+                        <circle cx="12" cy="12" r="7" fill="none" stroke="currentColor" stroke-width="2"></circle>
+                        <path d="M12 5 A 7 7 0 0 1 12 19 Z" fill="currentColor"></path>
+                    </svg>
+                    <svg class="toggle-pixel" viewBox="0 0 16 16" aria-hidden="true" focusable="false">
+                        <defs>
+                            <clipPath id="px-disc-clip">
+                                {% include px-rects.html runs="6,0,4 4,1,8 3,2,10 2,3,12 1,4,14 1,5,14 0,6,16 0,7,16 0,8,16 0,9,16 1,10,14 1,11,14 2,12,12 3,13,10 4,14,8 6,15,4" %}
+                            </clipPath>
+                        </defs>
+                        <g class="toggle-pixels">
+                            <use href="#px-disc" class="toggle-fill"/>
+                        </g>
+                        <g clip-path="url(#px-disc-clip)">
+                            <g class="theme-spin">
+                                <path class="theme-half" d="M8 0 A 8 8 0 0 1 8 16 Z"/>
+                            </g>
+                        </g>
+                        <g class="toggle-pixels">
+                            <use href="#px-ring"/>
+                        </g>
+                    </svg>
+                </button>
+                <div class="patch-hint" id="chrome-hint" role="note" hidden>
+                    <div class="patch-hint-inner">
+                        <p>The tape stripes and patch cords all run off this switch. Turn it off if you would rather have the boring professional version.</p>
+                        <button class="patch-hint-close" id="chrome-hint-close" type="button" aria-label="Dismiss">×</button>
+                    </div>
+                </div>
+            </div>
         </div>
     </header>
 
@@ -89,6 +135,7 @@
 
     <script defer src="{{ '/assets/js/theme.js' | relative_url }}"></script>
     <script defer src="{{ '/assets/js/nav.js' | relative_url }}"></script>
+    <script defer src="{{ '/assets/js/chrome.js' | relative_url }}"></script>
     {% if page.collection == 'posts' %}
     <script defer src="{{ '/assets/js/image-viewer.js' | relative_url }}"></script>
     {% endif %}

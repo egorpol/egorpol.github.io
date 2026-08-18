@@ -107,7 +107,10 @@
 
 .theme-toggle {
     position: relative;
+    display: flex;
     flex: none;
+    align-items: center;
+    justify-content: center;
     width: 2.55rem;
     height: 2.55rem;
     padding: 0;
@@ -123,24 +126,20 @@
     background: var(--accent-soft);
 }
 
-.theme-icon {
-    position: absolute;
-    top: 50%;
-    left: 50%;
-    line-height: 1;
-    transform: translate(-50%, -50%);
-    transition: opacity 160ms ease, transform 160ms ease;
+/* A half-filled disc rather than a sun and moon, so it shares the geometry of
+   the ring beside it. Switching themes turns it over. */
+.theme-mark {
+    width: 1.2rem;
+    height: 1.2rem;
+    transition: transform 240ms ease;
 }
 
-.moon-icon,
-[data-theme="dark"] .sun-icon {
-    opacity: 0;
-    transform: translate(-50%, -50%) scale(0.7);
+[data-theme="dark"] .theme-mark {
+    transform: rotate(180deg);
 }
 
-[data-theme="dark"] .moon-icon {
-    opacity: 1;
-    transform: translate(-50%, -50%) scale(1);
+@media (prefers-reduced-motion: reduce) {
+    .theme-mark { transition: none; }
 }
 
 .site-main {

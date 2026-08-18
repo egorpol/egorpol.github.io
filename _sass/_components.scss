@@ -21,7 +21,8 @@
     border-top: 1px solid var(--border);
 }
 
-.content-section > p:not(.section-label) {
+.content-section > p:not(.section-label),
+.trajectory-copy > p:not(.section-label) {
     max-width: var(--reading-width);
 }
 

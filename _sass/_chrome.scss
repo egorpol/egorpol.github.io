@@ -1,0 +1,761 @@
+/* ZX Spectrum tape-loading border.
+ *
+ * The content column is the screen, so the page margins are the border — which
+ * is where a Spectrum drew its loading stripes.
+ *
+ * Band heights are the real ROM pulse timings rather than an eyeballed
+ * gradient, so stripe thickness carries data; see scripts/generate-zx-loader.rb.
+ *
+ * Movement is deliberately not a smooth scroll. On real hardware the border
+ * flipped colour on every signal edge at a rate unrelated to the 50Hz frame
+ * rate, so the pattern re-phased every frame and read as a shimmer. That is
+ * reproduced with a stepped animation whose jump is far larger than a band, so
+ * each step rescrambles the visible pattern instead of sliding it.
+ *
+ * The transport only runs while the page is being scrolled, and the stripes
+ * fill downward with reading position, so at rest the border is frozen. */
+
+:root {
+    /* Patcher furniture: hairline boxes and hard corners, as in Pd and Max. */
+    --patch-line: rgba(16, 43, 63, 0.55);
+    --patch-ink: #102b3f;
+    --patch-nub-x: 1.3rem;
+    --patch-nub-w: 12px;
+    --patch-gap: 34px;
+}
+
+[data-theme="dark"] {
+    --patch-line: rgba(241, 218, 185, 0.4);
+    --patch-ink: #d6c6a8;
+}
+
+.zx-border {
+    /* One tile of the generated strip; the transport loops over exactly this. */
+    --zx-tile: 769px;
+    --zx-width: 14px;
+    /* Original 48K border primaries; see scripts/generate-zx-loader.rb. */
+    --zx-opacity: 0.85;
+    /* 14 rescrambles per second: fast enough to shimmer, slow enough to sit
+       beside body text without strobing. */
+    --zx-rate: 1s;
+    --zx-steps: 14;
+
+    position: fixed;
+    top: 0;
+    z-index: 5;
+    display: none;
+    overflow: hidden;
+    width: var(--zx-width);
+    height: 100vh;
+    pointer-events: none;
+    /* Keep repaints inside the strip; without this the animation can force
+       neighbouring content to re-raster and visibly flicker. */
+    contain: strict;
+}
+
+[data-theme="dark"] .zx-border {
+    --zx-opacity: 0.8;
+}
+
+.zx-border-left { left: 12px; }
+.zx-border-right { right: 12px; }
+
+/* Reading position. Clips the tape rather than scaling it, so the stripes stay
+   anchored to the viewport instead of stretching as the page grows. */
+.zx-fill {
+    display: block;
+    overflow: hidden;
+    height: calc(var(--scroll-progress, 0) * 100%);
+}
+
+.zx-tape {
+    display: block;
+    /* Overhangs by a tile so a step never exposes the bottom edge. */
+    height: calc(100vh + var(--zx-tile));
+    background-image: url("/assets/images/zx-loader.svg");
+    background-repeat: repeat-y;
+    opacity: var(--zx-opacity);
+    /* Hold the layer permanently. Promoting it only while scrolling makes the
+       compositor churn on every start and stop, which shows up as a flicker
+       elsewhere on the page. */
+    will-change: transform;
+    backface-visibility: hidden;
+    animation-name: zx-run;
+    animation-duration: var(--zx-rate);
+    animation-timing-function: steps(var(--zx-steps));
+    animation-iteration-count: infinite;
+    animation-play-state: paused;
+}
+
+[data-theme="dark"] .zx-tape {
+    background-image: url("/assets/images/zx-loader-dark.svg");
+}
+
+/* The tape is only pulled past the head while you are actually reading. */
+[data-loading="true"] .zx-tape {
+    animation-play-state: running;
+}
+
+@keyframes zx-run {
+    from { transform: translateY(0); }
+    to { transform: translateY(calc(var(--zx-tile) * -1)); }
+}
+
+/* Opt-in, and only once the margins are wide enough to be a border. */
+@media (min-width: 1220px) {
+    [data-chrome="on"] .zx-border { display: block; }
+}
+
+/* --- Studio chrome switch --------------------------------------------- */
+
+.header-controls {
+    position: relative;
+    display: flex;
+    flex: none;
+    align-items: center;
+    gap: 0.5rem;
+}
+
+/* Shaped like a Pd message box, notched right edge and all. The two clipped
+   layers fake a hairline border, since a border cannot follow a clip-path. */
+.patch-hint {
+    position: absolute;
+    top: calc(100% + 10px);
+    right: 0;
+    z-index: 40;
+    width: min(20rem, calc(100vw - 2rem));
+    background: var(--patch-line);
+    clip-path: polygon(0 0, 100% 0, calc(100% - 9px) 50%, 100% 100%, 0 100%);
+}
+
+.patch-hint[hidden] {
+    display: none;
+}
+
+.patch-hint::before {
+    content: "";
+    position: absolute;
+    top: -6px;
+    right: 4.3rem;
+    border-right: 6px solid transparent;
+    border-bottom: 6px solid var(--patch-line);
+    border-left: 6px solid transparent;
+}
+
+.patch-hint-inner {
+    display: flex;
+    align-items: flex-start;
+    gap: 0.5rem;
+    margin: 1px;
+    padding: 0.7rem 1.1rem 0.75rem 0.85rem;
+    background: var(--surface);
+    clip-path: polygon(0 0, 100% 0, calc(100% - 9px) 50%, 100% 100%, 0 100%);
+}
+
+.patch-hint p {
+    margin: 0;
+    color: var(--text-muted);
+    font-family: var(--font-pixel);
+    font-size: 8px;
+    line-height: 1.6;
+}
+
+.patch-hint-close {
+    flex: none;
+    padding: 0 0.2rem;
+    border: 0;
+    background: none;
+    color: var(--text-muted);
+    font-size: 0.95rem;
+    line-height: 1;
+    cursor: pointer;
+}
+
+.patch-hint-close:hover {
+    color: var(--accent);
+}
+
+/* The control is itself a jack: unplugged is a bare ring, switching it on
+   seats the tip. Same mark as the favicon. */
+.chrome-toggle {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+}
+
+.chrome-toggle .toggle-smooth {
+    width: 1.2rem;
+    height: 1.2rem;
+}
+
+.chrome-tip {
+    opacity: 0;
+    transition: opacity 160ms ease;
+}
+
+[data-chrome="on"] .chrome-tip {
+    opacity: 1;
+}
+
+[data-chrome="on"] .chrome-toggle {
+    border-color: var(--accent);
+    color: var(--accent);
+}
+
+/* Pixel-art editions of the two header jacks. 16×16 glyphs at 2× so every
+   pixel lands on the Silkscreen grid; boring mode keeps the smooth rings. */
+.pixel-toggle-defs {
+    position: absolute;
+    width: 0;
+    height: 0;
+    overflow: hidden;
+}
+
+.toggle-pixel {
+    display: none;
+    width: 32px;
+    height: 32px;
+    overflow: hidden;
+    fill: currentColor;
+}
+
+.toggle-pixels {
+    shape-rendering: crispEdges;
+}
+
+.toggle-fill {
+    fill: var(--surface);
+}
+
+.theme-half {
+    fill: currentColor;
+}
+
+/* Terminator turns in place, ring stays put — day to night as a globe would.
+   Same 240ms ease as the smooth mark; the half is a real disc so it does not
+   stair-step through the pixel grid on the way. */
+.theme-spin {
+    transform-box: view-box;
+    transform-origin: 8px 8px;
+    transform-origin: 50% 50%;
+    transition: transform 240ms ease;
+}
+
+[data-theme="dark"] .theme-spin {
+    transform: rotate(180deg);
+}
+
+@media (prefers-reduced-motion: reduce) {
+    .theme-spin { transition: none; }
+}
+
+@media screen {
+    [data-chrome="on"] .theme-toggle {
+        width: 32px;
+        height: 32px;
+        border: 0;
+        border-radius: 0;
+        background: transparent;
+    }
+
+    [data-chrome="on"] .theme-toggle:hover .toggle-fill {
+        fill: var(--accent-soft);
+    }
+
+    [data-chrome="on"] .toggle-smooth {
+        display: none;
+    }
+
+    [data-chrome="on"] .toggle-pixel {
+        display: block;
+    }
+}
+
+/* --- Pixel type -------------------------------------------------------- */
+/* Silkscreen is the chrome-mode UI face. Body copy switches to Source Serif 4
+   so long reading sits against the pixel chrome instead of the sans leftover.
+   Sizes for Silkscreen are px on its 8px grid; rem would turn the pixels to
+   mush. Screen only, so print and the boring switch both restore the live site. */
+
+@media screen {
+    [data-chrome="on"] {
+        --font-sans: var(--font-serif);
+        --step-h1: 24px;
+        --step-h1-page: 24px;
+        --step-h2: 16px;
+        --step-h3: 16px;
+        --step-label: 16px;
+
+        .site-title,
+        .site-nav a,
+        .nav-toggle,
+        .site-footer strong,
+        .site-footer a,
+        .hero h1,
+        .page-intro h1,
+        .cv-intro h1,
+        .error-page h1,
+        .content-section h2,
+        .section-heading h2,
+        .entry-group h2,
+        .cv-section > h2,
+        .contact-panel h2,
+        .project-feature h2,
+        .cv-footer-grid h2,
+        .section-label,
+        .eyebrow,
+        .cv-subheading,
+        .cv-toc a,
+        .cv-entry-date,
+        .cv-organisation,
+        .competency-grid dt,
+        .project-number,
+        .project-card h3,
+        .cv-entry-body h3,
+        .work-title,
+        .reference-year,
+        .reference-kind,
+        .reference-body a.doi-link,
+        .dated-list li > span,
+        .dated-list small,
+        .post-meta,
+        .button,
+        .card-link,
+        .text-link {
+            font-family: var(--font-pixel);
+            font-size: 16px;
+            font-weight: 400;
+            line-height: 1.4;
+            letter-spacing: 0;
+            text-transform: none;
+        }
+
+        .hero h1,
+        .cv-intro h1,
+        .page-intro h1,
+        .error-page h1 {
+            font-size: 24px;
+            line-height: 1.25;
+        }
+
+        .hero h1 {
+            max-width: none;
+        }
+
+        /* Drawn-size captions. Too small for anything you have to read. */
+        .site-identity span,
+        .note-tags span,
+        .breadcrumb,
+        .copyright,
+        .reference-body .reference-meta {
+            font-family: var(--font-pixel);
+            font-size: 8px;
+            font-weight: 400;
+            letter-spacing: 0;
+            line-height: 1.5;
+        }
+
+        .site-nav {
+            gap: 0.75rem;
+        }
+
+        .button,
+        .button-primary,
+        .button-secondary {
+            border-radius: 0;
+            font-size: 16px;
+        }
+    }
+}
+
+/* --- Portrait ---------------------------------------------------------- */
+/* The photograph stays in the markup. Chrome mode lays a real Spectrum SCREEN$
+   over it — 8x8 attribute blocks, two colours each, Bayer-dithered — and the
+   cursor wipes holes in that overlay, so the face is uncovered a patch at a
+   time rather than all at once. See scripts/generate-zx-portrait.rb. */
+
+[data-chrome="on"] .hero-portrait img {
+    border-color: var(--patch-line);
+    border-radius: 0;
+    box-shadow: none;
+}
+
+.hero-zx {
+    position: absolute;
+    top: 0;
+    left: 0;
+    display: none;
+    image-rendering: pixelated;
+    touch-action: none;
+}
+
+[data-chrome="on"] .hero-portrait {
+    overflow: hidden;
+}
+
+[data-chrome="on"] .hero-zx {
+    display: block;
+}
+
+@media print {
+    .hero-zx { display: none !important; }
+}
+
+/* --- Patch chain ------------------------------------------------------- */
+/* Same language as the contact patch: inlets on the top edge, outlets on the
+   bottom, cords always outlet → inlet (glist_drawiofor in g_text.c). A lone
+   iolet sits at x1; Align Patch Cords then prefers a vertical when objects
+   already share that x. The heading is the source; each stage drops into the
+   next. Scoped to .trajectory-compact so the CV's copy of the grid is left
+   alone. Boring mode keeps the five-column arrows. */
+
+.patch-cord {
+    display: none;
+}
+
+[data-chrome="on"] .trajectory-copy {
+    position: relative;
+    padding: 0.95rem 1.3rem 1rem;
+    border: 1px solid var(--patch-line);
+    background: var(--surface);
+}
+
+[data-chrome="on"] .trajectory-compact {
+    grid-template-columns: minmax(0, 1fr);
+    border-top: 0;
+}
+
+[data-chrome="on"] .trajectory-compact li,
+[data-chrome="on"] .trajectory-compact li:not(:first-child),
+[data-chrome="on"] .trajectory-compact li:last-child {
+    margin-top: var(--patch-gap);
+    padding: 0.95rem 1.3rem 1rem;
+    border: 1px solid var(--patch-line);
+    border-radius: 0;
+    background: var(--surface);
+}
+
+/* Kill the plain-mode arrows at every breakpoint. */
+[data-chrome="on"] .trajectory-compact li::before,
+[data-chrome="on"] .trajectory-compact li::after,
+[data-chrome="on"] .trajectory-compact li:not(:last-child)::after,
+[data-chrome="on"] .trajectory-compact li:nth-child(3)::after {
+    content: none;
+    display: none;
+}
+
+/* Signal weight: Pd draws audio cords thicker than control cords. */
+[data-chrome="on"] .trajectory-compact .patch-cord {
+    display: block;
+    position: absolute;
+    top: calc(var(--patch-gap) * -1);
+    left: calc(var(--patch-nub-w) / 2 - 1px);
+    width: 2px;
+    height: var(--patch-gap);
+    background: var(--patch-ink);
+}
+
+/* Object text reads as a patcher rather than as prose. Sizes are in px and on
+   the 8px grid Silkscreen is drawn to; rem would drift off it. */
+[data-chrome="on"] .trajectory-compact strong {
+    font-family: var(--font-pixel);
+    font-size: 16px;
+    font-weight: 400;
+    line-height: 1.35;
+    letter-spacing: 0;
+}
+
+[data-chrome="on"] .trajectory-index {
+    margin-bottom: 0.6rem;
+    font-family: var(--font-pixel);
+    font-size: 8px;
+    letter-spacing: 0;
+}
+
+/* --- Project patch ----------------------------------------------------- */
+/* Four selected-project objects in a row, each with a lone outlet at x1.
+   Align Patch Cords wants a vertical when the sink's inlets share that x, so
+   [All projects] is a wide box whose inlets sit on the column left edges —
+   not Pd's even n=4 spacing, which would put inlet 3 on the right lip.
+   Below 620px the row becomes a chain: still outlet → inlet, still vertical. */
+
+.project-all {
+    display: none;
+}
+
+[data-chrome="on"] .project-copy {
+    display: block;
+    margin-bottom: 1.25rem;
+    padding: 0.95rem 1.3rem 1rem;
+    border: 1px solid var(--patch-line);
+    background: var(--surface);
+}
+
+[data-chrome="on"] .project-all-plain {
+    display: none;
+}
+
+[data-chrome="on"] .project-patch .project-grid {
+    grid-template-columns:
+        minmax(0, 1fr) var(--patch-gap)
+        minmax(0, 1fr) var(--patch-gap)
+        minmax(0, 1fr) var(--patch-gap)
+        minmax(0, 1fr);
+    grid-template-rows: auto var(--patch-gap);
+    gap: 0;
+}
+
+[data-chrome="on"] .project-card[data-col="1"] { grid-column: 1; grid-row: 1; }
+[data-chrome="on"] .project-card[data-col="2"] { grid-column: 3; grid-row: 1; }
+[data-chrome="on"] .project-card[data-col="3"] { grid-column: 5; grid-row: 1; }
+[data-chrome="on"] .project-card[data-col="4"] { grid-column: 7; grid-row: 1; }
+[data-chrome="on"] .project-patch [data-cord="p1"] { grid-column: 1; grid-row: 2; }
+[data-chrome="on"] .project-patch [data-cord="p2"] { grid-column: 3; grid-row: 2; }
+[data-chrome="on"] .project-patch [data-cord="p3"] { grid-column: 5; grid-row: 2; }
+[data-chrome="on"] .project-patch [data-cord="p4"] { grid-column: 7; grid-row: 2; }
+
+[data-chrome="on"] .project-patch .project-card {
+    position: relative;
+    min-height: 0;
+    padding: 0.95rem 1.3rem 1rem;
+    border: 1px solid var(--patch-line);
+    border-radius: 0;
+    background: var(--surface);
+    box-shadow: none;
+}
+
+[data-chrome="on"] .project-patch .patch-cord {
+    display: block;
+    position: static;
+    width: 2px;
+    height: 100%;
+    justify-self: start;
+    margin-left: calc(var(--patch-nub-w) / 2 - 1px);
+    background: var(--patch-ink);
+}
+
+[data-chrome="on"] .project-all {
+    position: relative;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    width: 100%;
+    min-height: 3rem;
+    margin-top: 0;
+    padding: 0.75rem 1.3rem;
+    border: 1px solid var(--patch-line);
+    background: var(--surface);
+    color: var(--heading);
+    font-family: var(--font-pixel);
+    font-size: 16px;
+    font-weight: 400;
+    letter-spacing: 0;
+    line-height: 1.4;
+    text-decoration: none;
+}
+
+[data-chrome="on"] .project-all:hover {
+    border-color: var(--accent);
+    background: var(--accent-soft);
+    color: var(--heading);
+}
+
+@media (max-width: 620px) {
+    [data-chrome="on"] .project-patch .project-grid {
+        grid-template-columns: minmax(0, 1fr);
+        grid-template-rows:
+            auto var(--patch-gap)
+            auto var(--patch-gap)
+            auto var(--patch-gap)
+            auto var(--patch-gap);
+    }
+
+    [data-chrome="on"] .project-card[data-col="1"] { grid-column: 1; grid-row: 1; }
+    [data-chrome="on"] .project-patch [data-cord="p1"] { grid-column: 1; grid-row: 2; }
+    [data-chrome="on"] .project-card[data-col="2"] { grid-column: 1; grid-row: 3; }
+    [data-chrome="on"] .project-patch [data-cord="p2"] { grid-column: 1; grid-row: 4; }
+    [data-chrome="on"] .project-card[data-col="3"] { grid-column: 1; grid-row: 5; }
+    [data-chrome="on"] .project-patch [data-cord="p3"] { grid-column: 1; grid-row: 6; }
+    [data-chrome="on"] .project-card[data-col="4"] { grid-column: 1; grid-row: 7; }
+    [data-chrome="on"] .project-patch [data-cord="p4"] { grid-column: 1; grid-row: 8; }
+}
+
+/* --- Contact patch ----------------------------------------------------- */
+/* Pd (glist_drawiofor in g_text.c) puts inlets on the top edge and outlets
+   on the bottom; cords always run outlet → inlet. Vanilla Pd draws a straight
+   line between those two points. Max Align Patch Cords turns a messy run into
+   orthogonal segments and prefers objects that already share an x, so the
+   cord is a vertical. The copy is a two-outlet source above a 2×2, outlets
+   lined up with the columns, every cord a straight drop. Boring mode keeps
+   the navy panel. */
+
+.patch-nubs {
+    display: none;
+}
+
+[data-chrome="on"] .contact-panel {
+    display: flex;
+    flex-direction: column;
+    align-items: stretch;
+    gap: 0;
+    padding: 0;
+    border-radius: 0;
+    background: transparent;
+    color: var(--text);
+}
+
+[data-chrome="on"] .contact-panel h2,
+[data-chrome="on"] .contact-panel .section-label {
+    color: var(--heading);
+}
+
+[data-chrome="on"] .contact-panel p {
+    color: var(--text-muted);
+}
+
+[data-chrome="on"] .contact-copy {
+    position: relative;
+    padding: 0.95rem 1.3rem 1rem;
+    border: 1px solid var(--patch-line);
+    background: var(--surface);
+}
+
+[data-chrome="on"] .contact-links {
+    display: grid;
+    grid-template-columns: minmax(0, 1fr) var(--patch-gap) minmax(0, 1fr);
+    grid-template-rows: var(--patch-gap) auto var(--patch-gap) auto;
+    gap: 0;
+    margin-top: 0;
+}
+
+[data-chrome="on"] .contact-links .patch-cord {
+    display: block;
+    position: static;
+    width: 2px;
+    height: 100%;
+    justify-self: start;
+    /* Centre on the left-edge nub; Pd places a lone inlet at x1 (g_text.c). */
+    margin-left: calc(var(--patch-nub-w) / 2 - 1px);
+    background: var(--patch-ink);
+}
+
+[data-chrome="on"] .contact-links [data-cord="src-tl"] { grid-column: 1; grid-row: 1; }
+[data-chrome="on"] .contact-links [data-cord="src-tr"] { grid-column: 3; grid-row: 1; }
+[data-chrome="on"] .contact-links [data-patch="tl"] { grid-column: 1; grid-row: 2; }
+[data-chrome="on"] .contact-links [data-patch="tr"] { grid-column: 3; grid-row: 2; }
+[data-chrome="on"] .contact-links [data-cord="tl-bl"] { grid-column: 1; grid-row: 3; }
+[data-chrome="on"] .contact-links [data-cord="tr-br"] { grid-column: 3; grid-row: 3; }
+[data-chrome="on"] .contact-links [data-patch="bl"] { grid-column: 1; grid-row: 4; }
+[data-chrome="on"] .contact-links [data-patch="br"] { grid-column: 3; grid-row: 4; }
+
+[data-chrome="on"] .contact-links .button {
+    position: relative;
+    width: 100%;
+    min-height: 3rem;
+    border-color: var(--patch-line);
+    border-radius: 0;
+}
+
+[data-chrome="on"] .contact-links .button:hover {
+    transform: none;
+}
+
+[data-chrome="on"] .contact-panel .button-secondary {
+    border-color: var(--patch-line);
+    background: var(--surface);
+    color: var(--heading);
+}
+
+[data-chrome="on"] .contact-panel .button-secondary:hover {
+    border-color: var(--accent);
+    background: var(--accent-soft);
+    color: var(--heading);
+}
+
+[data-chrome="on"] .patch-nubs {
+    display: block;
+}
+
+[data-chrome="on"] .patch-nub {
+    position: absolute;
+    display: none;
+    background: var(--patch-ink);
+}
+
+[data-chrome="on"] .patch-nub-n,
+[data-chrome="on"] .patch-nub-n1,
+[data-chrome="on"] .patch-nub-n2,
+[data-chrome="on"] .patch-nub-n3 {
+    top: -1px;
+    left: 0;
+    width: var(--patch-nub-w);
+    height: 3px;
+}
+
+[data-chrome="on"] .patch-nub-s,
+[data-chrome="on"] .patch-nub-s2 {
+    bottom: -1px;
+    left: 0;
+    width: var(--patch-nub-w);
+    height: 3px;
+}
+
+/* Extra iolets sit on the column left edges so Align Patch Cords is a
+   vertical. Column i of a 4-col 1fr/gap grid starts at i * (100% + gap) / 4.
+   Contact's second outlet is the same arithmetic for two columns. */
+[data-chrome="on"] .patch-nub-s2,
+[data-chrome="on"] .patch-nub-n2 {
+    left: calc((100% + var(--patch-gap)) / 2);
+}
+
+[data-chrome="on"] .patch-nub-n1 {
+    left: calc((100% + var(--patch-gap)) / 4);
+}
+
+[data-chrome="on"] .patch-nub-n3 {
+    left: calc(3 * (100% + var(--patch-gap)) / 4);
+}
+
+[data-chrome="on"] [data-patch="src"] .patch-nub-s,
+[data-chrome="on"] [data-patch="src"] .patch-nub-s2,
+[data-chrome="on"] [data-patch="head"] .patch-nub-s,
+[data-chrome="on"] .trajectory-compact li .patch-nub-n,
+[data-chrome="on"] .trajectory-compact li:not(:last-child) .patch-nub-s,
+[data-chrome="on"] [data-patch="proj"] .patch-nub-s,
+[data-chrome="on"] [data-patch="sink"] .patch-nub-n,
+[data-chrome="on"] [data-patch="sink"] .patch-nub-n1,
+[data-chrome="on"] [data-patch="sink"] .patch-nub-n2,
+[data-chrome="on"] [data-patch="sink"] .patch-nub-n3,
+[data-chrome="on"] [data-patch="tl"] .patch-nub-n,
+[data-chrome="on"] [data-patch="tl"] .patch-nub-s,
+[data-chrome="on"] [data-patch="tr"] .patch-nub-n,
+[data-chrome="on"] [data-patch="tr"] .patch-nub-s,
+[data-chrome="on"] [data-patch="bl"] .patch-nub-n,
+[data-chrome="on"] [data-patch="br"] .patch-nub-n {
+    display: block;
+}
+
+@media (max-width: 620px) {
+    [data-chrome="on"] [data-patch="proj"]:not([data-col="1"]) .patch-nub-n {
+        display: block;
+    }
+
+    [data-chrome="on"] [data-patch="sink"] .patch-nub-n1,
+    [data-chrome="on"] [data-patch="sink"] .patch-nub-n2,
+    [data-chrome="on"] [data-patch="sink"] .patch-nub-n3 {
+        display: none;
+    }
+}
+
+@media print {
+    .patch-cord { display: none !important; }
+    .patch-nubs { display: none !important; }
+}
+
+@media (prefers-reduced-motion: reduce) {
+    .zx-tape { animation: none; }
+}
+
+@media print {
+    .zx-border { display: none !important; }
+}
