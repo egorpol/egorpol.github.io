@@ -1,0 +1,17 @@
+{%- comment -%}
+A small two-column patcher that sits beside prose. Two sources drop into two
+middle objects, then both land on one sink — outlet → inlet, vertical cords.
+Hidden unless studio chrome is on. Decorative; keep the source words in the
+essay itself.
+{%- endcomment -%}
+<aside class="word-patch" aria-hidden="true">
+  <span class="word-obj" data-patch="wp-a">{{ include.a }}{% include patch-nubs.html %}</span>
+  <span class="word-obj" data-patch="wp-b">{{ include.b }}{% include patch-nubs.html %}</span>
+  <span class="patch-cord patch-cord-y" data-cord="wp-ac"></span>
+  <span class="patch-cord patch-cord-y" data-cord="wp-bd"></span>
+  <span class="word-obj" data-patch="wp-c">{{ include.c }}{% include patch-nubs.html %}</span>
+  <span class="word-obj" data-patch="wp-d">{{ include.d }}{% include patch-nubs.html %}</span>
+  <span class="patch-cord patch-cord-y" data-cord="wp-cs"></span>
+  <span class="patch-cord patch-cord-y" data-cord="wp-ds"></span>
+  <span class="word-obj" data-patch="wp-sink">{{ include.sink }}{% include patch-nubs.html %}</span>
+</aside>

@@ -472,6 +472,151 @@
     letter-spacing: 0;
 }
 
+/* --- Word patch -------------------------------------------------------- */
+/* Prose sections stay prose. Chrome puts a small two-column patcher to the
+   right that restates four or five words from the essay and the link between
+   them: two sources, two middles, one sink. Same iolet rules as the rest of
+   the page. Hidden in boring mode and on narrow screens. */
+
+.word-patch {
+    display: none;
+}
+
+[data-chrome="on"] .prose-patch {
+    display: grid;
+    grid-template-columns: minmax(0, 1fr) minmax(11rem, 0.34fr);
+    column-gap: clamp(1.5rem, 4vw, 3rem);
+    align-items: start;
+}
+
+[data-chrome="on"] .prose-patch > .section-label,
+[data-chrome="on"] .prose-patch > h2 {
+    grid-column: 1 / -1;
+}
+
+[data-chrome="on"] .prose-copy {
+    grid-column: 1;
+    grid-row: 3;
+}
+
+[data-chrome="on"] .prose-copy > p:not(.section-label) {
+    max-width: none;
+}
+
+[data-chrome="on"] .word-patch {
+    --patch-gap: 22px;
+    display: grid;
+    grid-column: 2;
+    grid-row: 3;
+    grid-template-columns: minmax(0, 1fr) var(--patch-gap) minmax(0, 1fr);
+    grid-template-rows: auto var(--patch-gap) auto var(--patch-gap) auto;
+    gap: 0;
+}
+
+[data-chrome="on"] .word-patch [data-patch="wp-a"] { grid-column: 1; grid-row: 1; }
+[data-chrome="on"] .word-patch [data-patch="wp-b"] { grid-column: 3; grid-row: 1; }
+[data-chrome="on"] .word-patch [data-cord="wp-ac"] { grid-column: 1; grid-row: 2; }
+[data-chrome="on"] .word-patch [data-cord="wp-bd"] { grid-column: 3; grid-row: 2; }
+[data-chrome="on"] .word-patch [data-patch="wp-c"] { grid-column: 1; grid-row: 3; }
+[data-chrome="on"] .word-patch [data-patch="wp-d"] { grid-column: 3; grid-row: 3; }
+[data-chrome="on"] .word-patch [data-cord="wp-cs"] { grid-column: 1; grid-row: 4; }
+[data-chrome="on"] .word-patch [data-cord="wp-ds"] { grid-column: 3; grid-row: 4; }
+[data-chrome="on"] .word-patch [data-patch="wp-sink"] { grid-column: 1 / -1; grid-row: 5; }
+
+[data-chrome="on"] .word-obj {
+    position: relative;
+    display: block;
+    padding: 0.2rem 0.45rem 0.25rem;
+    border: 1px solid var(--patch-line);
+    background: var(--surface);
+    color: var(--heading);
+    font-family: var(--font-pixel);
+    font-size: 8px;
+    font-weight: 400;
+    letter-spacing: 0;
+    line-height: 1.4;
+    text-align: center;
+    white-space: nowrap;
+}
+
+[data-chrome="on"] .word-patch .patch-cord {
+    display: block;
+    position: static;
+    width: 2px;
+    height: 100%;
+    justify-self: start;
+    margin-left: calc(var(--patch-nub-w) / 2 - 1px);
+    background: var(--patch-ink);
+}
+
+/* Sink is two columns wide; inlet 1 sits on column 3, not on a 4-col step. */
+[data-chrome="on"] .word-patch [data-patch="wp-sink"] .patch-nub-n1 {
+    left: calc((100% + var(--patch-gap)) / 2);
+}
+
+@media (max-width: 820px) {
+    [data-chrome="on"] .prose-patch {
+        grid-template-columns: minmax(0, 1fr);
+    }
+
+    [data-chrome="on"] .word-patch {
+        display: none;
+    }
+}
+
+/* --- Appointment chain ------------------------------------------------- */
+/* A two-object vertical under the section label: institution above, then me.
+   Same iolet convention as everywhere else. */
+
+.chain-patch {
+    display: none;
+}
+
+[data-chrome="on"] .current-work .section-label {
+    grid-row: 1;
+}
+
+[data-chrome="on"] .chain-patch {
+    --patch-gap: 22px;
+    display: grid;
+    justify-self: start;
+    grid-template-columns: max-content;
+    grid-template-rows: auto var(--patch-gap) auto;
+    gap: 0;
+}
+
+[data-chrome="on"] .chain-patch [data-patch="ch-a"] { grid-row: 1; }
+[data-chrome="on"] .chain-patch [data-cord="ch-ab"] { grid-row: 2; }
+[data-chrome="on"] .chain-patch [data-patch="ch-b"] { grid-row: 3; }
+
+[data-chrome="on"] .chain-patch .patch-cord {
+    display: block;
+    position: static;
+    width: 2px;
+    height: 100%;
+    justify-self: start;
+    margin-left: calc(var(--patch-nub-w) / 2 - 1px);
+    background: var(--patch-ink);
+}
+
+@media (min-width: 821px) {
+    [data-chrome="on"] .current-work > h2 {
+        grid-column: 2;
+        grid-row: 1;
+    }
+
+    [data-chrome="on"] .current-work > p:not(.section-label) {
+        grid-column: 2;
+        grid-row: 2;
+    }
+
+    [data-chrome="on"] .current-work .chain-patch {
+        grid-column: 1;
+        grid-row: 2;
+        align-self: start;
+    }
+}
+
 /* --- Project patch ----------------------------------------------------- */
 /* Four selected-project objects in a row, each with a lone outlet at x1.
    Align Patch Cords wants a vertical when the sink's inlets share that x, so
@@ -479,7 +624,8 @@
    not Pd's even n=4 spacing, which would put inlet 3 on the right lip.
    Below 620px the row becomes a chain: still outlet → inlet, still vertical. */
 
-.project-all {
+.project-all,
+.highlight-all {
     display: none;
 }
 
@@ -555,6 +701,129 @@
 }
 
 [data-chrome="on"] .project-all:hover {
+    border-color: var(--accent);
+    background: var(--accent-soft);
+    color: var(--heading);
+}
+
+/* --- Highlight patch --------------------------------------------------- */
+/* Heading stays a heading. The four entries sit in a left-hand stack; All
+   publications sits to the right of the first, aligned at the top. Each
+   highlight has an outlet at x1; the sink has one inlet at x1. Align Patch
+   Cords is then a U: drop, run under the object into the gutter, ride the
+   gutter up the left of the sink to the inlet. No side iolets. Boring mode
+   keeps the dotted list and the heading link. */
+
+[data-chrome="on"] .highlight-all-plain {
+    display: none;
+}
+
+[data-chrome="on"] .highlight-stage {
+    display: grid;
+    grid-template-columns: minmax(0, 1fr) var(--patch-gap) max-content;
+    grid-template-rows: repeat(4, auto var(--patch-gap));
+    align-items: start;
+}
+
+[data-chrome="on"] .highlight-patch .highlight-list,
+[data-chrome="on"] .highlight-patch .highlight-list li {
+    display: contents;
+}
+
+[data-chrome="on"] .highlight-obj[data-hl="1"] { grid-column: 1; grid-row: 1; }
+[data-chrome="on"] .highlight-patch [data-cord="d1"] { grid-column: 1; grid-row: 2; }
+[data-chrome="on"] .highlight-patch [data-cord="r1"] { grid-column: 1 / 3; grid-row: 2; }
+[data-chrome="on"] .highlight-obj[data-hl="2"] { grid-column: 1; grid-row: 3; }
+[data-chrome="on"] .highlight-patch [data-cord="d2"] { grid-column: 1; grid-row: 4; }
+[data-chrome="on"] .highlight-patch [data-cord="r2"] { grid-column: 1 / 3; grid-row: 4; }
+[data-chrome="on"] .highlight-obj[data-hl="3"] { grid-column: 1; grid-row: 5; }
+[data-chrome="on"] .highlight-patch [data-cord="d3"] { grid-column: 1; grid-row: 6; }
+[data-chrome="on"] .highlight-patch [data-cord="r3"] { grid-column: 1 / 3; grid-row: 6; }
+[data-chrome="on"] .highlight-obj[data-hl="4"] { grid-column: 1; grid-row: 7; }
+[data-chrome="on"] .highlight-patch [data-cord="d4"] { grid-column: 1; grid-row: 8; }
+[data-chrome="on"] .highlight-patch [data-cord="r4"] { grid-column: 1 / 3; grid-row: 8; }
+
+[data-chrome="on"] .highlight-obj {
+    position: relative;
+    padding: 0.95rem 1.3rem 1rem;
+    border: 1px solid var(--patch-line);
+    background: var(--surface);
+}
+
+[data-chrome="on"] .highlight-list li::before {
+    content: none;
+    display: none;
+}
+
+[data-chrome="on"] .highlight-patch .patch-cord-y {
+    display: block;
+    position: static;
+    align-self: start;
+    width: 2px;
+    height: calc(50% + 1px);
+    justify-self: start;
+    margin-left: calc(var(--patch-nub-w) / 2 - 1px);
+    background: var(--patch-ink);
+}
+
+[data-chrome="on"] .highlight-patch .patch-cord-x {
+    display: block;
+    position: static;
+    align-self: center;
+    height: 2px;
+    margin-left: calc(var(--patch-nub-w) / 2 - 1px);
+    margin-right: calc(var(--patch-gap) / 2 - 1px);
+    background: var(--patch-ink);
+}
+
+[data-chrome="on"] .highlight-patch [data-cord="to-sink"] {
+    grid-column: 2;
+    grid-row: 1;
+    align-self: start;
+    justify-self: start;
+    width: calc((var(--patch-gap) / 2) + (var(--patch-nub-w) / 2));
+    height: 2px;
+    margin-top: -1px;
+    margin-left: calc(var(--patch-gap) / 2 - 1px);
+    margin-right: 0;
+}
+
+[data-chrome="on"] .highlight-patch .patch-cord-bus {
+    display: block;
+    position: static;
+    grid-column: 2;
+    grid-row: 1 / -1;
+    align-self: start;
+    justify-self: center;
+    width: 2px;
+    height: calc(100% - (var(--patch-gap) / 2) + 1px);
+    background: var(--patch-ink);
+}
+
+[data-chrome="on"] .highlight-all {
+    position: relative;
+    display: flex;
+    grid-column: 3;
+    grid-row: 1;
+    align-items: center;
+    justify-content: center;
+    align-self: start;
+    min-height: 3rem;
+    margin-top: 0;
+    padding: 0.75rem 1.3rem;
+    border: 1px solid var(--patch-line);
+    background: var(--surface);
+    color: var(--heading);
+    font-family: var(--font-pixel);
+    font-size: 16px;
+    font-weight: 400;
+    letter-spacing: 0;
+    line-height: 1.4;
+    text-decoration: none;
+    white-space: nowrap;
+}
+
+[data-chrome="on"] .highlight-all:hover {
     border-color: var(--accent);
     background: var(--accent-soft);
     color: var(--heading);
@@ -716,6 +985,22 @@
     left: calc(3 * (100% + var(--patch-gap)) / 4);
 }
 
+[data-chrome="on"] [data-patch="ch-a"] .patch-nub-s,
+[data-chrome="on"] [data-patch="ch-b"] .patch-nub-n,
+[data-chrome="on"] .highlight-obj .patch-nub-s,
+[data-chrome="on"] [data-patch="hl-sink"] .patch-nub-n {
+    display: block;
+}
+[data-chrome="on"] [data-patch="wp-a"] .patch-nub-s,
+[data-chrome="on"] [data-patch="wp-b"] .patch-nub-s,
+[data-chrome="on"] [data-patch="wp-c"] .patch-nub-n,
+[data-chrome="on"] [data-patch="wp-c"] .patch-nub-s,
+[data-chrome="on"] [data-patch="wp-d"] .patch-nub-n,
+[data-chrome="on"] [data-patch="wp-d"] .patch-nub-s,
+[data-chrome="on"] [data-patch="wp-sink"] .patch-nub-n,
+[data-chrome="on"] [data-patch="wp-sink"] .patch-nub-n1 {
+    display: block;
+}
 [data-chrome="on"] [data-patch="src"] .patch-nub-s,
 [data-chrome="on"] [data-patch="src"] .patch-nub-s2,
 [data-chrome="on"] [data-patch="head"] .patch-nub-s,
@@ -750,6 +1035,8 @@
 @media print {
     .patch-cord { display: none !important; }
     .patch-nubs { display: none !important; }
+    .word-patch { display: none !important; }
+    .chain-patch { display: none !important; }
 }
 
 @media (prefers-reduced-motion: reduce) {

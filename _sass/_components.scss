@@ -22,7 +22,8 @@
 }
 
 .content-section > p:not(.section-label),
-.trajectory-copy > p:not(.section-label) {
+.trajectory-copy > p:not(.section-label),
+.prose-copy > p:not(.section-label) {
     max-width: var(--reading-width);
 }
 

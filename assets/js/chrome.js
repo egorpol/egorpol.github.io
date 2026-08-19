@@ -343,7 +343,7 @@
 
     var hint = document.getElementById('chrome-hint');
     var hintClose = document.getElementById('chrome-hint-close');
-    var HINT_KEY = 'chrome-hint';
+    var HINT_KEY = 'chrome-hint-2';
 
     function hintSeen() {
         try {

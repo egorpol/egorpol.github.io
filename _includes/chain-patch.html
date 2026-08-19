@@ -1,0 +1,9 @@
+{%- comment -%}
+Two objects, one cord, outlet on the bottom into an inlet on the top.
+A lone iolet sits at x1. Hidden unless studio chrome is on.
+{%- endcomment -%}
+<aside class="chain-patch" aria-hidden="true">
+  <span class="word-obj" data-patch="ch-a">{{ include.a }}{% include patch-nubs.html %}</span>
+  <span class="patch-cord patch-cord-y" data-cord="ch-ab"></span>
+  <span class="word-obj" data-patch="ch-b">{{ include.b }}{% include patch-nubs.html %}</span>
+</aside>

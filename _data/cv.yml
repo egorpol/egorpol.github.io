@@ -434,16 +434,77 @@ languages:
 # Homepage / projects short copy (kept aligned with CV facts)
 homepage:
   tagline: >-
-    I work in computational musicology and research software, drawing on composition
-    and electroacoustic practice to build open tools for analysis, research, and teaching.
+    I am a computational musicologist, composer, and research software developer.
+    My work grows out of a lifelong fascination with music, computers, and the
+    unexpected things they can do together.
+  motivation:
+    - >-
+      As a child, I was given a ZX Spectrum clone. I was amazed that one small
+      machine could draw, calculate, run games, and even make music, however limited
+      the sound was. Around the same time, I began learning piano and cello and
+      discovered how much I enjoyed improvising and composing. For years, I followed
+      that musical path meticulously and studied classical music almost exclusively.
+    - >-
+      The connection between those two worlds became clear only much later. What I
+      have always enjoyed most is building a setup—musical, analytical, or
+      technical—then trying it out and discovering an interaction I could not quite
+      see before. Today that might mean turning a score into explorable data,
+      translating a listening question into an experiment, or asking what a
+      machine-learning model can—and cannot—understand about musical features. At
+      heart, I do this work because I have fun doing it. Building accessible tools
+      lets me share that experience with others.
+  journey:
+    - stage: The classical path
+      text: >-
+        Piano, cello, improvisation, and composition led me from childhood curiosity
+        to formal studies. For years, I treated the classical tradition as the centre
+        of my musical world.
+    - stage: Beyond the academy
+      text: >-
+        Love Parade in 2002 and several open-air festivals in 2003–04 profoundly
+        changed that view. Techno, drum and bass, dub, and other forms of popular
+        electronic music made me question the idea of one “true” music.
+    - stage: Programming music
+      text: >-
+        From around 2008–09, Max/MSP, OpenMusic, Pure Data, and related environments
+        became central to how I worked. I built real-time audio systems, Max for Live
+        devices, and analysis–synthesis setups for composition, performance, and
+        teaching.
+    - stage: Between worlds
+      text: >-
+        For years I composed contemporary concert music and minimal/techdub in parallel.
+        The outbreak of war in my home region of Donbas, Ukraine, in 2014 became a
+        persistent source of worry and reflection, deepening my doubts about
+        composition as my only path even as I kept producing and performing with
+        others.
+    - stage: From real time to research
+      text: >-
+        My doctorate led me from accessible software and hybrid analysis systems
+        towards MIR and computational musicology. As my focus moved away from
+        real-time audio around 2020, Python gradually replaced patching environments;
+        CAMAT in 2021–22 brought these threads together in open analytical tools and,
+        later, machine learning.
   current_work: >-
-    At the University of Music FRANZ LISZT Weimar, I serve as scientific co-lead of
-    the DFG project
+    At the University of Music FRANZ LISZT Weimar, I am scientific co-lead of the DFG project
     *Development of a Comprehensive Cloud-Based Toolbox for Music Score Analysis*
-    (2025–2028) with project head Prof. Dr. Martin Pfleiderer. My role
-    centres on scientific conception, research coordination, and technical delivery. We are building
-    collaborative annotation, statistical modelling, and pattern-discovery workflows
-    for MEI and MusicXML corpora through Jupyter4NFDI.
+    (2025–2028), led by Prof. Dr. Martin Pfleiderer. I help shape the research,
+    coordinate the team, and turn our analytical ideas into working software.
+    Together, we are building collaborative annotation, statistical-modelling, and
+    pattern-discovery workflows for MEI and MusicXML corpora in Jupyter4NFDI. What
+    matters to me is that researchers and students can inspect the methods, adapt
+    them, and use them to ask their own musical questions.
+  accessibility:
+    - >-
+      I do not think access to music or musical analysis should depend on proprietary
+      software or expensive hardware. Accessibility is a design requirement in my
+      work: I release my tools as open source and keep their methods, assumptions, and
+      workflows inspectable, reproducible, and adaptable.
+    - >-
+      Reproducibility also concerns the medium itself. I want people to be able to
+      experience or study music with whatever is available: a sophisticated studio
+      system, inexpensive headphones, a small loudspeaker, or even a visual or
+      analytical representation. Music organises time; sound is one way of
+      encountering that organisation, but not the only one.
   highlights:
     - "2026 — Accepted workshop, *Computergestützte Musikanalyse in der Cloud*, GfM annual conference, Frankfurt am Main"
     - "2026 — Accepted poster, *CAMAT_v2: Cloud-Based Tools for Collaborative Music Score Analysis*, ICCCM26, Würzburg"

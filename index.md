@@ -42,7 +42,7 @@ structured_data:
 <section class="hero" aria-labelledby="hero-title">
   <div class="hero-copy">
     <p class="eyebrow">Postdoctoral researcher · HfM Weimar</p>
-    <h1 id="hero-title">Computational musicology grounded in creative practice</h1>
+    <h1 id="hero-title">I build tools to explore how music works</h1>
     <p class="lead">{{ cv.homepage.tagline }}</p>
     <div class="hero-actions">
       <a class="button button-primary" href="{{ '/cv/' | relative_url }}">View curriculum vitae</a>
@@ -57,21 +57,33 @@ structured_data:
   </div>
 </section>
 
+<section class="content-section prose-patch" aria-labelledby="motivation-title">
+  <p class="section-label">What keeps me curious</p>
+  <h2 id="motivation-title">It started with a computer—and with having fun</h2>
+  <div class="prose-copy">
+    {% for paragraph in cv.homepage.motivation %}
+    <p>{{ paragraph }}</p>
+    {% endfor %}
+  </div>
+  {% include word-patch.html a="zx" b="piano" c="setup" d="try" sink="fun" %}
+</section>
+
 <section class="content-section current-work" aria-labelledby="current-work-title">
   <p class="section-label">Current appointment</p>
   <h2 id="current-work-title">Research at HfM Weimar</h2>
   <p>{{ cv.homepage.current_work | markdownify | remove: '<p>' | remove: '</p>' }}</p>
+  {% include chain-patch.html a="hfm weimar" b="me" %}
 </section>
 
 <section class="content-section trajectory-patch" aria-labelledby="practice-title">
   <div class="trajectory-copy" data-patch="head">
-    <p class="section-label">An integrated practice</p>
-    <h2 id="practice-title">Creative, technical, and analytical work</h2>
-    <p class="section-intro">Each stage informs the next: composition led to electronic systems and production, which now shape how I design computational methods.</p>
+    <p class="section-label">How I got here</p>
+    <h2 id="practice-title">A path through different ideas of music</h2>
+    <p class="section-intro">This was not a neat progression in which one discipline simply led to the next. Encounters with different kinds of music, years of working between them, and a difficult period of doubt all changed the direction of my work.</p>
     {% include patch-nubs.html %}
   </div>
   <ol class="trajectory-grid trajectory-compact">
-    {% for item in cv.trajectory %}
+    {% for item in cv.homepage.journey %}
     <li>
       {% include patch-cord.html %}
       <span class="trajectory-index">0{{ forloop.index }}</span>
@@ -81,6 +93,17 @@ structured_data:
     </li>
     {% endfor %}
   </ol>
+</section>
+
+<section class="content-section prose-patch" aria-labelledby="accessibility-title">
+  <p class="section-label">Working principles</p>
+  <h2 id="accessibility-title">Open tools, reproducible music</h2>
+  <div class="prose-copy">
+    {% for paragraph in cv.homepage.accessibility %}
+    <p>{{ paragraph }}</p>
+    {% endfor %}
+  </div>
+  {% include word-patch.html a="open" b="sound" c="inspect" d="time" sink="adapt" %}
 </section>
 
 <section class="content-section project-patch" aria-labelledby="projects-title">
@@ -107,19 +130,31 @@ structured_data:
   <a class="project-all" data-patch="sink" href="{{ '/projects/' | relative_url }}">All projects{% include patch-nubs.html %}</a>
 </section>
 
-<section class="content-section" aria-labelledby="highlights-title">
+<section class="content-section highlight-patch" aria-labelledby="highlights-title">
   <div class="section-heading">
     <div>
       <p class="section-label">Selected activity</p>
       <h2 id="highlights-title">Recent highlights</h2>
     </div>
-    <a class="text-link" href="{{ '/publications/' | relative_url }}">All publications <span aria-hidden="true">→</span></a>
+    <a class="text-link highlight-all-plain" href="{{ '/publications/' | relative_url }}">All publications <span aria-hidden="true">→</span></a>
   </div>
-  <ul class="highlight-list">
-    {% for item in cv.homepage.highlights %}
-    <li>{{ item | markdownify | remove: '<p>' | remove: '</p>' }}</li>
-    {% endfor %}
-  </ul>
+  <div class="highlight-stage">
+    <ul class="highlight-list">
+      {% for item in cv.homepage.highlights %}
+      <li>
+        <div class="highlight-obj" data-hl="{{ forloop.index }}">
+          {{ item | markdownify | remove: '<p>' | remove: '</p>' }}
+          {% include patch-nubs.html %}
+        </div>
+        <span class="patch-cord patch-cord-y" data-cord="d{{ forloop.index }}" aria-hidden="true"></span>
+        <span class="patch-cord patch-cord-x" data-cord="r{{ forloop.index }}" aria-hidden="true"></span>
+      </li>
+      {% endfor %}
+    </ul>
+    <span class="patch-cord patch-cord-bus" aria-hidden="true"></span>
+    <span class="patch-cord patch-cord-x" data-cord="to-sink" aria-hidden="true"></span>
+    <a class="highlight-all" data-patch="hl-sink" href="{{ '/publications/' | relative_url }}">All publications{% include patch-nubs.html %}</a>
+  </div>
 </section>
 
 <section class="contact-panel" id="contact" aria-labelledby="contact-title">
