@@ -99,19 +99,51 @@
     line-height: 1.55;
 }
 
-.current-work {
+/* The homepage journey reads as an editorial timeline in Plain view. Pixel
+   view replaces this treatment with connected patcher objects. */
+.trajectory-grid.trajectory-compact {
     display: grid;
-    grid-template-columns: minmax(170px, 0.45fr) minmax(0, 1.55fr);
-    column-gap: clamp(2rem, 6vw, 6rem);
+    grid-template-columns: minmax(0, 1fr);
 }
 
-.current-work .section-label {
+.trajectory-grid.trajectory-compact li,
+.trajectory-grid.trajectory-compact li:not(:first-child),
+.trajectory-grid.trajectory-compact li:last-child {
+    display: grid;
+    grid-template-columns: 3.25rem minmax(0, var(--reading-width));
+    column-gap: 1.25rem;
+    padding: 1.5rem 0;
+    border-right: 0;
+    border-bottom: 1px solid var(--border);
+}
+
+.trajectory-grid.trajectory-compact li:last-child {
+    border-bottom: 0;
+}
+
+.trajectory-grid.trajectory-compact li:not(:last-child)::after {
+    top: auto;
+    right: auto;
+    bottom: -0.7rem;
+    left: 0.55rem;
+    content: "↓";
+}
+
+.trajectory-grid.trajectory-compact .trajectory-index {
+    grid-column: 1;
     grid-row: 1 / span 2;
+    margin-bottom: 0;
+    padding-top: 0.15rem;
+}
+
+.trajectory-grid.trajectory-compact strong,
+.trajectory-grid.trajectory-compact p {
+    grid-column: 2;
 }
 
 .current-work p:last-child {
+    margin-bottom: 0;
     color: var(--text-muted);
-    font-size: 1.08rem;
 }
 
 /* Shared page intro */
@@ -533,29 +565,24 @@
         width: 8rem;
     }
 
-    .current-work,
     .project-feature {
         grid-template-columns: 1fr;
     }
 
-    .trajectory-grid {
+    .trajectory-grid:not(.trajectory-compact) {
         grid-template-columns: repeat(3, minmax(0, 1fr));
     }
 
-    .trajectory-grid li:nth-child(3) {
+    .trajectory-grid:not(.trajectory-compact) li:nth-child(3) {
         border-right: 0;
     }
 
-    .trajectory-grid li:nth-child(3)::after {
+    .trajectory-grid:not(.trajectory-compact) li:nth-child(3)::after {
         display: none;
     }
 
-    .trajectory-grid li:nth-child(n + 4) {
+    .trajectory-grid:not(.trajectory-compact) li:nth-child(n + 4) {
         border-top: 1px solid var(--border);
-    }
-
-    .current-work .section-label {
-        grid-row: auto;
     }
 }
 
@@ -583,21 +610,21 @@
         grid-template-columns: 1fr;
     }
 
-    .trajectory-grid {
+    .trajectory-grid:not(.trajectory-compact) {
         grid-template-columns: 1fr;
         border-top: 0;
     }
 
-    .trajectory-grid li,
-    .trajectory-grid li:not(:first-child),
-    .trajectory-grid li:last-child {
+    .trajectory-grid:not(.trajectory-compact) li,
+    .trajectory-grid:not(.trajectory-compact) li:not(:first-child),
+    .trajectory-grid:not(.trajectory-compact) li:last-child {
         padding: 1rem 0;
         border-top: 1px solid var(--border);
         border-right: 0;
     }
 
-    .trajectory-grid li:not(:last-child)::after,
-    .trajectory-grid li:nth-child(3)::after {
+    .trajectory-grid:not(.trajectory-compact) li:not(:last-child)::after,
+    .trajectory-grid:not(.trajectory-compact) li:nth-child(3)::after {
         content: "↓";
         display: block;
         top: auto;
