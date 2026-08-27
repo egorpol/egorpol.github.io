@@ -19,6 +19,7 @@
 .hero-portrait {
     position: relative;
     display: block;
+    width: 16rem;
     max-width: 16rem;
     justify-self: end;
 }
@@ -29,6 +30,7 @@
 
 .hero-portrait img {
     display: block;
+    width: 100%;
     aspect-ratio: 2 / 3;
     border: 1px solid var(--border);
     border-radius: 0.8rem;
@@ -527,6 +529,10 @@
         gap: 2rem;
     }
 
+    .hero-portrait {
+        width: 8rem;
+    }
+
     .current-work,
     .project-feature {
         grid-template-columns: 1fr;
@@ -569,7 +575,6 @@
 
     .hero-portrait {
         order: 1;
-        width: 8.5rem;
         justify-self: start;
     }
 

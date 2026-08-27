@@ -43,26 +43,13 @@
         var ctx = canvas.getContext('2d');
         ctx.imageSmoothingEnabled = false;
 
-        function snapOverlay() {
-            var w = frame.clientWidth;
-            var h = frame.clientHeight;
-            if (!w || !h) return;
-            var scale = Math.max(1, Math.round(Math.min(w / ZX_W, h / ZX_H)));
-            canvas.style.width = (ZX_W * scale) + 'px';
-            canvas.style.height = (ZX_H * scale) + 'px';
-            canvas.style.left = Math.round((w - (ZX_W * scale)) / 2) + 'px';
-            canvas.style.top = Math.round((h - (ZX_H * scale)) / 2) + 'px';
-        }
-
-        snapOverlay();
-        var overlayFit = new ResizeObserver(snapOverlay);
-        overlayFit.observe(frame);
-
         var mask = document.createElement('canvas');
         mask.width = ZX_W;
         mask.height = ZX_H;
         var mctx = mask.getContext('2d');
         mctx.imageSmoothingEnabled = false;
+        var openPixels = new Uint8Array(ZX_W * ZX_H);
+        var holes = [];
 
         var sheet = null;
         var lastX = -1;
@@ -76,13 +63,19 @@
         var resealLast = 0;
         var resealCarry = 0;
         var reduceMotion = window.matchMedia('(prefers-reduced-motion: reduce)').matches;
-        var observer = new MutationObserver(function () {
-            loadSheet(zxUrl(), function (img) {
-                if (!portrait) return;
+        var requestedSheet = '';
+
+        function refreshSheet() {
+            var src = zxUrl();
+            requestedSheet = src;
+            loadSheet(src, function (img) {
+                if (!portrait || portrait.canvas !== canvas || requestedSheet !== src) return;
                 sheet = img;
                 paint();
             });
-        });
+        }
+
+        var observer = new MutationObserver(refreshSheet);
 
         function paint() {
             if (!sheet) return;
@@ -112,7 +105,14 @@
                 for (var px = x0; px <= x1; px += 1) {
                     var dx = px + 0.5 - x;
                     var dy = py + 0.5 - y;
-                    if ((dx * dx) + (dy * dy) <= rr) mctx.fillRect(px, py, 1, 1);
+                    if ((dx * dx) + (dy * dy) <= rr) {
+                        var index = (py * ZX_W) + px;
+                        if (!openPixels[index]) {
+                            openPixels[index] = 1;
+                            holes.push(index);
+                            mctx.fillRect(px, py, 1, 1);
+                        }
+                    }
                 }
             }
         }
@@ -135,6 +135,7 @@
 
         function armIdle() {
             window.clearTimeout(idleWait);
+            if (reduceMotion || !holes.length) return;
             idleWait = window.setTimeout(startReseal, 5000 + (Math.random() * 5000));
         }
 
@@ -147,6 +148,10 @@
         function startReseal() {
             stopReseal();
             hushSnow();
+            if (!holes.length) {
+                scheduleSnow();
+                return;
+            }
             resealBorn = performance.now();
             resealLast = resealBorn;
             resealCarry = 0;
@@ -165,12 +170,6 @@
             resealCarry -= count;
 
             if (count > 0) {
-                var data = mctx.getImageData(0, 0, ZX_W, ZX_H);
-                var d = data.data;
-                var holes = [];
-                for (var i = 3; i < d.length; i += 4) {
-                    if (d[i]) holes.push(i - 3);
-                }
                 if (!holes.length) {
                     resealFrame = 0;
                     scheduleSnow();
@@ -179,15 +178,13 @@
 
                 while (count && holes.length) {
                     var pick = Math.floor(Math.random() * holes.length);
-                    var offset = holes[pick];
-                    holes.splice(pick, 1);
-                    d[offset] = 0;
-                    d[offset + 1] = 0;
-                    d[offset + 2] = 0;
-                    d[offset + 3] = 0;
+                    var index = holes[pick];
+                    var last = holes.pop();
+                    if (pick < holes.length) holes[pick] = last;
+                    openPixels[index] = 0;
+                    mctx.clearRect(index % ZX_W, Math.floor(index / ZX_W), 1, 1);
                     count -= 1;
                 }
-                mctx.putImageData(data, 0, 0);
                 paint();
                 if (!holes.length) {
                     resealFrame = 0;
@@ -287,7 +284,6 @@
                 canvas.removeEventListener('pointerleave', onPointerLeave);
                 canvas.removeEventListener('pointercancel', onPointerLeave);
                 observer.disconnect();
-                overlayFit.disconnect();
                 window.clearTimeout(snowWait);
                 window.clearTimeout(snowHold);
                 window.clearTimeout(idleWait);
@@ -296,11 +292,7 @@
             }
         };
 
-        loadSheet(zxUrl(), function (img) {
-            if (!portrait) return;
-            sheet = img;
-            paint();
-        });
+        refreshSheet();
 
         scheduleSnow();
     }
@@ -311,7 +303,7 @@
         portrait = null;
     }
 
-    /* --- Studio chrome switch ------------------------------------------ */
+    /* --- Pixel/plain view switch --------------------------------------- */
 
     var toggle = document.getElementById('chrome-toggle');
 
@@ -329,7 +321,7 @@
         if (toggle) {
             var on = state === 'on';
             toggle.setAttribute('aria-pressed', String(on));
-            toggle.setAttribute('aria-label', on ? 'Turn studio chrome off' : 'Turn studio chrome on');
+            toggle.setAttribute('aria-label', on ? 'Switch to plain view' : 'Switch to pixel view');
         }
 
         if (state === 'on') startPortrait();
@@ -343,7 +335,7 @@
 
     var hint = document.getElementById('chrome-hint');
     var hintClose = document.getElementById('chrome-hint-close');
-    var HINT_KEY = 'chrome-hint-2';
+    var HINT_KEY = 'chrome-hint-3';
 
     function hintSeen() {
         try {

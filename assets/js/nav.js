@@ -31,7 +31,7 @@
     });
 
     // Reset state when the layout returns to the full-width navigation.
-    var wide = window.matchMedia('(min-width: 981px)');
+    var wide = window.matchMedia('(min-width: 1381px)');
     var onChange = function (event) {
         if (event.matches) setOpen(false);
     };

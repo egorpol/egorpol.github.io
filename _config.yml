@@ -99,6 +99,7 @@ exclude:
   - _site/
   - cv/
   - scripts/
+  - vendor/
   # Contributor docs; the font licence beside it must stay published (OFL).
   - assets/audio/README.md
   - CHANGELOG.md
@@ -108,13 +109,3 @@ exclude:
   - LICENSE
   - POST_TEMPLATE.md
   - README.md
-#   - .sass-cache/
-#   - .jekyll-cache/
-#   - gemfiles/
-#   - Gemfile
-#   - Gemfile.lock
-#   - node_modules/
-#   - vendor/bundle/
-#   - vendor/cache/
-#   - vendor/gems/
-#   - vendor/ruby/

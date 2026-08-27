@@ -1,7 +1,9 @@
 #!/usr/bin/env ruby
 # frozen_string_literal: true
 
-# Renders the portrait the way a ZX Spectrum 48K had to.
+# Renders the portrait through the bitmap and attribute constraints of a ZX
+# Spectrum 48K. The portrait is a 128x192 vertical slice rather than the
+# machine's full 256x192 display, preserving the source photograph's 2:3 ratio.
 #
 # The Spectrum stored the screen as a 1-bit bitmap plus a separate low-resolution
 # attribute map: every 8x8 block gets exactly two colours, an ink and a paper,
@@ -17,7 +19,8 @@
 require 'tempfile'
 
 #
-# Modes:
+# Modes (the site uses the two monochrome variants; the colour modes are useful
+# for comparison but overpower the surrounding interface):
 #   clash  full 15-colour attribute clash, both BRIGHT sets — loudest, most
 #          obviously a Spectrum
 #   muted  non-BRIGHT colours only over a desaturated source — same machine,
@@ -27,7 +30,7 @@ require 'tempfile'
 #   mono-dark  the same, inverted for the dark theme
 
 SOURCE = File.expand_path('../assets/images/avatar.jpg', __dir__)
-MODE = ARGV[0] || 'clash'
+MODE = ARGV[0] || 'mono'
 TARGET = ARGV[1] || File.expand_path('../assets/images/avatar-zx.png', __dir__)
 
 # The hero caps the portrait at 16rem, so 128 wide displays at exactly 2x and

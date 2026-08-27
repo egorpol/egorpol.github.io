@@ -126,8 +126,8 @@ structured_data:
     {% for project in cv.projects %}
     <span class="patch-cord patch-cord-y" data-cord="p{{ forloop.index }}" aria-hidden="true"></span>
     {% endfor %}
+    <a class="project-all" data-patch="sink" href="{{ '/projects/' | relative_url }}">All projects{% include patch-nubs.html %}</a>
   </div>
-  <a class="project-all" data-patch="sink" href="{{ '/projects/' | relative_url }}">All projects{% include patch-nubs.html %}</a>
 </section>
 
 <section class="content-section highlight-patch" aria-labelledby="highlights-title">
@@ -153,7 +153,7 @@ structured_data:
     </ul>
     <span class="patch-cord patch-cord-bus" aria-hidden="true"></span>
     <span class="patch-cord patch-cord-x" data-cord="to-sink" aria-hidden="true"></span>
-    <a class="highlight-all" data-patch="hl-sink" href="{{ '/publications/' | relative_url }}">All publications{% include patch-nubs.html %}</a>
+    <a class="highlight-all" data-patch="hl-sink" href="{{ '/publications/' | relative_url }}">All publications<span aria-hidden="true">&nbsp;↗</span>{% include patch-nubs.html %}</a>
   </div>
 </section>
 

@@ -106,9 +106,10 @@
     [data-chrome="on"] .zx-border { display: block; }
 }
 
-/* --- Studio chrome switch --------------------------------------------- */
+/* --- Pixel/plain view switch ------------------------------------------ */
 
 .header-controls {
+    grid-area: controls;
     position: relative;
     display: flex;
     flex: none;
@@ -136,7 +137,7 @@
     content: "";
     position: absolute;
     top: -6px;
-    right: 4.3rem;
+    right: 7rem;
     border-right: 6px solid transparent;
     border-bottom: 6px solid var(--patch-line);
     border-left: 6px solid transparent;
@@ -175,45 +176,111 @@
     color: var(--accent);
 }
 
-/* The control is itself a jack: unplugged is a bare ring, switching it on
-   seats the tip. Same mark as the favicon. */
-.chrome-toggle {
+/* A two-ended physical switch: the thumb sits next to the active view, while
+   both labels remain visible. The whole assembly is one generous hit target. */
+.view-switch {
     display: flex;
+    min-height: 2.55rem;
     align-items: center;
-    justify-content: center;
+    gap: 0.5rem;
+    padding: 0.25rem 0.35rem;
+    border: 0;
+    background: transparent;
+    color: var(--heading);
+    font: inherit;
+    cursor: pointer;
 }
 
-.chrome-toggle .toggle-smooth {
-    width: 1.2rem;
-    height: 1.2rem;
+.view-switch-label {
+    color: var(--text-muted);
+    font-size: 0.72rem;
+    font-weight: var(--weight-strong);
+    line-height: 1;
 }
 
-.chrome-tip {
-    opacity: 0;
-    transition: opacity 160ms ease;
+.view-switch-track {
+    position: relative;
+    display: block;
+    flex: none;
+    width: 2.9rem;
+    height: 1.55rem;
+    border: 1px solid var(--border);
+    border-radius: 999px;
+    background: var(--surface);
 }
 
-[data-chrome="on"] .chrome-tip {
-    opacity: 1;
-}
-
-[data-chrome="on"] .chrome-toggle {
-    border-color: var(--accent);
-    color: var(--accent);
-}
-
-/* Pixel-art editions of the two header jacks. 16×16 glyphs at 2× so every
-   pixel lands on the Silkscreen grid; boring mode keeps the smooth rings. */
-.pixel-toggle-defs {
+.view-switch-thumb {
     position: absolute;
-    width: 0;
-    height: 0;
-    overflow: hidden;
+    top: 3px;
+    left: 3px;
+    width: calc(1.55rem - 8px);
+    height: calc(1.55rem - 8px);
+    border-radius: 50%;
+    background: var(--accent);
+    transition: transform 160ms ease;
+}
+
+[data-chrome="off"] .view-switch-thumb {
+    transform: translateX(1.35rem);
+}
+
+[data-chrome="on"] .view-switch-label:first-child,
+[data-chrome="off"] .view-switch-label:last-child {
+    color: var(--accent-strong);
+}
+
+.view-switch:hover .view-switch-track {
+    border-color: var(--accent);
+    background: var(--accent-soft);
+}
+
+.control-divider {
+    display: block;
+    width: 1px;
+    height: 1.5rem;
+    margin-inline: 0.1rem;
+    background: var(--border);
+}
+
+@media screen {
+    [data-chrome="on"] .view-switch {
+        font-family: var(--font-pixel);
+    }
+
+    [data-chrome="on"] .view-switch-label {
+        font-size: 16px;
+        font-weight: 400;
+    }
+
+    [data-chrome="on"] .view-switch-track,
+    [data-chrome="on"] .view-switch-thumb {
+        border-radius: 0;
+    }
+
+    [data-chrome="on"] .view-switch-track {
+        border-color: var(--patch-line);
+    }
+
+    [data-chrome="on"] .control-divider {
+        width: 2px;
+        height: 32px;
+        background: var(--patch-ink);
+    }
+
+    [data-chrome="on"] .site-nav::before {
+        width: 2px;
+        height: 32px;
+        background: var(--patch-ink);
+    }
+}
+
+@media (prefers-reduced-motion: reduce) {
+    .view-switch-thumb { transition: none; }
 }
 
 .toggle-pixel {
     display: none;
-    width: 32px;
+    width: 40px;
     height: 32px;
     overflow: hidden;
     fill: currentColor;
@@ -227,39 +294,48 @@
     fill: var(--surface);
 }
 
-.theme-half {
+.pixel-theme-state {
+    display: none;
     fill: currentColor;
+    shape-rendering: crispEdges;
 }
 
-/* Terminator turns in place, ring stays put — day to night as a globe would.
-   Same 240ms ease as the smooth mark; the half is a real disc so it does not
-   stair-step through the pixel grid on the way. */
-.theme-spin {
-    transform-box: view-box;
-    transform-origin: 8px 8px;
-    transform-origin: 50% 50%;
-    transition: transform 240ms ease;
+html:not([data-theme-frame])[data-theme="light"] .pixel-theme-state-0,
+html:not([data-theme-frame])[data-theme="dark"] .pixel-theme-state-4,
+[data-theme-frame="0"] .pixel-theme-state-0,
+[data-theme-frame="1"] .pixel-theme-state-1,
+[data-theme-frame="2"] .pixel-theme-state-2,
+[data-theme-frame="3"] .pixel-theme-state-3,
+[data-theme-frame="4"] .pixel-theme-state-4 {
+    display: block;
 }
 
-[data-theme="dark"] .theme-spin {
-    transform: rotate(180deg);
-}
-
-@media (prefers-reduced-motion: reduce) {
-    .theme-spin { transition: none; }
+.theme-frame {
+    fill: none;
+    stroke: currentColor;
+    stroke-width: 1px;
+    shape-rendering: crispEdges;
 }
 
 @media screen {
     [data-chrome="on"] .theme-toggle {
-        width: 32px;
+        width: 40px;
         height: 32px;
         border: 0;
         border-radius: 0;
         background: transparent;
     }
 
+    [data-chrome="on"] .theme-toggle:hover {
+        background: transparent;
+    }
+
     [data-chrome="on"] .theme-toggle:hover .toggle-fill {
         fill: var(--accent-soft);
+    }
+
+    [data-chrome="on"] .theme-toggle:hover .theme-frame {
+        stroke: var(--accent);
     }
 
     [data-chrome="on"] .toggle-smooth {
@@ -275,7 +351,7 @@
 /* Silkscreen is the chrome-mode UI face. Body copy switches to Source Serif 4
    so long reading sits against the pixel chrome instead of the sans leftover.
    Sizes for Silkscreen are px on its 8px grid; rem would turn the pixels to
-   mush. Screen only, so print and the boring switch both restore the live site. */
+   mush. Screen only, so print and the plain switch both restore the live site. */
 
 @media screen {
     [data-chrome="on"] {
@@ -343,7 +419,6 @@
         }
 
         /* Drawn-size captions. Too small for anything you have to read. */
-        .site-identity span,
         .note-tags span,
         .breadcrumb,
         .copyright,
@@ -353,6 +428,14 @@
             font-weight: 400;
             letter-spacing: 0;
             line-height: 1.5;
+        }
+
+        .site-identity span {
+            font-family: var(--font-pixel);
+            font-size: 16px;
+            font-weight: 400;
+            letter-spacing: 0;
+            line-height: 1.25;
         }
 
         .site-nav {
@@ -369,10 +452,10 @@
 }
 
 /* --- Portrait ---------------------------------------------------------- */
-/* The photograph stays in the markup. Chrome mode lays a real Spectrum SCREEN$
-   over it — 8x8 attribute blocks, two colours each, Bayer-dithered — and the
-   cursor wipes holes in that overlay, so the face is uncovered a patch at a
-   time rather than all at once. See scripts/generate-zx-portrait.rb. */
+/* The photograph stays in the markup. Pixel view lays a portrait-shaped slice
+   of Spectrum screen geometry over it — 8x8 attribute blocks, two colours per
+   block, Bayer-dithered — and the cursor wipes holes in that overlay. The CSS
+   presents the 128x192 bitmap at exactly 1x or 2x. */
 
 [data-chrome="on"] .hero-portrait img {
     border-color: var(--patch-line);
@@ -382,11 +465,13 @@
 
 .hero-zx {
     position: absolute;
-    top: 0;
-    left: 0;
+    inset: 0;
     display: none;
+    width: 100%;
+    height: 100%;
+    cursor: crosshair;
     image-rendering: pixelated;
-    touch-action: none;
+    touch-action: pan-y;
 }
 
 [data-chrome="on"] .hero-portrait {
@@ -476,7 +561,8 @@
 /* Prose sections stay prose. Chrome puts a small two-column patcher to the
    right that restates four or five words from the essay and the link between
    them: two sources, two middles, one sink. Same iolet rules as the rest of
-   the page. Hidden in boring mode and on narrow screens. */
+   the page. Hidden in plain view; on narrow screens it moves below the prose
+   rather than disappearing. */
 
 .word-patch {
     display: none;
@@ -554,13 +640,17 @@
     left: calc((100% + var(--patch-gap)) / 2);
 }
 
-@media (max-width: 820px) {
+@media (max-width: 900px) {
     [data-chrome="on"] .prose-patch {
         grid-template-columns: minmax(0, 1fr);
     }
 
     [data-chrome="on"] .word-patch {
-        display: none;
+        display: grid;
+        grid-column: 1;
+        grid-row: 4;
+        width: min(100%, 16rem);
+        margin-top: 1.5rem;
     }
 }
 
@@ -622,7 +712,7 @@
    Align Patch Cords wants a vertical when the sink's inlets share that x, so
    [All projects] is a wide box whose inlets sit on the column left edges —
    not Pd's even n=4 spacing, which would put inlet 3 on the right lip.
-   Below 620px the row becomes a chain: still outlet → inlet, still vertical. */
+   On tablets this becomes two vertical chains; on phones, one. */
 
 .project-all,
 .highlight-all {
@@ -647,7 +737,7 @@
         minmax(0, 1fr) var(--patch-gap)
         minmax(0, 1fr) var(--patch-gap)
         minmax(0, 1fr);
-    grid-template-rows: auto var(--patch-gap);
+    grid-template-rows: auto var(--patch-gap) auto;
     gap: 0;
 }
 
@@ -659,6 +749,7 @@
 [data-chrome="on"] .project-patch [data-cord="p2"] { grid-column: 3; grid-row: 2; }
 [data-chrome="on"] .project-patch [data-cord="p3"] { grid-column: 5; grid-row: 2; }
 [data-chrome="on"] .project-patch [data-cord="p4"] { grid-column: 7; grid-row: 2; }
+[data-chrome="on"] .project-patch .project-all { grid-column: 1 / -1; grid-row: 3; }
 
 [data-chrome="on"] .project-patch .project-card {
     position: relative;
@@ -813,7 +904,7 @@
     padding: 0.75rem 1.3rem;
     border: 1px solid var(--patch-line);
     background: var(--surface);
-    color: var(--heading);
+    color: var(--accent-strong);
     font-family: var(--font-pixel);
     font-size: 16px;
     font-weight: 400;
@@ -826,9 +917,34 @@
 [data-chrome="on"] .highlight-all:hover {
     border-color: var(--accent);
     background: var(--accent-soft);
-    color: var(--heading);
+    color: var(--accent-strong);
+    text-decoration: underline;
 }
 
+/* Tablet: two vertical chains feed two inlets on the shared sink. */
+@media (max-width: 900px) {
+    [data-chrome="on"] .project-patch .project-grid {
+        grid-template-columns:
+            minmax(0, 1fr) var(--patch-gap)
+            minmax(0, 1fr);
+        grid-template-rows:
+            auto var(--patch-gap)
+            auto var(--patch-gap)
+            auto;
+    }
+
+    [data-chrome="on"] .project-card[data-col="1"] { grid-column: 1; grid-row: 1; }
+    [data-chrome="on"] .project-patch [data-cord="p1"] { grid-column: 1; grid-row: 2; }
+    [data-chrome="on"] .project-card[data-col="2"] { grid-column: 3; grid-row: 1; }
+    [data-chrome="on"] .project-patch [data-cord="p2"] { grid-column: 3; grid-row: 2; }
+    [data-chrome="on"] .project-card[data-col="3"] { grid-column: 1; grid-row: 3; }
+    [data-chrome="on"] .project-patch [data-cord="p3"] { grid-column: 1; grid-row: 4; }
+    [data-chrome="on"] .project-card[data-col="4"] { grid-column: 3; grid-row: 3; }
+    [data-chrome="on"] .project-patch [data-cord="p4"] { grid-column: 3; grid-row: 4; }
+    [data-chrome="on"] .project-patch .project-all { grid-column: 1 / -1; grid-row: 5; }
+}
+
+/* Phone: projects and highlights become continuous vertical signal paths. */
 @media (max-width: 620px) {
     [data-chrome="on"] .project-patch .project-grid {
         grid-template-columns: minmax(0, 1fr);
@@ -836,7 +952,8 @@
             auto var(--patch-gap)
             auto var(--patch-gap)
             auto var(--patch-gap)
-            auto var(--patch-gap);
+            auto var(--patch-gap)
+            auto;
     }
 
     [data-chrome="on"] .project-card[data-col="1"] { grid-column: 1; grid-row: 1; }
@@ -847,6 +964,42 @@
     [data-chrome="on"] .project-patch [data-cord="p3"] { grid-column: 1; grid-row: 6; }
     [data-chrome="on"] .project-card[data-col="4"] { grid-column: 1; grid-row: 7; }
     [data-chrome="on"] .project-patch [data-cord="p4"] { grid-column: 1; grid-row: 8; }
+    [data-chrome="on"] .project-patch .project-all { grid-column: 1; grid-row: 9; }
+
+    [data-chrome="on"] .highlight-stage {
+        grid-template-columns: minmax(0, 1fr);
+        grid-template-rows:
+            auto var(--patch-gap)
+            auto var(--patch-gap)
+            auto var(--patch-gap)
+            auto var(--patch-gap)
+            auto;
+    }
+
+    [data-chrome="on"] .highlight-obj[data-hl="1"] { grid-column: 1; grid-row: 1; }
+    [data-chrome="on"] .highlight-patch [data-cord="d1"] { grid-column: 1; grid-row: 2; }
+    [data-chrome="on"] .highlight-obj[data-hl="2"] { grid-column: 1; grid-row: 3; }
+    [data-chrome="on"] .highlight-patch [data-cord="d2"] { grid-column: 1; grid-row: 4; }
+    [data-chrome="on"] .highlight-obj[data-hl="3"] { grid-column: 1; grid-row: 5; }
+    [data-chrome="on"] .highlight-patch [data-cord="d3"] { grid-column: 1; grid-row: 6; }
+    [data-chrome="on"] .highlight-obj[data-hl="4"] { grid-column: 1; grid-row: 7; }
+    [data-chrome="on"] .highlight-patch [data-cord="d4"] { grid-column: 1; grid-row: 8; }
+
+    [data-chrome="on"] .highlight-patch .patch-cord-y {
+        height: 100%;
+    }
+
+    [data-chrome="on"] .highlight-patch .patch-cord-x,
+    [data-chrome="on"] .highlight-patch .patch-cord-bus,
+    [data-chrome="on"] .highlight-patch [data-cord="to-sink"] {
+        display: none;
+    }
+
+    [data-chrome="on"] .highlight-all {
+        grid-column: 1;
+        grid-row: 9;
+        width: 100%;
+    }
 }
 
 /* --- Contact patch ----------------------------------------------------- */
@@ -1020,14 +1173,25 @@
     display: block;
 }
 
-@media (max-width: 620px) {
-    [data-chrome="on"] [data-patch="proj"]:not([data-col="1"]) .patch-nub-n {
+@media (max-width: 900px) {
+    [data-chrome="on"] [data-patch="proj"][data-col="3"] .patch-nub-n,
+    [data-chrome="on"] [data-patch="proj"][data-col="4"] .patch-nub-n {
         display: block;
     }
 
     [data-chrome="on"] [data-patch="sink"] .patch-nub-n1,
-    [data-chrome="on"] [data-patch="sink"] .patch-nub-n2,
     [data-chrome="on"] [data-patch="sink"] .patch-nub-n3 {
+        display: none;
+    }
+}
+
+@media (max-width: 620px) {
+    [data-chrome="on"] [data-patch="proj"]:not([data-col="1"]) .patch-nub-n,
+    [data-chrome="on"] .highlight-obj:not([data-hl="1"]) .patch-nub-n {
+        display: block;
+    }
+
+    [data-chrome="on"] [data-patch="sink"] .patch-nub-n2 {
         display: none;
     }
 }
