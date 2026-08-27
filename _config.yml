@@ -19,15 +19,16 @@
 # in the templates via {{ site.myvariable }}.
 
 title: Egor Polyakov
+tagline: Postdoctoral researcher in computational musicology
 email: egor.polyakov@hfm-weimar.de
-description: Computational musicologist, composer, and postdoctoral researcher focused on symbolic and audio music analysis.
+description: Postdoctoral researcher in computational musicology at HfM Weimar.
 author: Egor Polyakov
 baseurl: "" # the subpath of your site, e.g. /blog
 url: "https://egorpol.github.io" # the base hostname & protocol for your site
 github_username: egorpol
 lang: en
 timezone: Europe/Berlin
-permalink: /blog/:year/:month/:day/:title
+permalink: /notes/:year/:month/:day/:title
 
 
 markdown: kramdown
@@ -36,20 +37,25 @@ kramdown:
   input: GFM
   syntax_highlighter: rouge
 
+sass:
+  sass_dir: _sass
+  style: compressed
+
 # Build settings
 # theme: minima
 
 plugins:
-  - jekyll-feed
   - jekyll-seo-tag
 
-logo: /avatar.png
+logo: /assets/images/avatar.jpg
 social:
   name: Egor Polyakov
   links:
+    - https://orcid.org/0000-0003-0913-0429
     - https://github.com/egorpol
     - https://www.linkedin.com/in/egor-polyakov-6a2114315/
     - https://egorpol.github.io
+orcid: https://orcid.org/0000-0003-0913-0429
 
 # SEO settings
 # google_analytics: G-XXXXXXXXXX  # Uncomment and replace with your actual GA4 measurement ID
@@ -61,23 +67,25 @@ social:
 #   username: egorpol  # Uncomment if you create a Twitter/X account
 #   card: summary_large_image
 
-# Feed settings
-feed:
-  path: atom.xml
-  limit: 10
-
 # Pagination (disabled; enable if you add paginated blog index)
 # paginate: 5
 # paginate_path: "/blog/page:num/"
+
+feed:
+  path: /notes/feed.xml
 
 # Collections
 collections:
   posts:
     output: true
-    permalink: /blog/:year/:month/:day/:title/
-  categories:
-    output: true
-    permalink: /categories/:name/
+    permalink: /notes/:year/:month/:day/:title/
+
+# Landscape card used for link previews; pages may override with their own image.
+defaults:
+  - scope:
+      path: ""
+    values:
+      image: /assets/images/og-card.png
 
 # Exclude from processing.
 # The following items will not be processed, by default.
@@ -89,13 +97,15 @@ collections:
 #
 exclude:
   - _site/
-#   - .sass-cache/
-#   - .jekyll-cache/
-#   - gemfiles/
-#   - Gemfile
-#   - Gemfile.lock
-#   - node_modules/
-#   - vendor/bundle/
-#   - vendor/cache/
-#   - vendor/gems/
-#   - vendor/ruby/
+  - cv/
+  - scripts/
+  - vendor/
+  # Contributor docs; the font licence beside it must stay published (OFL).
+  - assets/audio/README.md
+  - CHANGELOG.md
+  - CATEGORIES.md
+  - Gemfile
+  - Gemfile.lock
+  - LICENSE
+  - POST_TEMPLATE.md
+  - README.md

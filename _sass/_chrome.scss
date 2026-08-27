@@ -1,0 +1,1212 @@
+/* ZX Spectrum tape-loading border.
+ *
+ * The content column is the screen, so the page margins are the border — which
+ * is where a Spectrum drew its loading stripes.
+ *
+ * Band heights are the real ROM pulse timings rather than an eyeballed
+ * gradient, so stripe thickness carries data; see scripts/generate-zx-loader.rb.
+ *
+ * Movement is deliberately not a smooth scroll. On real hardware the border
+ * flipped colour on every signal edge at a rate unrelated to the 50Hz frame
+ * rate, so the pattern re-phased every frame and read as a shimmer. That is
+ * reproduced with a stepped animation whose jump is far larger than a band, so
+ * each step rescrambles the visible pattern instead of sliding it.
+ *
+ * The transport only runs while the page is being scrolled, and the stripes
+ * fill downward with reading position, so at rest the border is frozen. */
+
+:root {
+    /* Patcher furniture: hairline boxes and hard corners, as in Pd and Max. */
+    --patch-line: rgba(16, 43, 63, 0.55);
+    --patch-ink: #102b3f;
+    --patch-nub-x: 1.3rem;
+    --patch-nub-w: 12px;
+    --patch-gap: 34px;
+}
+
+[data-theme="dark"] {
+    --patch-line: rgba(241, 218, 185, 0.4);
+    --patch-ink: #d6c6a8;
+}
+
+.zx-border {
+    /* One tile of the generated strip; the transport loops over exactly this. */
+    --zx-tile: 769px;
+    --zx-width: 14px;
+    /* Original 48K border primaries; see scripts/generate-zx-loader.rb. */
+    --zx-opacity: 0.85;
+    /* 14 rescrambles per second: fast enough to shimmer, slow enough to sit
+       beside body text without strobing. */
+    --zx-rate: 1s;
+    --zx-steps: 14;
+
+    position: fixed;
+    top: 0;
+    z-index: 5;
+    display: none;
+    overflow: hidden;
+    width: var(--zx-width);
+    height: 100vh;
+    pointer-events: none;
+    /* Keep repaints inside the strip; without this the animation can force
+       neighbouring content to re-raster and visibly flicker. */
+    contain: strict;
+}
+
+[data-theme="dark"] .zx-border {
+    --zx-opacity: 0.8;
+}
+
+.zx-border-left { left: 12px; }
+.zx-border-right { right: 12px; }
+
+/* Reading position. Clips the tape rather than scaling it, so the stripes stay
+   anchored to the viewport instead of stretching as the page grows. */
+.zx-fill {
+    display: block;
+    overflow: hidden;
+    height: calc(var(--scroll-progress, 0) * 100%);
+}
+
+.zx-tape {
+    display: block;
+    /* Overhangs by a tile so a step never exposes the bottom edge. */
+    height: calc(100vh + var(--zx-tile));
+    background-image: url("/assets/images/zx-loader.svg");
+    background-repeat: repeat-y;
+    opacity: var(--zx-opacity);
+    /* Hold the layer permanently. Promoting it only while scrolling makes the
+       compositor churn on every start and stop, which shows up as a flicker
+       elsewhere on the page. */
+    will-change: transform;
+    backface-visibility: hidden;
+    animation-name: zx-run;
+    animation-duration: var(--zx-rate);
+    animation-timing-function: steps(var(--zx-steps));
+    animation-iteration-count: infinite;
+    animation-play-state: paused;
+}
+
+[data-theme="dark"] .zx-tape {
+    background-image: url("/assets/images/zx-loader-dark.svg");
+}
+
+/* The tape is only pulled past the head while you are actually reading. */
+[data-loading="true"] .zx-tape {
+    animation-play-state: running;
+}
+
+@keyframes zx-run {
+    from { transform: translateY(0); }
+    to { transform: translateY(calc(var(--zx-tile) * -1)); }
+}
+
+/* Opt-in, and only once the margins are wide enough to be a border. */
+@media (min-width: 1220px) {
+    [data-chrome="on"] .zx-border { display: block; }
+}
+
+/* --- Pixel/plain view switch ------------------------------------------ */
+
+.header-controls {
+    grid-area: controls;
+    position: relative;
+    display: flex;
+    flex: none;
+    align-items: center;
+    gap: 0.5rem;
+}
+
+/* Shaped like a Pd message box, notched right edge and all. The two clipped
+   layers fake a hairline border, since a border cannot follow a clip-path. */
+.patch-hint {
+    position: absolute;
+    top: calc(100% + 10px);
+    right: 0;
+    z-index: 40;
+    width: min(20rem, calc(100vw - 2rem));
+    background: var(--patch-line);
+    clip-path: polygon(0 0, 100% 0, calc(100% - 9px) 50%, 100% 100%, 0 100%);
+}
+
+.patch-hint[hidden] {
+    display: none;
+}
+
+.patch-hint::before {
+    content: "";
+    position: absolute;
+    top: -6px;
+    right: 7rem;
+    border-right: 6px solid transparent;
+    border-bottom: 6px solid var(--patch-line);
+    border-left: 6px solid transparent;
+}
+
+.patch-hint-inner {
+    display: flex;
+    align-items: flex-start;
+    gap: 0.5rem;
+    margin: 1px;
+    padding: 0.7rem 1.1rem 0.75rem 0.85rem;
+    background: var(--surface);
+    clip-path: polygon(0 0, 100% 0, calc(100% - 9px) 50%, 100% 100%, 0 100%);
+}
+
+.patch-hint p {
+    margin: 0;
+    color: var(--text-muted);
+    font-family: var(--font-pixel);
+    font-size: 8px;
+    line-height: 1.6;
+}
+
+.patch-hint-close {
+    flex: none;
+    padding: 0 0.2rem;
+    border: 0;
+    background: none;
+    color: var(--text-muted);
+    font-size: 0.95rem;
+    line-height: 1;
+    cursor: pointer;
+}
+
+.patch-hint-close:hover {
+    color: var(--accent);
+}
+
+/* A two-ended physical switch: the thumb sits next to the active view, while
+   both labels remain visible. The whole assembly is one generous hit target. */
+.view-switch {
+    display: flex;
+    min-height: 2.55rem;
+    align-items: center;
+    gap: 0.5rem;
+    padding: 0.25rem 0.35rem;
+    border: 0;
+    background: transparent;
+    color: var(--heading);
+    font: inherit;
+    cursor: pointer;
+}
+
+.view-switch-label {
+    color: var(--text-muted);
+    font-size: 0.72rem;
+    font-weight: var(--weight-strong);
+    line-height: 1;
+}
+
+.view-switch-track {
+    position: relative;
+    display: block;
+    flex: none;
+    width: 2.9rem;
+    height: 1.55rem;
+    border: 1px solid var(--border);
+    border-radius: 999px;
+    background: var(--surface);
+}
+
+.view-switch-thumb {
+    position: absolute;
+    top: 3px;
+    left: 3px;
+    width: calc(1.55rem - 8px);
+    height: calc(1.55rem - 8px);
+    border-radius: 50%;
+    background: var(--accent);
+    transition: transform 160ms ease;
+}
+
+[data-chrome="off"] .view-switch-thumb {
+    transform: translateX(1.35rem);
+}
+
+[data-chrome="on"] .view-switch-label:first-child,
+[data-chrome="off"] .view-switch-label:last-child {
+    color: var(--accent-strong);
+}
+
+.view-switch:hover .view-switch-track {
+    border-color: var(--accent);
+    background: var(--accent-soft);
+}
+
+.control-divider {
+    display: block;
+    width: 1px;
+    height: 1.5rem;
+    margin-inline: 0.1rem;
+    background: var(--border);
+}
+
+@media screen {
+    [data-chrome="on"] .view-switch {
+        font-family: var(--font-pixel);
+    }
+
+    [data-chrome="on"] .view-switch-label {
+        font-size: 16px;
+        font-weight: 400;
+    }
+
+    [data-chrome="on"] .view-switch-track,
+    [data-chrome="on"] .view-switch-thumb {
+        border-radius: 0;
+    }
+
+    [data-chrome="on"] .view-switch-track {
+        border-color: var(--patch-line);
+    }
+
+    [data-chrome="on"] .control-divider {
+        width: 2px;
+        height: 32px;
+        background: var(--patch-ink);
+    }
+
+    [data-chrome="on"] .site-nav::before {
+        width: 2px;
+        height: 32px;
+        background: var(--patch-ink);
+    }
+}
+
+@media (prefers-reduced-motion: reduce) {
+    .view-switch-thumb { transition: none; }
+}
+
+.toggle-pixel {
+    display: none;
+    width: 40px;
+    height: 32px;
+    overflow: hidden;
+    fill: currentColor;
+}
+
+.toggle-pixels {
+    shape-rendering: crispEdges;
+}
+
+.toggle-fill {
+    fill: var(--surface);
+}
+
+.pixel-theme-state {
+    display: none;
+    fill: currentColor;
+    shape-rendering: crispEdges;
+}
+
+html:not([data-theme-frame])[data-theme="light"] .pixel-theme-state-0,
+html:not([data-theme-frame])[data-theme="dark"] .pixel-theme-state-4,
+[data-theme-frame="0"] .pixel-theme-state-0,
+[data-theme-frame="1"] .pixel-theme-state-1,
+[data-theme-frame="2"] .pixel-theme-state-2,
+[data-theme-frame="3"] .pixel-theme-state-3,
+[data-theme-frame="4"] .pixel-theme-state-4 {
+    display: block;
+}
+
+.theme-frame {
+    fill: none;
+    stroke: currentColor;
+    stroke-width: 1px;
+    shape-rendering: crispEdges;
+}
+
+@media screen {
+    [data-chrome="on"] .theme-toggle {
+        width: 40px;
+        height: 32px;
+        border: 0;
+        border-radius: 0;
+        background: transparent;
+    }
+
+    [data-chrome="on"] .theme-toggle:hover {
+        background: transparent;
+    }
+
+    [data-chrome="on"] .theme-toggle:hover .toggle-fill {
+        fill: var(--accent-soft);
+    }
+
+    [data-chrome="on"] .theme-toggle:hover .theme-frame {
+        stroke: var(--accent);
+    }
+
+    [data-chrome="on"] .toggle-smooth {
+        display: none;
+    }
+
+    [data-chrome="on"] .toggle-pixel {
+        display: block;
+    }
+}
+
+/* --- Pixel type -------------------------------------------------------- */
+/* Silkscreen is the chrome-mode UI face. Body copy switches to Source Serif 4
+   so long reading sits against the pixel chrome instead of the sans leftover.
+   Sizes for Silkscreen are px on its 8px grid; rem would turn the pixels to
+   mush. Screen only, so print and the plain switch both restore the live site. */
+
+@media screen {
+    [data-chrome="on"] {
+        --font-sans: var(--font-serif);
+        --step-h1: 24px;
+        --step-h1-page: 24px;
+        --step-h2: 16px;
+        --step-h3: 16px;
+        --step-label: 16px;
+
+        .site-title,
+        .site-nav a,
+        .nav-toggle,
+        .site-footer strong,
+        .site-footer a,
+        .hero h1,
+        .page-intro h1,
+        .cv-intro h1,
+        .error-page h1,
+        .content-section h2,
+        .section-heading h2,
+        .entry-group h2,
+        .cv-section > h2,
+        .contact-panel h2,
+        .project-feature h2,
+        .cv-footer-grid h2,
+        .section-label,
+        .eyebrow,
+        .cv-subheading,
+        .cv-toc a,
+        .cv-entry-date,
+        .cv-organisation,
+        .competency-grid dt,
+        .project-number,
+        .project-card h3,
+        .cv-entry-body h3,
+        .work-title,
+        .reference-year,
+        .reference-kind,
+        .reference-body a.doi-link,
+        .dated-list li > span,
+        .dated-list small,
+        .post-meta,
+        .button,
+        .card-link,
+        .text-link {
+            font-family: var(--font-pixel);
+            font-size: 16px;
+            font-weight: 400;
+            line-height: 1.4;
+            letter-spacing: 0;
+            text-transform: none;
+        }
+
+        .hero h1,
+        .cv-intro h1,
+        .page-intro h1,
+        .error-page h1 {
+            font-size: 24px;
+            line-height: 1.25;
+        }
+
+        .hero h1 {
+            max-width: none;
+        }
+
+        /* Drawn-size captions. Too small for anything you have to read. */
+        .note-tags span,
+        .breadcrumb,
+        .copyright,
+        .reference-body .reference-meta {
+            font-family: var(--font-pixel);
+            font-size: 8px;
+            font-weight: 400;
+            letter-spacing: 0;
+            line-height: 1.5;
+        }
+
+        .site-identity span {
+            font-family: var(--font-pixel);
+            font-size: 16px;
+            font-weight: 400;
+            letter-spacing: 0;
+            line-height: 1.25;
+        }
+
+        .site-nav {
+            gap: 0.75rem;
+        }
+
+        .button,
+        .button-primary,
+        .button-secondary {
+            border-radius: 0;
+            font-size: 16px;
+        }
+    }
+}
+
+/* --- Portrait ---------------------------------------------------------- */
+/* The photograph stays in the markup. Pixel view lays a portrait-shaped slice
+   of Spectrum screen geometry over it — 8x8 attribute blocks, two colours per
+   block, Bayer-dithered — and the cursor wipes holes in that overlay. The CSS
+   presents the 128x192 bitmap at exactly 1x or 2x. */
+
+[data-chrome="on"] .hero-portrait img {
+    border-color: var(--patch-line);
+    border-radius: 0;
+    box-shadow: none;
+}
+
+.hero-zx {
+    position: absolute;
+    inset: 0;
+    display: none;
+    width: 100%;
+    height: 100%;
+    cursor: crosshair;
+    image-rendering: pixelated;
+    touch-action: pan-y;
+}
+
+[data-chrome="on"] .hero-portrait {
+    overflow: hidden;
+}
+
+[data-chrome="on"] .hero-zx {
+    display: block;
+}
+
+@media print {
+    .hero-zx { display: none !important; }
+}
+
+/* --- Patch chain ------------------------------------------------------- */
+/* Same language as the contact patch: inlets on the top edge, outlets on the
+   bottom, cords always outlet → inlet (glist_drawiofor in g_text.c). A lone
+   iolet sits at x1; Align Patch Cords then prefers a vertical when objects
+   already share that x. The heading is the source; each stage drops into the
+   next. Scoped to .trajectory-compact so the CV's copy of the grid is left
+   alone. Boring mode keeps the five-column arrows. */
+
+.patch-cord {
+    display: none;
+}
+
+[data-chrome="on"] .trajectory-copy {
+    position: relative;
+    padding: 0.95rem 1.3rem 1rem;
+    border: 1px solid var(--patch-line);
+    background: var(--surface);
+}
+
+[data-chrome="on"] .trajectory-compact {
+    grid-template-columns: minmax(0, 1fr);
+    border-top: 0;
+}
+
+[data-chrome="on"] .trajectory-compact li,
+[data-chrome="on"] .trajectory-compact li:not(:first-child),
+[data-chrome="on"] .trajectory-compact li:last-child {
+    margin-top: var(--patch-gap);
+    padding: 0.95rem 1.3rem 1rem;
+    border: 1px solid var(--patch-line);
+    border-radius: 0;
+    background: var(--surface);
+}
+
+/* Kill the plain-mode arrows at every breakpoint. */
+[data-chrome="on"] .trajectory-compact li::before,
+[data-chrome="on"] .trajectory-compact li::after,
+[data-chrome="on"] .trajectory-compact li:not(:last-child)::after,
+[data-chrome="on"] .trajectory-compact li:nth-child(3)::after {
+    content: none;
+    display: none;
+}
+
+/* Signal weight: Pd draws audio cords thicker than control cords. */
+[data-chrome="on"] .trajectory-compact .patch-cord {
+    display: block;
+    position: absolute;
+    top: calc(var(--patch-gap) * -1);
+    left: calc(var(--patch-nub-w) / 2 - 1px);
+    width: 2px;
+    height: var(--patch-gap);
+    background: var(--patch-ink);
+}
+
+/* Object text reads as a patcher rather than as prose. Sizes are in px and on
+   the 8px grid Silkscreen is drawn to; rem would drift off it. */
+[data-chrome="on"] .trajectory-compact strong {
+    font-family: var(--font-pixel);
+    font-size: 16px;
+    font-weight: 400;
+    line-height: 1.35;
+    letter-spacing: 0;
+}
+
+[data-chrome="on"] .trajectory-index {
+    margin-bottom: 0.6rem;
+    font-family: var(--font-pixel);
+    font-size: 8px;
+    letter-spacing: 0;
+}
+
+/* --- Word patch -------------------------------------------------------- */
+/* Prose sections stay prose. Chrome puts a small two-column patcher to the
+   right that restates four or five words from the essay and the link between
+   them: two sources, two middles, one sink. Same iolet rules as the rest of
+   the page. Hidden in plain view; on narrow screens it moves below the prose
+   rather than disappearing. */
+
+.word-patch {
+    display: none;
+}
+
+[data-chrome="on"] .prose-patch {
+    display: grid;
+    grid-template-columns: minmax(0, 1fr) minmax(11rem, 0.34fr);
+    column-gap: clamp(1.5rem, 4vw, 3rem);
+    align-items: start;
+}
+
+[data-chrome="on"] .prose-patch > .section-label,
+[data-chrome="on"] .prose-patch > h2 {
+    grid-column: 1 / -1;
+}
+
+[data-chrome="on"] .prose-copy {
+    grid-column: 1;
+    grid-row: 3;
+}
+
+[data-chrome="on"] .prose-copy > p:not(.section-label) {
+    max-width: none;
+}
+
+[data-chrome="on"] .word-patch {
+    --patch-gap: 22px;
+    display: grid;
+    grid-column: 2;
+    grid-row: 3;
+    grid-template-columns: minmax(0, 1fr) var(--patch-gap) minmax(0, 1fr);
+    grid-template-rows: auto var(--patch-gap) auto var(--patch-gap) auto;
+    gap: 0;
+}
+
+[data-chrome="on"] .word-patch [data-patch="wp-a"] { grid-column: 1; grid-row: 1; }
+[data-chrome="on"] .word-patch [data-patch="wp-b"] { grid-column: 3; grid-row: 1; }
+[data-chrome="on"] .word-patch [data-cord="wp-ac"] { grid-column: 1; grid-row: 2; }
+[data-chrome="on"] .word-patch [data-cord="wp-bd"] { grid-column: 3; grid-row: 2; }
+[data-chrome="on"] .word-patch [data-patch="wp-c"] { grid-column: 1; grid-row: 3; }
+[data-chrome="on"] .word-patch [data-patch="wp-d"] { grid-column: 3; grid-row: 3; }
+[data-chrome="on"] .word-patch [data-cord="wp-cs"] { grid-column: 1; grid-row: 4; }
+[data-chrome="on"] .word-patch [data-cord="wp-ds"] { grid-column: 3; grid-row: 4; }
+[data-chrome="on"] .word-patch [data-patch="wp-sink"] { grid-column: 1 / -1; grid-row: 5; }
+
+[data-chrome="on"] .word-obj {
+    position: relative;
+    display: block;
+    padding: 0.2rem 0.45rem 0.25rem;
+    border: 1px solid var(--patch-line);
+    background: var(--surface);
+    color: var(--heading);
+    font-family: var(--font-pixel);
+    font-size: 8px;
+    font-weight: 400;
+    letter-spacing: 0;
+    line-height: 1.4;
+    text-align: center;
+    white-space: nowrap;
+}
+
+[data-chrome="on"] .word-patch .patch-cord {
+    display: block;
+    position: static;
+    width: 2px;
+    height: 100%;
+    justify-self: start;
+    margin-left: calc(var(--patch-nub-w) / 2 - 1px);
+    background: var(--patch-ink);
+}
+
+/* Sink is two columns wide; inlet 1 sits on column 3, not on a 4-col step. */
+[data-chrome="on"] .word-patch [data-patch="wp-sink"] .patch-nub-n1 {
+    left: calc((100% + var(--patch-gap)) / 2);
+}
+
+@media (max-width: 900px) {
+    [data-chrome="on"] .prose-patch {
+        grid-template-columns: minmax(0, 1fr);
+    }
+
+    [data-chrome="on"] .word-patch {
+        display: grid;
+        grid-column: 1;
+        grid-row: 4;
+        width: min(100%, 16rem);
+        margin-top: 1.5rem;
+    }
+}
+
+/* --- Appointment chain ------------------------------------------------- */
+/* A two-object vertical under the section label: institution above, then me.
+   Same iolet convention as everywhere else. */
+
+.chain-patch {
+    display: none;
+}
+
+[data-chrome="on"] .current-work .section-label {
+    grid-row: 1;
+}
+
+[data-chrome="on"] .chain-patch {
+    --patch-gap: 22px;
+    display: grid;
+    justify-self: start;
+    grid-template-columns: max-content;
+    grid-template-rows: auto var(--patch-gap) auto;
+    gap: 0;
+}
+
+[data-chrome="on"] .chain-patch [data-patch="ch-a"] { grid-row: 1; }
+[data-chrome="on"] .chain-patch [data-cord="ch-ab"] { grid-row: 2; }
+[data-chrome="on"] .chain-patch [data-patch="ch-b"] { grid-row: 3; }
+
+[data-chrome="on"] .chain-patch .patch-cord {
+    display: block;
+    position: static;
+    width: 2px;
+    height: 100%;
+    justify-self: start;
+    margin-left: calc(var(--patch-nub-w) / 2 - 1px);
+    background: var(--patch-ink);
+}
+
+@media (min-width: 821px) {
+    [data-chrome="on"] .current-work > h2 {
+        grid-column: 2;
+        grid-row: 1;
+    }
+
+    [data-chrome="on"] .current-work > p:not(.section-label) {
+        grid-column: 2;
+        grid-row: 2;
+    }
+
+    [data-chrome="on"] .current-work .chain-patch {
+        grid-column: 1;
+        grid-row: 2;
+        align-self: start;
+    }
+}
+
+/* --- Project patch ----------------------------------------------------- */
+/* Four selected-project objects in a row, each with a lone outlet at x1.
+   Align Patch Cords wants a vertical when the sink's inlets share that x, so
+   [All projects] is a wide box whose inlets sit on the column left edges —
+   not Pd's even n=4 spacing, which would put inlet 3 on the right lip.
+   On tablets this becomes two vertical chains; on phones, one. */
+
+.project-all,
+.highlight-all {
+    display: none;
+}
+
+[data-chrome="on"] .project-copy {
+    display: block;
+    margin-bottom: 1.25rem;
+    padding: 0.95rem 1.3rem 1rem;
+    border: 1px solid var(--patch-line);
+    background: var(--surface);
+}
+
+[data-chrome="on"] .project-all-plain {
+    display: none;
+}
+
+[data-chrome="on"] .project-patch .project-grid {
+    grid-template-columns:
+        minmax(0, 1fr) var(--patch-gap)
+        minmax(0, 1fr) var(--patch-gap)
+        minmax(0, 1fr) var(--patch-gap)
+        minmax(0, 1fr);
+    grid-template-rows: auto var(--patch-gap) auto;
+    gap: 0;
+}
+
+[data-chrome="on"] .project-card[data-col="1"] { grid-column: 1; grid-row: 1; }
+[data-chrome="on"] .project-card[data-col="2"] { grid-column: 3; grid-row: 1; }
+[data-chrome="on"] .project-card[data-col="3"] { grid-column: 5; grid-row: 1; }
+[data-chrome="on"] .project-card[data-col="4"] { grid-column: 7; grid-row: 1; }
+[data-chrome="on"] .project-patch [data-cord="p1"] { grid-column: 1; grid-row: 2; }
+[data-chrome="on"] .project-patch [data-cord="p2"] { grid-column: 3; grid-row: 2; }
+[data-chrome="on"] .project-patch [data-cord="p3"] { grid-column: 5; grid-row: 2; }
+[data-chrome="on"] .project-patch [data-cord="p4"] { grid-column: 7; grid-row: 2; }
+[data-chrome="on"] .project-patch .project-all { grid-column: 1 / -1; grid-row: 3; }
+
+[data-chrome="on"] .project-patch .project-card {
+    position: relative;
+    min-height: 0;
+    padding: 0.95rem 1.3rem 1rem;
+    border: 1px solid var(--patch-line);
+    border-radius: 0;
+    background: var(--surface);
+    box-shadow: none;
+}
+
+[data-chrome="on"] .project-patch .patch-cord {
+    display: block;
+    position: static;
+    width: 2px;
+    height: 100%;
+    justify-self: start;
+    margin-left: calc(var(--patch-nub-w) / 2 - 1px);
+    background: var(--patch-ink);
+}
+
+[data-chrome="on"] .project-all {
+    position: relative;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    width: 100%;
+    min-height: 3rem;
+    margin-top: 0;
+    padding: 0.75rem 1.3rem;
+    border: 1px solid var(--patch-line);
+    background: var(--surface);
+    color: var(--heading);
+    font-family: var(--font-pixel);
+    font-size: 16px;
+    font-weight: 400;
+    letter-spacing: 0;
+    line-height: 1.4;
+    text-decoration: none;
+}
+
+[data-chrome="on"] .project-all:hover {
+    border-color: var(--accent);
+    background: var(--accent-soft);
+    color: var(--heading);
+}
+
+/* --- Highlight patch --------------------------------------------------- */
+/* Heading stays a heading. The four entries sit in a left-hand stack; All
+   publications sits to the right of the first, aligned at the top. Each
+   highlight has an outlet at x1; the sink has one inlet at x1. Align Patch
+   Cords is then a U: drop, run under the object into the gutter, ride the
+   gutter up the left of the sink to the inlet. No side iolets. Boring mode
+   keeps the dotted list and the heading link. */
+
+[data-chrome="on"] .highlight-all-plain {
+    display: none;
+}
+
+[data-chrome="on"] .highlight-stage {
+    display: grid;
+    grid-template-columns: minmax(0, 1fr) var(--patch-gap) max-content;
+    grid-template-rows: repeat(4, auto var(--patch-gap));
+    align-items: start;
+}
+
+[data-chrome="on"] .highlight-patch .highlight-list,
+[data-chrome="on"] .highlight-patch .highlight-list li {
+    display: contents;
+}
+
+[data-chrome="on"] .highlight-obj[data-hl="1"] { grid-column: 1; grid-row: 1; }
+[data-chrome="on"] .highlight-patch [data-cord="d1"] { grid-column: 1; grid-row: 2; }
+[data-chrome="on"] .highlight-patch [data-cord="r1"] { grid-column: 1 / 3; grid-row: 2; }
+[data-chrome="on"] .highlight-obj[data-hl="2"] { grid-column: 1; grid-row: 3; }
+[data-chrome="on"] .highlight-patch [data-cord="d2"] { grid-column: 1; grid-row: 4; }
+[data-chrome="on"] .highlight-patch [data-cord="r2"] { grid-column: 1 / 3; grid-row: 4; }
+[data-chrome="on"] .highlight-obj[data-hl="3"] { grid-column: 1; grid-row: 5; }
+[data-chrome="on"] .highlight-patch [data-cord="d3"] { grid-column: 1; grid-row: 6; }
+[data-chrome="on"] .highlight-patch [data-cord="r3"] { grid-column: 1 / 3; grid-row: 6; }
+[data-chrome="on"] .highlight-obj[data-hl="4"] { grid-column: 1; grid-row: 7; }
+[data-chrome="on"] .highlight-patch [data-cord="d4"] { grid-column: 1; grid-row: 8; }
+[data-chrome="on"] .highlight-patch [data-cord="r4"] { grid-column: 1 / 3; grid-row: 8; }
+
+[data-chrome="on"] .highlight-obj {
+    position: relative;
+    padding: 0.95rem 1.3rem 1rem;
+    border: 1px solid var(--patch-line);
+    background: var(--surface);
+}
+
+[data-chrome="on"] .highlight-list li::before {
+    content: none;
+    display: none;
+}
+
+[data-chrome="on"] .highlight-patch .patch-cord-y {
+    display: block;
+    position: static;
+    align-self: start;
+    width: 2px;
+    height: calc(50% + 1px);
+    justify-self: start;
+    margin-left: calc(var(--patch-nub-w) / 2 - 1px);
+    background: var(--patch-ink);
+}
+
+[data-chrome="on"] .highlight-patch .patch-cord-x {
+    display: block;
+    position: static;
+    align-self: center;
+    height: 2px;
+    margin-left: calc(var(--patch-nub-w) / 2 - 1px);
+    margin-right: calc(var(--patch-gap) / 2 - 1px);
+    background: var(--patch-ink);
+}
+
+[data-chrome="on"] .highlight-patch [data-cord="to-sink"] {
+    grid-column: 2;
+    grid-row: 1;
+    align-self: start;
+    justify-self: start;
+    width: calc((var(--patch-gap) / 2) + (var(--patch-nub-w) / 2));
+    height: 2px;
+    margin-top: -1px;
+    margin-left: calc(var(--patch-gap) / 2 - 1px);
+    margin-right: 0;
+}
+
+[data-chrome="on"] .highlight-patch .patch-cord-bus {
+    display: block;
+    position: static;
+    grid-column: 2;
+    grid-row: 1 / -1;
+    align-self: start;
+    justify-self: center;
+    width: 2px;
+    height: calc(100% - (var(--patch-gap) / 2) + 1px);
+    background: var(--patch-ink);
+}
+
+[data-chrome="on"] .highlight-all {
+    position: relative;
+    display: flex;
+    grid-column: 3;
+    grid-row: 1;
+    align-items: center;
+    justify-content: center;
+    align-self: start;
+    min-height: 3rem;
+    margin-top: 0;
+    padding: 0.75rem 1.3rem;
+    border: 1px solid var(--patch-line);
+    background: var(--surface);
+    color: var(--accent-strong);
+    font-family: var(--font-pixel);
+    font-size: 16px;
+    font-weight: 400;
+    letter-spacing: 0;
+    line-height: 1.4;
+    text-decoration: none;
+    white-space: nowrap;
+}
+
+[data-chrome="on"] .highlight-all:hover {
+    border-color: var(--accent);
+    background: var(--accent-soft);
+    color: var(--accent-strong);
+    text-decoration: underline;
+}
+
+/* Tablet: two vertical chains feed two inlets on the shared sink. */
+@media (max-width: 900px) {
+    [data-chrome="on"] .project-patch .project-grid {
+        grid-template-columns:
+            minmax(0, 1fr) var(--patch-gap)
+            minmax(0, 1fr);
+        grid-template-rows:
+            auto var(--patch-gap)
+            auto var(--patch-gap)
+            auto;
+    }
+
+    [data-chrome="on"] .project-card[data-col="1"] { grid-column: 1; grid-row: 1; }
+    [data-chrome="on"] .project-patch [data-cord="p1"] { grid-column: 1; grid-row: 2; }
+    [data-chrome="on"] .project-card[data-col="2"] { grid-column: 3; grid-row: 1; }
+    [data-chrome="on"] .project-patch [data-cord="p2"] { grid-column: 3; grid-row: 2; }
+    [data-chrome="on"] .project-card[data-col="3"] { grid-column: 1; grid-row: 3; }
+    [data-chrome="on"] .project-patch [data-cord="p3"] { grid-column: 1; grid-row: 4; }
+    [data-chrome="on"] .project-card[data-col="4"] { grid-column: 3; grid-row: 3; }
+    [data-chrome="on"] .project-patch [data-cord="p4"] { grid-column: 3; grid-row: 4; }
+    [data-chrome="on"] .project-patch .project-all { grid-column: 1 / -1; grid-row: 5; }
+}
+
+/* Phone: projects and highlights become continuous vertical signal paths. */
+@media (max-width: 620px) {
+    [data-chrome="on"] .project-patch .project-grid {
+        grid-template-columns: minmax(0, 1fr);
+        grid-template-rows:
+            auto var(--patch-gap)
+            auto var(--patch-gap)
+            auto var(--patch-gap)
+            auto var(--patch-gap)
+            auto;
+    }
+
+    [data-chrome="on"] .project-card[data-col="1"] { grid-column: 1; grid-row: 1; }
+    [data-chrome="on"] .project-patch [data-cord="p1"] { grid-column: 1; grid-row: 2; }
+    [data-chrome="on"] .project-card[data-col="2"] { grid-column: 1; grid-row: 3; }
+    [data-chrome="on"] .project-patch [data-cord="p2"] { grid-column: 1; grid-row: 4; }
+    [data-chrome="on"] .project-card[data-col="3"] { grid-column: 1; grid-row: 5; }
+    [data-chrome="on"] .project-patch [data-cord="p3"] { grid-column: 1; grid-row: 6; }
+    [data-chrome="on"] .project-card[data-col="4"] { grid-column: 1; grid-row: 7; }
+    [data-chrome="on"] .project-patch [data-cord="p4"] { grid-column: 1; grid-row: 8; }
+    [data-chrome="on"] .project-patch .project-all { grid-column: 1; grid-row: 9; }
+
+    [data-chrome="on"] .highlight-stage {
+        grid-template-columns: minmax(0, 1fr);
+        grid-template-rows:
+            auto var(--patch-gap)
+            auto var(--patch-gap)
+            auto var(--patch-gap)
+            auto var(--patch-gap)
+            auto;
+    }
+
+    [data-chrome="on"] .highlight-obj[data-hl="1"] { grid-column: 1; grid-row: 1; }
+    [data-chrome="on"] .highlight-patch [data-cord="d1"] { grid-column: 1; grid-row: 2; }
+    [data-chrome="on"] .highlight-obj[data-hl="2"] { grid-column: 1; grid-row: 3; }
+    [data-chrome="on"] .highlight-patch [data-cord="d2"] { grid-column: 1; grid-row: 4; }
+    [data-chrome="on"] .highlight-obj[data-hl="3"] { grid-column: 1; grid-row: 5; }
+    [data-chrome="on"] .highlight-patch [data-cord="d3"] { grid-column: 1; grid-row: 6; }
+    [data-chrome="on"] .highlight-obj[data-hl="4"] { grid-column: 1; grid-row: 7; }
+    [data-chrome="on"] .highlight-patch [data-cord="d4"] { grid-column: 1; grid-row: 8; }
+
+    [data-chrome="on"] .highlight-patch .patch-cord-y {
+        height: 100%;
+    }
+
+    [data-chrome="on"] .highlight-patch .patch-cord-x,
+    [data-chrome="on"] .highlight-patch .patch-cord-bus,
+    [data-chrome="on"] .highlight-patch [data-cord="to-sink"] {
+        display: none;
+    }
+
+    [data-chrome="on"] .highlight-all {
+        grid-column: 1;
+        grid-row: 9;
+        width: 100%;
+    }
+}
+
+/* --- Contact patch ----------------------------------------------------- */
+/* Pd (glist_drawiofor in g_text.c) puts inlets on the top edge and outlets
+   on the bottom; cords always run outlet → inlet. Vanilla Pd draws a straight
+   line between those two points. Max Align Patch Cords turns a messy run into
+   orthogonal segments and prefers objects that already share an x, so the
+   cord is a vertical. The copy is a two-outlet source above a 2×2, outlets
+   lined up with the columns, every cord a straight drop. Boring mode keeps
+   the navy panel. */
+
+.patch-nubs {
+    display: none;
+}
+
+[data-chrome="on"] .contact-panel {
+    display: flex;
+    flex-direction: column;
+    align-items: stretch;
+    gap: 0;
+    padding: 0;
+    border-radius: 0;
+    background: transparent;
+    color: var(--text);
+}
+
+[data-chrome="on"] .contact-panel h2,
+[data-chrome="on"] .contact-panel .section-label {
+    color: var(--heading);
+}
+
+[data-chrome="on"] .contact-panel p {
+    color: var(--text-muted);
+}
+
+[data-chrome="on"] .contact-copy {
+    position: relative;
+    padding: 0.95rem 1.3rem 1rem;
+    border: 1px solid var(--patch-line);
+    background: var(--surface);
+}
+
+[data-chrome="on"] .contact-links {
+    display: grid;
+    grid-template-columns: minmax(0, 1fr) var(--patch-gap) minmax(0, 1fr);
+    grid-template-rows: var(--patch-gap) auto var(--patch-gap) auto;
+    gap: 0;
+    margin-top: 0;
+}
+
+[data-chrome="on"] .contact-links .patch-cord {
+    display: block;
+    position: static;
+    width: 2px;
+    height: 100%;
+    justify-self: start;
+    /* Centre on the left-edge nub; Pd places a lone inlet at x1 (g_text.c). */
+    margin-left: calc(var(--patch-nub-w) / 2 - 1px);
+    background: var(--patch-ink);
+}
+
+[data-chrome="on"] .contact-links [data-cord="src-tl"] { grid-column: 1; grid-row: 1; }
+[data-chrome="on"] .contact-links [data-cord="src-tr"] { grid-column: 3; grid-row: 1; }
+[data-chrome="on"] .contact-links [data-patch="tl"] { grid-column: 1; grid-row: 2; }
+[data-chrome="on"] .contact-links [data-patch="tr"] { grid-column: 3; grid-row: 2; }
+[data-chrome="on"] .contact-links [data-cord="tl-bl"] { grid-column: 1; grid-row: 3; }
+[data-chrome="on"] .contact-links [data-cord="tr-br"] { grid-column: 3; grid-row: 3; }
+[data-chrome="on"] .contact-links [data-patch="bl"] { grid-column: 1; grid-row: 4; }
+[data-chrome="on"] .contact-links [data-patch="br"] { grid-column: 3; grid-row: 4; }
+
+[data-chrome="on"] .contact-links .button {
+    position: relative;
+    width: 100%;
+    min-height: 3rem;
+    border-color: var(--patch-line);
+    border-radius: 0;
+}
+
+[data-chrome="on"] .contact-links .button:hover {
+    transform: none;
+}
+
+[data-chrome="on"] .contact-panel .button-secondary {
+    border-color: var(--patch-line);
+    background: var(--surface);
+    color: var(--heading);
+}
+
+[data-chrome="on"] .contact-panel .button-secondary:hover {
+    border-color: var(--accent);
+    background: var(--accent-soft);
+    color: var(--heading);
+}
+
+[data-chrome="on"] .patch-nubs {
+    display: block;
+}
+
+[data-chrome="on"] .patch-nub {
+    position: absolute;
+    display: none;
+    background: var(--patch-ink);
+}
+
+[data-chrome="on"] .patch-nub-n,
+[data-chrome="on"] .patch-nub-n1,
+[data-chrome="on"] .patch-nub-n2,
+[data-chrome="on"] .patch-nub-n3 {
+    top: -1px;
+    left: 0;
+    width: var(--patch-nub-w);
+    height: 3px;
+}
+
+[data-chrome="on"] .patch-nub-s,
+[data-chrome="on"] .patch-nub-s2 {
+    bottom: -1px;
+    left: 0;
+    width: var(--patch-nub-w);
+    height: 3px;
+}
+
+/* Extra iolets sit on the column left edges so Align Patch Cords is a
+   vertical. Column i of a 4-col 1fr/gap grid starts at i * (100% + gap) / 4.
+   Contact's second outlet is the same arithmetic for two columns. */
+[data-chrome="on"] .patch-nub-s2,
+[data-chrome="on"] .patch-nub-n2 {
+    left: calc((100% + var(--patch-gap)) / 2);
+}
+
+[data-chrome="on"] .patch-nub-n1 {
+    left: calc((100% + var(--patch-gap)) / 4);
+}
+
+[data-chrome="on"] .patch-nub-n3 {
+    left: calc(3 * (100% + var(--patch-gap)) / 4);
+}
+
+[data-chrome="on"] [data-patch="ch-a"] .patch-nub-s,
+[data-chrome="on"] [data-patch="ch-b"] .patch-nub-n,
+[data-chrome="on"] .highlight-obj .patch-nub-s,
+[data-chrome="on"] [data-patch="hl-sink"] .patch-nub-n {
+    display: block;
+}
+[data-chrome="on"] [data-patch="wp-a"] .patch-nub-s,
+[data-chrome="on"] [data-patch="wp-b"] .patch-nub-s,
+[data-chrome="on"] [data-patch="wp-c"] .patch-nub-n,
+[data-chrome="on"] [data-patch="wp-c"] .patch-nub-s,
+[data-chrome="on"] [data-patch="wp-d"] .patch-nub-n,
+[data-chrome="on"] [data-patch="wp-d"] .patch-nub-s,
+[data-chrome="on"] [data-patch="wp-sink"] .patch-nub-n,
+[data-chrome="on"] [data-patch="wp-sink"] .patch-nub-n1 {
+    display: block;
+}
+[data-chrome="on"] [data-patch="src"] .patch-nub-s,
+[data-chrome="on"] [data-patch="src"] .patch-nub-s2,
+[data-chrome="on"] [data-patch="head"] .patch-nub-s,
+[data-chrome="on"] .trajectory-compact li .patch-nub-n,
+[data-chrome="on"] .trajectory-compact li:not(:last-child) .patch-nub-s,
+[data-chrome="on"] [data-patch="proj"] .patch-nub-s,
+[data-chrome="on"] [data-patch="sink"] .patch-nub-n,
+[data-chrome="on"] [data-patch="sink"] .patch-nub-n1,
+[data-chrome="on"] [data-patch="sink"] .patch-nub-n2,
+[data-chrome="on"] [data-patch="sink"] .patch-nub-n3,
+[data-chrome="on"] [data-patch="tl"] .patch-nub-n,
+[data-chrome="on"] [data-patch="tl"] .patch-nub-s,
+[data-chrome="on"] [data-patch="tr"] .patch-nub-n,
+[data-chrome="on"] [data-patch="tr"] .patch-nub-s,
+[data-chrome="on"] [data-patch="bl"] .patch-nub-n,
+[data-chrome="on"] [data-patch="br"] .patch-nub-n {
+    display: block;
+}
+
+@media (max-width: 900px) {
+    [data-chrome="on"] [data-patch="proj"][data-col="3"] .patch-nub-n,
+    [data-chrome="on"] [data-patch="proj"][data-col="4"] .patch-nub-n {
+        display: block;
+    }
+
+    [data-chrome="on"] [data-patch="sink"] .patch-nub-n1,
+    [data-chrome="on"] [data-patch="sink"] .patch-nub-n3 {
+        display: none;
+    }
+}
+
+@media (max-width: 620px) {
+    [data-chrome="on"] [data-patch="proj"]:not([data-col="1"]) .patch-nub-n,
+    [data-chrome="on"] .highlight-obj:not([data-hl="1"]) .patch-nub-n {
+        display: block;
+    }
+
+    [data-chrome="on"] [data-patch="sink"] .patch-nub-n2 {
+        display: none;
+    }
+}
+
+@media print {
+    .patch-cord { display: none !important; }
+    .patch-nubs { display: none !important; }
+    .word-patch { display: none !important; }
+    .chain-patch { display: none !important; }
+}
+
+@media (prefers-reduced-motion: reduce) {
+    .zx-tape { animation: none; }
+}
+
+@media print {
+    .zx-border { display: none !important; }
+}

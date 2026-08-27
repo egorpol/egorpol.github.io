@@ -3,22 +3,23 @@ layout: null
 ---
 <?xml version="1.0" encoding="UTF-8"?>
 <urlset xmlns="http://www.sitemaps.org/schemas/sitemap/0.9">
-  {% for post in site.posts %}
+{%- for node in site.html_pages -%}
+{%- unless node.sitemap == false or node.url == '/404.html' %}
   <url>
-    <loc>{{ site.url }}{{ post.url }}</loc>
-    <lastmod>{{ post.date | date_to_xmlschema }}</lastmod>
+    <loc>{{ node.url | absolute_url }}</loc>
     <changefreq>monthly</changefreq>
-    <priority>0.8</priority>
+    <priority>{% if node.url == '/' %}1.0{% elsif node.url == '/cv/' %}0.9{% else %}0.8{% endif %}</priority>
   </url>
-  {% endfor %}
-  {% for page in site.pages %}
-    {% if page.layout != null and page.layout != 'feed' %}
+{%- endunless -%}
+{%- endfor -%}
+{%- for post in site.posts -%}
+{%- unless post.sitemap == false %}
   <url>
-    <loc>{{ site.url }}{{ page.url }}</loc>
-    <lastmod>{{ site.time | date_to_xmlschema }}</lastmod>
-    <changefreq>monthly</changefreq>
+    <loc>{{ post.url | absolute_url }}</loc>
+    <lastmod>{{ post.date | date_to_xmlschema }}</lastmod>
+    <changefreq>yearly</changefreq>
     <priority>0.6</priority>
   </url>
-    {% endif %}
-  {% endfor %}
+{%- endunless -%}
+{%- endfor %}
 </urlset>

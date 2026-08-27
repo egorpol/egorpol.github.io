@@ -1,26 +1,26 @@
 ---
 layout: page
 title: Curriculum Vitae
-description: "CV of Egor Polyakov — computational musicology, AI for music, symbolic/audio analysis, teaching, open-source."
+description: "CV of Egor Polyakov — composition, electronic music practice, computational musicology, research software, teaching, and artistic-technical realisation."
 permalink: /cv/
-image: /avatar.png
 breadcrumb:
   - title: CV
-    url: /cv/
 structured_data:
   '@context': 'https://schema.org'
   '@type': 'CreativeWork'
-  name: 'Curriculum Vitae - Egor Polyakov'
-  description: 'Detailed professional curriculum vitae of Egor Polyakov, computational musicologist and postdoctoral researcher'
+  name: 'Curriculum Vitae — Egor Polyakov'
+  description: 'Professional curriculum vitae of Egor Polyakov, computational musicologist and postdoctoral researcher.'
   creator:
     '@type': 'Person'
     name: 'Egor Polyakov'
     url: 'https://egorpol.github.io'
-    sameAs: 'https://github.com/egorpol'
+    sameAs:
+      - 'https://orcid.org/0000-0003-0913-0429'
+      - 'https://github.com/egorpol'
   url: 'https://egorpol.github.io/cv/'
   genre: 'CurriculumVitae'
   inLanguage: 'en'
-  dateCreated: '2025'
+  dateModified: '2026-07-22'
   about:
     '@type': 'Person'
     name: 'Egor Polyakov'
@@ -28,158 +28,206 @@ structured_data:
     worksFor:
       '@type': 'Organization'
       name: 'University of Music FRANZ LISZT Weimar'
-    knowsAbout:
-      - 'Computational Musicology'
-      - 'Machine Learning'
-      - 'Audio Analysis'
-      - 'Symbolic Music Analysis'
-      - 'Python Programming'
 ---
+{% assign cv = site.data.cv %}
 
-# Curriculum Vitae
+<div class="cv-page">
+  <header class="cv-intro">
+    <p class="eyebrow">Academic curriculum vitae</p>
+    <h1>Egor Polyakov</h1>
+    <p class="cv-role">{{ cv.job_title }} · {{ cv.affiliation }}</p>
+    <p class="lead">{{ cv.profile }}</p>
+    <div class="cv-actions">
+      <a class="button button-primary" href="{{ cv.pdf.path | relative_url }}" download="{{ cv.pdf.filename }}">Download PDF</a>
+      <a class="button button-secondary" href="mailto:{{ cv.contact.email }}">Email</a>
+    </div>
+  </header>
 
-## Profile
+  <section class="trajectory-section" aria-labelledby="trajectory-title">
+    <p class="section-label">Practice-to-research trajectory</p>
+    <h2 id="trajectory-title">A map of my professional development</h2>
+    <ol class="trajectory-grid">
+      {% for item in cv.trajectory %}
+      <li>
+        <span class="trajectory-index">0{{ forloop.index }}</span>
+        <strong>{{ item.stage }}</strong>
+        <p>{{ item.text }}</p>
+      </li>
+      {% endfor %}
+    </ol>
+  </section>
 
-Postdoctoral researcher in computational musicology focusing on audio and symbolic score analysis spanning popular and electroacoustic repertoires. Expertise in Python toolchains, machine-learning methods, and notebook-driven, reproducible research. Proven track record in third-party funding (DFG), university teaching, and technically informed artistic practice.
+  <nav class="cv-toc" aria-label="CV sections">
+    <a href="#experience">Experience</a>
+    <a href="#career-context">Context</a>
+    <a href="#funding">Funding</a>
+    <a href="#teaching">Teaching</a>
+    <a href="#education">Education</a>
+    <a href="#publications">Publications</a>
+    <a href="#talks">Talks</a>
+  </nav>
 
-## Core Competencies
+  <section class="cv-section" aria-labelledby="competencies-title">
+    <h2 id="competencies-title">Integrated Competencies</h2>
+    <dl class="competency-grid">
+      {% for item in cv.competencies %}
+      <div>
+        <dt>{{ item.label }}</dt>
+        <dd>{{ item.text }}</dd>
+      </div>
+      {% endfor %}
+    </dl>
+  </section>
 
-- **Analytical stack:** Python (NumPy, SciPy, pandas, scikit-learn, Jupyter, music21, librosa, PyTorch) · Lisp (OpenMusic).
-- **Symbolic music analysis:** Statistical and corpus-based analysis.
-- **AI-supported analysis:** Timbre, rhythm, and structure; audio embeddings; PyTorch-based modelling; generative models.
-- **Audio analysis and production:** Ableton Live, Logic Pro, Max/MSP, Sonic Visualiser; studio supervision; front-of-house support for electroacoustic projects.
-- **Research transfer:** Open science (Git/GitHub), reproducible notebooks, curriculum design, cross-institutional collaborations.
-- **University teaching:** Course design, research-led teaching, student project supervision.
-- **Research IT:** Docker · CI/CD · cloud services.
+  <section class="cv-section" id="experience" aria-labelledby="experience-title">
+    <h2 id="experience-title">Professional Experience</h2>
+    {% for job in cv.experience %}
+    <article class="cv-entry">
+      <div class="cv-entry-date">{{ job.dates }}</div>
+      <div class="cv-entry-body">
+        <h3>{{ job.role }}</h3>
+        <p class="cv-organisation">{{ job.org }} · {{ job.location }}</p>
+        <ul>
+          {% for bullet in job.bullets %}
+          <li>{{ bullet | markdownify | remove: '<p>' | remove: '</p>' }}</li>
+          {% endfor %}
+        </ul>
+      </div>
+    </article>
+    {% endfor %}
+  </section>
 
-## Professional Experience
+  <section class="cv-section" id="career-context" aria-labelledby="career-context-title">
+    <h2 id="career-context-title">Career Context</h2>
+    <article class="cv-entry cv-entry-compact">
+      <div class="cv-entry-date">{{ cv.career_context.dates }}</div>
+      <div class="cv-entry-body">
+        <p>{{ cv.career_context.text }}</p>
+      </div>
+    </article>
+  </section>
 
-### Postdoctoral Researcher - University of Music FRANZ LISZT Weimar (2025–present)
+  <section class="cv-section" id="funding" aria-labelledby="funding-title">
+    <h2 id="funding-title">Externally Funded Projects</h2>
+    {% for grant in cv.funding %}
+    <article class="cv-entry cv-entry-compact">
+      <div class="cv-entry-date">{{ grant.dates }}</div>
+      <div class="cv-entry-body">
+        <h3>{{ grant.title }}</h3>
+        <p>{{ grant.text }}</p>
+      </div>
+    </article>
+    {% endfor %}
+  </section>
 
-- Scientific conception and execution of the DFG project *Development of a Comprehensive Cloud-Based Toolbox for Sheet Music Analysis* (co-applicant with Prof. Dr. Martin Pfleiderer).
-- Project coordination and team leadership: supervision of doctoral candidates and student assistants; alignment of research goals and deliverables.
-- Methods and tooling development: Python workflows for MEI/MusicXML analytics; mei-friend enhancements for OMR corpora; packaging and delivery via Jupyter4NFDI; interactive score representation with MEI/Verovio.
-- Contribution to national research infrastructure and transfer to teaching.
+  <section class="cv-section" id="teaching" aria-labelledby="teaching-title">
+    <h2 id="teaching-title">Teaching</h2>
+    <p>{{ cv.teaching.summary }}</p>
+    <h3 class="cv-subheading">Selected courses</h3>
+    <ul class="dated-list">
+      {% for item in cv.teaching.items %}
+      <li><span>{{ item.term }}</span><div><strong>{{ item.title }}</strong><br>{{ item.detail }}</div></li>
+      {% endfor %}
+    </ul>
+  </section>
 
-### Researcher and Artistic Associate - University of Music and Theatre Leipzig (2013–2025)
+  <section class="cv-section" id="education" aria-labelledby="education-title">
+    <h2 id="education-title">Education</h2>
+    {% for ed in cv.education %}
+    <article class="cv-entry cv-entry-compact">
+      <div class="cv-entry-date">{{ ed.dates }}</div>
+      <div class="cv-entry-body">
+        <h3>{{ ed.degree }}</h3>
+        <p class="cv-organisation">{{ ed.org }}</p>
+        <p>{{ ed.detail }}</p>
+      </div>
+    </article>
+    {% endfor %}
+  </section>
 
-- Teaching: independent design and delivery of seminars in computer-assisted analysis, AI for musicology, popular and electronic music, and electroacoustics.
-- Coordination and supervision of the electroacoustic studio; support for numerous student productions; maintenance of live-electronics hardware/software.
-- Broad research profile: conception and development of computer-assisted methods — from audio synthesis (FFTimbre) and visualisation (AudioSpylt) to AI-assisted analysis — applied to a wide range of repertoires.
+  <section class="cv-section" id="publications" aria-labelledby="publications-title">
+    <h2 id="publications-title">Publications</h2>
+    <ol class="publication-list">
+      {% for pub in cv.publications.published %}
+      <li>{{ pub.citation | markdownify | remove: '<p>' | remove: '</p>' }}{% if pub.doi %} <a href="{{ pub.doi }}" target="_blank" rel="noopener noreferrer">DOI <span aria-hidden="true">↗</span></a>{% elsif pub.url %} <a href="{{ pub.url }}" target="_blank" rel="noopener noreferrer">Publisher <span aria-hidden="true">↗</span></a>{% endif %}</li>
+      {% endfor %}
+    </ol>
 
-### Research Associate - University of Music FRANZ LISZT Weimar (2021–2022)
+    {% if cv.publications.in_press.size > 0 %}
+    <h3 class="cv-subheading">In Press / Accepted</h3>
+    <ul class="publication-list">
+      {% for pub in cv.publications.in_press %}
+      <li>{{ pub.citation | markdownify | remove: '<p>' | remove: '</p>' }}</li>
+      {% endfor %}
+    </ul>
+    {% endif %}
 
-- Research and teaching pilots for the CAMAT toolbox; coordination of evaluation with faculty and students; workshops on computational score analysis and curricular transfer.
+    {% if cv.publications.under_review.size > 0 %}
+    <h3 class="cv-subheading">Under Review</h3>
+    <ul class="publication-list">
+      {% for pub in cv.publications.under_review %}
+      <li>{{ pub.citation | markdownify | remove: '<p>' | remove: '</p>' }}</li>
+      {% endfor %}
+    </ul>
+    {% endif %}
+  </section>
 
-## External Funding
+  <section class="cv-section" id="talks" aria-labelledby="talks-title">
+    <h2 id="talks-title">Selected Talks and Conferences</h2>
+    <ul class="dated-list talks-list">
+      {% for talk in cv.talks %}
+      <li>
+        <span>{{ talk.year }}{% if talk.status %}<small>{{ talk.status }}</small>{% endif %}</span>
+        <div><strong>{{ talk.kind }}:</strong> “{{ talk.title }}”<br>{{ talk.venue }}{% if talk.note %} · {{ talk.note }}{% endif %}</div>
+      </li>
+      {% endfor %}
+    </ul>
+  </section>
 
-- **2025–2028:** DFG grant (€443,458) for the project *Development of a Comprehensive Cloud-Based Toolbox for Sheet Music Analysis*; scientific lead and co‑applicant (with Prof. Dr. Martin Pfleiderer).
+  <section class="cv-section cv-secondary" aria-labelledby="practice-title">
+    <h2 id="practice-title">Artistic and Technical Practice</h2>
+    <h3 class="cv-subheading">Selected support and production</h3>
+    <ul class="dated-list">
+      {% for item in cv.artistic_support %}
+      <li><span>{{ item.year }}</span><div><strong>{{ item.title }}</strong> ({{ item.artists }})<br>{{ item.role | capitalize }} · {{ item.venue }}</div></li>
+      {% endfor %}
+    </ul>
 
-## Teaching Highlights
+    <h3 class="cv-subheading">Selected artistic works</h3>
+    <ul class="dated-list">
+      {% for work in cv.artistic_works %}
+      <li><span>{{ work.year }}</span><div><strong>{{ work.title }}</strong> · {{ work.detail }}</div></li>
+      {% endfor %}
+    </ul>
 
-- *Hearing (and analyzing) in time* — Groove and metric analysis in electronic music (SS 2025).
-- *Algorithmic music models: from analysis to style transfer with Python/AI* — Probabilistic and machine-learning techniques (WS 2024/25).
-- *AI and statistical analysis in musicological research* — Score and audio pipelines with machine learning (WS 2023/24).
-- *From track to DJ set, from sample to live performance* — Macroform concepts in popular electronic music (SS 2023).
-- *Electroacoustic Music I and II* — Annual foundational seminar (2013–2025) covering acoustics, digital production, and live-electronics practice.
+    <h3 class="cv-subheading">Electronic music releases</h3>
+    <ul class="dated-list">
+      {% for rel in cv.releases %}
+      <li><span>{{ rel.year }}</span><div><strong>{{ rel.artist }} — {{ rel.title }}</strong><br>{{ rel.label }}</div></li>
+      {% endfor %}
+    </ul>
+  </section>
 
-## Education
+  <section class="cv-section cv-footer-grid" aria-label="Additional information">
+    <div>
+      <h2>Memberships</h2>
+      <ul>
+        {% for m in cv.memberships %}
+        <li><a href="{{ m.url }}" target="_blank" rel="noopener noreferrer">{{ m.name }}</a> · since {{ m.since }}</li>
+        {% endfor %}
+      </ul>
+    </div>
+    <div>
+      <h2>Languages</h2>
+      <ul>
+        {% for lang in cv.languages %}
+        <li>{{ lang.language }} · {{ lang.level }}</li>
+        {% endfor %}
+      </ul>
+    </div>
+  </section>
 
-- **PhD in Musicology (Dr. phil.)**, University of Music and Theatre “Felix Mendelssohn Bartholdy” Leipzig (HMT Leipzig), 2018 — Dissertation on computer-based analysis and visualisation of music; supervisors: Prof. Dr. Gesine Schröder and Prof. Dr. Martin Supper.
-- **Master of Music in Composition/Electroacoustic Music**, State University of Music and Performing Arts Stuttgart (HMDK Stuttgart), 2014 — Prof. Marco Stroppa.
-- **Postgraduate Artist Diploma (Meisterklasse) in Electroacoustic Music**, University of Music and Theatre “Felix Mendelssohn Bartholdy” Leipzig (HMT Leipzig), 2013 — Prof. Ipke Starke.
-- **Diploma in Composition**, University of Music and Theatre “Felix Mendelssohn Bartholdy” Leipzig (HMT Leipzig), 2010 — Profs. Peter Herrmann and Ipke Starke.
-
-## Publications
-
-- Polyakov, E. (2025). *Encoding the New Frontier: Adapting MEI and Verovio for Post-Tonal and Spectral Notations*. Music Encoding Conference 2025 Book of Abstracts. DOI: 10.17613/20s0d-gq678.
-- Pfleiderer, M.; Polyakov, E.; Nadar, C. (2024). *Analyze! Development and integration of software-based tools for musicology and music theory*. In: Innovation in Music: Technology and Creativity. Routledge.
-- Polyakov, E. (2021). Articles on George Crumb, loudspeaker orchestras, orchestras and new media, and recording technology. In: *Lexikon des Orchesters*. Laaber-Verlag.
-- Polyakov, E. (2020). *Computerbasierte Analyse und visuelle Repräsentationsformen der Musik*. Dissertation, University of Music and Theatre Leipzig.
-- Polyakov, E. (2019). “Immer ungenau und mangelhaft.” In: Proceedings of ‘Rimsky-Korsakov at 175’. St. Petersburg.
-
-## In Press / Accepted
-
-- Polyakov, E. (forthcoming). “Exploration of Timbre by Analysis and Synthesis Using Python, Ableton, and Large Language Models.” In: Proceedings of Innovation in Music 2024. Routledge.
-- Polyakov, E. (forthcoming). “Evaluation of Modern Computer-Aided Sheet Music Analysis Methods in a Practical Context.” In: GMTH Proceedings.
-- Polyakov, E. (forthcoming). “Understanding and Emulating Time: Analyzing and Simulating Musical Microrhythm Timing with the beat_it Toolbox.” In: Proceedings of Innovation in Music 2025. Routledge.
-
-## Talks and Conferences
-
-- 2026 (accepted) — Talk: “Beyond the Black Box: Democratizing Musical Analysis and Creative Workflows via LLM-Empowered Cloud-Based Jupyter Setups,” InMusic26, Aalborg, Denmark, 18–20 June 2026.
-- 2026 (accepted) — Poster/Demo: “Bridging Algorithmic Power and Visual Interactivity: A Hybrid Python–MEI Workflow Using CAMAT and mei-friend,” MEC2026, Tokyo, Japan, 26–29 May 2026.
-
-- 2025 — Talk: “How Machines Listen,” 25th Annual Congress of the Society for Music Theory (GMTH), Lübeck, 17–19 October 2025.
-- 2025 — Symposium organisation: “Challenges of Computer-Assisted Score Analysis,” Society for Music Research (GfM) annual conference, Weimar, 6–9 October 2025.
-- 2025 — Talk: “Binary score representations — an interactive method for motif, chord, function, and texture search in symbolic score representations,” GfM annual conference, Weimar, 6–9 October 2025.
-- 2025 — Talk: “Understanding and Emulating Time: Analyzing and Simulating Musical Microrhythm Timing with the beat_it Toolbox,” Innovation in Music 2025, Bath (UK), 20–22 June 2025.
-- 2025 — Poster: “Encoding the New Frontier: Adapting MEI and Verovio for Post-Tonal and Spectral Notations,” Music Encoding Conference 2025, London, 3–6 June 2025.
-- 2024 — Workshop: “AI for Music Theory,” 24th Annual Congress of the Society for Music Theory (GMTH), Cottbus, 4–6 October 2024.
-- 2024 — Talk: “How Constant Is Your Beat? Computer-Assisted Analysis of Beat and Tempo Fluctuations from Acousmatic Music to Minimal Techno with the beat_it Toolbox,” Rhythm under the Microscope: Microrhythm and Groove in Popular Music, mdw Vienna, 25–27 September 2024.
-- 2024 — Talk: “Exploring Electroacoustic Music Analysis with Multimodal Large Language Models,” GfM annual conference, HfM Cologne, 11–14 September 2024.
-- 2023 — Talk: “Reconstruct and Decompose: Extracting and Sonifying Rhythmic, Melodic and Spectral Patterns for Analytical and Creative Use,” GMTH annual conference, Freiburg, 22–24 September 2023.
-- 2022 — Workshop: “Evaluation of computer-assisted music score analysis methods within the Fellowship project Computer-assisted music analysis at music university Weimar,” GMTH annual conference, Salzburg, 30 September–2 October 2022.
-- 2022 — Talk: “Analyze! Development and integration of software-based tools for musicological and music theoretical needs,” Innovation in Music Conference 2022, Stockholm, 17–19 June 2022. (with M. Pfleiderer and C. Nadar)
-- 2019 — Talk: “Immer ungenau und mangelhaft — description of instrumental tone colours in Rimsky-Korsakov’s ‘Principles of Orchestration’ in the context of current developments in computer-based timbre analysis,” Rimsky-Korsakov at 175, St. Petersburg, 18–21 March 2019.
-- 2017 — Talk: “Self-similarity matrix in the context of computer-based timbre analysis and its use in teaching,” Symposium: Popular Music and its Theories, GMTH annual congress, Graz, 17–19 November 2017.
-
-## Artistic and Technical Support (Selection)
-
-- 2018 — *die maschine steht still* (Johanna Wokalek, Fabian Russ). Role: live electronics realisation, stem mastering. Premiere: Futurium Berlin.
-- 2017 — *Black is the Colour* (Fabian Russ). Role: restoration and mastering for CD and online release. Label: Neue Meister (Edel).
-- 2016 — *Fuer Tuba mit Hegel* (Georg Katzer). Role: rehearsal, live electronics, restoration. Performance: University of Music and Theatre Leipzig.
-- 2015 — *Butterfly under glass* (Fabian Russ, Laurie Young, Frieder Weiss). Role: live electronics and stem mastering. Premiere: Scala Esslingen.
-- 2015 — *Harmonia Mundi* (Fabian Russ). Role: live electronics realisation, stem mastering. Premiere: Montforthaus Feldkirch.
-- 2013 — *Inside Partita* (Folkert Uhde, Midori Seiler, Fabian Russ). Role: live electronics realisation, stem mastering. Premiere: St. Elisabethkirche, Berlin.
-- 2009 — *Utopia* (Thomas Kessler). Role: rehearsal and technical assistance. Premiere: Viehauktionshalle Weimar.
-
-## Artistic Works (Selection)
-
-- 2013 — “Core v2” for oboe, English horn, and 8-channel live electronics.
-- 2012 — “Manuals” for Paetzold recorder quartet and 4-channel live electronics.
-- 2011 — “Core v1” for oboe, English horn, and 4-channel live electronics.
-- 2011 — “Stereo-Type II” for 2-channel tape.
-- 2010 — “Stereo-Type” for 2-channel tape.
-- 2009 — “Double Helix” for oboe, cello, and 4-channel live electronics.
-- 2008 — “Schrittmacher,” 4-channel sound installation.
-
-## Releases (Electronic Music)
-
-- 2009 — Two Unknown Guys — “Swirl Planet EP,” Ornithopter Records (OR 005).
-- 2008 — Two Unknown Guys — “The Rubber Duck Massacre EP,” Sinergy Networks (SN056).
-
-## Professional Memberships
-
-- [Gesellschaft für Musiktheorie (GMTH)](https://www.gmth.de){:target='_blank'} — member since 2016.
-- [Deutsche Gesellschaft für Elektroakustische Musik (DEGEM)](https://www.degem.de){:target='_blank'} — member since 2018.
-- [Gesellschaft für Musikforschung (GfM)](https://www.musikforschung.de){:target='_blank'} — member since 2024.
-
-## Personal Details
-
-- Born 17 June 1984 in Bakhmut (formerly Artyomovsk), Ukraine.
-- Married; two children.
-
-## Languages
-
-- German — professional fluency.
-- English — professional fluency.
-- Russian — native speaker.
-
-## Contact
-
-<div class="contact-buttons">
-    <a class="contact-button" href="mailto:egor.polyakov@hfm-weimar.de">
-        <i class="fas fa-envelope"></i>
-        Email
-    </a>
-    <a class="contact-button" href="https://github.com/egorpol" target="_blank" rel="noopener">
-        <i class="fab fa-github"></i>
-        GitHub
-    </a>
-    <a class="contact-button linkedin" href="https://www.linkedin.com/in/egor-polyakov-6a2114315/" target="_blank" rel="noopener">
-        <i class="fab fa-linkedin"></i>
-        LinkedIn
-    </a>
+  <aside class="cv-note">
+    <p>{{ cv.note }}</p>
+  </aside>
 </div>
-
-<p>Based in Markranstaedt, Germany. Publications may appear under the former transliteration "Poliakov."</p>
