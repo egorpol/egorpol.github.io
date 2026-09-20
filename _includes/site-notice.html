@@ -1,0 +1,8 @@
+{% if site.data.site_notice.enabled %}
+<aside class="site-notice" aria-label="Site update" data-site-notice data-version="{{ site.data.site_notice.version | escape }}">
+    <span class="site-notice-marker" aria-hidden="true">[ + ]</span>
+    <p><strong>{{ site.data.site_notice.title | escape }}</strong> {{ site.data.site_notice.message | escape }}</p>
+    <button class="site-notice-dismiss" type="button" aria-label="Dismiss site update" hidden>×</button>
+</aside>
+<script src="{{ '/assets/js/site-notice.js' | relative_url }}"></script>
+{% endif %}

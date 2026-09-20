@@ -39,10 +39,12 @@ structured_data:
 ---
 {% assign cv = site.data.cv %}
 
+{% include site-notice.html %}
+
 <section class="hero" aria-labelledby="hero-title">
   <div class="hero-copy">
     <p class="eyebrow">Postdoctoral researcher · HfM Weimar</p>
-    <h1 id="hero-title">I build tools to explore how music works</h1>
+    <h1 id="hero-title" tabindex="-1">I build tools to explore how music works</h1>
     <p class="lead">{{ cv.homepage.tagline }}</p>
     <div class="hero-actions">
       <a class="button button-primary" href="{{ '/cv/' | relative_url }}">View curriculum vitae</a>
@@ -70,8 +72,12 @@ structured_data:
 
 <section class="content-section current-work" aria-labelledby="current-work-title">
   <p class="section-label">Current appointment</p>
-  <h2 id="current-work-title">Research at HfM Weimar</h2>
-  <p>{{ cv.homepage.current_work | markdownify | remove: '<p>' | remove: '</p>' }}</p>
+  <h2 id="current-work-title">Research and development at HfM Weimar</h2>
+  <div class="current-work-copy">
+    {% for paragraph in cv.homepage.current_work %}
+    {{ paragraph | markdownify }}
+    {% endfor %}
+  </div>
   {% include chain-patch.html a="hfm weimar" b="me" %}
 </section>
 
@@ -93,6 +99,12 @@ structured_data:
     </li>
     {% endfor %}
   </ol>
+</section>
+
+<section class="content-section mastering-section" id="mastering" aria-labelledby="mastering-title">
+  <p class="section-label">Studio practice</p>
+  <h2 id="mastering-title">Mastering and shared projects</h2>
+  {% include mastering.html collapsible=true %}
 </section>
 
 <section class="content-section prose-patch" aria-labelledby="accessibility-title">

@@ -29,15 +29,18 @@ require 'tempfile'
 #          like a monochrome loading screen, quietest of the three
 #   mono-dark  the same, inverted for the dark theme
 
-SOURCE = File.expand_path('../assets/images/avatar.jpg', __dir__)
+# Optional source and dimensions let release covers use the identical converter.
+# ruby scripts/generate-zx-portrait.rb mono output.png cover.jpg 128 128
+SOURCE = ARGV[2] || File.expand_path('../assets/images/avatar.jpg', __dir__)
 MODE = ARGV[0] || 'mono'
 TARGET = ARGV[1] || File.expand_path('../assets/images/avatar-zx.png', __dir__)
 
 # The hero caps the portrait at 16rem, so 128 wide displays at exactly 2x and
 # the pixels stay square and even.
-WIDTH = 128
-HEIGHT = 192
+WIDTH = Integer(ARGV[3] || 128)
+HEIGHT = Integer(ARGV[4] || 192)
 BLOCK = 8
+abort('Width and height must be positive multiples of 8') unless WIDTH.positive? && HEIGHT.positive? && (WIDTH % BLOCK).zero? && (HEIGHT % BLOCK).zero?
 
 # Ink and paper may not mix BRIGHT within one block, so the two sets are
 # searched separately. Black is common to both.

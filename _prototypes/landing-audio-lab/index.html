@@ -1,0 +1,199 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <meta name="robots" content="noindex, nofollow">
+  <title>Landing page design lab · Egor Polyakov</title>
+  <link rel="stylesheet" href="styles.css?v=5">
+</head>
+<body>
+  <header class="lab-header">
+    <div>
+      <p class="lab-kicker">Private design lab · 30 August 2026</p>
+      <h1>Landing-page alternatives</h1>
+      <p class="lab-intro">Three new directions for <em>How I got here</em>, followed by audio-player studies for Plain and Pixel view. Nothing on this page is wired into the public site.</p>
+    </div>
+    <nav aria-label="Prototype sections">
+      <a href="#journey">Journey</a>
+      <a href="#audio">Audio players</a>
+    </nav>
+  </header>
+
+  <main>
+    <section class="lab-section" id="journey" aria-labelledby="journey-lab-title">
+      <div class="lab-section-heading">
+        <div>
+          <p class="lab-kicker">Plain view · structure studies</p>
+          <h2 id="journey-lab-title">How I got here</h2>
+        </div>
+        <p>Use the tabs to compare the same copy without page scrolling changing the context.</p>
+      </div>
+
+      <div class="option-tabs" role="tablist" aria-label="Journey layout options">
+        <button id="tab-margin" role="tab" aria-selected="true" aria-controls="panel-margin" data-tab="margin">A · Editorial margin</button>
+        <button id="tab-ledger" role="tab" aria-selected="false" aria-controls="panel-ledger" data-tab="ledger" tabindex="-1">B · Milestone ledger</button>
+        <button id="tab-path" role="tab" aria-selected="false" aria-controls="panel-path" data-tab="path" tabindex="-1">C · Meandering path</button>
+      </div>
+
+      <article class="journey-preview journey-margin" id="panel-margin" role="tabpanel" aria-labelledby="tab-margin" data-panel="margin">
+        <header class="journey-intro">
+          <p class="section-label">How I got here</p>
+          <h3>A path through different ideas of music</h3>
+          <p>This was not a neat progression in which one discipline simply led to the next. Encounters with different kinds of music, years of working between them, and a difficult period of doubt all changed the direction of my work.</p>
+        </header>
+        <ol class="margin-chapters">
+          <li>
+            <div class="chapter-mark"><span>01</span></div>
+            <div><h4>The classical path</h4><p>Piano, cello, improvisation, and composition led me from childhood curiosity to formal studies. For years, I treated the classical tradition as the centre of my musical world.</p></div>
+          </li>
+          <li>
+            <div class="chapter-mark"><span>02</span></div>
+            <div><h4>Beyond the academy</h4><p>Love Parade in 2002 and several open-air festivals in 2003–04 profoundly changed that view. Techno, drum and bass, dub, and other forms of popular electronic music made me question the idea of one “true” music.</p></div>
+          </li>
+          <li>
+            <div class="chapter-mark"><span>03</span></div>
+            <div><h4>Programming music</h4><p>Max/MSP, OpenMusic, Pure Data, and related environments became central to how I worked. I built real-time audio systems, Max for Live devices, and analysis–synthesis setups for composition, performance, and teaching.</p></div>
+          </li>
+          <li>
+            <div class="chapter-mark"><span>04</span></div>
+            <div><h4>Between worlds</h4><p>For years I composed contemporary concert music and minimal/techdub in parallel. The outbreak of war in my home region of Donbas, Ukraine, in 2014 became a persistent source of worry and reflection, deepening my doubts about composition as my only path.</p></div>
+          </li>
+          <li>
+            <div class="chapter-mark"><span>05</span></div>
+            <div><h4>From real time to research</h4><p>My doctorate led me from accessible software and hybrid analysis systems towards MIR and computational musicology. Python gradually replaced patching environments; CAMAT brought these threads together in open analytical tools and, later, machine learning.</p></div>
+          </li>
+        </ol>
+        <p class="option-note"><strong>Character:</strong> calm, book-like, biographical. The generous number column gives each stage room without introducing a second timeline.</p>
+      </article>
+
+      <article class="journey-preview journey-ledger" id="panel-ledger" role="tabpanel" aria-labelledby="tab-ledger" data-panel="ledger" hidden>
+        <header class="journey-intro ledger-intro">
+          <div><p class="section-label">How I got here</p><h3>A path through different ideas of music</h3></div>
+          <p>This was not a neat progression. Each encounter changed what music—and eventually research—could mean to me.</p>
+        </header>
+        <ol class="ledger-rows">
+          <li><span class="ledger-number">01</span><h4>The classical path</h4><p>Piano, cello, improvisation, and composition led me from childhood curiosity to formal studies. For years, I treated the classical tradition as the centre of my musical world.</p></li>
+          <li><span class="ledger-number">02</span><h4>Beyond the academy</h4><p>Love Parade and open-air festivals profoundly changed that view. Techno, drum and bass, dub, and other electronic music made me question the idea of one “true” music.</p></li>
+          <li><span class="ledger-number">03</span><h4>Programming music</h4><p>Max/MSP, OpenMusic, Pure Data, and related environments became central to how I worked: real-time audio, devices, and analysis–synthesis systems.</p></li>
+          <li><span class="ledger-number">04</span><h4>Between worlds</h4><p>Contemporary concert music and minimal/techdub ran in parallel. War in Donbas deepened my doubts about composition as my only path.</p></li>
+          <li><span class="ledger-number">05</span><h4>From real time to research</h4><p>Doctoral work led toward MIR and computational musicology. Python and CAMAT gathered the earlier threads into open analytical tools and machine learning.</p></li>
+        </ol>
+        <p class="option-note"><strong>Character:</strong> direct and economical. It gives each stage equal status and is easiest to scan, but feels more institutional than autobiographical.</p>
+      </article>
+
+      <article class="journey-preview journey-path" id="panel-path" role="tabpanel" aria-labelledby="tab-path" data-panel="path" hidden>
+        <header class="journey-intro path-intro">
+          <p class="section-label">How I got here</p>
+          <h3>A path through different ideas of music</h3>
+          <p>The route was indirect. Instead of forcing it into a straight timeline, the layout lets each shift occupy a slightly different position.</p>
+        </header>
+        <ol class="path-stages">
+          <li><span>01</span><div><h4>The classical path</h4><p>Piano, cello, improvisation, and composition: childhood curiosity became formal study and a musical centre.</p></div></li>
+          <li><span>02</span><div><h4>Beyond the academy</h4><p>Techno, drum and bass, dub, Love Parade, and open-air festivals challenged the idea of one “true” music.</p></div></li>
+          <li><span>03</span><div><h4>Programming music</h4><p>Max/MSP, OpenMusic, and Pure Data turned musical questions into systems that could be built, tested, and performed.</p></div></li>
+          <li><span>04</span><div><h4>Between worlds</h4><p>Concert music and minimal/techdub continued in parallel while war and doubt changed the direction of the work.</p></div></li>
+          <li><span>05</span><div><h4>From real time to research</h4><p>MIR, Python, CAMAT, and computational musicology brought those parallel threads into open research tools.</p></div></li>
+        </ol>
+        <p class="option-note"><strong>Character:</strong> personal and spatial. This acknowledges a non-linear biography, though it is the most visually assertive Plain option.</p>
+      </article>
+    </section>
+
+    <section class="lab-section" id="audio" aria-labelledby="audio-lab-title">
+      <div class="lab-section-heading">
+        <div><p class="lab-kicker">Works page · interaction studies</p><h2 id="audio-lab-title">Audio players</h2></div>
+        <p>The transport is simulated because the repository does not yet contain excerpts. Click Play to test progress and motion.</p>
+      </div>
+
+      <div class="player-family plain-family">
+        <header><span>Plain view</span><h3>Quiet listening tools</h3><p>Native to the editorial page rather than embedded media chrome.</p></header>
+        <div class="player-grid">
+          <article class="plain-player plain-wave-player demo-player" data-duration="83">
+            <div class="track-heading"><div><p class="track-eyebrow">2013 · stereo excerpt</p><h4>Core v2</h4><p>Oboe, English horn, and 8-channel live electronics</p></div><button class="plain-play play-toggle" type="button" aria-label="Play Core v2"><span aria-hidden="true">▶</span></button></div>
+            <button class="wave-scrub" type="button" aria-label="Seek through Core v2"><span class="waveform-bars" aria-hidden="true"></span><span class="wave-progress" aria-hidden="true"></span></button>
+            <div class="player-meta"><span class="time-readout">0:00 / 1:23</span><button type="button">Excerpt notes</button></div>
+          </article>
+
+          <article class="plain-player plain-line-player demo-player" data-duration="96">
+            <div class="line-player-top"><button class="plain-play play-toggle" type="button" aria-label="Play Klavierstück"><span aria-hidden="true">▶</span></button><div><p class="track-eyebrow">2009 · documentation</p><h4>Klavierstück mit Live-Elektronik</h4></div><span class="time-readout">0:00 / 1:36</span></div>
+            <button class="line-scrub" type="button" aria-label="Seek through Klavierstück"><span></span></button>
+            <p class="player-caption">A quieter option for lists with many works: one line of transport, with context left to the surrounding entry.</p>
+          </article>
+        </div>
+      </div>
+
+      <div class="player-family pixel-family">
+        <header><span>Pixel view · Pure Data study</span><h3>Array player</h3><p>The waveform carries the player; a minimal patch underneath keeps the signal path visible.</p></header>
+        <div class="player-grid">
+          <article class="pd-player pd-array-player demo-player" data-duration="83" data-track="Core v2">
+            <div class="pd-array-layout">
+              <div class="pd-array-wrap">
+                <div class="pd-title"><span>CORE_V2_L</span><span>WAV · 48 kHz</span></div>
+                <div class="pd-array pd-wave-scrub" role="slider" tabindex="0" aria-label="Seek through Core v2" aria-valuemin="0" aria-valuemax="83" aria-valuenow="0">
+                  <svg viewBox="0 0 512 128" preserveAspectRatio="none" aria-hidden="true" hidden>
+                    <g class="pd-waveform-blocks" hidden>
+                      <rect x="0" y="31" width="2" height="2"/><rect x="2" y="29" width="2" height="6"/>
+                      <rect x="4" y="26" width="2" height="12"/><rect x="6" y="21" width="2" height="22"/>
+                      <rect x="8" y="12" width="2" height="40"/><rect x="10" y="18" width="2" height="28"/>
+                      <rect x="12" y="8" width="2" height="48"/><rect x="14" y="15" width="2" height="34"/>
+                      <rect x="16" y="5" width="2" height="54"/><rect x="18" y="16" width="2" height="32"/>
+                      <rect x="20" y="7" width="2" height="50"/><rect x="22" y="12" width="2" height="40"/>
+                      <rect x="24" y="4" width="2" height="56"/><rect x="26" y="17" width="2" height="30"/>
+                      <rect x="28" y="9" width="2" height="46"/><rect x="30" y="14" width="2" height="36"/>
+                      <rect x="32" y="6" width="2" height="52"/><rect x="34" y="18" width="2" height="28"/>
+                      <rect x="36" y="10" width="2" height="44"/><rect x="38" y="15" width="2" height="34"/>
+                      <rect x="40" y="8" width="2" height="48"/><rect x="42" y="20" width="2" height="24"/>
+                      <rect x="44" y="14" width="2" height="36"/><rect x="46" y="23" width="2" height="18"/>
+                      <rect x="48" y="18" width="2" height="28"/><rect x="50" y="27" width="2" height="10"/>
+                      <rect x="52" y="29" width="2" height="6"/><rect x="54" y="25" width="2" height="14"/>
+                      <rect x="56" y="17" width="2" height="30"/><rect x="58" y="9" width="2" height="46"/>
+                      <rect x="60" y="15" width="2" height="34"/><rect x="62" y="5" width="2" height="54"/>
+                      <rect x="64" y="13" width="2" height="38"/><rect x="66" y="3" width="2" height="58"/>
+                      <rect x="68" y="11" width="2" height="42"/><rect x="70" y="7" width="2" height="50"/>
+                      <rect x="72" y="15" width="2" height="34"/><rect x="74" y="4" width="2" height="56"/>
+                      <rect x="76" y="16" width="2" height="32"/><rect x="78" y="8" width="2" height="48"/>
+                      <rect x="80" y="13" width="2" height="38"/><rect x="82" y="6" width="2" height="52"/>
+                      <rect x="84" y="18" width="2" height="28"/><rect x="86" y="9" width="2" height="46"/>
+                      <rect x="88" y="15" width="2" height="34"/><rect x="90" y="12" width="2" height="40"/>
+                      <rect x="92" y="20" width="2" height="24"/><rect x="94" y="15" width="2" height="34"/>
+                      <rect x="96" y="23" width="2" height="18"/><rect x="98" y="18" width="2" height="28"/>
+                      <rect x="100" y="24" width="2" height="16"/><rect x="102" y="21" width="2" height="22"/>
+                      <rect x="104" y="27" width="2" height="10"/><rect x="106" y="23" width="2" height="18"/>
+                      <rect x="108" y="28" width="2" height="8"/><rect x="110" y="25" width="2" height="14"/>
+                      <rect x="112" y="29" width="2" height="6"/><rect x="114" y="27" width="2" height="10"/>
+                      <rect x="116" y="29.5" width="2" height="5"/><rect x="118" y="28" width="2" height="8"/>
+                      <rect x="120" y="30" width="2" height="4"/><rect x="122" y="29" width="2" height="6"/>
+                      <rect x="124" y="31" width="2" height="2"/><rect x="126" y="31" width="2" height="2"/>
+                    </g>
+                    <path class="pd-waveform-trace" d=""/>
+                  </svg>
+                  <canvas class="pd-waveform-canvas" aria-hidden="true"></canvas>
+                  <span class="pd-playhead" aria-hidden="true"></span>
+                </div>
+              </div>
+              <div class="pd-transport-patch" aria-label="Pure Data playback patch">
+                <p class="pd-comment">// playback</p>
+                <div class="pd-patch-chain">
+                  <button class="pd-toggle play-toggle" type="button" aria-label="Play Core v2" aria-pressed="false"><span aria-hidden="true"></span></button>
+                  <span class="pd-patch-cord" aria-hidden="true"></span>
+                  <div class="pd-node"><i class="pd-inlet"></i>sfplay~<i class="pd-outlet"></i></div>
+                  <span class="pd-patch-cord pd-signal-cord" aria-hidden="true"></span>
+                  <div class="pd-node"><i class="pd-inlet"></i>dac~</div>
+                </div>
+              </div>
+            </div>
+            <div class="pd-footer"><span class="pd-status">READY</span><span class="time-readout">000.0 / 083.0 SEC</span></div>
+          </article>
+        </div>
+      </div>
+
+      <aside class="source-note">
+        <strong>Pure Data cues used here</strong>
+        <p>A graphical array for visible sample data, a moving playhead, and a compact toggle → sfplay~ → dac~ signal path. These are translations into the site’s existing palette—not a literal Pd window.</p>
+      </aside>
+    </section>
+  </main>
+
+  <script src="script.js?v=5"></script>
+</body>
+</html>

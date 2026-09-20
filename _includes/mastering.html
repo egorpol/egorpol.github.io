@@ -1,0 +1,23 @@
+<div class="mastering-copy">
+  <p>Mastering grew out of my time in the electroacoustic studio in Leipzig: experimenting with analogue EQs, compressors, and channel strips, listening, and helping friends finish their records. I mastered the Ornithopter Records catalogue and releases for other independent artists.</p>
+  <p>The credits below are listed on Discogs under {% for profile in site.data.mastering.profiles %}<a href="{{ profile.url }}" target="_blank" rel="noopener noreferrer">{{ profile.name }}</a>{% unless forloop.last %} and {% endunless %}{% endfor %}. More about the label, the studio, and the people behind it in the <a href="{{ '/works/swirl-planet/' | relative_url }}">Swirl Planet story</a>.</p>
+</div>
+{% if include.collapsible %}
+<details class="mastering-discography">
+  <summary>Mastering discography · {{ site.data.mastering.releases.size }} releases</summary>
+{% endif %}
+  <ul class="works-list mastering-list" aria-label="Mastering discography">
+    {% for release in site.data.mastering.releases %}
+    <li>
+      <span class="reference-year">{{ release.year }}</span>
+      <div>
+        <p class="work-title"><a href="{{ release.url }}" target="_blank" rel="noopener noreferrer">{{ release.title }}</a></p>
+        <p class="work-detail">{{ release.artist }} · {{ release.label }}</p>
+        <p class="work-roles">{% if release.credit %}{{ release.credit }}{% else %}Mastering.{% endif %} Credited as {{ release.credited_as }}.</p>
+      </div>
+    </li>
+    {% endfor %}
+  </ul>
+{% if include.collapsible %}
+</details>
+{% endif %}

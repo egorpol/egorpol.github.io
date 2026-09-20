@@ -1,0 +1,83 @@
+<!doctype html>
+<html lang="en" data-theme="dark">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <meta name="robots" content="noindex, nofollow">
+  <title>Launch & typography lab · Egor Polyakov</title>
+  <link rel="stylesheet" href="styles.css">
+  <script src="lab.js" defer></script>
+</head>
+<body>
+  <header class="lab-header">
+    <div><p class="eyebrow">Local design lab / not part of the published site</p>
+      <h1>A site that keeps growing.</h1>
+      <p>Four ways to acknowledge an expanding archive. Six body typefaces, with your existing pixel headings left intact.</p>
+    </div>
+    <nav aria-label="Lab navigation"><a href="#preview">Live preview</a><a href="#fonts">Compare fonts</a><a href="http://127.0.0.1:4000/">Back to site ↗</a></nav>
+  </header>
+
+  <main>
+    <section class="lab-controls" aria-labelledby="controls-title">
+      <h2 id="controls-title">Set up the preview</h2>
+      <div class="control-grid">
+        <label>Notice placement<select id="notice-choice">
+          <option value="inline">A · Inline note — recommended</option><option value="strip">B · Top strip</option>
+          <option value="corner">C · Corner note</option><option value="modal">D · Popup</option><option value="none">No notice</option>
+        </select></label>
+        <label>Pixel body font<select id="font-choice">
+          <option value="departure">Departure Mono · 22px</option><option value="pixelify">Pixelify Sans · 20px</option>
+          <option value="plex">IBM Plex Mono · 18px</option><option value="vt323">VT323 · 24px</option>
+          <option value="doto">Doto · 22px / 600</option><option value="serif">Source Serif 4 · 17.28px (current)</option>
+        </select></label>
+        <label>Appearance<select id="theme-choice"><option value="dark">Night</option><option value="light">Day</option></select></label>
+        <label>Site view<select id="mode-choice"><option value="pixel">Pixel</option><option value="plain">Plain (current fonts)</option></select></label>
+        <label>Reading size<select id="size-choice"><option value="native">Suggested for each font</option><option value="equal">Compare all at 22px</option></select></label>
+      </div>
+      <div class="control-foot"><p id="notice-advice">A · A quiet note in the reading flow. It explains what is still growing without blocking the content.</p><button id="reset-notice" type="button">Show notice again</button></div>
+      <p class="font-advice" id="font-advice">Departure Mono: my first pick for a distinctly pixel body. Try a full paragraph, not just a label. Its designer recommends multiples of 11px for a crisp grid.</p>
+      <p class="lab-status" id="lab-status" role="status"></p>
+    </section>
+
+    <section id="preview" aria-label="Live site mockup" class="site-preview" data-font="departure" data-mode="pixel" data-size="native">
+      <aside class="notice notice-strip" data-notice="strip" aria-label="Site update" hidden>
+        <p><strong>This site is growing.</strong> I’m gradually adding earlier works, recordings, and research. Some entries are still brief.</p><button class="dismiss" type="button" aria-label="Dismiss top-strip notice">×</button>
+      </aside>
+      <header class="preview-masthead"><span>Egor Polyakov</span><span>Research · composition · technology</span><span class="view-label">Pixel view</span></header>
+      <div class="preview-content">
+        <aside class="notice notice-inline" data-notice="inline" aria-label="Site update">
+          <span class="notice-marker" aria-hidden="true">[ + ]</span><p><strong>This site is growing.</strong> I’m gradually adding earlier works, recordings, and research. Some entries are still brief.</p><button class="dismiss" type="button" aria-label="Dismiss inline notice">×</button>
+        </aside>
+        <p class="preview-eyebrow">Current appointment</p>
+        <h2 class="preview-heading">Research and development<br>at HfM Weimar</h2>
+        <div class="reading-copy">
+          <p>For me, building analytical software and working carefully with the musical sources belong together. Preserving a source as a scan keeps its visual form accessible; a musical encoding opens other ways of reading, examining, and analysing it.</p>
+          <p>But that translation involves choices: what do we preserve, what do we leave out, and how much encoded information do we need to understand music? I see this as a meeting point between historical and systematic musicology: the questions we ask shape what we encode, but the source should not disappear behind the data.</p>
+          <p>Today, I often encounter a source through a scan rather than a printed volume I can hold, touch, and feel. That distance makes a carefully prepared encoding, explicitly linked back to the facsimile, feel like the least we can do to treat the source with respect. It should offer another way into the source, not replace it or conceal the editorial choices made along the way. Whatever information we choose to encode, it should remain possible to return to the source and question that reading.</p>
+          <p class="preview-link"><a href="https://github.com/analyse-hfm-weimar">Explore CAMAT ↗</a></p>
+        </div>
+        <footer class="preview-footer"><span>Works / Research / Biography</span><span>Archive growing, one entry at a time.</span></footer>
+      </div>
+      <aside class="notice notice-corner" data-notice="corner" aria-label="Site update" hidden>
+        <div><p class="corner-label">A note about this site</p><p><strong>This site is growing.</strong> I’m gradually adding earlier works, recordings, and research. Some entries are still brief.</p></div><button class="dismiss" type="button" aria-label="Dismiss corner notice">×</button>
+      </aside>
+    </section>
+
+    <section class="font-section" id="fonts" aria-labelledby="font-title">
+      <div class="section-header"><div><p class="eyebrow">Same passage / different texture</p><h2 id="font-title">Read them side by side.</h2></div><p>Sizes are optically matched, not numerically identical. All fonts are hosted locally. Use the size control above for an equal-size comparison.</p></div>
+      <div class="font-grid" id="font-grid"></div>
+    </section>
+
+    <section class="recommendation" aria-labelledby="recommendation-title">
+      <p class="eyebrow">What I would ship</p><h2 id="recommendation-title">A modest note. A deliberate type choice.</h2>
+      <p>Start with A on the homepage, beneath the navigation and before the introduction. Let people dismiss it; remember that for the current notice version. Keep a short permanent note in the footer, and remove the banner once the main archive is in place. A popup is too much interruption for information that does not require a decision.</p>
+      <p>For pixel-mode prose, try Departure Mono first and Pixelify Sans second. IBM Plex Mono is the quieter compromise for long reading. VT323 makes the site feel more like a terminal; Doto is better as an occasional accent than pages of biography. These are design judgments—read a few paragraphs in your preferred view before deciding.</p>
+      <p class="small-note">Preview only: dismissals reset on reload, the corner note is contained inside the mock page, and the popup opens only when requested. No production notice or font has been enabled; your Plain view and pixel headings are unchanged.</p>
+    </section>
+  </main>
+
+  <dialog id="notice-dialog" aria-labelledby="dialog-title" aria-describedby="dialog-copy">
+    <form method="dialog"><p class="eyebrow">A note before you explore</p><h2 id="dialog-title">This site is growing.</h2><p id="dialog-copy">I’m gradually adding earlier works, recordings, and research. Some entries are still brief.</p><button autofocus>Continue to the site</button></form>
+  </dialog>
+</body>
+</html>

@@ -110,9 +110,9 @@
 .trajectory-grid.trajectory-compact li:not(:first-child),
 .trajectory-grid.trajectory-compact li:last-child {
     display: grid;
-    grid-template-columns: 3.25rem minmax(0, var(--reading-width));
-    column-gap: 1.25rem;
-    padding: 1.5rem 0;
+    grid-template-columns: 7.5rem minmax(0, var(--reading-width));
+    column-gap: 2rem;
+    padding: 1.75rem 0;
     border-right: 0;
     border-bottom: 1px solid var(--border);
 }
@@ -122,18 +122,17 @@
 }
 
 .trajectory-grid.trajectory-compact li:not(:last-child)::after {
-    top: auto;
-    right: auto;
-    bottom: -0.7rem;
-    left: 0.55rem;
-    content: "↓";
+    content: none;
+    display: none;
 }
 
 .trajectory-grid.trajectory-compact .trajectory-index {
     grid-column: 1;
     grid-row: 1 / span 2;
     margin-bottom: 0;
-    padding-top: 0.15rem;
+    padding-top: 0.05rem;
+    font-size: 1.05rem;
+    letter-spacing: 0.04em;
 }
 
 .trajectory-grid.trajectory-compact strong,
@@ -141,7 +140,12 @@
     grid-column: 2;
 }
 
-.current-work p:last-child {
+.current-work-copy {
+    max-width: var(--reading-width);
+    color: var(--text-muted);
+}
+
+.current-work-copy p:last-child {
     margin-bottom: 0;
     color: var(--text-muted);
 }
@@ -428,6 +432,28 @@
 }
 
 /* Works */
+.mastering-copy {
+    max-width: var(--reading-width);
+    color: var(--text-muted);
+}
+
+.mastering-discography {
+    margin-top: 1.5rem;
+}
+
+.mastering-discography summary {
+    padding: 1rem 0;
+    color: var(--heading);
+    cursor: pointer;
+    font-family: var(--font-mono);
+}
+
+[data-chrome="on"] .mastering-discography summary {
+    font-family: var(--font-pixel);
+    font-size: 9px;
+    line-height: 1.8;
+}
+
 .works-list {
     margin: 0;
     padding: 0;
@@ -608,6 +634,21 @@
     .competency-grid,
     .cv-footer-grid {
         grid-template-columns: 1fr;
+    }
+
+    .trajectory-grid.trajectory-compact li,
+    .trajectory-grid.trajectory-compact li:not(:first-child),
+    .trajectory-grid.trajectory-compact li:last-child {
+        grid-template-columns: minmax(0, 1fr);
+        row-gap: 0.55rem;
+        padding: 1.4rem 0;
+    }
+
+    .trajectory-grid.trajectory-compact .trajectory-index,
+    .trajectory-grid.trajectory-compact strong,
+    .trajectory-grid.trajectory-compact p {
+        grid-column: 1;
+        grid-row: auto;
     }
 
     .trajectory-grid:not(.trajectory-compact) {

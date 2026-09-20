@@ -101,9 +101,22 @@
     to { transform: translateY(calc(var(--zx-tile) * -1)); }
 }
 
-/* Opt-in, and only once the margins are wide enough to be a border. */
+/* A narrow transport fits beside the 1rem page gutter used by the compact
+   desktop layout. Wide screens get the full 14px Spectrum border. */
+@media (min-width: 760px) {
+    [data-chrome="on"] .zx-border {
+        --zx-width: 8px;
+        display: block;
+    }
+
+    [data-chrome="on"] .zx-border-left { left: 4px; }
+    [data-chrome="on"] .zx-border-right { right: 4px; }
+}
+
 @media (min-width: 1220px) {
-    [data-chrome="on"] .zx-border { display: block; }
+    [data-chrome="on"] .zx-border { --zx-width: 14px; }
+    [data-chrome="on"] .zx-border-left { left: 12px; }
+    [data-chrome="on"] .zx-border-right { right: 12px; }
 }
 
 /* --- Pixel/plain view switch ------------------------------------------ */
@@ -344,19 +357,34 @@ html:not([data-theme-frame])[data-theme="dark"] .pixel-theme-state-4,
 }
 
 /* --- Pixel type -------------------------------------------------------- */
-/* Silkscreen is the chrome-mode UI face. Body copy switches to Source Serif 4
-   so long reading sits against the pixel chrome instead of the sans leftover.
+/* Silkscreen is the chrome-mode UI face. IBM Plex Mono gives body copy a
+   quieter technical texture without turning long passages into pixel labels.
    Sizes for Silkscreen are px on its 8px grid; rem would turn the pixels to
    mush. Screen only, so print and the plain switch both restore the live site. */
 
 @media screen {
     [data-chrome="on"] {
-        --font-sans: var(--font-serif);
+        --font-sans: var(--font-mono);
         --step-h1: 24px;
         --step-h1-page: 24px;
         --step-h2: 16px;
         --step-h3: 16px;
         --step-label: 16px;
+
+        /* Preserve editorial headings that are not Silkscreen labels below. */
+        h1,
+        h2,
+        h3 {
+            font-family: var(--font-serif);
+        }
+
+        .prose-copy,
+        .current-work-copy,
+        .release-story-copy,
+        .release-context-copy p {
+            font-family: var(--font-mono);
+            font-size: 1.125rem;
+        }
 
         .site-title,
         .site-nav a,
@@ -547,8 +575,9 @@ html:not([data-theme-frame])[data-theme="dark"] .pixel-theme-state-4,
     letter-spacing: 0;
 }
 
-[data-chrome="on"] .trajectory-index {
+[data-chrome="on"] .trajectory-grid.trajectory-compact .trajectory-index {
     margin-bottom: 0.6rem;
+    padding-top: 0;
     font-family: var(--font-pixel);
     font-size: 8px;
     letter-spacing: 0;
@@ -669,10 +698,6 @@ html:not([data-theme-frame])[data-theme="dark"] .pixel-theme-state-4,
     grid-row: 1;
 }
 
-[data-chrome="on"] .current-work > p:not(.section-label) {
-    font-size: 1.08rem;
-}
-
 [data-chrome="on"] .chain-patch {
     --patch-gap: 22px;
     display: grid;
@@ -702,7 +727,7 @@ html:not([data-theme-frame])[data-theme="dark"] .pixel-theme-state-4,
         grid-row: 1;
     }
 
-    [data-chrome="on"] .current-work > p:not(.section-label) {
+    [data-chrome="on"] .current-work-copy {
         grid-column: 2;
         grid-row: 2;
     }

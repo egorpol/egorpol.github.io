@@ -1,0 +1,92 @@
+profiles:
+  - name: Egor Poliakov
+    url: https://www.discogs.com/artist/2663905-Egor-Poliakov
+  - name: master_klirr
+    url: https://www.discogs.com/artist/1219762-master_klirr
+
+releases:
+  - year: "2017"
+    artist: Various artists / Deutsches Kammerorchester Berlin
+    title: "Neue Meister: Live in Berlin"
+    label: Neue Meister / Berlin Classics / Edel:Kultur · 0300783NM
+    credit: "Pre-mastering for Fabian Russ’s “Black Is the Colour” (track 5), as part of our long-running collaboration."
+    credited_as: Egor Poliakov
+    url: https://www.discogs.com/release/10435270
+  - year: "2016"
+    artist: White Wine
+    title: Who Cares What the Laser Says?
+    label: This Charming Man Records · TCM 059
+    credited_as: Egor Poliakov
+    url: https://www.discogs.com/release/8708603
+  - year: "2013"
+    artist: Shandy Mandies
+    title: Baby Blue / Freezin’ Rain / Psycho / Moonbeams
+    label: Amen Records / Riotvan · AMN 001
+    credited_as: Egor Poliakov
+    url: https://www.discogs.com/release/5313564
+  - year: "2012"
+    artist: Shandy Mandies
+    title: Lava E.P.
+    label: Amen Records
+    credited_as: Egor Poliakov
+    url: https://www.discogs.com/release/3470329
+  - year: "2010"
+    artist: Christoph Schindling
+    title: Life
+    label: Dreiton · DN021
+    credited_as: master_klirr
+    url: https://www.discogs.com/release/2465522
+  - year: "2010"
+    artist: Various artists
+    title: Twenty
+    label: Dreiton · DN020
+    credited_as: master_klirr
+    url: https://www.discogs.com/release/2283395
+  - year: "2009"
+    artist: Adverb
+    title: Adverbial EP
+    label: Ornithopter Records · OR 008
+    credited_as: master_klirr
+    url: https://www.discogs.com/release/1829976
+  - year: "2009"
+    artist: ZimaLeto
+    title: Sync EP
+    label: Ornithopter Records · OR 007
+    credited_as: master_klirr
+    url: https://www.discogs.com/release/1705010
+  - year: "2009"
+    artist: Ohrwert
+    title: Control EP
+    label: Ornithopter Records · OR 006
+    credited_as: master_klirr
+    url: https://www.discogs.com/release/1686218
+  - year: "2009"
+    artist: Two Unknown Guys
+    title: Swirl Planet EP
+    label: Ornithopter Records · OR 005
+    credited_as: master_klirr
+    url: https://www.discogs.com/release/1634631
+  - year: "2008"
+    artist: ESSE
+    title: Rainy EP
+    label: Ornithopter Records · OR 004
+    credited_as: master_klirr
+    url: https://www.discogs.com/release/1587043
+  - year: "2008"
+    artist: Adverb
+    title: Things to Remember EP
+    label: Ornithopter Records · OR 003
+    credited_as: master_klirr
+    url: https://www.discogs.com/release/1547533
+  - year: "2008"
+    artist: Zzzzra
+    title: Indica EP
+    label: Ornithopter Records · OR 002
+    credited_as: master_klirr
+    url: https://www.discogs.com/release/1495144
+  - year: "2008"
+    artist: Various artists
+    title: Unterhaltungselektronik Compilation
+    label: Ornithopter Records · OR 001
+    credited_as: master_klirr
+    url: https://www.discogs.com/release/1403152

@@ -1,0 +1,6 @@
+enabled: true
+# Bump the version when the message changes enough to show it again.
+version: archive-growing-v1
+title: This site is growing.
+message: I’m gradually adding earlier works, recordings, and research. Some entries are still brief.
+footer: Earlier works, recordings, and research are gradually being added to this archive.
