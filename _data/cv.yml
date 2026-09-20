@@ -233,6 +233,7 @@ publications:
         Polyakov, E. (2020). *Computerbasierte Analyse und visuelle
         Repräsentationsformen der Musik*. Dissertation, University of Music and
         Theatre Leipzig.
+      url: https://nbn-resolving.org/urn:nbn:de:bsz:14-qucosa2-723858
     - year: "2019"
       citation: >-
         Polyakov, E. (2019). *«Крайне затруднительны и не точны» — описание
@@ -552,23 +553,24 @@ homepage:
 
 projects:
   - name: CAMAT
-    url: https://analyse.hfm-weimar.de/doku.php?id=en:start
+    url: https://github.com/analyse-hfm-weimar
     blurb: >-
-      Symbolic repertoire analysis with MEI/MusicXML, co-developed with
-      Prof. Dr. Martin Pfleiderer and Christon-Ragavan Nadar.
+      MEI editing, facsimile-linked editions, and computational music analysis
+      with Python and Jupyter notebooks.
     detail: >-
-      Cloud-oriented toolbox for symbolic score analysis with MEI and MusicXML
-      workflows — repertoire statistics, pattern discovery, and teaching transfer.
-      Co-developed with Prof. Dr. Martin Pfleiderer and Christon-Ragavan Nadar;
-      currently extended in the DFG cloud-toolbox project at HfM Weimar, secured
-      together with Prof. Dr. Martin Pfleiderer.
+      The Computer-Assisted Music Analysis Toolbox brings MEI, Python, and
+      Jupyter notebooks into musicological research and teaching. It connects
+      score editing and facsimiles with note and event tables, piano-roll
+      visualisations, and searches for motifs, chord progressions, and textures.
+      Notebook workflows retain links to the source notation and can also run
+      in the browser through Jupyter4NFDI.
   - name: AudioSpylt
     url: https://github.com/egorpol/audiospylt
-    blurb: Audio feature extraction and interactive visualisation for analysis close to listening practice.
+    blurb: Python audio analysis, signal processing, and interactive visualization, inspired by AudioSculpt and OpenMusic.
     detail: >-
-      Python toolkit for audio feature extraction, interactive visualisation, and
-      creative prototyping — analysis workflows that stay close to listening and
-      studio practice.
+      AudioSpylt is a Python toolbox, inspired by AudioSculpt and OpenMusic,
+      built for in-depth audio analysis, advanced signal processing, and
+      interactive visualization.
   - name: FFTimbre
     url: https://github.com/egorpol/FFTimbre
     blurb: FM/additive timbre matching with multi-metric evaluation.

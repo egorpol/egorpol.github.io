@@ -396,6 +396,7 @@ html:not([data-theme-frame])[data-theme="dark"] .pixel-theme-state-4,
         .cv-intro h1,
         .error-page h1,
         .content-section h2,
+        .trajectory-copy h2,
         .section-heading h2,
         .entry-group h2,
         .cv-section > h2,
@@ -405,7 +406,7 @@ html:not([data-theme-frame])[data-theme="dark"] .pixel-theme-state-4,
         .section-label,
         .eyebrow,
         .cv-subheading,
-        .cv-toc a,
+        .cv-jump-links a,
         .cv-entry-date,
         .cv-organisation,
         .competency-grid dt,
@@ -472,6 +473,24 @@ html:not([data-theme-frame])[data-theme="dark"] .pixel-theme-state-4,
             border-radius: 0;
             font-size: 16px;
         }
+
+        .cv-jump-links {
+            border-color: var(--patch-line);
+            border-radius: 0;
+            box-shadow: 3px 3px 0 var(--border);
+        }
+
+        .cv-jump-links a {
+            border-radius: 0;
+        }
+    }
+}
+
+/* Pixel status labels need more width than four-digit years. Keep a shared
+   citation edge across Publications; the mobile single-column layout stays. */
+@media screen and (min-width: 621px) {
+    [data-chrome="on"] .entry-group .reference-list li {
+        grid-template-columns: 8.5rem minmax(0, 1fr);
     }
 }
 
@@ -515,8 +534,8 @@ html:not([data-theme-frame])[data-theme="dark"] .pixel-theme-state-4,
    bottom, cords always outlet → inlet (glist_drawiofor in g_text.c). A lone
    iolet sits at x1; Align Patch Cords then prefers a vertical when objects
    already share that x. The heading is the source; each stage drops into the
-   next. Scoped to .trajectory-compact so the CV's copy of the grid is left
-   alone. Boring mode keeps the five-column arrows. */
+   next. Shared by the homepage journey and the CV trajectory; their distinct
+   Plain-view layouts remain defined in _pages.scss. */
 
 .patch-cord {
     display: none;
@@ -529,14 +548,14 @@ html:not([data-theme-frame])[data-theme="dark"] .pixel-theme-state-4,
     background: var(--surface);
 }
 
-[data-chrome="on"] .trajectory-compact {
+[data-chrome="on"] :is(.trajectory-compact, .trajectory-connected) {
     grid-template-columns: minmax(0, 1fr);
     border-top: 0;
 }
 
-[data-chrome="on"] .trajectory-compact li,
-[data-chrome="on"] .trajectory-compact li:not(:first-child),
-[data-chrome="on"] .trajectory-compact li:last-child {
+[data-chrome="on"] :is(.trajectory-compact, .trajectory-connected) li,
+[data-chrome="on"] :is(.trajectory-compact, .trajectory-connected) li:not(:first-child),
+[data-chrome="on"] :is(.trajectory-compact, .trajectory-connected) li:last-child {
     display: block;
     margin-top: var(--patch-gap);
     padding: 0.95rem 1.3rem 1rem;
@@ -546,16 +565,16 @@ html:not([data-theme-frame])[data-theme="dark"] .pixel-theme-state-4,
 }
 
 /* Kill the plain-mode arrows at every breakpoint. */
-[data-chrome="on"] .trajectory-compact li::before,
-[data-chrome="on"] .trajectory-compact li::after,
-[data-chrome="on"] .trajectory-compact li:not(:last-child)::after,
-[data-chrome="on"] .trajectory-compact li:nth-child(3)::after {
+[data-chrome="on"] :is(.trajectory-compact, .trajectory-connected) li::before,
+[data-chrome="on"] :is(.trajectory-compact, .trajectory-connected) li::after,
+[data-chrome="on"] :is(.trajectory-compact, .trajectory-connected) li:not(:last-child)::after,
+[data-chrome="on"] :is(.trajectory-compact, .trajectory-connected) li:nth-child(3)::after {
     content: none;
     display: none;
 }
 
 /* Signal weight: Pd draws audio cords thicker than control cords. */
-[data-chrome="on"] .trajectory-compact .patch-cord {
+[data-chrome="on"] :is(.trajectory-compact, .trajectory-connected) .patch-cord {
     display: block;
     position: absolute;
     top: calc(var(--patch-gap) * -1);
@@ -567,7 +586,7 @@ html:not([data-theme-frame])[data-theme="dark"] .pixel-theme-state-4,
 
 /* Object text reads as a patcher rather than as prose. Sizes are in px and on
    the 8px grid Silkscreen is drawn to; rem would drift off it. */
-[data-chrome="on"] .trajectory-compact strong {
+[data-chrome="on"] :is(.trajectory-compact, .trajectory-connected) strong {
     font-family: var(--font-pixel);
     font-size: 16px;
     font-weight: 400;
@@ -575,12 +594,16 @@ html:not([data-theme-frame])[data-theme="dark"] .pixel-theme-state-4,
     letter-spacing: 0;
 }
 
-[data-chrome="on"] .trajectory-grid.trajectory-compact .trajectory-index {
+[data-chrome="on"] .trajectory-grid:is(.trajectory-compact, .trajectory-connected) .trajectory-index {
     margin-bottom: 0.6rem;
     padding-top: 0;
     font-family: var(--font-pixel);
     font-size: 8px;
     letter-spacing: 0;
+}
+
+[data-chrome="on"] .trajectory-section .trajectory-copy h2 {
+    margin-bottom: 0;
 }
 
 /* --- Word patch -------------------------------------------------------- */
@@ -745,7 +768,104 @@ html:not([data-theme-frame])[data-theme="dark"] .pixel-theme-state-4,
     }
 }
 
-/* --- Project patch ----------------------------------------------------- */
+/* --- Projects page ----------------------------------------------------- */
+/* Desktop: a chain of name objects beside unboxed descriptions. The label
+   column stretches with each description, so cords reach the next inlet
+   without fixed text heights or JavaScript measuring. Mobile: the whole
+   entry becomes the object, keeping the cord out of the reading column. */
+@media screen {
+    [data-chrome="on"] .project-list {
+        display: grid;
+        gap: var(--patch-gap);
+        border: 0;
+    }
+
+    [data-chrome="on"] .project-feature {
+        position: relative;
+        padding: 0;
+        border: 0;
+    }
+
+    [data-chrome="on"] .project-feature > .patch-nubs {
+        position: absolute;
+        inset: 0;
+        pointer-events: none;
+    }
+
+    [data-chrome="on"] .project-feature-identity {
+        display: flex;
+        flex-direction: column;
+        min-width: 0;
+    }
+
+    [data-chrome="on"] .project-feature-object {
+        position: relative;
+        padding: 0.95rem 1.3rem 1rem;
+        border: 1px solid var(--patch-line);
+        background: var(--surface);
+    }
+
+    [data-chrome="on"] .project-feature-copy {
+        min-width: 0;
+        padding: 0.75rem 0 1rem;
+    }
+
+    [data-chrome="on"] .project-label-cord {
+        display: block;
+        flex: 1;
+        width: 2px;
+        min-height: var(--patch-gap);
+        margin-left: calc(var(--patch-nub-w) / 2);
+        margin-bottom: calc(var(--patch-gap) * -1);
+        background: var(--patch-ink);
+    }
+
+    [data-chrome="on"] .project-feature:not(:first-child) .project-feature-object .patch-nub-n,
+    [data-chrome="on"] .project-feature:not(:last-child) .project-feature-object .patch-nub-s {
+        display: block;
+    }
+}
+
+@media screen and (max-width: 820px) {
+    [data-chrome="on"] .project-feature {
+        gap: 1.25rem;
+        padding: 0.95rem 1.3rem 1rem;
+        border: 1px solid var(--patch-line);
+        background: var(--surface);
+    }
+
+    [data-chrome="on"] .project-feature-object {
+        padding: 0;
+        border: 0;
+        background: none;
+    }
+
+    [data-chrome="on"] .project-feature-copy {
+        padding: 0;
+    }
+
+    [data-chrome="on"] .project-feature-object .patch-nubs,
+    [data-chrome="on"] .project-label-cord {
+        display: none;
+    }
+
+    [data-chrome="on"] .project-feature:not(:first-child) > .patch-nubs .patch-nub-n,
+    [data-chrome="on"] .project-feature:not(:last-child) > .patch-nubs .patch-nub-s {
+        display: block;
+    }
+
+    [data-chrome="on"] .project-entry-cord {
+        display: block;
+        position: absolute;
+        top: calc(var(--patch-gap) * -1 - 1px);
+        left: calc(var(--patch-nub-w) / 2 - 1px);
+        width: 2px;
+        height: var(--patch-gap);
+        background: var(--patch-ink);
+    }
+}
+
+/* --- Homepage project patch -------------------------------------------- */
 /* Four selected-project objects in a row, each with a lone outlet at x1.
    Align Patch Cords wants a vertical when the sink's inlets share that x, so
    [All projects] is a wide box whose inlets sit on the column left edges —
@@ -1195,8 +1315,8 @@ html:not([data-theme-frame])[data-theme="dark"] .pixel-theme-state-4,
 [data-chrome="on"] [data-patch="src"] .patch-nub-s,
 [data-chrome="on"] [data-patch="src"] .patch-nub-s2,
 [data-chrome="on"] [data-patch="head"] .patch-nub-s,
-[data-chrome="on"] .trajectory-compact li .patch-nub-n,
-[data-chrome="on"] .trajectory-compact li:not(:last-child) .patch-nub-s,
+[data-chrome="on"] :is(.trajectory-compact, .trajectory-connected) li .patch-nub-n,
+[data-chrome="on"] :is(.trajectory-compact, .trajectory-connected) li:not(:last-child) .patch-nub-s,
 [data-chrome="on"] [data-patch="proj"] .patch-nub-s,
 [data-chrome="on"] [data-patch="sink"] .patch-nub-n,
 [data-chrome="on"] [data-patch="sink"] .patch-nub-n1,

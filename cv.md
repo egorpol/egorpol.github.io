@@ -3,6 +3,8 @@ layout: page
 title: Curriculum Vitae
 description: "CV of Egor Polyakov — composition, electronic music practice, computational musicology, research software, teaching, and artistic-technical realisation."
 permalink: /cv/
+scripts:
+  - /assets/js/cv-navigation.js
 breadcrumb:
   - title: CV
 structured_data:
@@ -40,32 +42,39 @@ structured_data:
     <div class="cv-actions">
       <a class="button button-primary" href="{{ cv.pdf.path | relative_url }}" download="{{ cv.pdf.filename }}">Download PDF</a>
       <a class="button button-secondary" href="mailto:{{ cv.contact.email }}">Email</a>
+      <details class="cv-jump">
+        <summary class="button button-secondary">Jump to section <span class="cv-jump-arrow" aria-hidden="true">↓</span></summary>
+        <nav class="cv-jump-links" aria-label="CV sections">
+          <a href="#experience">Experience</a>
+          <a href="#career-context">Context</a>
+          <a href="#funding">Funding</a>
+          <a href="#teaching">Teaching</a>
+          <a href="#education">Education</a>
+          <a href="#publications">Publications</a>
+          <a href="#talks">Talks</a>
+        </nav>
+      </details>
     </div>
   </header>
 
   <section class="trajectory-section" aria-labelledby="trajectory-title">
-    <p class="section-label">Practice-to-research trajectory</p>
-    <h2 id="trajectory-title">A map of my professional development</h2>
-    <ol class="trajectory-grid">
+    <div class="trajectory-copy" data-patch="head">
+      <p class="section-label">Practice-to-research trajectory</p>
+      <h2 id="trajectory-title">A map of my professional development</h2>
+      {% include patch-nubs.html %}
+    </div>
+    <ol class="trajectory-grid trajectory-connected">
       {% for item in cv.trajectory %}
       <li>
+        {% include patch-cord.html %}
         <span class="trajectory-index">0{{ forloop.index }}</span>
         <strong>{{ item.stage }}</strong>
         <p>{{ item.text }}</p>
+        {% include patch-nubs.html %}
       </li>
       {% endfor %}
     </ol>
   </section>
-
-  <nav class="cv-toc" aria-label="CV sections">
-    <a href="#experience">Experience</a>
-    <a href="#career-context">Context</a>
-    <a href="#funding">Funding</a>
-    <a href="#teaching">Teaching</a>
-    <a href="#education">Education</a>
-    <a href="#publications">Publications</a>
-    <a href="#talks">Talks</a>
-  </nav>
 
   <section class="cv-section" aria-labelledby="competencies-title">
     <h2 id="competencies-title">Integrated Competencies</h2>
@@ -149,7 +158,7 @@ structured_data:
     <h2 id="publications-title">Publications</h2>
     <ol class="publication-list">
       {% for pub in cv.publications.published %}
-      <li>{{ pub.citation | markdownify | remove: '<p>' | remove: '</p>' }}{% if pub.doi %} <a href="{{ pub.doi }}" target="_blank" rel="noopener noreferrer">DOI <span aria-hidden="true">↗</span></a>{% elsif pub.url %} <a href="{{ pub.url }}" target="_blank" rel="noopener noreferrer">Publisher <span aria-hidden="true">↗</span></a>{% endif %}</li>
+      <li>{{ pub.citation | markdownify | remove: '<p>' | remove: '</p>' }}{% if pub.doi %} <a href="{{ pub.doi }}" target="_blank" rel="noopener noreferrer">DOI <span aria-hidden="true">↗</span></a>{% elsif pub.url %} <a href="{{ pub.url }}" target="_blank" rel="noopener noreferrer">Link <span aria-hidden="true">↗</span></a>{% endif %}</li>
       {% endfor %}
     </ol>
 

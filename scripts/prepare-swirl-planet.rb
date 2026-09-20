@@ -14,7 +14,11 @@ TRACKS = [
   ['01-swirl-planet', 'Swirl Planet'],
   ['02-sand-movement', 'Sand Movement'],
   ['03-sand-movement-christoph-schindling-remix', 'Sand Movement (Christoph Schindling Remix)'],
-  ['04-sand-movement-adverb-remix', 'Sand Movement (Adverb Remix)']
+  ['04-sand-movement-adverb-remix', 'Sand Movement (Adverb Remix)'],
+  ['05-all-night-long', 'All Night Long'],
+  ['06-cold-frog', 'Cold Frog'],
+  ['07-love-diffuser', 'Love Diffuser'],
+  ['08-medium-surf', 'Medium Surf']
 ].freeze
 
 def run(*args)

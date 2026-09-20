@@ -1,7 +1,7 @@
 ---
 layout: page
 title: Swirl Planet EP
-description: "Four tracks produced in Leipzig by Two Unknown Guys, memories of a summer in Wiesbaden, and the story of Ornithopter Records."
+description: "The Two Unknown Guys EP, four previously unreleased tracks recovered from an old backup, and the story of Ornithopter Records."
 permalink: /works/swirl-planet/
 audio_player: true
 image: /assets/images/releases/two-unknown-guys-swirl-planet-original.jpg
@@ -27,7 +27,7 @@ scripts:
         <div><dt>Project</dt><dd>Two Unknown Guys</dd></div>
         <div><dt>Release</dt><dd><a href="https://www.discogs.com/release/1634631" target="_blank" rel="noopener noreferrer">Ornithopter Records · OR 005</a></dd></div>
         <div><dt>Format</dt><dd>MP3 · 320 kbps · stereo · 44.1 kHz</dd></div>
-        <div><dt>Audio</dt><dd>30:21 · four tracks</dd></div>
+        <div><dt>Audio</dt><dd>55:35 · eight tracks</dd></div>
       </dl>
     </div>
   </header>
@@ -37,8 +37,9 @@ scripts:
     <h2 id="summer-title">From Wiesbaden to Leipzig</h2>
     <div class="release-story-copy">
       <p>After meeting Ilya and Christoph Schindling during the <a href="https://web.archive.org/web/20040602220522/http://techhouse.ee/eng/" target="_blank" rel="noopener noreferrer">techhouse.ee</a> days, we began seeing each other regularly in person, in Leipzig and around Frankfurt. The online conversations turned into friendships, visits, and a lot of music.</p>
-      <p>One summer, Ilya and I visited Chris in Wiesbaden. We spent the time making music together and having fun, without much of a plan beyond that. The tracks on this EP were produced afterwards in Leipzig. I still have a pile of unreleased tracks and loops from that period.</p>
+      <p>One summer, Ilya and I visited Chris in Wiesbaden. We spent the time making music together and having fun, without much of a plan beyond that. Ilya and I produced our tracks for the original EP afterwards in Leipzig. I still have a pile of unreleased tracks and loops from that period.</p>
       <p>One detail I always remember about “Swirl Planet”: the sound that keeps appearing throughout the track is a sample of Darth Vader’s breathing. Yes, really.</p>
+      <p>The player below also includes four previously unreleased tracks that I was lucky to find on an old backup. Ilya and I produced “All Night Long”, “Cold Frog”, and “Love Diffuser” in August 2008; “Medium Surf” is a track the three of us made together during our visit to Chris.</p>
     </div>
   </section>
 
@@ -79,6 +80,18 @@ scripts:
       </li>
       <li>
         <button type="button" data-track data-title="Sand Movement (Adverb Remix)" data-duration="530.469637" data-src="{{ '/assets/audio/swirl-planet/04-sand-movement-adverb-remix.mp3' | relative_url }}" data-waveform="{{ '/assets/images/releases/swirl-planet-waveforms/04-sand-movement-adverb-remix.png' | relative_url }}"><span>04</span><strong>Sand Movement <small>Adverb Remix</small></strong><time>08:50</time></button>
+      </li>
+      <li>
+        <button type="button" data-track data-title="All Night Long" data-duration="376.836644" data-src="{{ '/assets/audio/swirl-planet/05-all-night-long.mp3' | relative_url }}" data-waveform="{{ '/assets/images/releases/swirl-planet-waveforms/05-all-night-long.png' | relative_url }}"><span>05</span><strong>All Night Long <small>August 2008 · previously unreleased</small></strong><time>06:16</time></button>
+      </li>
+      <li>
+        <button type="button" data-track data-title="Cold Frog" data-duration="377.092063" data-src="{{ '/assets/audio/swirl-planet/06-cold-frog.mp3' | relative_url }}" data-waveform="{{ '/assets/images/releases/swirl-planet-waveforms/06-cold-frog.png' | relative_url }}"><span>06</span><strong>Cold Frog <small>August 2008 · previously unreleased</small></strong><time>06:17</time></button>
+      </li>
+      <li>
+        <button type="button" data-track data-title="Love Diffuser" data-duration="403.748571" data-src="{{ '/assets/audio/swirl-planet/07-love-diffuser.mp3' | relative_url }}" data-waveform="{{ '/assets/images/releases/swirl-planet-waveforms/07-love-diffuser.png' | relative_url }}"><span>07</span><strong>Love Diffuser <small>August 2008 · previously unreleased</small></strong><time>06:43</time></button>
+      </li>
+      <li>
+        <button type="button" data-track data-title="Medium Surf (with Christoph Schindling)" data-duration="356.658503" data-src="{{ '/assets/audio/swirl-planet/08-medium-surf.mp3' | relative_url }}" data-waveform="{{ '/assets/images/releases/swirl-planet-waveforms/08-medium-surf.png' | relative_url }}"><span>08</span><strong>Medium Surf <small>With Christoph Schindling · previously unreleased</small></strong><time>05:56</time></button>
       </li>
     </ol>
   </section>
