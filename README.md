@@ -2,7 +2,7 @@
 
 Source for [egorpol.github.io](https://egorpol.github.io): research, software projects, and an academic CV in computational musicology.
 
-Versioning starts at **0.0.1** when the `phase-2-chrome` branch merges to `main`. Until then, see [CHANGELOG.md](CHANGELOG.md) under **Unreleased**.
+Current site version: **0.0.1**. See [CHANGELOG.md](CHANGELOG.md).
 
 ## Local development
 

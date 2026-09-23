@@ -1,13 +1,13 @@
 # Changelog
 
 Site versions follow [Semantic Versioning](https://semver.org/).
-**0.0.1** is the first numbered release and ships when `phase-2-chrome` merges to `main`.
-
 The format is based on [Keep a Changelog](https://keepachangelog.com/).
 
 ## [Unreleased]
 
-Working branch: `phase-2-chrome`. Becomes **0.0.1** on merge to `main`.
+## [0.0.1] - 2026-09-23
+
+First numbered release: pixel chrome overlay, release pages, CV/PDF updates, and related content from `phase-2-chrome`.
 
 ### Added
 
