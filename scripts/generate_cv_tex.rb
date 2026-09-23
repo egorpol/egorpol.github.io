@@ -17,7 +17,7 @@ PDF_SRC = File.join(ROOT, "cv", "cv.pdf")
 PDF_DEST = File.join(ROOT, "assets", "cv", "Egor_Polyakov_CV.pdf")
 
 def escape_tex(text)
-  text.to_s.chars.map do |ch|
+  escaped = text.to_s.chars.map do |ch|
     case ch
     when "\\" then '\textbackslash{}'
     when "&" then '\&'
@@ -35,6 +35,9 @@ def escape_tex(text)
     else ch
     end
   end.join
+  escaped.gsub(/[\p{Cyrillic}]+(?:[ \t]+[\p{Cyrillic}]+)*/) do |run|
+    "\\textcyrillic{#{run}}"
+  end
 end
 
 def md_to_tex(text)
@@ -77,6 +80,7 @@ def generate_tex(cv)
   out = +<<~TEX
     % AUTO-GENERATED from ../_data/cv.yml by ../scripts/generate_cv_tex.rb.
     % Edit the YAML source, then run: ruby scripts/generate_cv_tex.rb --build
+    \\PassOptionsToPackage{unicode,pdfpagelabels=false}{hyperref}
     \\documentclass[11pt,a4paper,sans]{moderncv}
     \\moderncvstyle[nosymbols]{classic}
     \\moderncvcolor{blue}
@@ -84,10 +88,21 @@ def generate_tex(cv)
     \\renewcommand*{\\homepagesymbol}{}
     \\setlength{\\hintscolumnwidth}{3.8cm}
 
-    % ===== pdfLaTeX setup (no fontspec / fontawesome5 required) =====
-    \\usepackage[T1]{fontenc}
-    \\usepackage[utf8]{inputenc}
-    \\usepackage{lmodern}
+    % Preserve the Latin Modern layout with either pdfLaTeX or Tectonic/XeTeX.
+    % The Russian publication title needs a Cyrillic-capable font.
+    \\usepackage{iftex}
+    \\ifPDFTeX
+      \\usepackage[T2A,T1]{fontenc}
+      \\usepackage[utf8]{inputenc}
+      \\usepackage{lmodern}
+      \\DeclareTextFontCommand{\\textcyrillic}{\\fontencoding{T2A}\\fontfamily{cmss}\\selectfont}
+    \\else
+      \\usepackage{fontspec}
+      \\setmainfont{lmroman10-regular.otf}[BoldFont=lmroman10-bold.otf, ItalicFont=lmroman10-italic.otf, BoldItalicFont=lmroman10-bolditalic.otf]
+      \\setsansfont{lmsans10-regular.otf}[BoldFont=lmsans10-bold.otf, ItalicFont=lmsans10-oblique.otf, BoldItalicFont=lmsans10-boldoblique.otf]
+      \\newfontfamily\\cyrillicfont{DejaVu Sans}[Scale=MatchLowercase]
+      \\DeclareTextFontCommand{\\textcyrillic}{\\cyrillicfont}
+    \\fi
     \\usepackage[scale=0.92]{geometry}
     \\usepackage{eurosym}
 
@@ -102,6 +117,7 @@ def generate_tex(cv)
       \\Needspace{6\\baselineskip}%
       \\par\\vspace{0.6\\baselineskip}%
     }
+    \\preto{\\subsection}{\\Needspace{5\\baselineskip}}
 
     % ===== Personal data =====
     \\firstname{#{escape_tex(first)}}
@@ -136,13 +152,12 @@ def generate_tex(cv)
 
     % ===== Typography & Links =====
     \\usepackage{microtype}
-    \\usepackage[pdfpagelabels=false]{hyperref}
+    \\usepackage{hyperref}
     \\hypersetup{
         hidelinks,
         pdfauthor={Egor Polyakov},
         pdftitle={Curriculum Vitae - Egor Polyakov},
-        pdfcreator={LaTeX with moderncv},
-        pdfproducer={pdfLaTeX}
+        pdfcreator={LaTeX with moderncv}
     }
 
     \\begin{document}
@@ -257,6 +272,15 @@ def generate_tex(cv)
   end
   out << "\n"
 
+  if cv["mastering"]
+    out << "\\section{Mastering}\n"
+    summary = md_to_tex(cv['mastering']['summary'])
+    url = cv['mastering']['url'].to_s
+    url = "#{c['homepage'].to_s.sub(%r{/\z}, '')}#{url}" if url.start_with?('/')
+    summary += " \\href{#{escape_tex(url)}}{Full mastering discography and credits}." unless url.empty?
+    out << "\\cvitem{}{#{summary}}\n\n"
+  end
+
   out << "\\section{Artistic Works (Selection)}\n"
   Array(cv["artistic_works"]).each do |work|
     out << "\\cventry{#{escape_tex(work['year'])}}" \
@@ -288,36 +312,44 @@ def generate_tex(cv)
   out
 end
 
-def build_pdf!
+def build_pdf!(engine)
   Dir.chdir(File.join(ROOT, "cv")) do
     env = ENV.to_h
     env.delete("TEXMFCNF")
     env.delete("TEXINPUTS")
     env["PATH"] = "/usr/bin:/bin:#{env['PATH']}"
-    cmd = %w[latexmk -pdf -interaction=nonstopmode -halt-on-error cv.tex]
+    cmd = if engine == 'tectonic'
+            %w[tectonic --keep-logs --keep-intermediates cv.tex]
+          else
+            %w[latexmk -pdf -interaction=nonstopmode -halt-on-error cv.tex]
+          end
     warn "Running: #{cmd.join(' ')}"
-    system(env, *cmd) or raise "latexmk failed"
+    system(env, *cmd) or raise "#{engine} failed"
   end
   FileUtils.mkdir_p(File.dirname(PDF_DEST))
   system("/usr/bin/cp", "--", PDF_SRC, PDF_DEST) or raise "PDF copy failed"
   warn "Copied PDF → assets/cv/Egor_Polyakov_CV.pdf"
 end
 
-build = false
-OptionParser.new do |opts|
-  opts.banner = "Usage: generate_cv_tex.rb [--build]"
-  opts.on("--build", "Also run latexmk and copy PDF to assets/cv/") { build = true }
-end.parse!
+if $PROGRAM_NAME == __FILE__
+  build = false
+  engine = 'latexmk'
+  OptionParser.new do |opts|
+    opts.banner = "Usage: generate_cv_tex.rb [--build] [--engine latexmk|tectonic]"
+    opts.on("--build", "Also build and copy the PDF to assets/cv/") { build = true }
+    opts.on("--engine ENGINE", %w[latexmk tectonic], "PDF compiler (default: latexmk)") { |value| engine = value }
+  end.parse!
 
-cv = YAML.safe_load_file(
-  YAML_PATH,
-  permitted_classes: [],
-  permitted_symbols: [],
-  aliases: false
-)
-raise "cv.yml must parse to a Hash" unless cv.is_a?(Hash)
-FileUtils.mkdir_p(File.dirname(TEX_PATH))
-File.write(TEX_PATH, generate_tex(cv))
-warn "Wrote cv/cv.tex"
+  cv = YAML.safe_load_file(
+    YAML_PATH,
+    permitted_classes: [],
+    permitted_symbols: [],
+    aliases: false
+  )
+  raise "cv.yml must parse to a Hash" unless cv.is_a?(Hash)
+  FileUtils.mkdir_p(File.dirname(TEX_PATH))
+  File.write(TEX_PATH, generate_tex(cv))
+  warn "Wrote cv/cv.tex"
 
-build_pdf! if build
+  build_pdf!(engine) if build
+end

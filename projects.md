@@ -16,13 +16,20 @@ breadcrumb:
 
 <div class="project-list">
   {% for project in cv.projects %}
-  <article class="project-feature">
-    <div>
-      <p class="project-number">0{{ forloop.index }}</p>
-      <h2>{{ project.name }}</h2>
+  <article class="project-feature" aria-labelledby="project-{{ forloop.index }}-title">
+    {% unless forloop.first %}<span class="patch-cord project-entry-cord" aria-hidden="true"></span>{% endunless %}
+    {% include patch-nubs.html %}
+    <div class="project-feature-identity">
+      <div class="project-feature-object">
+        <p class="project-number">0{{ forloop.index }}</p>
+        <h2 id="project-{{ forloop.index }}-title">{{ project.name }}</h2>
+        {% include patch-nubs.html %}
+      </div>
+      {% unless forloop.last %}<span class="patch-cord project-label-cord" aria-hidden="true"></span>{% endunless %}
     </div>
-    <div>
+    <div class="project-feature-copy">
       <p>{{ project.detail }}</p>
+      {% if project.context %}<p>{{ project.context }}</p>{% endif %}
       <a class="text-link" href="{{ project.url }}" target="_blank" rel="noopener noreferrer">{% if project.url contains 'github.com' %}View on GitHub{% else %}Explore {{ project.name }}{% endif %} <span aria-hidden="true">↗</span></a>
     </div>
   </article>

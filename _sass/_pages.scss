@@ -19,12 +19,18 @@
 .hero-portrait {
     position: relative;
     display: block;
+    width: 16rem;
     max-width: 16rem;
     justify-self: end;
 }
 
+.hero-portrait picture {
+    display: block;
+}
+
 .hero-portrait img {
     display: block;
+    width: 100%;
     aspect-ratio: 2 / 3;
     border: 1px solid var(--border);
     border-radius: 0.8rem;
@@ -93,19 +99,55 @@
     line-height: 1.55;
 }
 
-.current-work {
+/* The homepage journey reads as an editorial timeline in Plain view. Pixel
+   view replaces this treatment with connected patcher objects. */
+.trajectory-grid.trajectory-compact {
     display: grid;
-    grid-template-columns: minmax(170px, 0.45fr) minmax(0, 1.55fr);
-    column-gap: clamp(2rem, 6vw, 6rem);
+    grid-template-columns: minmax(0, 1fr);
 }
 
-.current-work .section-label {
+.trajectory-grid.trajectory-compact li,
+.trajectory-grid.trajectory-compact li:not(:first-child),
+.trajectory-grid.trajectory-compact li:last-child {
+    display: grid;
+    grid-template-columns: 7.5rem minmax(0, var(--reading-width));
+    column-gap: 2rem;
+    padding: 1.75rem 0;
+    border-right: 0;
+    border-bottom: 1px solid var(--border);
+}
+
+.trajectory-grid.trajectory-compact li:last-child {
+    border-bottom: 0;
+}
+
+.trajectory-grid.trajectory-compact li:not(:last-child)::after {
+    content: none;
+    display: none;
+}
+
+.trajectory-grid.trajectory-compact .trajectory-index {
+    grid-column: 1;
     grid-row: 1 / span 2;
+    margin-bottom: 0;
+    padding-top: 0.05rem;
+    font-size: 1.05rem;
+    letter-spacing: 0.04em;
 }
 
-.current-work p:last-child {
+.trajectory-grid.trajectory-compact strong,
+.trajectory-grid.trajectory-compact p {
+    grid-column: 2;
+}
+
+.current-work-copy {
+    max-width: var(--reading-width);
     color: var(--text-muted);
-    font-size: 1.08rem;
+}
+
+.current-work-copy p:last-child {
+    margin-bottom: 0;
+    color: var(--text-muted);
 }
 
 /* Shared page intro */
@@ -135,31 +177,76 @@
     font-weight: var(--weight-strong);
 }
 
-.cv-toc {
-    position: sticky;
-    top: 0;
-    z-index: 10;
-    display: flex;
-    flex-wrap: wrap;
-    gap: 0.6rem 1.25rem;
-    margin-bottom: 1rem;
-    padding: 0.8rem 0;
-    border-top: 1px solid var(--border);
-    border-bottom: 1px solid var(--border);
-    background: var(--background);
-    background: color-mix(in srgb, var(--background) 94%, transparent);
-    backdrop-filter: blur(12px);
+/* Give the Plain-view stages breathing room, including below the longest
+   description. */
+@media screen {
+    [data-chrome="off"] .cv-page .trajectory-grid.trajectory-connected > li {
+        padding-block: 1.5rem;
+    }
+
+    [data-chrome="off"] .cv-page .trajectory-index {
+        margin-bottom: 1rem;
+    }
+
 }
 
-.cv-toc a {
-    color: var(--text-muted);
-    font-family: var(--font-mono);
-    font-size: 0.78rem;
+@media screen and (min-width: 621px) {
+    [data-chrome="off"] .cv-page .trajectory-connected li:not(:last-child)::after {
+        top: 1.3rem;
+    }
+}
+
+.cv-jump {
+    position: relative;
+}
+
+.cv-jump summary {
+    gap: 0.75rem;
+    list-style: none;
+}
+
+.cv-jump summary::-webkit-details-marker {
+    display: none;
+}
+
+.cv-jump[open] summary {
+    border-color: var(--accent);
+    background: var(--accent-soft);
+}
+
+.cv-jump[open] .cv-jump-arrow {
+    transform: rotate(180deg);
+}
+
+.cv-jump-links {
+    position: absolute;
+    top: calc(100% + 0.5rem);
+    left: 0;
+    z-index: 20;
+    min-width: 100%;
+    width: max-content;
+    padding: 0.4rem;
+    border: 1px solid var(--border);
+    border-radius: 0.35rem;
+    background: var(--surface);
+    box-shadow: var(--shadow);
+}
+
+.cv-jump-links a {
+    display: flex;
+    align-items: center;
+    min-height: 2.75rem;
+    padding: 0.45rem 0.75rem;
+    border-radius: 0.2rem;
+    color: var(--heading);
+    font-size: 0.9rem;
     text-decoration: none;
 }
 
-.cv-toc a:hover {
-    color: var(--accent);
+.cv-jump-links a:hover,
+.cv-jump-links a:focus-visible {
+    background: var(--accent-soft);
+    color: var(--accent-strong);
 }
 
 .cv-section {
@@ -390,6 +477,28 @@
 }
 
 /* Works */
+.mastering-copy {
+    max-width: var(--reading-width);
+    color: var(--text-muted);
+}
+
+.mastering-discography {
+    margin-top: 1.5rem;
+}
+
+.mastering-discography summary {
+    padding: 1rem 0;
+    color: var(--heading);
+    cursor: pointer;
+    font-family: var(--font-mono);
+}
+
+[data-chrome="on"] .mastering-discography summary {
+    font-family: var(--font-pixel);
+    font-size: 9px;
+    line-height: 1.8;
+}
+
 .works-list {
     margin: 0;
     padding: 0;
@@ -523,29 +632,28 @@
         gap: 2rem;
     }
 
-    .current-work,
+    .hero-portrait {
+        width: 8rem;
+    }
+
     .project-feature {
         grid-template-columns: 1fr;
     }
 
-    .trajectory-grid {
+    .trajectory-grid:not(.trajectory-compact) {
         grid-template-columns: repeat(3, minmax(0, 1fr));
     }
 
-    .trajectory-grid li:nth-child(3) {
+    .trajectory-grid:not(.trajectory-compact) li:nth-child(3) {
         border-right: 0;
     }
 
-    .trajectory-grid li:nth-child(3)::after {
+    .trajectory-grid:not(.trajectory-compact) li:nth-child(3)::after {
         display: none;
     }
 
-    .trajectory-grid li:nth-child(n + 4) {
+    .trajectory-grid:not(.trajectory-compact) li:nth-child(n + 4) {
         border-top: 1px solid var(--border);
-    }
-
-    .current-work .section-label {
-        grid-row: auto;
     }
 }
 
@@ -565,7 +673,6 @@
 
     .hero-portrait {
         order: 1;
-        width: 8.5rem;
         justify-self: start;
     }
 
@@ -574,21 +681,36 @@
         grid-template-columns: 1fr;
     }
 
-    .trajectory-grid {
+    .trajectory-grid.trajectory-compact li,
+    .trajectory-grid.trajectory-compact li:not(:first-child),
+    .trajectory-grid.trajectory-compact li:last-child {
+        grid-template-columns: minmax(0, 1fr);
+        row-gap: 0.55rem;
+        padding: 1.4rem 0;
+    }
+
+    .trajectory-grid.trajectory-compact .trajectory-index,
+    .trajectory-grid.trajectory-compact strong,
+    .trajectory-grid.trajectory-compact p {
+        grid-column: 1;
+        grid-row: auto;
+    }
+
+    .trajectory-grid:not(.trajectory-compact) {
         grid-template-columns: 1fr;
         border-top: 0;
     }
 
-    .trajectory-grid li,
-    .trajectory-grid li:not(:first-child),
-    .trajectory-grid li:last-child {
+    .trajectory-grid:not(.trajectory-compact) li,
+    .trajectory-grid:not(.trajectory-compact) li:not(:first-child),
+    .trajectory-grid:not(.trajectory-compact) li:last-child {
         padding: 1rem 0;
         border-top: 1px solid var(--border);
         border-right: 0;
     }
 
-    .trajectory-grid li:not(:last-child)::after,
-    .trajectory-grid li:nth-child(3)::after {
+    .trajectory-grid:not(.trajectory-compact) li:not(:last-child)::after,
+    .trajectory-grid:not(.trajectory-compact) li:nth-child(3)::after {
         content: "↓";
         display: block;
         top: auto;
@@ -601,10 +723,6 @@
     .competency-grid > div:nth-child(even) {
         padding-left: 0;
         border-left: 0;
-    }
-
-    .cv-toc {
-        position: static;
     }
 
     .cv-section {

@@ -1,3 +1,73 @@
+/* A normal inline aside, not an alert or a blocking launch dialog. */
+.site-notice {
+    display: flex;
+    align-items: flex-start;
+    gap: 1rem;
+    margin-bottom: 2rem;
+    padding: 1rem 1rem 1rem 1.25rem;
+    border-left: 3px solid var(--accent);
+    background: var(--surface);
+    font-size: 1rem;
+    line-height: 1.6;
+}
+
+.site-notice p {
+    flex: 1;
+    min-width: 0;
+    margin: 0;
+    padding-top: 0.35rem;
+}
+
+.site-notice strong {
+    color: var(--accent);
+    font-weight: var(--weight-normal);
+}
+
+.site-notice-marker {
+    flex-shrink: 0;
+    padding-top: 0.7rem;
+    font: 12px/1.5 var(--font-mono);
+    color: var(--accent);
+}
+
+.site-notice-dismiss {
+    flex-shrink: 0;
+    width: 44px;
+    min-height: 44px;
+    padding: 0;
+    border: 1px solid transparent;
+    background: transparent;
+    color: var(--text);
+    font: 24px/1 var(--font-mono);
+    cursor: pointer;
+}
+
+.site-notice-dismiss:hover {
+    border-color: var(--accent);
+}
+
+.site-archive-note {
+    grid-column: 1 / -1;
+    color: var(--text-muted);
+    font-size: 0.8rem;
+}
+
+.site-notice-restore {
+    padding: 0;
+    border: 0;
+    background: transparent;
+    color: var(--accent);
+    font: inherit;
+    text-decoration: underline;
+    text-underline-offset: 0.18em;
+    cursor: pointer;
+}
+
+@media (max-width: 600px) {
+    .site-notice { gap: 0.5rem; padding: 0.75rem; }
+    .site-notice-marker { display: none; }
+}
+
 .eyebrow,
 .section-label {
     margin-bottom: 0.75rem;
@@ -21,7 +91,9 @@
     border-top: 1px solid var(--border);
 }
 
-.content-section > p:not(.section-label) {
+.content-section > p:not(.section-label),
+.trajectory-copy > p:not(.section-label),
+.prose-copy > p:not(.section-label) {
     max-width: var(--reading-width);
 }
 

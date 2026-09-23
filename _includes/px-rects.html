@@ -1,0 +1,5 @@
+{% assign runs = include.runs | split: " " %}
+{% for run in runs %}
+{% assign r = run | split: "," %}
+<rect x="{{ r[0] }}" y="{{ r[1] }}" width="{{ r[2] }}" height="{{ r[3] | default: 1 }}"/>
+{% endfor %}

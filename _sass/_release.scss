@@ -1,0 +1,471 @@
+/* Long-form release pages and their custom audio deck. */
+
+.release-page {
+    --release-progress: 0%;
+}
+
+.release-hero {
+    display: grid;
+    grid-template-columns: minmax(260px, 0.82fr) minmax(0, 1.18fr);
+    align-items: center;
+    gap: clamp(2.5rem, 7vw, 6rem);
+    padding-bottom: clamp(3.5rem, 7vw, 5.5rem);
+}
+
+.release-cover {
+    position: relative;
+    margin: 0;
+}
+
+.release-cover img {
+    display: block;
+    width: 100%;
+    aspect-ratio: 1;
+    border: 1px solid var(--border);
+    border-radius: 0.8rem;
+    box-shadow: var(--shadow);
+    object-fit: cover;
+}
+
+.release-cover figcaption {
+    margin-top: 0.7rem;
+    color: var(--text-muted);
+    font-size: 0.78rem;
+}
+
+.release-cover-pixel {
+    position: absolute;
+    inset: 0;
+    display: none;
+    width: 100%;
+    aspect-ratio: 1;
+    cursor: crosshair;
+    image-rendering: pixelated;
+    touch-action: pan-y;
+}
+
+.release-heading h1 {
+    max-width: 15ch;
+}
+
+.release-facts {
+    display: grid;
+    grid-template-columns: repeat(2, minmax(0, 1fr));
+    gap: 1rem 2rem;
+    margin: 2rem 0 0;
+}
+
+.release-facts div {
+    padding-top: 0.75rem;
+    border-top: 1px solid var(--border);
+}
+
+.release-facts dt {
+    color: var(--text-muted);
+    font-family: var(--font-mono);
+    font-size: 0.7rem;
+    letter-spacing: 0.08em;
+    text-transform: uppercase;
+}
+
+.release-facts dd {
+    margin: 0.25rem 0 0;
+    color: var(--heading);
+    font-weight: var(--weight-strong);
+}
+
+.release-story-copy {
+    max-width: var(--reading-width);
+    color: var(--text-muted);
+    font-family: var(--font-serif);
+    font-size: 1.08rem;
+}
+
+.release-story-copy p:last-child {
+    margin-bottom: 0;
+}
+
+.release-player-shell {
+    padding: clamp(1.25rem, 3vw, 2rem);
+    border: 1px solid var(--border);
+    border-radius: 0.65rem;
+    background: var(--surface);
+}
+
+.release-audio {
+    display: none;
+}
+
+.release-player-meta,
+.release-transport {
+    display: flex;
+    width: 100%;
+    align-items: baseline;
+    justify-content: space-between;
+    gap: 1rem;
+    font-family: var(--font-mono);
+    font-size: 0.76rem;
+}
+
+.release-player-meta {
+    color: var(--text-muted);
+}
+
+.release-player-meta > :last-child {
+    margin-left: auto;
+    text-align: right;
+}
+
+.release-now-title {
+    color: var(--heading);
+    font-weight: var(--weight-strong);
+}
+
+.release-waveform {
+    position: relative;
+    height: clamp(7rem, 15vw, 10rem);
+    margin: 0.8rem 0 1rem;
+    border: 1px solid var(--border);
+    background: linear-gradient(var(--border), var(--border)) center / 100% 1px no-repeat;
+    cursor: crosshair;
+    overflow: hidden;
+}
+
+.release-wave-shape,
+.release-wave-played {
+    position: absolute;
+    inset: 0;
+    background: var(--heading);
+    -webkit-mask: var(--release-waveform) center / 100% 100% no-repeat;
+    mask: var(--release-waveform) center / 100% 100% no-repeat;
+}
+
+.release-wave-shape,
+.release-wave-played,
+.release-wave-playhead {
+    pointer-events: none;
+}
+
+.release-wave-played {
+    background: var(--accent);
+    clip-path: inset(0 calc(100% - var(--release-progress)) 0 0);
+}
+
+.release-wave-playhead {
+    position: absolute;
+    top: 0;
+    bottom: 0;
+    left: var(--release-progress);
+    width: 2px;
+    background: var(--accent);
+    transform: translateX(-1px);
+}
+
+.release-wave-engine {
+    position: absolute;
+    inset: 0;
+    z-index: 2;
+    display: block;
+    opacity: 0;
+    cursor: crosshair;
+}
+
+.release-patch {
+    display: flex;
+    align-items: center;
+}
+
+.release-play {
+    display: grid;
+    place-items: center;
+    border: 1px solid var(--border);
+    background: var(--background);
+    color: var(--heading);
+    cursor: pointer;
+}
+
+.release-play {
+    width: 2.75rem;
+    height: 2.75rem;
+    border-radius: 50%;
+}
+
+.release-play:hover {
+    border-color: var(--accent);
+    background: var(--accent-soft);
+}
+
+/* Use a geometric icon: font glyph bearings make the triangle look off-centre. */
+[data-chrome="off"] .release-play {
+    padding: 0;
+    line-height: 1;
+}
+
+[data-chrome="off"] .release-play span {
+    display: block;
+    width: 12px;
+    height: 14px;
+    font-size: 0;
+    background: currentColor;
+    clip-path: polygon(0 0, 100% 50%, 0 100%);
+    transform: translateX(2px);
+}
+
+[data-chrome="off"] .release-page.is-playing .release-play span {
+    background: linear-gradient(to right, currentColor 0 3px, transparent 3px 9px, currentColor 9px);
+    clip-path: none;
+    transform: none;
+}
+
+.release-object,
+.release-cord {
+    display: none;
+}
+
+.release-status {
+    margin-left: 0.65rem;
+    color: var(--accent-strong);
+}
+
+.release-time {
+    min-width: 7.2rem;
+    margin-left: auto;
+    color: var(--heading);
+    text-align: right;
+}
+
+.release-tracks {
+    margin: 1rem 0 0;
+    padding: 0;
+    list-style: none;
+}
+
+.release-tracks li {
+    margin: 0;
+}
+
+.release-tracks button {
+    display: grid;
+    width: 100%;
+    grid-template-columns: 3rem minmax(0, 1fr) auto;
+    align-items: baseline;
+    gap: 1rem;
+    padding: 1rem 0;
+    border: 0;
+    border-bottom: 1px solid var(--border);
+    background: transparent;
+    color: var(--text);
+    text-align: left;
+    cursor: pointer;
+}
+
+.release-tracks button > span,
+.release-tracks time {
+    color: var(--text-muted);
+    font-family: var(--font-mono);
+    font-size: 0.76rem;
+}
+
+.release-tracks strong {
+    color: var(--heading);
+    font-size: 1rem;
+}
+
+.release-tracks small {
+    display: block;
+    margin-top: 0.2rem;
+    color: var(--text-muted);
+    font-family: var(--font-mono);
+    font-size: 0.7rem;
+    font-weight: var(--weight-normal);
+}
+
+.release-tracks button:hover strong,
+.release-tracks button[aria-current="true"] strong {
+    color: var(--accent-strong);
+}
+
+.release-tracks button[aria-current="true"] > span::before {
+    content: "▶ ";
+    color: var(--accent);
+}
+
+.release-context-copy {
+    max-width: 54rem;
+}
+
+.release-context-copy p {
+    color: var(--text-muted);
+    font-family: var(--font-serif);
+    font-size: 1.05rem;
+}
+
+/* Pixel view: the same content becomes a small audio patch. */
+[data-chrome="on"] .release-cover img,
+[data-chrome="on"] .release-player-shell {
+    border-color: var(--patch-line);
+    border-radius: 0;
+    box-shadow: none;
+}
+
+[data-chrome="on"] .release-cover {
+    overflow: hidden;
+}
+
+[data-chrome="on"] .release-cover-pixel {
+    display: block;
+}
+
+[data-chrome="on"] .release-cover figcaption,
+[data-chrome="on"] .release-facts dt,
+[data-chrome="on"] .release-player-meta,
+[data-chrome="on"] .release-status,
+[data-chrome="on"] .release-time,
+[data-chrome="on"] .release-tracks button > span,
+[data-chrome="on"] .release-tracks time,
+[data-chrome="on"] .release-tracks small {
+    font-family: var(--font-pixel);
+    font-size: 8px;
+    letter-spacing: 0;
+}
+
+[data-chrome="on"] .release-waveform {
+    border-color: var(--patch-line);
+    border-radius: 0;
+    image-rendering: pixelated;
+}
+
+[data-chrome="on"] .release-transport {
+    display: flex;
+    align-items: end;
+    justify-content: space-between;
+    gap: 1.25rem;
+    font-family: var(--font-pixel);
+    font-size: 8px;
+}
+
+[data-chrome="on"] .release-patch {
+    align-items: flex-start;
+    flex-direction: column;
+}
+
+[data-chrome="on"] .release-play {
+    position: relative;
+    width: 20px;
+    height: 20px;
+    padding: 3px;
+    border-color: var(--patch-line);
+    border-radius: 0;
+    background: var(--surface);
+}
+
+[data-chrome="on"] .release-play span {
+    display: block;
+    width: 100%;
+    height: 100%;
+    overflow: hidden;
+    color: transparent;
+    font-size: 0;
+}
+
+[data-chrome="on"] .release-page.is-playing .release-play span {
+    background: var(--patch-line);
+}
+
+[data-chrome="on"] .release-play::after {
+    content: "";
+    position: absolute;
+    bottom: -2px;
+    left: 5px;
+    width: 9px;
+    height: 3px;
+    background: var(--patch-line);
+}
+
+[data-chrome="on"] .release-object {
+    position: relative;
+    display: inline-block;
+    padding: 3px 7px;
+    border: 1px solid var(--patch-line);
+    background: var(--surface);
+    color: var(--heading);
+    font-family: var(--font-mono);
+    font-size: 11px;
+    line-height: 1.2;
+}
+
+[data-chrome="on"] .release-object::before,
+[data-chrome="on"] .release-object i {
+    content: "";
+    position: absolute;
+    left: 5px;
+    width: 9px;
+    height: 3px;
+    background: var(--patch-line);
+}
+
+[data-chrome="on"] .release-object::before { top: -2px; }
+[data-chrome="on"] .release-object i { bottom: -2px; }
+
+[data-chrome="on"] .release-cord {
+    display: block;
+    width: 2px;
+    height: 12px;
+    margin-left: 9px;
+    background: var(--patch-line);
+}
+
+[data-chrome="on"] .release-signal-cord { width: 3px; }
+[data-chrome="on"] .release-status {
+    margin: 0.55rem 0 0;
+    align-self: flex-start;
+}
+
+[data-chrome="on"] .release-tracks {
+    border-top: 1px solid var(--patch-line);
+}
+
+[data-chrome="on"] .release-tracks button {
+    padding: 0.9rem 0.75rem;
+    border-right: 1px solid var(--patch-line);
+    border-bottom-color: var(--patch-line);
+    border-left: 1px solid var(--patch-line);
+}
+
+[data-chrome="on"] .release-tracks button[aria-current="true"] {
+    background: var(--accent-soft);
+}
+
+[data-chrome="on"] .release-tracks strong {
+    font-family: var(--font-pixel);
+    font-size: 10px;
+    font-weight: var(--weight-normal);
+}
+
+@media (max-width: 720px) {
+    .release-hero {
+        grid-template-columns: minmax(0, 1fr);
+    }
+
+    .release-cover { max-width: 30rem; }
+    .release-heading h1 { max-width: none; }
+    .release-facts { grid-template-columns: minmax(0, 1fr); }
+}
+
+@media (max-width: 520px) {
+    .release-player-shell { padding: 0.8rem; }
+    .release-waveform { height: 6.5rem; }
+    .release-player-meta { font-size: 0.68rem; }
+    .release-transport { flex-wrap: wrap; }
+    .release-time { margin-left: auto; }
+    .release-tracks button { grid-template-columns: 2rem minmax(0, 1fr) auto; gap: 0.6rem; }
+}
+
+@media (prefers-reduced-motion: reduce) {
+    .release-cover-pixel { pointer-events: none; }
+}
+
+@media print {
+    .release-cover-pixel,
+    .release-player-shell { display: none !important; }
+}

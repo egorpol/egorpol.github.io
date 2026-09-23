@@ -14,7 +14,7 @@ profile: >-
   of concert and installation works into Python-based music encoding, audio and score
   analysis, and AI. Rather than treating creative and analytical work as separate
   specialisms, I use practice-based knowledge to shape research tools and teaching.
-  I currently serve as scientific co-lead of a DFG-funded project at HfM Weimar.
+  I currently work on research and development for the DFG-funded CAMAT project at HfM Weimar.
 
 note: >-
   Born in Bakhmut, Ukraine. Based in the Leipzig region, Germany.
@@ -27,6 +27,13 @@ contact:
   linkedin: https://www.linkedin.com/in/egor-polyakov-6a2114315/
   homepage: https://egorpol.github.io
   location: Leipzig region, Germany
+
+mastering:
+  summary: >-
+    Mastering for the Ornithopter Records catalogue and other independent releases,
+    alongside pre-mastering for Fabian Russ’s contribution to *Neue Meister: Live
+    in Berlin* (Neue Meister / Berlin Classics / Edel:Kultur).
+  url: /works/#mastering
 
 pdf:
   path: /assets/cv/Egor_Polyakov_CV.pdf
@@ -69,13 +76,13 @@ experience:
     location: Weimar
     bullets:
       - >-
-        Serve as scientific co-lead of the DFG project
+        Research and development for the DFG project
         *Development of a Comprehensive Cloud-Based Toolbox for Music Score Analysis*,
         alongside project head Prof. Dr. Martin Pfleiderer; responsible for scientific
         conception and research execution. Co-applicant; total funding: €443,458.
       - >-
-        Coordinate the research programme and supervise doctoral candidates and
-        student assistants across technical and scholarly work packages.
+        Coordinate the research programme and supervise student
+        assistants across technical and scholarly work packages.
       - >-
         Develop Python workflows for MEI/MusicXML analysis, extend *mei-friend* for
         OMR corpora (*musiconn* / Denkmäler Deutscher Tonkunst), and deliver
@@ -125,7 +132,7 @@ funding:
   - dates: 2025–2028
     title: Development of a Comprehensive Cloud-Based Toolbox for Music Score Analysis
     text: >-
-      DFG grant (€443,458) — co-applicant and scientific co-lead; project head and
+      DFG grant (€443,458) — co-applicant; research and development; project head and
       organisational lead: Prof. Dr. Martin Pfleiderer.
   - dates: 2021–2022
     title: Computergestützte Musikanalyse
@@ -217,23 +224,33 @@ publications:
       doi: https://doi.org/10.17613/20s0d-gq678
     - year: "2024"
       citation: >-
-        Pfleiderer, M.; Polyakov, E.; Nadar, C. (2024). *Analyze! Development and
+        Pfleiderer, M.; Polyakov, E.; Nadar, C. (2024). *Analyse! Development and
         integration of software-based tools for musicology and music theory*. In:
-        Innovation in Music: Technology and Creativity. Routledge.
+        Innovation in Music: Technology and Creativity (pp. 292–309). Routledge.
+        DOI: 10.4324/9781003118817-21.
+      doi: https://doi.org/10.4324/9781003118817-21
     - year: "2021"
       citation: >-
         Polyakov, E. (2021). Articles on George Crumb, loudspeaker orchestras,
         orchestras and new media, and recording technology. In: *Lexikon des
         Orchesters*. Laaber-Verlag.
+      url: https://laaber-verlag.de/detailview?no=00456
     - year: "2020"
       citation: >-
         Polyakov, E. (2020). *Computerbasierte Analyse und visuelle
         Repräsentationsformen der Musik*. Dissertation, University of Music and
         Theatre Leipzig.
+      url: https://nbn-resolving.org/urn:nbn:de:bsz:14-qucosa2-723858
     - year: "2019"
       citation: >-
-        Polyakov, E. (2019). “Immer ungenau und mangelhaft.” In: Proceedings of
-        ‘Rimsky-Korsakov at 175’. St. Petersburg.
+        Polyakov, E. (2019). *«Крайне затруднительны и не точны» — описание
+        инструментальных тембров в «Основах оркестровки» (1913) Н. А.
+        Римского-Корсакова* [“Extremely difficult and inaccurate”: instrumental
+        timbres in Rimsky-Korsakov’s *Principles of Orchestration* (1913)]. In:
+        *Год за годом. Римский-Корсаков — 175. Материалы международной научной
+        конференции 18–21 марта 2019 г.* (pp. 37–51). St Petersburg:
+        СПб ГБУК СПбГМТиМИ.
+      url: https://www.academia.edu/41584162
 
   in_press:
     - year: forthcoming
@@ -256,7 +273,7 @@ talks:
     title: Computergestützte Musikanalyse in der Cloud
     venue: GfM annual conference, Frankfurt am Main, 29 September–2 October 2026
   - year: "2026"
-    status: accepted
+    status: presented
     kind: Poster
     title: "CAMAT_v2: Cloud-Based Tools for Collaborative Music Score Analysis"
     venue: ICCCM26, Würzburg, 21–23 September 2026
@@ -407,10 +424,12 @@ releases:
     artist: Two Unknown Guys
     title: Swirl Planet EP
     label: Ornithopter Records (OR 005)
+    url: /works/swirl-planet/
   - year: "2008"
     artist: Two Unknown Guys
     title: The Rubber Duck Massacre EP
     label: Sinergy Networks (SN056)
+    url: /works/rubber-duck-massacre/
 
 memberships:
   - name: Gesellschaft für Musiktheorie (GMTH)
@@ -434,41 +453,131 @@ languages:
 # Homepage / projects short copy (kept aligned with CV facts)
 homepage:
   tagline: >-
-    I work in computational musicology and research software, drawing on composition
-    and electroacoustic practice to build open tools for analysis, research, and teaching.
-  current_work: >-
-    At the University of Music FRANZ LISZT Weimar, I serve as scientific co-lead of
-    the DFG project
-    *Development of a Comprehensive Cloud-Based Toolbox for Music Score Analysis*
-    (2025–2028) with project head Prof. Dr. Martin Pfleiderer. My role
-    centres on scientific conception, research coordination, and technical delivery. We are building
-    collaborative annotation, statistical modelling, and pattern-discovery workflows
-    for MEI and MusicXML corpora through Jupyter4NFDI.
+    I am a computational musicologist, composer, and research software developer.
+    My work grows out of a lifelong fascination with music, computers, and the
+    unexpected things they can do together.
+  motivation:
+    - >-
+      As a child, I was given a ZX Spectrum clone. I was amazed that one small
+      machine could draw, calculate, run games, and even make music, however limited
+      the sound was. Around the same time, I began learning piano and cello and
+      discovered how much I enjoyed improvising and composing. For years, I followed
+      that musical path meticulously and studied classical music almost exclusively.
+    - >-
+      The connection between those two worlds became clear only much later. What I
+      have always enjoyed most is building a setup—musical, analytical, or
+      technical—then trying it out and discovering an interaction I could not quite
+      see before. Today that might mean turning a score into explorable data,
+      translating a listening question into an experiment, or asking what a
+      machine-learning model can—and cannot—understand about musical features. At
+      heart, I do this work because I have fun doing it. Building accessible tools
+      lets me share that experience with others.
+  journey:
+    - stage: The classical path
+      text: >-
+        Piano, cello, improvisation, and composition led me from childhood curiosity
+        to formal studies. For years, I treated the classical tradition as the centre
+        of my musical world.
+    - stage: Beyond the academy
+      text: >-
+        Love Parade in 2002 and several open-air festivals in 2003–04 profoundly
+        changed that view. Techno, drum and bass, dub, and other forms of popular
+        electronic music made me question the idea of one “true” music.
+    - stage: Programming music
+      text: >-
+        From around 2008–09, Max/MSP, OpenMusic, Pure Data, and related environments
+        became central to how I worked. I built real-time audio systems, Max for Live
+        devices, and analysis–synthesis setups for composition, performance, and
+        teaching.
+    - stage: Between worlds
+      text: >-
+        For years I composed contemporary concert music and minimal/techdub in parallel.
+        Alongside my own music, I mastered the Ornithopter Records catalogue and
+        releases by friends, and worked with Fabian Russ on concert and recording projects.
+        The outbreak of war in my home region of Donbas, Ukraine, in 2014 became a
+        persistent source of worry and reflection, deepening my doubts about
+        composition as my only path even as I kept producing and performing with
+        others.
+    - stage: From real time to research
+      text: >-
+        My doctorate led me from accessible software and hybrid analysis systems
+        towards MIR and computational musicology. As my focus moved away from
+        real-time audio around 2020, Python gradually replaced patching environments;
+        CAMAT in 2021–22 brought these threads together in open analytical tools and,
+        later, machine learning.
+  current_work:
+    - >-
+      At the University of Music FRANZ LISZT Weimar, I work on research and development
+      for [CAMAT](https://github.com/analyse-hfm-weimar), the Computer-Assisted Music
+      Analysis Toolbox. The DFG-funded project *A Comprehensive Cloud-Based Toolbox
+      for Sheet Music Analysis* runs from September 2025 to August 2028, with
+      Prof. Dr. Martin Pfleiderer as principal investigator. We bring MEI, Python,
+      and Jupyter notebooks into musicological research and teaching: editing and
+      checking encodings, connecting notation to facsimiles, extracting musical
+      events, and exploring patterns in scores. Jupyter4NFDI makes these tools
+      accessible through a browser.
+    - >-
+      The editorial work is part of this, too. In the CAMAT editions, we correct
+      and review optical music recognition from the Bavarian State Library and
+      *musiconn.scoresearch*, turning it into usable MEI editions and research corpora.
+      Current work draws on *Denkmäler Deutscher Tonkunst* (DdT):
+      [volume I/11, Buxtehude’s instrumental works](https://github.com/egorpol/DdT_1_vol_11),
+      and [volumes I/29–30, *Instrumentalkonzerte deutscher Meister*](https://github.com/egorpol/DdT_1_vol_29_30).
+    - >-
+      For me, building analytical software and working carefully with the musical
+      sources belong together. Preserving a source as a scan keeps its visual form
+      accessible; a musical encoding opens other ways of reading, examining, and
+      analysing it. But that translation involves choices: what do we preserve,
+      what do we leave out, and how much encoded information do we need to understand
+      music? I see this as a meeting point between historical and systematic
+      musicology: the questions we ask shape what we encode, but the source should
+      not disappear behind the data.
+    - >-
+      Today, I often encounter a source through a scan rather than a printed volume
+      I can hold, touch, and feel. That distance makes a carefully prepared encoding,
+      explicitly linked back to the facsimile, feel like the least we can do to
+      treat the source with respect. It should offer another way into the source,
+      not replace it or conceal the editorial choices made along the way. Whatever
+      information we choose to encode, it should remain possible to return to the
+      source and question that reading.
+  accessibility:
+    - >-
+      I do not think access to music or musical analysis should depend on proprietary
+      software or expensive hardware. Accessibility is a design requirement in my
+      work: I release my tools as open source and keep their methods, assumptions, and
+      workflows inspectable, reproducible, and adaptable.
+    - >-
+      Reproducibility also concerns the medium itself. I want people to be able to
+      experience or study music with whatever is available: a sophisticated studio
+      system, inexpensive headphones, a small loudspeaker, or even a visual or
+      analytical representation. Music organises time; sound is one way of
+      encountering that organisation, but not the only one.
   highlights:
     - "2026 — Accepted workshop, *Computergestützte Musikanalyse in der Cloud*, GfM annual conference, Frankfurt am Main"
-    - "2026 — Accepted poster, *CAMAT_v2: Cloud-Based Tools for Collaborative Music Score Analysis*, ICCCM26, Würzburg"
+    - "2026 — Presented poster, *CAMAT_v2: Cloud-Based Tools for Collaborative Music Score Analysis*, ICCCM26, Würzburg"
     - "2026 — Presented *Beyond the Black Box…*, InMusic26, Aalborg"
     - "2026 — Two chapters published in Routledge *Innovation in Music* volumes"
 
 projects:
   - name: CAMAT
-    url: https://analyse.hfm-weimar.de/doku.php?id=en:start
+    url: https://github.com/analyse-hfm-weimar
     blurb: >-
-      Symbolic repertoire analysis with MEI/MusicXML, co-developed with
-      Prof. Dr. Martin Pfleiderer and Christon-Ragavan Nadar.
+      MEI editing, facsimile-linked editions, and computational music analysis
+      with Python and Jupyter notebooks.
     detail: >-
-      Cloud-oriented toolbox for symbolic score analysis with MEI and MusicXML
-      workflows — repertoire statistics, pattern discovery, and teaching transfer.
-      Co-developed with Prof. Dr. Martin Pfleiderer and Christon-Ragavan Nadar;
-      currently extended in the DFG cloud-toolbox project at HfM Weimar, secured
-      together with Prof. Dr. Martin Pfleiderer.
+      The Computer-Assisted Music Analysis Toolbox brings MEI, Python, and
+      Jupyter notebooks into musicological research and teaching. It connects
+      score editing and facsimiles with note and event tables, piano-roll
+      visualisations, and searches for motifs, chord progressions, and textures.
+      Notebook workflows retain links to the source notation and can also run
+      in the browser through Jupyter4NFDI.
   - name: AudioSpylt
     url: https://github.com/egorpol/audiospylt
-    blurb: Audio feature extraction and interactive visualisation for analysis close to listening practice.
+    blurb: Python audio analysis, signal processing, and interactive visualization, inspired by AudioSculpt and OpenMusic.
     detail: >-
-      Python toolkit for audio feature extraction, interactive visualisation, and
-      creative prototyping — analysis workflows that stay close to listening and
-      studio practice.
+      AudioSpylt is a Python toolbox, inspired by AudioSculpt and OpenMusic,
+      built for in-depth audio analysis, advanced signal processing, and
+      interactive visualization.
   - name: FFTimbre
     url: https://github.com/egorpol/FFTimbre
     blurb: FM/additive timbre matching with multi-metric evaluation.

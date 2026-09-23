@@ -1,0 +1,135 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>View-control prototypes</title>
+  <link rel="stylesheet" href="styles.css">
+</head>
+<body>
+  <main>
+    <header class="prototype-intro">
+      <p class="kicker">Interface study · not part of the live site</p>
+      <h1>Pixel and plain view controls</h1>
+      <p class="intro-copy">Four ways to separate the site-view choice from the light/dark theme. Each header below is interactive. <strong>Pixel / Plain</strong> is used as the working name, but the labels can change independently of the control design.</p>
+    </header>
+
+    <section class="naming" aria-labelledby="naming-title">
+      <div>
+        <p class="section-number">Naming</p>
+        <h2 id="naming-title">Why “Pixel”?</h2>
+      </div>
+      <p>It describes what visitors immediately see and connects naturally to “Too many pixels?”. “Patcher” is more exact but more specialised; “8-bit” is clear but describes only the ZX part; “Signal” has character but needs explanation.</p>
+      <div class="name-chips" aria-label="Possible view names">
+        <span class="recommended">Pixel / Plain</span>
+        <span>Patcher / Plain</span>
+        <span>8-bit / Plain</span>
+        <span>Signal / Plain</span>
+      </div>
+    </section>
+
+    <div class="prototype-list">
+      <article class="prototype-card" data-demo data-skin="pixel" data-theme="dark">
+        <div class="card-copy">
+          <p class="section-number">Direction 01</p>
+          <h2>Explicit segmented control</h2>
+          <p>Both possibilities remain visible. The divider makes the theme control read as a separate setting.</p>
+        </div>
+        <div class="browser-frame">
+          <header class="demo-header">
+            <a class="demo-name" href="#">Egor Polyakov</a>
+            <nav aria-label="Example navigation"><a href="#">Projects</a><a href="#">Works</a><a href="#">Notes</a></nav>
+            <div class="controls controls-segmented">
+              <span class="control-label">View</span>
+              <div class="segments" role="group" aria-label="Site view">
+                <button type="button" data-set-skin="pixel">Pixel</button>
+                <button type="button" data-set-skin="plain">Plain</button>
+              </div>
+              <span class="control-divider" aria-hidden="true"></span>
+              <button class="theme-button" type="button" data-toggle-theme aria-label="Toggle light and dark theme"><span aria-hidden="true"></span></button>
+            </div>
+          </header>
+          <div class="demo-body"><p class="demo-label">Current view</p><p class="demo-state" data-state-label>Pixel · dark</p></div>
+        </div>
+      </article>
+
+      <article class="prototype-card" data-demo data-skin="pixel" data-theme="dark">
+        <div class="card-copy">
+          <p class="section-number">Direction 02 · selected</p>
+          <h2>Two-ended physical switch</h2>
+          <p>Compact and tactile. Labels on both sides remove the usual ambiguity of a toggle switch.</p>
+        </div>
+        <div class="browser-frame">
+          <header class="demo-header">
+            <a class="demo-name" href="#">Egor Polyakov</a>
+            <nav aria-label="Example navigation"><a href="#">Projects</a><a href="#">Works</a><a href="#">Notes</a></nav>
+            <div class="controls controls-track">
+              <span class="track-label">Pixel</span>
+              <button class="skin-track" type="button" data-toggle-skin aria-label="Switch to plain view" aria-pressed="true"><span></span></button>
+              <span class="track-label">Plain</span>
+              <span class="control-divider" aria-hidden="true"></span>
+              <button class="theme-button" type="button" data-toggle-theme aria-label="Toggle light and dark theme"><span aria-hidden="true"></span></button>
+            </div>
+          </header>
+          <div class="demo-body"><p class="demo-label">Current view</p><p class="demo-state" data-state-label>Pixel · dark</p></div>
+        </div>
+      </article>
+
+      <article class="prototype-card" data-demo data-skin="pixel" data-theme="dark">
+        <div class="card-copy">
+          <p class="section-number">Direction 03</p>
+          <h2>Labeled jack</h2>
+          <p>Keeps the current audio-jack idea but gives it a persistent textual meaning. This preserves more of the site’s character.</p>
+        </div>
+        <div class="browser-frame">
+          <header class="demo-header">
+            <a class="demo-name" href="#">Egor Polyakov</a>
+            <nav aria-label="Example navigation"><a href="#">Projects</a><a href="#">Works</a><a href="#">Notes</a></nav>
+            <div class="controls controls-jack">
+              <button class="jack-button" type="button" data-toggle-skin aria-label="Switch to plain view" aria-pressed="true">
+                <span class="jack-icon" aria-hidden="true"><i></i></span>
+                <span data-skin-name>Pixel</span>
+              </button>
+              <span class="control-divider" aria-hidden="true"></span>
+              <button class="theme-button" type="button" data-toggle-theme aria-label="Toggle light and dark theme"><span aria-hidden="true"></span></button>
+            </div>
+          </header>
+          <div class="demo-body"><p class="demo-label">Current view</p><p class="demo-state" data-state-label>Pixel · dark</p></div>
+        </div>
+      </article>
+
+      <article class="prototype-card" data-demo data-skin="pixel" data-theme="dark">
+        <div class="card-copy">
+          <p class="section-number">Direction 04 · compact/mobile</p>
+          <h2>Single appearance menu</h2>
+          <p>The quietest header. It scales well, but the view change takes one extra action and becomes less discoverable.</p>
+        </div>
+        <div class="browser-frame">
+          <header class="demo-header">
+            <a class="demo-name" href="#">Egor Polyakov</a>
+            <nav aria-label="Example navigation"><a href="#">Projects</a><a href="#">Works</a><a href="#">Notes</a></nav>
+            <div class="controls controls-menu">
+              <button class="menu-trigger" type="button" data-menu-trigger aria-expanded="false">View: <span data-skin-name>Pixel</span> <i aria-hidden="true">▾</i></button>
+              <div class="appearance-menu" data-menu hidden>
+                <p>View</p>
+                <button type="button" data-set-skin="pixel">Pixel <span data-check="pixel">✓</span></button>
+                <button type="button" data-set-skin="plain">Plain <span data-check="plain"></span></button>
+                <hr>
+                <button type="button" data-toggle-theme>Change to <span data-opposite-theme>light</span> theme</button>
+              </div>
+            </div>
+          </header>
+          <div class="demo-body"><p class="demo-label">Current view</p><p class="demo-state" data-state-label>Pixel · dark</p></div>
+        </div>
+      </article>
+    </div>
+
+    <section class="hint-study" aria-labelledby="hint-title">
+      <p class="section-number">First-visit hint</p>
+      <h2 id="hint-title">Suggested wording</h2>
+      <div class="hint-box"><span>Too many pixels? Turn this off for the plain version.</span><button type="button" aria-label="Dismiss">×</button></div>
+    </section>
+  </main>
+  <script src="script.js"></script>
+</body>
+</html>

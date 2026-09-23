@@ -1,0 +1,74 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<files>
+  <file name="SN056_1_two-unknown-guys_open-source_The-rubber-duck-masacre_sinergy-networks.mp3" source="original">
+    <format>320Kbps MP3</format>
+    <title>open source</title>
+    <creator>Two unknown guys</creator>
+    <album>The Rubber Duck Massacre EP</album>
+    <track>1</track>
+    <md5>80d3fc6eae94d4c5515eabbfcdb83b61</md5>
+    <sha1>9ec35894b22529f3bd06c94926b5c9de7c1a654c</sha1>
+  </file>
+  <file name="SN056_2_two-unknown-guys_Aegis_The-rubber-duck-masacre_sinergy-networks.mp3" source="original">
+    <format>320Kbps MP3</format>
+    <title>Aegis</title>
+    <creator>Two unknown guys</creator>
+    <album>The Rubber Duck Massacre EP</album>
+    <track>2</track>
+    <md5>64b5cde16765efae24f1b6279e596e0f</md5>
+    <sha1>11698895d122fd1bd68054a85dfca07379c8ade0</sha1>
+  </file>
+  <file name="sn056-2unkown-guys_100pxl.jpg" source="original">
+    <format>JPEG</format>
+    <title>SN056 - two unknown guys - The rubber duck masacre ep - 100pxl</title>
+    <md5>e2791b5913e6b753e7603e21bfe4000e</md5>
+    <sha1>0bf58410a5094cbc973df563193d5538034ba268</sha1>
+  </file>
+  <file name="sn056-2unkown-guys_300pxl.jpg" source="original">
+    <format>JPEG</format>
+    <title>SN056 - two unknown guys - The rubber duck masacre ep - 300 pxl</title>
+    <md5>2598a4a38b10e65524876173472a7c03</md5>
+    <sha1>73e7b107ed8582644b049ad41fe7bfb05442d32b</sha1>
+  </file>
+  <file name="SN056_3_two-unknown-guys_Catalyst_The-rubber-duck-masacre_sinergy-networks.mp3" source="original">
+    <format>320Kbps MP3</format>
+    <title>Catalyst</title>
+    <creator>Two unknown guys</creator>
+    <album>The Rubber Duck Massacre EP</album>
+    <track>3</track>
+    <md5>6a4e0aefc027e3387f954ca5872b29b5</md5>
+    <sha1>9c17a144b6e2dafe23dbcd1aaace1e8baa70b2d2</sha1>
+  </file>
+  <file name="SN056_4_two-unknown-guys_Dampflok_The-rubber-duck-masacre_sinergy-networks.mp3" source="original">
+    <format>320Kbps MP3</format>
+    <title>Dampflok</title>
+    <creator>Two unknown guys</creator>
+    <album>The Rubber Duck Massacre EP</album>
+    <track>4</track>
+    <md5>287c11bbcd7c1618c0f11a62d7e644f1</md5>
+    <sha1>28e138153228d18a7f92066e80e75fec9c4dad18</sha1>
+  </file>
+  <file name="SN056_5_two-unknown-guys_bloodnight-christoph-schindling-remix_The-rubber-duck-masacre_sinergy-networks.mp3" source="original">
+    <format>320Kbps MP3</format>
+    <title>bloodnight-christoph-schindling-remix</title>
+    <creator>Two unknown guys</creator>
+    <album>The Rubber Duck Massacre EP</album>
+    <track>5</track>
+    <md5>4c5499bc45866c84ec0a3695d38b0b1c</md5>
+    <sha1>c02536f367d0ce42e6d93e8763a3fd882e9a1577</sha1>
+  </file>
+  <file name="SN056_files.xml" source="original">
+    <format>Metadata</format>
+    <md5>b813d2989adf52b046d523e2fe2c4ea2</md5>
+    <sha1>b14ef6b49b386701e2c95e7f62f9e93156fe8a3f</sha1>
+  </file>
+  <file name="SN056_meta.xml" source="metadata">
+    <format>Metadata</format>
+    <md5>a4de1a91873727606ab8004668843fdb</md5>
+    <sha1>d41d2c16533cbbf63e4e8c02ac342c147b6a8b27</sha1>
+  </file>
+  <file name="SN056_rules.conf" source="">
+    <md5>6c6da25dbec014e39afd8c759b43ca4b</md5>
+    <sha1>bc87893129439e714de015c252807bf274eb7c04</sha1>
+  </file>
+</files>

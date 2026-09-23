@@ -57,10 +57,15 @@ breadcrumb:
     <li>
       <span class="reference-year">{{ rel.year }}</span>
       <div>
-        <p class="work-title">{{ rel.title }}</p>
+        <p class="work-title">{% if rel.url %}<a href="{{ rel.url | relative_url }}">{{ rel.title }}</a>{% else %}{{ rel.title }}{% endif %}</p>
         <p class="work-detail">{{ rel.artist }} · {{ rel.label }}</p>
       </div>
     </li>
     {% endfor %}
   </ul>
+</section>
+
+<section class="entry-group mastering-section" id="mastering" aria-labelledby="mastering-title">
+  <h2 id="mastering-title">Mastering</h2>
+  {% include mastering.html %}
 </section>
