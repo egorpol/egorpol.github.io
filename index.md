@@ -101,12 +101,6 @@ structured_data:
   </ol>
 </section>
 
-<section class="content-section mastering-section" id="mastering" aria-labelledby="mastering-title">
-  <p class="section-label">Studio practice</p>
-  <h2 id="mastering-title">Mastering and shared projects</h2>
-  {% include mastering.html collapsible=true %}
-</section>
-
 <section class="content-section prose-patch" aria-labelledby="accessibility-title">
   <p class="section-label">Working principles</p>
   <h2 id="accessibility-title">Open tools, reproducible music</h2>

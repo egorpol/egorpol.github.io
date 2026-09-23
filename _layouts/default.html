@@ -92,7 +92,7 @@
         </div>
     </header>
 
-    <main id="main-content" class="site-main">
+    <main id="main-content" class="site-main{% if page.url == '/' %} site-main-home{% endif %}">
         {% if page.breadcrumb %}
         <nav aria-label="Breadcrumb" class="breadcrumb">
             <ol>

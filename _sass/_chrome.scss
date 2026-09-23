@@ -383,7 +383,11 @@ html:not([data-theme-frame])[data-theme="dark"] .pixel-theme-state-4,
         .release-story-copy,
         .release-context-copy p {
             font-family: var(--font-mono);
-            font-size: 1.125rem;
+            font-size: 1.0625rem;
+        }
+
+        .lead {
+            font-size: 1.0625rem;
         }
 
         .site-title,
@@ -437,6 +441,16 @@ html:not([data-theme-frame])[data-theme="dark"] .pixel-theme-state-4,
         .error-page h1 {
             font-size: 24px;
             line-height: 1.25;
+        }
+
+        .site-main-home .section-label {
+            font-size: 20px;
+        }
+
+        .site-main-home .content-section h2,
+        .site-main-home .contact-panel h2 {
+            font-size: 24px;
+            line-height: 1.3;
         }
 
         .hero h1 {
@@ -661,12 +675,12 @@ html:not([data-theme-frame])[data-theme="dark"] .pixel-theme-state-4,
 [data-chrome="on"] .word-obj {
     position: relative;
     display: block;
-    padding: 0.2rem 0.45rem 0.25rem;
+    padding: 0.3rem 0.6rem 0.35rem;
     border: 1px solid var(--patch-line);
     background: var(--surface);
     color: var(--heading);
     font-family: var(--font-pixel);
-    font-size: 8px;
+    font-size: 12px;
     font-weight: 400;
     letter-spacing: 0;
     line-height: 1.4;
