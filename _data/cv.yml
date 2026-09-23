@@ -28,6 +28,13 @@ contact:
   homepage: https://egorpol.github.io
   location: Leipzig region, Germany
 
+mastering:
+  summary: >-
+    Mastering for the Ornithopter Records catalogue and other independent releases,
+    alongside pre-mastering for Fabian Russ’s contribution to *Neue Meister: Live
+    in Berlin* (Neue Meister / Berlin Classics / Edel:Kultur).
+  url: /works/#mastering
+
 pdf:
   path: /assets/cv/Egor_Polyakov_CV.pdf
   filename: Egor_Polyakov_CV.pdf
@@ -74,7 +81,7 @@ experience:
         alongside project head Prof. Dr. Martin Pfleiderer; responsible for scientific
         conception and research execution. Co-applicant; total funding: €443,458.
       - >-
-        Coordinate the research programme and supervise student 
+        Coordinate the research programme and supervise student
         assistants across technical and scholarly work packages.
       - >-
         Develop Python workflows for MEI/MusicXML analysis, extend *mei-friend* for

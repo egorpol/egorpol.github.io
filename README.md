@@ -21,7 +21,7 @@ The generated site is written to `_site/`.
 ruby scripts/generate_cv_tex.rb --build
 ```
 
-This requires `latexmk` and a TeX Live installation containing `moderncv`, `lmodern`, `eurosym`, and `csquotes`.
+This requires `latexmk` and a TeX Live installation containing `moderncv`, `lmodern`, `eurosym`, `csquotes`, and Cyrillic fonts. Alternatively, use `--build --engine tectonic` with Tectonic and DejaVu Sans installed; see [the CV build notes](cv/README.md).
 
 Key files:
 

@@ -203,7 +203,7 @@ structured_data:
     </ul>
 
     <h3 class="cv-subheading">Mastering</h3>
-    <p>Mastering for the Ornithopter Records catalogue and other independent releases, alongside pre-mastering for Fabian Russ’s contribution to <em>Neue Meister: Live in Berlin</em> (Neue Meister / Berlin Classics / Edel:Kultur). <a href="{{ '/works/#mastering' | relative_url }}">Full mastering discography and credits</a>.</p>
+    <p>{{ cv.mastering.summary | markdownify | remove: '<p>' | remove: '</p>' }} <a href="{{ cv.mastering.url | relative_url }}">Full mastering discography and credits</a>.</p>
 
     <h3 class="cv-subheading">Selected artistic works</h3>
     <ul class="dated-list">
