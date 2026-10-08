@@ -22,6 +22,12 @@ scripts:
     <h1>{{ demo.title }}</h1>
     <p class="lead">Excerpts from my compositions, co-productions, and mastering work. My contribution is identified for each recording.</p>
     <p class="demo-summary">{{ demo.tracks.size }} excerpts <span aria-hidden="true">·</span> {{ demo.duration_label }} total <span aria-hidden="true">·</span> stereo</p>
+    {% if demo.aiff_archive %}
+    <p class="demo-archive-download">
+      <a class="button button-primary" href="{{ demo.aiff_archive.url | escape }}">Download all AIFFs</a>
+      <span>ZIP · {{ demo.aiff_archive.size }} · 16-bit / 44.1 kHz</span>
+    </p>
+    {% endif %}
   </header>
 
   <section class="content-section release-listen" aria-labelledby="listen-title">

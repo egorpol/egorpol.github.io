@@ -1,5 +1,9 @@
 {
   "title": "Selected Productions",
+  "aiff_archive": {
+    "url": "https://github.com/egorpol/egorpol.github.io/releases/download/dresden-demo-2026/egor-polyakov-dresden-demo.zip",
+    "size": "127.4 MB"
+  },
   "source_note": "Shandy Mandies — Baby Blue was converted to AIFF from a lower-bitrate MP3. The AIFF download and the 320 kbps listening copy retain the limitations of that source.",
   "tracks": [
     {
