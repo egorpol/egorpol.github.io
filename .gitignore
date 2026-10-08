@@ -56,3 +56,15 @@ id_dsa
 id_ecdsa
 id_ed25519
 id_rsa
+
+# Private Dresden application documents
+/dresden-bewerbung/
+
+# Listening-portfolio originals stay local; publish the copies under aiff/.
+/assets/audio/dd-demo/*.aif
+/assets/audio/dd-demo/*.aiff
+/assets/audio/dd-demo/*.wav
+/assets/audio/dd-demo/*.pkf
+/assets/audio/dd-demo/*.zip
+/assets/audio/dd-demo/01_adada-dd.mp3
+/assets/audio/dd-demo/SHANDY MANDIES - Baby Blue \[1366364827\].mp3

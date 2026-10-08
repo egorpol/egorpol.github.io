@@ -247,7 +247,15 @@
         if (audio.paused && !isLoading && !pendingPlay && !audio.seeking && !audio.ended) requestedPlayback = false;
         renderPlaying();
     });
-    wavesurfer.on('finish', function () { loadTrack(currentIndex + 1, true); });
+    wavesurfer.on('finish', function () {
+        if (root.dataset.playback === 'once' && currentIndex === tracks.length - 1) {
+            requestedPlayback = false;
+            audio.pause();
+            renderPlaying();
+            return;
+        }
+        loadTrack(currentIndex + 1, true);
+    });
     audio.addEventListener('error', function () {
         if (!audio.error) return;
         isLoading = false;

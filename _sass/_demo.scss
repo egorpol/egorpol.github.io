@@ -1,0 +1,105 @@
+/* The listening portfolio reuses the release deck without a cover image. */
+.demo-summary {
+    color: var(--text-muted);
+    font-family: var(--font-mono);
+    font-size: 0.85rem;
+}
+
+.demo-summary span {
+    margin: 0 0.35rem;
+}
+
+.demo-page .release-tracks {
+    border: 1px solid var(--border);
+}
+
+.demo-page .release-tracks li + li {
+    border-top: 1px solid var(--border);
+}
+
+.demo-page .release-tracks button {
+    padding: 1rem 0.75rem 0.7rem;
+    border: 0;
+}
+
+.demo-page .release-tracks small {
+    line-height: 1.5;
+}
+
+.demo-track-downloads {
+    display: flex;
+    flex-direction: column;
+    gap: 0.4rem;
+    padding: 0 0.75rem 1rem 4.75rem;
+    font-size: 0.8rem;
+}
+
+.demo-track-links {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 0.4rem 1.25rem;
+}
+
+.demo-track-downloads > span {
+    color: var(--text-muted);
+}
+
+[data-chrome="on"] .demo-page .release-tracks,
+[data-chrome="on"] .demo-page .release-tracks li + li {
+    border-color: var(--patch-line);
+}
+
+[data-chrome="on"] .demo-page .release-tracks button {
+    border: 0;
+}
+
+[data-chrome="on"] .demo-track-downloads {
+    font-family: var(--font-pixel);
+    font-size: 8px;
+    line-height: 1.6;
+    letter-spacing: 0;
+}
+
+.demo-source-note {
+    max-width: var(--reading-width);
+    margin-bottom: 2.5rem;
+    padding-left: 1.25rem;
+    border-left: 2px solid var(--border);
+}
+
+.demo-source-note h2 {
+    font-size: 1.05rem;
+}
+
+.demo-source-note p {
+    color: var(--text-muted);
+    font-size: 0.95rem;
+    line-height: 1.65;
+}
+
+.demo-formats {
+    max-width: var(--reading-width);
+}
+
+.demo-native-players audio {
+    display: block;
+    width: 100%;
+    margin-bottom: 1.5rem;
+}
+
+@media (max-width: 520px) {
+    .demo-track-downloads {
+        padding-left: 3.35rem;
+    }
+
+    .demo-page .release-player-meta {
+        flex-wrap: wrap;
+        align-items: flex-start;
+        gap: 0.3rem;
+    }
+
+    .demo-page .release-player-meta > :last-child {
+        margin-left: 0;
+        text-align: left;
+    }
+}
