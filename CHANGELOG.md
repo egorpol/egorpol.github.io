@@ -12,6 +12,7 @@ The format is based on [Keep a Changelog](https://keepachangelog.com/).
 - Institution for each course on Teaching, the CV page, and the PDF
 - Production stage in the CV trajectory and a Production and mastering competency (Ableton Live, Logic Pro, Adobe Audition, Ambisonics with IRCAM Spat)
 - Cumulative Habilitation (in progress) under Education
+- Homepage section “Studio and stage” on production, mastering, and live electronics, after the current appointment
 
 ### Changed
 
@@ -23,6 +24,7 @@ The format is based on [Keep a Changelog](https://keepachangelog.com/).
 - Mastering copy names the Ornithopter founding team; Works notes the interdisciplinary Fabian Russ productions
 - Balanced positioning: “computational musicologist, producer, and research software developer” in the profile, homepage tagline, and site description; header reads “Research · production · code”; new Works intro
 - Homepage story stage “Between worlds” rewritten around production and tool-building
+- Homepage “Current appointment” condensed from four paragraphs to three
 
 ## [0.0.1] - 2026-09-23
 

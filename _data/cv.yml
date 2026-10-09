@@ -534,22 +534,24 @@ homepage:
       [volume I/11, Buxtehude’s instrumental works](https://github.com/egorpol/DdT_1_vol_11),
       and [volumes I/29–30, *Instrumentalkonzerte deutscher Meister*](https://github.com/egorpol/DdT_1_vol_29_30).
     - >-
-      For me, building analytical software and working carefully with the musical
-      sources belong together. Preserving a source as a scan keeps its visual form
-      accessible; a musical encoding opens other ways of reading, examining, and
-      analysing it. But that translation involves choices: what do we preserve,
-      what do we leave out, and how much encoded information do we need to understand
-      music? I see this as a meeting point between historical and systematic
-      musicology: the questions we ask shape what we encode, but the source should
-      not disappear behind the data.
+      For me, building analytical software and working carefully with the sources
+      belong together. An encoding, explicitly linked back to the facsimile, should
+      offer another way into the source, not replace it or hide the editorial choices
+      made along the way. Whatever we choose to encode, it should remain possible to
+      return to the source and question that reading.
+  studio:
     - >-
-      Today, I often encounter a source through a scan rather than a printed volume
-      I can hold, touch, and feel. That distance makes a carefully prepared encoding,
-      explicitly linked back to the facsimile, feel like the least we can do to
-      treat the source with respect. It should offer another way into the source,
-      not replace it or conceal the editorial choices made along the way. Whatever
-      information we choose to encode, it should remain possible to return to the
-      source and question that reading.
+      Alongside research, I have spent much of my working life in the studio. As one
+      half of Two Unknown Guys, I produced minimal and techdub tracks released on
+      [Ornithopter Records](/works/swirl-planet/) and
+      [Sinergy Networks](/works/rubber-duck-massacre/). As part of Ornithopter’s
+      founding team, I mastered the label’s catalogue, and later releases by bands
+      and underground artists from Leipzig and Berlin.
+    - >-
+      For concerts and installations, I realised live electronics and stem mastering,
+      most closely with Fabian Russ: premieres at Futurium Berlin, Montforthaus
+      Feldkirch, and Scala Esslingen, several of them interdisciplinary productions
+      with dance, theatre, and video.
   accessibility:
     - >-
       I do not think access to music or musical analysis should depend on proprietary

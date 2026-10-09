@@ -81,6 +81,18 @@ structured_data:
   {% include chain-patch.html a="hfm weimar" b="me" %}
 </section>
 
+<section class="content-section prose-patch" aria-labelledby="studio-title">
+  <p class="section-label">Studio and stage</p>
+  <h2 id="studio-title">Production, mastering, and live electronics</h2>
+  <div class="prose-copy">
+    {% for paragraph in cv.homepage.studio %}
+    {{ paragraph | markdownify }}
+    {% endfor %}
+    <p><a class="text-link" href="{{ '/works/' | relative_url }}">Works, releases, and mastering credits <span aria-hidden="true">→</span></a></p>
+  </div>
+  {% include word-patch.html a="record" b="patch" c="mix" d="master" sink="listen" %}
+</section>
+
 <section class="content-section trajectory-patch" aria-labelledby="practice-title">
   <div class="trajectory-copy" data-patch="head">
     <p class="section-label">How I got here</p>
