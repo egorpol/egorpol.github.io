@@ -217,8 +217,9 @@ def generate_tex(cv)
   end
   out << "\\subsection{Selected courses}\n"
   Array(cv.dig("teaching", "items")).each do |item|
+    institution = item["institution"] ? ", #{md_to_tex(item['institution'])}" : ""
     out << "\\cvitem{#{escape_tex(item['term'])}}" \
-           "{#{q(item['title'])} -- #{md_to_tex(item['detail'])}}\n"
+           "{#{q(item['title'])}#{institution} -- #{md_to_tex(item['detail'])}}\n"
   end
   out << "\n"
 
@@ -245,7 +246,13 @@ def generate_tex(cv)
   end
   out << "\n\\subsection{In Press / Accepted}\n"
   Array(pubs["in_press"]).each do |pub|
-    out << "\\cventry{#{escape_tex(pub['year'].to_s)}}{}{}{}{}{#{md_to_tex(pub['citation'])}}\n"
+    cite = md_to_tex(pub["citation"])
+    if pub["doi"]
+      cite += " \\href{#{escape_tex(pub['doi'])}}{DOI}"
+    elsif pub["url"]
+      cite += " \\href{#{escape_tex(pub['url'])}}{Link}"
+    end
+    out << "\\cventry{#{escape_tex(pub['year'].to_s)}}{}{}{}{}{#{cite}}\n"
   end
   out << "\n\\subsection{Under Review}\n"
   Array(pubs["under_review"]).each do |pub|

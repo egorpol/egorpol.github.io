@@ -42,6 +42,12 @@ releases:
     label: Dreiton · DN020
     credited_as: master_klirr
     url: https://www.discogs.com/release/2283395
+  # No credited_as: Discogs does not list the mastering credit for this release.
+  - year: "2009"
+    artist: Sraunus
+    title: Variado
+    label: Ornithopter Records · OR 009
+    url: https://www.discogs.com/release/1902536
   - year: "2009"
     artist: Adverb
     title: Adverbial EP

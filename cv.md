@@ -135,7 +135,7 @@ structured_data:
     <h3 class="cv-subheading">Selected courses</h3>
     <ul class="dated-list">
       {% for item in cv.teaching.items %}
-      <li><span>{{ item.term }}</span><div><strong>{{ item.title }}</strong><br>{{ item.detail }}</div></li>
+      <li><span>{{ item.term }}</span><div><strong>{{ item.title }}</strong><br>{% if item.institution %}{{ item.institution }} · {% endif %}{{ item.detail }}</div></li>
       {% endfor %}
     </ul>
   </section>
@@ -166,7 +166,7 @@ structured_data:
     <h3 class="cv-subheading">In Press / Accepted</h3>
     <ul class="publication-list">
       {% for pub in cv.publications.in_press %}
-      <li>{{ pub.citation | markdownify | remove: '<p>' | remove: '</p>' }}</li>
+      <li>{{ pub.citation | markdownify | remove: '<p>' | remove: '</p>' }}{% if pub.doi %} <a href="{{ pub.doi }}" target="_blank" rel="noopener noreferrer">DOI <span aria-hidden="true">↗</span></a>{% elsif pub.url %} <a href="{{ pub.url }}" target="_blank" rel="noopener noreferrer">Link <span aria-hidden="true">↗</span></a>{% endif %}</li>
       {% endfor %}
     </ul>
     {% endif %}

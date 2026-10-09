@@ -143,7 +143,7 @@ funding:
 
 teaching:
   summary: >-
-    More than a decade of teaching across electroacoustic composition and production,
+    More than twelve years of teaching across electroacoustic composition and production,
     popular and electronic music, computer-assisted analysis, digital humanities,
     and AI at HMT Leipzig (2013–2025) and HfM Weimar (since 2025), combining artistic
     practice with research-led technical instruction.
@@ -160,23 +160,29 @@ teaching:
       title: >-
         Von der digitalen Edition zur computergestützten Musikanalyse: Einführung in
         Musik-Encoding und Tools für die Notentextanalyse
+      institution: HfM Weimar
       detail: >-
         Introductory seminar on music encoding and digital tools for computational
-        score analysis at HfM Weimar.
+        score analysis.
     - term: SS 2025
       title: Hearing (and analyzing) in time
+      institution: HMT Leipzig
       detail: Groove and metric analysis in electronic music.
     - term: WS 2024/25
-      title: "Algorithmic music models: from analysis to style transfer with Python/AI"
+      title: "Algorithmic music models: from analysis to style imitation with Python/AI"
+      institution: HMT Leipzig
       detail: Probabilistic and machine-learning techniques.
     - term: WS 2023/24
       title: AI and statistical analysis in musicological research
+      institution: HMT Leipzig
       detail: Score and audio pipelines with machine learning.
     - term: SS 2023
       title: From track to DJ set, from sample to live performance
+      institution: HMT Leipzig
       detail: Macroform concepts in popular electronic music.
     - term: 2013–2025
-      title: Electroacoustic Music I and II
+      title: Fundamentals of Electroacoustic Music I and II
+      institution: HMT Leipzig
       detail: >-
         Annual foundational seminar covering acoustics, digital production, and
         live-electronics practice.
@@ -210,12 +216,6 @@ publications:
         Innovation in Music: Current Research Perspectives (pp. 121–134).
         Focal Press / Routledge. DOI: 10.4324/9781003475675-11.
       doi: https://doi.org/10.4324/9781003475675-11
-    - year: "2026"
-      citation: >-
-        Polyakov, E. (2026). *Understanding and Emulating Time: Analyzing and
-        Simulating Musical Microrhythm Timing with the beat_it Toolbox*. In:
-        Innovation in Music: Sound and Place. Focal Press / Routledge.
-      url: https://www.routledge.com/Innovation-in-Music-Sound-and-Place/Lovett-Gullo-Hepworth-Sawyer-Toulson-Paterson-Marrington/p/book/9781041014072
     - year: "2025"
       citation: >-
         Polyakov, E. (2025). *Encoding the New Frontier: Adapting MEI and Verovio
@@ -253,9 +253,15 @@ publications:
       url: https://www.academia.edu/41584162
 
   in_press:
-    - year: forthcoming
+    - year: in press
       citation: >-
-        Polyakov, E. (forthcoming). “Evaluation of Modern Computer-Aided Sheet
+        Polyakov, E. (in press). *Understanding and Emulating Time: Analyzing and
+        Simulating Musical Microrhythm Timing with the beat_it Toolbox*. In:
+        Innovation in Music: Sound and Place. Focal Press / Routledge.
+      url: https://www.routledge.com/Innovation-in-Music-Sound-and-Place/Lovett-Gullo-Hepworth-Sawyer-Toulson-Paterson-Marrington/p/book/9781041014072
+    - year: in press
+      citation: >-
+        Polyakov, E. (in press). “Evaluation of Modern Computer-Aided Sheet
         Music Analysis Methods in a Practical Context.” In: GMTH Proceedings.
 
   under_review:
@@ -267,11 +273,6 @@ publications:
 
 
 talks:
-  - year: "2026"
-    status: accepted
-    kind: Workshop
-    title: Computergestützte Musikanalyse in der Cloud
-    venue: GfM annual conference, Frankfurt am Main, 29 September–2 October 2026
   - year: "2026"
     status: presented
     kind: Poster
@@ -552,11 +553,12 @@ homepage:
       system, inexpensive headphones, a small loudspeaker, or even a visual or
       analytical representation. Music organises time; sound is one way of
       encountering that organisation, but not the only one.
+  # Exactly four items: the Pixel-view highlight patch is laid out for four.
   highlights:
-    - "2026 — Accepted workshop, *Computergestützte Musikanalyse in der Cloud*, GfM annual conference, Frankfurt am Main"
     - "2026 — Presented poster, *CAMAT_v2: Cloud-Based Tools for Collaborative Music Score Analysis*, ICCCM26, Würzburg"
     - "2026 — Presented *Beyond the Black Box…*, InMusic26, Aalborg"
-    - "2026 — Two chapters published in Routledge *Innovation in Music* volumes"
+    - "2026 — Published chapter on *FFTimbre* in Routledge *Innovation in Music: Current Research Perspectives*"
+    - "In press — Chapter on the *beat_it* toolbox in Routledge *Innovation in Music: Sound and Place*"
 
 projects:
   - name: CAMAT

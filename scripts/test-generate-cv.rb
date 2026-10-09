@@ -40,6 +40,15 @@ class GenerateCVTest
     assert_includes @tex, '\\href{https://egorpol.github.io/works/\\#mastering}{Full mastering discography and credits}'
   end
 
+  def test_in_press_entries_keep_their_links
+    assert_includes @tex, '\\href{https://www.routledge.com/Innovation-in-Music-Sound-and-Place/'
+    refute_includes @tex, 'Polyakov, E. (2026). \\emph{Understanding and Emulating Time'
+  end
+
+  def test_teaching_items_name_their_institution
+    assert_includes @tex, '\\enquote{Hearing (and analyzing) in time}, HMT Leipzig --'
+  end
+
   def test_subsection_headings_stay_with_their_first_entry
     assert_includes @tex, '\\preto{\\subsection}{\\Needspace{5\\baselineskip}}'
   end

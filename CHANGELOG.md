@@ -5,6 +5,18 @@ The format is based on [Keep a Changelog](https://keepachangelog.com/).
 
 ## [Unreleased]
 
+### Added
+
+- Unlisted listening page `/works/production-selection/` for the HfM Dresden application, with MP3 and AIFF downloads and an AIFF archive as a GitHub Release asset
+- Sraunus – *Variado* (Ornithopter Records, OR 009) in the mastering discography; releases without a Discogs credit are marked as such
+- Institution for each course on Teaching, the CV page, and the PDF
+
+### Changed
+
+- *Understanding and Emulating Time* (beat_it) moved from published to in press; in-press entries now show their links
+- Homepage highlights rewritten; the cancelled GfM 2026 workshop removed from talks
+- Course titles aligned with the originals (*Fundamentals of Electroacoustic Music I and II*; “style imitation” for *Stilkopie*) and teaching summary set to more than twelve years
+
 ## [0.0.1] - 2026-09-23
 
 First numbered release: pixel chrome overlay, release pages, CV/PDF updates, and related content from `phase-2-chrome`.
