@@ -38,9 +38,10 @@
     object-fit: cover;
 }
 
+/* Six CV stages read as two rows of three. */
 .trajectory-grid {
     display: grid;
-    grid-template-columns: repeat(5, minmax(0, 1fr));
+    grid-template-columns: repeat(3, minmax(0, 1fr));
     margin: 0;
     padding: 0;
     border-top: 1px solid var(--border);
@@ -75,6 +76,22 @@
     font-weight: var(--weight-strong);
     line-height: 1;
     text-align: center;
+}
+
+.trajectory-grid:not(.trajectory-compact) li:nth-child(3) {
+    border-right: 0;
+}
+
+.trajectory-grid:not(.trajectory-compact) li:nth-child(3)::after {
+    display: none;
+}
+
+.trajectory-grid:not(.trajectory-compact) li:nth-child(4) {
+    padding-left: 0;
+}
+
+.trajectory-grid:not(.trajectory-compact) li:nth-child(n + 4) {
+    border-top: 1px solid var(--border);
 }
 
 .trajectory-index {
@@ -352,10 +369,6 @@
     font-family: var(--font-mono);
     font-size: 0.8rem;
     font-weight: var(--weight-strong);
-}
-
-.cv-secondary {
-    color: var(--text-muted);
 }
 
 .cv-footer-grid {
@@ -638,22 +651,6 @@
 
     .project-feature {
         grid-template-columns: 1fr;
-    }
-
-    .trajectory-grid:not(.trajectory-compact) {
-        grid-template-columns: repeat(3, minmax(0, 1fr));
-    }
-
-    .trajectory-grid:not(.trajectory-compact) li:nth-child(3) {
-        border-right: 0;
-    }
-
-    .trajectory-grid:not(.trajectory-compact) li:nth-child(3)::after {
-        display: none;
-    }
-
-    .trajectory-grid:not(.trajectory-compact) li:nth-child(n + 4) {
-        border-top: 1px solid var(--border);
     }
 }
 

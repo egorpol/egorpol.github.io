@@ -35,7 +35,7 @@ breadcrumb:
 
 <section class="entry-group" aria-labelledby="realisation-title">
   <h2 id="realisation-title">Realisation for other artists</h2>
-  <p class="section-intro">Live electronics, spatial-audio system design, restoration, and stem mastering for concert and installation productions.</p>
+  <p class="section-intro">Live electronics, spatial-audio system design, restoration, and stem mastering for concert and installation productions. Several of the productions with Fabian Russ came out of interdisciplinary teams with dance, theatre, and video; in each, I was responsible for the live electronics and mastering.</p>
   <ul class="works-list">
     {% for item in cv.artistic_support %}
     <li>

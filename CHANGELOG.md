@@ -10,12 +10,17 @@ The format is based on [Keep a Changelog](https://keepachangelog.com/).
 - Unlisted listening page `/works/production-selection/` for the HfM Dresden application, with MP3 and AIFF downloads and an AIFF archive as a GitHub Release asset
 - Sraunus – *Variado* (Ornithopter Records, OR 009) in the mastering discography; releases without a Discogs credit are marked as such
 - Institution for each course on Teaching, the CV page, and the PDF
+- Production stage in the CV trajectory and a Production and mastering competency (Ableton Live, Logic Pro, Adobe Audition, Ambisonics with IRCAM Spat)
+- Cumulative Habilitation (in progress) under Education
 
 ### Changed
 
 - *Understanding and Emulating Time* (beat_it) moved from published to in press; in-press entries now show their links
 - Homepage highlights rewritten; the cancelled GfM 2026 workshop removed from talks
 - Course titles aligned with the originals (*Fundamentals of Electroacoustic Music I and II*; “style imitation” for *Stilkopie*) and teaching summary set to more than twelve years
+- CV page and PDF follow the application order: education and teaching, then artistic and technical practice, then funding, publications, and talks; Practice is in the jump menu and no longer muted
+- Leipzig role separates student-production support from studio coordination; Systems and interactive-systems entries name Max for Live, Pure Data, sensors, and controllers
+- Mastering copy names the Ornithopter founding team; Works notes the interdisciplinary Fabian Russ productions
 
 ## [0.0.1] - 2026-09-23
 

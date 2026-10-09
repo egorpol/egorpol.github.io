@@ -47,9 +47,10 @@ structured_data:
         <nav class="cv-jump-links" aria-label="CV sections">
           <a href="#experience">Experience</a>
           <a href="#career-context">Context</a>
-          <a href="#funding">Funding</a>
-          <a href="#teaching">Teaching</a>
           <a href="#education">Education</a>
+          <a href="#teaching">Teaching</a>
+          <a href="#practice">Practice</a>
+          <a href="#funding">Funding</a>
           <a href="#publications">Publications</a>
           <a href="#talks">Talks</a>
         </nav>
@@ -116,14 +117,15 @@ structured_data:
     </article>
   </section>
 
-  <section class="cv-section" id="funding" aria-labelledby="funding-title">
-    <h2 id="funding-title">Externally Funded Projects</h2>
-    {% for grant in cv.funding %}
+  <section class="cv-section" id="education" aria-labelledby="education-title">
+    <h2 id="education-title">Education</h2>
+    {% for ed in cv.education %}
     <article class="cv-entry cv-entry-compact">
-      <div class="cv-entry-date">{{ grant.dates }}</div>
+      <div class="cv-entry-date">{{ ed.dates }}</div>
       <div class="cv-entry-body">
-        <h3>{{ grant.title }}</h3>
-        <p>{{ grant.text }}</p>
+        <h3>{{ ed.degree }}</h3>
+        <p class="cv-organisation">{{ ed.org }}</p>
+        {% if ed.detail %}<p>{{ ed.detail }}</p>{% endif %}
       </div>
     </article>
     {% endfor %}
@@ -140,15 +142,41 @@ structured_data:
     </ul>
   </section>
 
-  <section class="cv-section" id="education" aria-labelledby="education-title">
-    <h2 id="education-title">Education</h2>
-    {% for ed in cv.education %}
+  <section class="cv-section" id="practice" aria-labelledby="practice-title">
+    <h2 id="practice-title">Artistic and Technical Practice</h2>
+    <h3 class="cv-subheading">Selected support and production</h3>
+    <ul class="dated-list">
+      {% for item in cv.artistic_support %}
+      <li><span>{{ item.year }}</span><div><strong>{{ item.title }}</strong> ({{ item.artists }})<br>{{ item.role | capitalize }} · {{ item.venue }}</div></li>
+      {% endfor %}
+    </ul>
+
+    <h3 class="cv-subheading">Mastering</h3>
+    <p>{{ cv.mastering.summary | markdownify | remove: '<p>' | remove: '</p>' }} <a href="{{ cv.mastering.url | relative_url }}">Full mastering discography and credits</a>.</p>
+
+    <h3 class="cv-subheading">Selected artistic works</h3>
+    <ul class="dated-list">
+      {% for work in cv.artistic_works %}
+      <li><span>{{ work.year }}</span><div><strong>{{ work.title }}</strong> · {{ work.detail }}</div></li>
+      {% endfor %}
+    </ul>
+
+    <h3 class="cv-subheading">Electronic music releases</h3>
+    <ul class="dated-list">
+      {% for rel in cv.releases %}
+      <li><span>{{ rel.year }}</span><div><strong>{{ rel.artist }} — {{ rel.title }}</strong><br>{{ rel.label }}</div></li>
+      {% endfor %}
+    </ul>
+  </section>
+
+  <section class="cv-section" id="funding" aria-labelledby="funding-title">
+    <h2 id="funding-title">Externally Funded Projects</h2>
+    {% for grant in cv.funding %}
     <article class="cv-entry cv-entry-compact">
-      <div class="cv-entry-date">{{ ed.dates }}</div>
+      <div class="cv-entry-date">{{ grant.dates }}</div>
       <div class="cv-entry-body">
-        <h3>{{ ed.degree }}</h3>
-        <p class="cv-organisation">{{ ed.org }}</p>
-        <p>{{ ed.detail }}</p>
+        <h3>{{ grant.title }}</h3>
+        <p>{{ grant.text }}</p>
       </div>
     </article>
     {% endfor %}
@@ -189,33 +217,6 @@ structured_data:
         <span>{{ talk.year }}{% if talk.status %}<small>{{ talk.status }}</small>{% endif %}</span>
         <div><strong>{{ talk.kind }}:</strong> “{{ talk.title }}”<br>{{ talk.venue }}{% if talk.note %} · {{ talk.note }}{% endif %}</div>
       </li>
-      {% endfor %}
-    </ul>
-  </section>
-
-  <section class="cv-section cv-secondary" aria-labelledby="practice-title">
-    <h2 id="practice-title">Artistic and Technical Practice</h2>
-    <h3 class="cv-subheading">Selected support and production</h3>
-    <ul class="dated-list">
-      {% for item in cv.artistic_support %}
-      <li><span>{{ item.year }}</span><div><strong>{{ item.title }}</strong> ({{ item.artists }})<br>{{ item.role | capitalize }} · {{ item.venue }}</div></li>
-      {% endfor %}
-    </ul>
-
-    <h3 class="cv-subheading">Mastering</h3>
-    <p>{{ cv.mastering.summary | markdownify | remove: '<p>' | remove: '</p>' }} <a href="{{ cv.mastering.url | relative_url }}">Full mastering discography and credits</a>.</p>
-
-    <h3 class="cv-subheading">Selected artistic works</h3>
-    <ul class="dated-list">
-      {% for work in cv.artistic_works %}
-      <li><span>{{ work.year }}</span><div><strong>{{ work.title }}</strong> · {{ work.detail }}</div></li>
-      {% endfor %}
-    </ul>
-
-    <h3 class="cv-subheading">Electronic music releases</h3>
-    <ul class="dated-list">
-      {% for rel in cv.releases %}
-      <li><span>{{ rel.year }}</span><div><strong>{{ rel.artist }} — {{ rel.title }}</strong><br>{{ rel.label }}</div></li>
       {% endfor %}
     </ul>
   </section>

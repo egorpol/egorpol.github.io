@@ -30,7 +30,8 @@ contact:
 
 mastering:
   summary: >-
-    Mastering for the Ornithopter Records catalogue and other independent releases,
+    Mastering for the Ornithopter Records catalogue as part of the label’s founding
+    team, and for releases by bands and underground artists from Leipzig and Berlin,
     alongside pre-mastering for Fabian Russ’s contribution to *Neue Meister: Live
     in Berlin* (Neue Meister / Berlin Classics / Edel:Kultur).
   url: /works/#mastering
@@ -40,24 +41,27 @@ pdf:
   filename: Egor_Polyakov_CV.pdf
 
 trajectory:
+  - stage: Production
+    text: Ableton Live, Logic Pro, and Adobe Audition; mastering; Ambisonics with IRCAM Spat
   - stage: Composition
     text: Classical and electroacoustic composition, fixed media, live electronics, and multichannel work
   - stage: Systems
-    text: Max/MSP, OpenMusic, synthesis, hardware, and interactive analysis–synthesis workflows
+    text: Max/MSP, Max for Live, Pure Data, OpenMusic, analogue and digital hardware, and interactive workflows with sensors and controllers
   - stage: Realisation
-    text: Studio teaching and the artistic-technical realisation of concerts, installations, and productions
+    text: Teaching, project supervision, and the artistic-technical realisation of concerts, installations, and productions
   - stage: Computation
     text: Python, music encoding, reproducible audio and score analysis, and machine learning
   - stage: Current research
-    text: Practice-informed computational musicology, open research software, infrastructure, and team leadership
+    text: Practice-informed computational musicology, open research software, and infrastructure
 
+# Keep an even number: the web CV lays these out in two columns.
 competencies:
+  - label: Production and mastering
+    text: Recording, sound design, and mastering in Ableton Live, Logic Pro, and Adobe Audition; analogue and digital synthesis; studio signal flow and hybrid hardware/software setups; spatial production with Ambisonics and IRCAM Spat
   - label: Composition and artistic practice
     text: Electroacoustic composition; fixed-media, live-electronic, multichannel, and installation formats; work across contemporary classical and electronic music
-  - label: Synthesis and hardware
-    text: Analogue and digital synthesis; hardware-based sound generation and processing; studio signal flow; multichannel routing; hybrid hardware/software setups
   - label: Interactive music systems
-    text: Max/MSP and OpenMusic (Lisp); real-time audio, live electronics, algorithmic composition, and analysis–synthesis workflows
+    text: Max/MSP, Max for Live, Pure Data, and OpenMusic (Lisp); real-time audio, live electronics, sensors and controllers, algorithmic composition, and analysis–synthesis workflows
   - label: Concert, installation, and spatial-audio realisation
     text: Artistic-technical realisation, rehearsal and system setup, live electronics, multichannel and spatial-audio system design and operation, restoration, and stem mastering
   - label: Computational musicology
@@ -99,8 +103,12 @@ experience:
         music, computer-assisted analysis, and AI for musicology; supervised
         electroacoustic composition projects.
       - >-
-        Coordinated the electroacoustic studio, supported student productions, and
-        maintained analogue, digital, and live-electronics infrastructure.
+        Supported student productions and realisations artistically and technically,
+        from recording and sound processing to live electronics, video, sensors, and
+        controller integration.
+      - >-
+        Coordinated the electroacoustic studio and maintained its analogue, digital,
+        and live-electronics infrastructure.
       - >-
         Realised and supported electronic works for concerts and installations,
         including rehearsal, system setup, multichannel and spatial-audio playback,
@@ -188,6 +196,9 @@ teaching:
         live-electronics practice.
 
 education:
+  - dates: 2025–present
+    degree: Cumulative Habilitation (in progress)
+    org: University of Music FRANZ LISZT Weimar (HfM Weimar)
   - dates: 2013–2018
     degree: PhD in Musicology (Dr. phil.)
     org: University of Music and Theatre “Felix Mendelssohn Bartholdy” Leipzig (HMT Leipzig)

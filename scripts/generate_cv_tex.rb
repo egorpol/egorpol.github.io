@@ -203,13 +203,14 @@ def generate_tex(cv)
            "{#{md_to_tex(cv['career_context']['text'])}}\n\n"
   end
 
-  out << "\\section{Externally Funded Projects}\n"
-  Array(cv["funding"]).each do |grant|
-    out << "\\cventry{#{escape_tex(grant['dates'])}}" \
-           "{\\emph{#{md_to_tex(grant['title'])}}}" \
-           "{}{}{}{%\n"
-    out << "#{itemize([grant['text']])}\n}\n\n"
+  out << "\\section{Education}\n"
+  Array(cv["education"]).each do |ed|
+    out << "\\cventry{#{escape_tex(ed['dates'])}}" \
+           "{#{md_to_tex(ed['degree'])}}" \
+           "{#{md_to_tex(ed['org'])}}" \
+           "{}{}{#{md_to_tex(ed['detail'])}}\n"
   end
+  out << "\n"
 
   out << "\\section{Teaching}\n"
   if cv.dig("teaching", "summary")
@@ -223,14 +224,45 @@ def generate_tex(cv)
   end
   out << "\n"
 
-  out << "\\section{Education}\n"
-  Array(cv["education"]).each do |ed|
-    out << "\\cventry{#{escape_tex(ed['dates'])}}" \
-           "{#{md_to_tex(ed['degree'])}}" \
-           "{#{md_to_tex(ed['org'])}}" \
-           "{}{}{#{md_to_tex(ed['detail'])}}\n"
+  out << "\\section{Artistic and Technical Support (Selection)}\n"
+  Array(cv["artistic_support"]).each do |item|
+    head = "#{q(item['title'])} (#{md_to_tex(item['artists'])})"
+    body = itemize(["**Role:** #{item['role']}.", item["venue"]])
+    out << "\\cventry{#{escape_tex(item['year'])}}{#{head}}{}{}{}{%\n#{body}\n}\n"
   end
   out << "\n"
+
+  if cv["mastering"]
+    out << "\\section{Mastering}\n"
+    summary = md_to_tex(cv['mastering']['summary'])
+    url = cv['mastering']['url'].to_s
+    url = "#{c['homepage'].to_s.sub(%r{/\z}, '')}#{url}" if url.start_with?('/')
+    summary += " \\href{#{escape_tex(url)}}{Full mastering discography and credits}." unless url.empty?
+    out << "\\cvitem{}{#{summary}}\n\n"
+  end
+
+  out << "\\section{Artistic Works (Selection)}\n"
+  Array(cv["artistic_works"]).each do |work|
+    out << "\\cventry{#{escape_tex(work['year'])}}" \
+           "{#{q(work['title'])}}{}{}{}{#{md_to_tex(work['detail'])}}\n"
+  end
+  out << "\n"
+
+  out << "\\section{Releases (Electronic Music)}\n"
+  Array(cv["releases"]).each do |rel|
+    out << "\\cventry{#{escape_tex(rel['year'])}}" \
+           "{#{md_to_tex(rel['artist'])} -- #{q(rel['title'])}}" \
+           "{}{}{}{#{md_to_tex(rel['label'])}}\n"
+  end
+  out << "\n"
+
+  out << "\\section{Externally Funded Projects}\n"
+  Array(cv["funding"]).each do |grant|
+    out << "\\cventry{#{escape_tex(grant['dates'])}}" \
+           "{\\emph{#{md_to_tex(grant['title'])}}}" \
+           "{}{}{}{%\n"
+    out << "#{itemize([grant['text']])}\n}\n\n"
+  end
 
   pubs = cv["publications"] || {}
   out << "\\section{Publications}\n"
@@ -268,38 +300,6 @@ def generate_tex(cv)
     venue = md_to_tex(talk["venue"])
     note = talk["note"] ? " (#{md_to_tex(talk['note'])})" : ""
     out << "\\cventry{#{year}}{#{kind}: #{q(talk['title'])}}{}{}{}{#{venue}#{note}}\n"
-  end
-  out << "\n"
-
-  out << "\\section{Artistic and Technical Support (Selection)}\n"
-  Array(cv["artistic_support"]).each do |item|
-    head = "#{q(item['title'])} (#{md_to_tex(item['artists'])})"
-    body = itemize(["**Role:** #{item['role']}.", item["venue"]])
-    out << "\\cventry{#{escape_tex(item['year'])}}{#{head}}{}{}{}{%\n#{body}\n}\n"
-  end
-  out << "\n"
-
-  if cv["mastering"]
-    out << "\\section{Mastering}\n"
-    summary = md_to_tex(cv['mastering']['summary'])
-    url = cv['mastering']['url'].to_s
-    url = "#{c['homepage'].to_s.sub(%r{/\z}, '')}#{url}" if url.start_with?('/')
-    summary += " \\href{#{escape_tex(url)}}{Full mastering discography and credits}." unless url.empty?
-    out << "\\cvitem{}{#{summary}}\n\n"
-  end
-
-  out << "\\section{Artistic Works (Selection)}\n"
-  Array(cv["artistic_works"]).each do |work|
-    out << "\\cventry{#{escape_tex(work['year'])}}" \
-           "{#{q(work['title'])}}{}{}{}{#{md_to_tex(work['detail'])}}\n"
-  end
-  out << "\n"
-
-  out << "\\section{Releases (Electronic Music)}\n"
-  Array(cv["releases"]).each do |rel|
-    out << "\\cventry{#{escape_tex(rel['year'])}}" \
-           "{#{md_to_tex(rel['artist'])} -- #{q(rel['title'])}}" \
-           "{}{}{}{#{md_to_tex(rel['label'])}}\n"
   end
   out << "\n"
 
