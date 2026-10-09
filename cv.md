@@ -22,7 +22,6 @@ structured_data:
   url: 'https://egorpol.github.io/cv/'
   genre: 'CurriculumVitae'
   inLanguage: 'en'
-  dateModified: '2026-09-23'
   about:
     '@type': 'Person'
     name: 'Egor Polyakov'

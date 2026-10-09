@@ -26,6 +26,16 @@ The format is based on [Keep a Changelog](https://keepachangelog.com/).
 - Homepage story stage “Between worlds” rewritten around production and tool-building
 - Homepage “Current appointment” condensed from four paragraphs to three
 
+### Fixed
+
+- RSS feed at `/notes/feed.xml` is generated on GitHub Pages (`jekyll-feed` listed under `plugins`) and linked from every page head
+- `og:locale` emitted once, as `en_GB`
+
+### Removed
+
+- `'unsafe-inline'` from the script Content Security Policy; the site has no inline scripts
+- Unused `CATEGORIES.md`, a tracked Jupyter checkpoint of an old config, the starter comments in `_config.yml`, and the hard-coded `dateModified` on the CV page
+
 ## [0.0.1] - 2026-09-23
 
 First numbered release: pixel chrome overlay, release pages, CV/PDF updates, and related content from `phase-2-chrome`.
