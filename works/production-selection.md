@@ -20,7 +20,7 @@ scripts:
   <header class="page-intro">
     <p class="eyebrow">HfM Dresden application · Egor Polyakov</p>
     <h1>{{ demo.title }}</h1>
-    <p class="lead">Excerpts from my compositions, co-productions, and mastering work. My contribution is identified for each recording.</p>
+    <p class="lead">Excerpts from my own compositions, a co-production, and mastering work. My contribution is identified for each recording.</p>
     <p class="demo-summary">{{ demo.tracks.size }} excerpts <span aria-hidden="true">·</span> {{ demo.duration_label }} total <span aria-hidden="true">·</span> stereo</p>
     {% if demo.aiff_archive %}
     <p class="demo-archive-download">
