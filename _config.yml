@@ -19,9 +19,9 @@
 # in the templates via {{ site.myvariable }}.
 
 title: Egor Polyakov
-tagline: Postdoctoral researcher in computational musicology
+tagline: Computational musicologist, producer, and research software developer
 email: egor.polyakov@hfm-weimar.de
-description: Postdoctoral researcher in computational musicology at HfM Weimar.
+description: Computational musicology, music production and mastering, and open research software. Postdoctoral researcher at HfM Weimar.
 author: Egor Polyakov
 baseurl: "" # the subpath of your site, e.g. /blog
 url: "https://egorpol.github.io" # the base hostname & protocol for your site

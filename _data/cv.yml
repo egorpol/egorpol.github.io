@@ -8,13 +8,12 @@ job_title: Postdoctoral Researcher in Computational Musicology
 affiliation: University of Music FRANZ LISZT Weimar
 
 profile: >-
-  Composer, computational musicologist, and research software developer connecting
-  creative practice with analytical methods. My work has grown from electroacoustic
-  composition, synthesis, interactive systems, studio teaching, and the realisation
-  of concert and installation works into Python-based music encoding, audio and score
-  analysis, and AI. Rather than treating creative and analytical work as separate
-  specialisms, I use practice-based knowledge to shape research tools and teaching.
-  I currently work on research and development for the DFG-funded CAMAT project at HfM Weimar.
+  Computational musicologist, producer, and research software developer, connecting
+  studio practice with analytical methods. My work combines production, mastering,
+  composition, and the artistic-technical realisation of concerts and installations
+  with teaching, project supervision, and computer-assisted music analysis.
+  Practice-based knowledge shapes my research tools and my teaching. I am currently
+  responsible for research and development for the DFG-funded CAMAT project at HfM Weimar.
 
 note: >-
   Born in Bakhmut, Ukraine. Based in the Leipzig region, Germany.
@@ -465,7 +464,7 @@ languages:
 # Homepage / projects short copy (kept aligned with CV facts)
 homepage:
   tagline: >-
-    I am a computational musicologist, composer, and research software developer.
+    I am a computational musicologist, producer, and research software developer.
     My work grows out of a lifelong fascination with music, computers, and the
     unexpected things they can do together.
   motivation:
@@ -504,12 +503,11 @@ homepage:
     - stage: Between worlds
       text: >-
         For years I composed contemporary concert music and minimal/techdub in parallel.
-        Alongside my own music, I mastered the Ornithopter Records catalogue and
-        releases by friends, and worked with Fabian Russ on concert and recording projects.
-        The outbreak of war in my home region of Donbas, Ukraine, in 2014 became a
-        persistent source of worry and reflection, deepening my doubts about
-        composition as my only path even as I kept producing and performing with
-        others.
+        Alongside my own music, I mastered the Ornithopter Records catalogue as part of
+        its founding team and worked with Fabian Russ on concert and recording projects.
+        Over time I came to see composition as one part of my work rather than the whole
+        of it: producing, realising other people’s music, and building tools became more
+        central.
     - stage: From real time to research
       text: >-
         My doctorate led me from accessible software and hybrid analysis systems

@@ -21,6 +21,8 @@ The format is based on [Keep a Changelog](https://keepachangelog.com/).
 - CV page and PDF follow the application order: education and teaching, then artistic and technical practice, then funding, publications, and talks; Practice is in the jump menu and no longer muted
 - Leipzig role separates student-production support from studio coordination; Systems and interactive-systems entries name Max for Live, Pure Data, sensors, and controllers
 - Mastering copy names the Ornithopter founding team; Works notes the interdisciplinary Fabian Russ productions
+- Balanced positioning: “computational musicologist, producer, and research software developer” in the profile, homepage tagline, and site description; header reads “Research · production · code”; new Works intro
+- Homepage story stage “Between worlds” rewritten around production and tool-building
 
 ## [0.0.1] - 2026-09-23
 

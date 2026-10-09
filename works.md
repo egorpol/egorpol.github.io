@@ -1,7 +1,7 @@
 ---
 layout: page
 title: Works
-description: "Electroacoustic compositions, live-electronics realisations, and electronic music releases by Egor Polyakov."
+description: "Compositions, electronic music releases, mastering, and live-electronics realisations by Egor Polyakov."
 permalink: /works/
 breadcrumb:
   - title: Works
@@ -11,7 +11,7 @@ breadcrumb:
 <header class="page-intro">
   <p class="eyebrow">Artistic practice</p>
   <h1>Works</h1>
-  <p class="lead">Electroacoustic composition for instruments and live electronics, fixed media, and sound installation — alongside the artistic-technical realisation of works by other composers and artists.</p>
+  <p class="lead">Studio and stage work between new music, electronic club music, and band productions: my own compositions and releases, mastering for independent labels, and live electronics and mastering for other artists’ productions.</p>
 </header>
 
 <section class="entry-group" aria-labelledby="compositions-title">

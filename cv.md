@@ -1,7 +1,7 @@
 ---
 layout: page
 title: Curriculum Vitae
-description: "CV of Egor Polyakov — composition, electronic music practice, computational musicology, research software, teaching, and artistic-technical realisation."
+description: "CV of Egor Polyakov — computational musicology, production and mastering, research software, teaching, composition, and artistic-technical realisation."
 permalink: /cv/
 scripts:
   - /assets/js/cv-navigation.js
@@ -11,7 +11,7 @@ structured_data:
   '@context': 'https://schema.org'
   '@type': 'CreativeWork'
   name: 'Curriculum Vitae — Egor Polyakov'
-  description: 'Professional curriculum vitae of Egor Polyakov, computational musicologist and postdoctoral researcher.'
+  description: 'Professional curriculum vitae of Egor Polyakov, computational musicologist, producer, and postdoctoral researcher.'
   creator:
     '@type': 'Person'
     name: 'Egor Polyakov'
