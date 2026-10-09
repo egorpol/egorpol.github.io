@@ -52,9 +52,7 @@ Short summary of what worked, what did not, and next steps.
 ## Category Guide
 
 - Use at least 1 and at most 3 categories.
-- `research`, `music`, `music-technology` map to **Research Notes**.
-- `machine-learning`, `deep-learning`, `tools` map to **Engineering Notes**.
-- Anything else appears under **General Notes**.
+- Categories are kept in the front matter but not shown on the site; the Notes list and post pages show tags.
 
 ## Tag Guide
 

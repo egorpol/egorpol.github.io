@@ -203,25 +203,6 @@ def generate_tex(cv)
            "{#{md_to_tex(cv['career_context']['text'])}}\n\n"
   end
 
-  out << "\\section{Externally Funded Projects}\n"
-  Array(cv["funding"]).each do |grant|
-    out << "\\cventry{#{escape_tex(grant['dates'])}}" \
-           "{\\emph{#{md_to_tex(grant['title'])}}}" \
-           "{}{}{}{%\n"
-    out << "#{itemize([grant['text']])}\n}\n\n"
-  end
-
-  out << "\\section{Teaching}\n"
-  if cv.dig("teaching", "summary")
-    out << "\\cvitem{}{#{md_to_tex(cv['teaching']['summary'])}}\n"
-  end
-  out << "\\subsection{Selected courses}\n"
-  Array(cv.dig("teaching", "items")).each do |item|
-    out << "\\cvitem{#{escape_tex(item['term'])}}" \
-           "{#{q(item['title'])} -- #{md_to_tex(item['detail'])}}\n"
-  end
-  out << "\n"
-
   out << "\\section{Education}\n"
   Array(cv["education"]).each do |ed|
     out << "\\cventry{#{escape_tex(ed['dates'])}}" \
@@ -231,36 +212,15 @@ def generate_tex(cv)
   end
   out << "\n"
 
-  pubs = cv["publications"] || {}
-  out << "\\section{Publications}\n"
-  out << "\\subsection{Published}\n"
-  Array(pubs["published"]).each do |pub|
-    cite = md_to_tex(pub["citation"])
-    if pub["doi"]
-      cite += " \\href{#{escape_tex(pub['doi'])}}{DOI}"
-    elsif pub["url"]
-      cite += " \\href{#{escape_tex(pub['url'])}}{Link}"
-    end
-    out << "\\cventry{#{escape_tex(pub['year'].to_s)}}{}{}{}{}{#{cite}}\n"
+  out << "\\section{Teaching}\n"
+  if cv.dig("teaching", "summary")
+    out << "\\cvitem{}{#{md_to_tex(cv['teaching']['summary'])}}\n"
   end
-  out << "\n\\subsection{In Press / Accepted}\n"
-  Array(pubs["in_press"]).each do |pub|
-    out << "\\cventry{#{escape_tex(pub['year'].to_s)}}{}{}{}{}{#{md_to_tex(pub['citation'])}}\n"
-  end
-  out << "\n\\subsection{Under Review}\n"
-  Array(pubs["under_review"]).each do |pub|
-    out << "\\cventry{#{escape_tex(pub['year'].to_s)}}{}{}{}{}{#{md_to_tex(pub['citation'])}}\n"
-  end
-  out << "\n"
-
-  out << "\\section{Talks and Conferences}\n"
-  Array(cv["talks"]).each do |talk|
-    year = escape_tex(talk["year"].to_s)
-    year = "#{year} (#{escape_tex(talk['status'])})" if talk["status"]
-    kind = md_to_tex(talk["kind"] || "Talk")
-    venue = md_to_tex(talk["venue"])
-    note = talk["note"] ? " (#{md_to_tex(talk['note'])})" : ""
-    out << "\\cventry{#{year}}{#{kind}: #{q(talk['title'])}}{}{}{}{#{venue}#{note}}\n"
+  out << "\\subsection{Selected courses}\n"
+  Array(cv.dig("teaching", "items")).each do |item|
+    institution = item["institution"] ? ", #{md_to_tex(item['institution'])}" : ""
+    out << "\\cvitem{#{escape_tex(item['term'])}}" \
+           "{#{q(item['title'])}#{institution} -- #{md_to_tex(item['detail'])}}\n"
   end
   out << "\n"
 
@@ -293,6 +253,53 @@ def generate_tex(cv)
     out << "\\cventry{#{escape_tex(rel['year'])}}" \
            "{#{md_to_tex(rel['artist'])} -- #{q(rel['title'])}}" \
            "{}{}{}{#{md_to_tex(rel['label'])}}\n"
+  end
+  out << "\n"
+
+  out << "\\section{Externally Funded Projects}\n"
+  Array(cv["funding"]).each do |grant|
+    out << "\\cventry{#{escape_tex(grant['dates'])}}" \
+           "{\\emph{#{md_to_tex(grant['title'])}}}" \
+           "{}{}{}{%\n"
+    out << "#{itemize([grant['text']])}\n}\n\n"
+  end
+
+  pubs = cv["publications"] || {}
+  out << "\\section{Publications}\n"
+  out << "\\subsection{Published}\n"
+  Array(pubs["published"]).each do |pub|
+    cite = md_to_tex(pub["citation"])
+    if pub["doi"]
+      cite += " \\href{#{escape_tex(pub['doi'])}}{DOI}"
+    elsif pub["url"]
+      cite += " \\href{#{escape_tex(pub['url'])}}{Link}"
+    end
+    out << "\\cventry{#{escape_tex(pub['year'].to_s)}}{}{}{}{}{#{cite}}\n"
+  end
+  out << "\n\\subsection{In Press / Accepted}\n"
+  Array(pubs["in_press"]).each do |pub|
+    cite = md_to_tex(pub["citation"])
+    if pub["doi"]
+      cite += " \\href{#{escape_tex(pub['doi'])}}{DOI}"
+    elsif pub["url"]
+      cite += " \\href{#{escape_tex(pub['url'])}}{Link}"
+    end
+    out << "\\cventry{#{escape_tex(pub['year'].to_s)}}{}{}{}{}{#{cite}}\n"
+  end
+  out << "\n\\subsection{Under Review}\n"
+  Array(pubs["under_review"]).each do |pub|
+    out << "\\cventry{#{escape_tex(pub['year'].to_s)}}{}{}{}{}{#{md_to_tex(pub['citation'])}}\n"
+  end
+  out << "\n"
+
+  out << "\\section{Talks and Conferences}\n"
+  Array(cv["talks"]).each do |talk|
+    year = escape_tex(talk["year"].to_s)
+    year = "#{year} (#{escape_tex(talk['status'])})" if talk["status"]
+    kind = md_to_tex(talk["kind"] || "Talk")
+    venue = md_to_tex(talk["venue"])
+    note = talk["note"] ? " (#{md_to_tex(talk['note'])})" : ""
+    out << "\\cventry{#{year}}{#{kind}: #{q(talk['title'])}}{}{}{}{#{venue}#{note}}\n"
   end
   out << "\n"
 

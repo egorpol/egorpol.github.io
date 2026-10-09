@@ -1,7 +1,7 @@
 ---
 layout: page
 title: Egor Polyakov
-description: "Postdoctoral researcher in computational musicology connecting research software, music analysis, electroacoustic practice, and teaching."
+description: "Computational musicologist, producer, and research software developer connecting music analysis, studio production and mastering, and teaching."
 permalink: /
 tags:
   - computational musicology
@@ -17,7 +17,7 @@ structured_data:
   '@type': 'Person'
   name: 'Egor Polyakov'
   alternateName: 'Egor Poliakov'
-  description: 'Postdoctoral researcher in computational musicology connecting research software, music analysis, electroacoustic practice, and teaching.'
+  description: 'Computational musicologist, producer, and research software developer connecting music analysis, studio production and mastering, and teaching.'
   image: 'https://egorpol.github.io/assets/images/avatar.jpg'
   url: 'https://egorpol.github.io'
   jobTitle: 'Postdoctoral Researcher in Computational Musicology'
@@ -81,11 +81,23 @@ structured_data:
   {% include chain-patch.html a="hfm weimar" b="me" %}
 </section>
 
+<section class="content-section prose-patch" aria-labelledby="studio-title">
+  <p class="section-label">Studio and stage</p>
+  <h2 id="studio-title">Production, mastering, and live electronics</h2>
+  <div class="prose-copy">
+    {% for paragraph in cv.homepage.studio %}
+    {{ paragraph | markdownify }}
+    {% endfor %}
+    <p><a class="text-link" href="{{ '/works/' | relative_url }}">Works, releases, and mastering credits <span aria-hidden="true">→</span></a></p>
+  </div>
+  {% include word-patch.html a="record" b="patch" c="mix" d="master" sink="listen" %}
+</section>
+
 <section class="content-section trajectory-patch" aria-labelledby="practice-title">
   <div class="trajectory-copy" data-patch="head">
     <p class="section-label">How I got here</p>
     <h2 id="practice-title">A path through different ideas of music</h2>
-    <p class="section-intro">This was not a neat progression in which one discipline simply led to the next. Encounters with different kinds of music, years of working between them, and a difficult period of doubt all changed the direction of my work.</p>
+    <p class="section-intro">This was not a neat progression in which one discipline simply led to the next. Encounters with different kinds of music, years of working between them, and a period of doubt all changed the direction of my work.</p>
     {% include patch-nubs.html %}
   </div>
   <ol class="trajectory-grid trajectory-compact">

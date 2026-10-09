@@ -23,6 +23,7 @@ breadcrumb:
       <div class="reference-body">
         <p class="work-title">{{ item.title }}</p>
         <p class="work-detail">{{ item.detail }}</p>
+        {% if item.institution %}<p class="reference-meta">{{ item.institution }}</p>{% endif %}
       </div>
     </li>
     {% endfor %}

@@ -95,7 +95,7 @@ scripts:
     <p class="section-label" id="release-context-title">Release context</p>
     <div class="release-context-copy">
       <p>The EP was released in 2008 on Sinergy Networks, one of the major netlabels of that time. The label seems to have been defunct for years now, but the original five-track release is still available in the <a href="https://archive.org/details/SN056" target="_blank" rel="noopener noreferrer">Internet Archive</a>.</p>
-      <p>The player above also includes the original version of <em>Bloodnight</em>. It was never openly released before; I recently dug it out of an old backup.</p>
+      <p>The player above also includes the original version of “Bloodnight”. It was never openly released before; I recently dug it out of an old backup.</p>
     </div>
   </section>
 </article>

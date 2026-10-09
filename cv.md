@@ -1,7 +1,7 @@
 ---
 layout: page
 title: Curriculum Vitae
-description: "CV of Egor Polyakov — composition, electronic music practice, computational musicology, research software, teaching, and artistic-technical realisation."
+description: "CV of Egor Polyakov — computational musicology, production and mastering, research software, teaching, composition, and artistic-technical realisation."
 permalink: /cv/
 scripts:
   - /assets/js/cv-navigation.js
@@ -11,7 +11,7 @@ structured_data:
   '@context': 'https://schema.org'
   '@type': 'CreativeWork'
   name: 'Curriculum Vitae — Egor Polyakov'
-  description: 'Professional curriculum vitae of Egor Polyakov, computational musicologist and postdoctoral researcher.'
+  description: 'Professional curriculum vitae of Egor Polyakov, computational musicologist, producer, and postdoctoral researcher.'
   creator:
     '@type': 'Person'
     name: 'Egor Polyakov'
@@ -22,7 +22,6 @@ structured_data:
   url: 'https://egorpol.github.io/cv/'
   genre: 'CurriculumVitae'
   inLanguage: 'en'
-  dateModified: '2026-09-23'
   about:
     '@type': 'Person'
     name: 'Egor Polyakov'
@@ -47,9 +46,10 @@ structured_data:
         <nav class="cv-jump-links" aria-label="CV sections">
           <a href="#experience">Experience</a>
           <a href="#career-context">Context</a>
-          <a href="#funding">Funding</a>
-          <a href="#teaching">Teaching</a>
           <a href="#education">Education</a>
+          <a href="#teaching">Teaching</a>
+          <a href="#practice">Practice</a>
+          <a href="#funding">Funding</a>
           <a href="#publications">Publications</a>
           <a href="#talks">Talks</a>
         </nav>
@@ -116,14 +116,15 @@ structured_data:
     </article>
   </section>
 
-  <section class="cv-section" id="funding" aria-labelledby="funding-title">
-    <h2 id="funding-title">Externally Funded Projects</h2>
-    {% for grant in cv.funding %}
+  <section class="cv-section" id="education" aria-labelledby="education-title">
+    <h2 id="education-title">Education</h2>
+    {% for ed in cv.education %}
     <article class="cv-entry cv-entry-compact">
-      <div class="cv-entry-date">{{ grant.dates }}</div>
+      <div class="cv-entry-date">{{ ed.dates }}</div>
       <div class="cv-entry-body">
-        <h3>{{ grant.title }}</h3>
-        <p>{{ grant.text }}</p>
+        <h3>{{ ed.degree }}</h3>
+        <p class="cv-organisation">{{ ed.org }}</p>
+        {% if ed.detail %}<p>{{ ed.detail }}</p>{% endif %}
       </div>
     </article>
     {% endfor %}
@@ -135,65 +136,12 @@ structured_data:
     <h3 class="cv-subheading">Selected courses</h3>
     <ul class="dated-list">
       {% for item in cv.teaching.items %}
-      <li><span>{{ item.term }}</span><div><strong>{{ item.title }}</strong><br>{{ item.detail }}</div></li>
+      <li><span>{{ item.term }}</span><div><strong>{{ item.title }}</strong><br>{% if item.institution %}{{ item.institution }} · {% endif %}{{ item.detail }}</div></li>
       {% endfor %}
     </ul>
   </section>
 
-  <section class="cv-section" id="education" aria-labelledby="education-title">
-    <h2 id="education-title">Education</h2>
-    {% for ed in cv.education %}
-    <article class="cv-entry cv-entry-compact">
-      <div class="cv-entry-date">{{ ed.dates }}</div>
-      <div class="cv-entry-body">
-        <h3>{{ ed.degree }}</h3>
-        <p class="cv-organisation">{{ ed.org }}</p>
-        <p>{{ ed.detail }}</p>
-      </div>
-    </article>
-    {% endfor %}
-  </section>
-
-  <section class="cv-section" id="publications" aria-labelledby="publications-title">
-    <h2 id="publications-title">Publications</h2>
-    <ol class="publication-list">
-      {% for pub in cv.publications.published %}
-      <li>{{ pub.citation | markdownify | remove: '<p>' | remove: '</p>' }}{% if pub.doi %} <a href="{{ pub.doi }}" target="_blank" rel="noopener noreferrer">DOI <span aria-hidden="true">↗</span></a>{% elsif pub.url %} <a href="{{ pub.url }}" target="_blank" rel="noopener noreferrer">Link <span aria-hidden="true">↗</span></a>{% endif %}</li>
-      {% endfor %}
-    </ol>
-
-    {% if cv.publications.in_press.size > 0 %}
-    <h3 class="cv-subheading">In Press / Accepted</h3>
-    <ul class="publication-list">
-      {% for pub in cv.publications.in_press %}
-      <li>{{ pub.citation | markdownify | remove: '<p>' | remove: '</p>' }}</li>
-      {% endfor %}
-    </ul>
-    {% endif %}
-
-    {% if cv.publications.under_review.size > 0 %}
-    <h3 class="cv-subheading">Under Review</h3>
-    <ul class="publication-list">
-      {% for pub in cv.publications.under_review %}
-      <li>{{ pub.citation | markdownify | remove: '<p>' | remove: '</p>' }}</li>
-      {% endfor %}
-    </ul>
-    {% endif %}
-  </section>
-
-  <section class="cv-section" id="talks" aria-labelledby="talks-title">
-    <h2 id="talks-title">Selected Talks and Conferences</h2>
-    <ul class="dated-list talks-list">
-      {% for talk in cv.talks %}
-      <li>
-        <span>{{ talk.year }}{% if talk.status %}<small>{{ talk.status }}</small>{% endif %}</span>
-        <div><strong>{{ talk.kind }}:</strong> “{{ talk.title }}”<br>{{ talk.venue }}{% if talk.note %} · {{ talk.note }}{% endif %}</div>
-      </li>
-      {% endfor %}
-    </ul>
-  </section>
-
-  <section class="cv-section cv-secondary" aria-labelledby="practice-title">
+  <section class="cv-section" id="practice" aria-labelledby="practice-title">
     <h2 id="practice-title">Artistic and Technical Practice</h2>
     <h3 class="cv-subheading">Selected support and production</h3>
     <ul class="dated-list">
@@ -216,6 +164,58 @@ structured_data:
     <ul class="dated-list">
       {% for rel in cv.releases %}
       <li><span>{{ rel.year }}</span><div><strong>{{ rel.artist }} — {{ rel.title }}</strong><br>{{ rel.label }}</div></li>
+      {% endfor %}
+    </ul>
+  </section>
+
+  <section class="cv-section" id="funding" aria-labelledby="funding-title">
+    <h2 id="funding-title">Externally Funded Projects</h2>
+    {% for grant in cv.funding %}
+    <article class="cv-entry cv-entry-compact">
+      <div class="cv-entry-date">{{ grant.dates }}</div>
+      <div class="cv-entry-body">
+        <h3>{{ grant.title }}</h3>
+        <p>{{ grant.text }}</p>
+      </div>
+    </article>
+    {% endfor %}
+  </section>
+
+  <section class="cv-section" id="publications" aria-labelledby="publications-title">
+    <h2 id="publications-title">Publications</h2>
+    <ol class="publication-list">
+      {% for pub in cv.publications.published %}
+      <li>{{ pub.citation | markdownify | remove: '<p>' | remove: '</p>' }}{% if pub.doi %} <a href="{{ pub.doi }}" target="_blank" rel="noopener noreferrer">DOI <span aria-hidden="true">↗</span></a>{% elsif pub.url %} <a href="{{ pub.url }}" target="_blank" rel="noopener noreferrer">Link <span aria-hidden="true">↗</span></a>{% endif %}</li>
+      {% endfor %}
+    </ol>
+
+    {% if cv.publications.in_press.size > 0 %}
+    <h3 class="cv-subheading">In Press / Accepted</h3>
+    <ul class="publication-list">
+      {% for pub in cv.publications.in_press %}
+      <li>{{ pub.citation | markdownify | remove: '<p>' | remove: '</p>' }}{% if pub.doi %} <a href="{{ pub.doi }}" target="_blank" rel="noopener noreferrer">DOI <span aria-hidden="true">↗</span></a>{% elsif pub.url %} <a href="{{ pub.url }}" target="_blank" rel="noopener noreferrer">Link <span aria-hidden="true">↗</span></a>{% endif %}</li>
+      {% endfor %}
+    </ul>
+    {% endif %}
+
+    {% if cv.publications.under_review.size > 0 %}
+    <h3 class="cv-subheading">Under Review</h3>
+    <ul class="publication-list">
+      {% for pub in cv.publications.under_review %}
+      <li>{{ pub.citation | markdownify | remove: '<p>' | remove: '</p>' }}</li>
+      {% endfor %}
+    </ul>
+    {% endif %}
+  </section>
+
+  <section class="cv-section" id="talks" aria-labelledby="talks-title">
+    <h2 id="talks-title">Selected Talks and Conferences</h2>
+    <ul class="dated-list talks-list">
+      {% for talk in cv.talks %}
+      <li>
+        <span>{{ talk.year }}{% if talk.status %}<small>{{ talk.status }}</small>{% endif %}</span>
+        <div><strong>{{ talk.kind }}:</strong> “{{ talk.title }}”<br>{{ talk.venue }}{% if talk.note %} · {{ talk.note }}{% endif %}</div>
+      </li>
       {% endfor %}
     </ul>
   </section>

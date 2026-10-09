@@ -1,32 +1,15 @@
-# Welcome to Jekyll!
-#
-# This config file is meant for settings that affect your whole blog, values
-# which you are expected to set up once and rarely edit after that. If you find
-# yourself editing this file very often, consider using Jekyll's data files
-# feature for the data you need to update frequently.
-#
-# For technical reasons, this file is *NOT* reloaded automatically when you use
-# 'bundle exec jekyll serve'. If you change this file, please restart the server process.
-#
-# If you need help with YAML syntax, here are some quick references for you:
-# https://learn-the-web.algonquindesign.ca/topics/markdown-yaml-cheat-sheet/#yaml
-# https://learnxinyminutes.com/docs/yaml/
-#
-# Site settings
-# These are used to personalize your new site. If you look in the HTML files,
-# you will see them accessed via {{ site.title }}, {{ site.email }}, and so on.
-# You can create any custom variable you would like, and they will be accessible
-# in the templates via {{ site.myvariable }}.
+# Site settings. Restart `jekyll serve` after editing; this file is not reloaded.
 
 title: Egor Polyakov
-tagline: Postdoctoral researcher in computational musicology
+tagline: Computational musicologist, producer, and research software developer
 email: egor.polyakov@hfm-weimar.de
-description: Postdoctoral researcher in computational musicology at HfM Weimar.
+description: Computational musicology, music production and mastering, and open research software. Postdoctoral researcher at HfM Weimar.
 author: Egor Polyakov
 baseurl: "" # the subpath of your site, e.g. /blog
 url: "https://egorpol.github.io" # the base hostname & protocol for your site
 github_username: egorpol
 lang: en
+locale: en_GB # og:locale, set by jekyll-seo-tag
 timezone: Europe/Berlin
 permalink: /notes/:year/:month/:day/:title
 
@@ -41,10 +24,9 @@ sass:
   sass_dir: _sass
   style: compressed
 
-# Build settings
-# theme: minima
-
+# GitHub Pages only runs plugins listed here.
 plugins:
+  - jekyll-feed
   - jekyll-seo-tag
 
 logo: /assets/images/avatar.jpg
@@ -56,20 +38,6 @@ social:
     - https://www.linkedin.com/in/egor-polyakov-6a2114315/
     - https://egorpol.github.io
 orcid: https://orcid.org/0000-0003-0913-0429
-
-# SEO settings
-# google_analytics: G-XXXXXXXXXX  # Uncomment and replace with your actual GA4 measurement ID
-# google_analytics_anonymize_ip: true
-# gtag: G-XXXXXXXXXX
-
-# Open Graph settings
-# twitter:
-#   username: egorpol  # Uncomment if you create a Twitter/X account
-#   card: summary_large_image
-
-# Pagination (disabled; enable if you add paginated blog index)
-# paginate: 5
-# paginate_path: "/blog/page:num/"
 
 feed:
   path: /notes/feed.xml
@@ -98,6 +66,10 @@ defaults:
 exclude:
   - dresden-bewerbung/
   - private/
+  # Raw material for future Works pages; see assets/audio/README.md.
+  - "assets/audio/* ([0-9][0-9][0-9][0-9])"
+  - assets/audio/swirl-planet/*.wav
+  - assets/audio/swirl-planet/*.pkf
   # Original sources and editing sidecars stay local.
   - assets/audio/dd-demo/comp_swirl_cut.aif
   - assets/audio/dd-demo/comp_manuals_cut.aif
@@ -120,7 +92,6 @@ exclude:
   # Contributor docs; the font licence beside it must stay published (OFL).
   - assets/audio/README.md
   - CHANGELOG.md
-  - CATEGORIES.md
   - Gemfile
   - Gemfile.lock
   - LICENSE

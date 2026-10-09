@@ -40,6 +40,8 @@ breadcrumb:
       <span class="reference-year">{{ item.year }}</span>
       <div class="reference-body">
         <p>{{ item.citation | markdownify | remove: '<p>' | remove: '</p>' }}</p>
+        {% if item.doi %}<a class="doi-link" href="{{ item.doi }}" target="_blank" rel="noopener noreferrer">DOI <span aria-hidden="true">↗</span></a>
+        {% elsif item.url %}<a class="doi-link" href="{{ item.url }}" target="_blank" rel="noopener noreferrer">Link <span aria-hidden="true">↗</span></a>{% endif %}
       </div>
     </li>
     {% endfor %}
