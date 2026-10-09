@@ -97,6 +97,7 @@ defaults:
 #
 exclude:
   - dresden-bewerbung/
+  - private/
   # Original sources and editing sidecars stay local.
   - assets/audio/dd-demo/comp_swirl_cut.aif
   - assets/audio/dd-demo/comp_manuals_cut.aif

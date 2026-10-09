@@ -60,6 +60,9 @@ id_rsa
 # Private Dresden application documents
 /dresden-bewerbung/
 
+# Private notes (career feedback, planning); never published
+/private/
+
 # Listening-portfolio originals stay local; publish the copies under aiff/.
 /assets/audio/dd-demo/*.aif
 /assets/audio/dd-demo/*.aiff
