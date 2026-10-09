@@ -66,6 +66,10 @@ defaults:
 exclude:
   - dresden-bewerbung/
   - private/
+  # Raw material for future Works pages; see assets/audio/README.md.
+  - "assets/audio/* ([0-9][0-9][0-9][0-9])"
+  - assets/audio/swirl-planet/*.wav
+  - assets/audio/swirl-planet/*.pkf
   # Original sources and editing sidecars stay local.
   - assets/audio/dd-demo/comp_swirl_cut.aif
   - assets/audio/dd-demo/comp_manuals_cut.aif

@@ -63,6 +63,11 @@ id_rsa
 # Private notes (career feedback, planning); never published
 /private/
 
+# Raw material for future Works pages stays local; see assets/audio/README.md.
+/assets/audio/* ([0-9][0-9][0-9][0-9])/
+/assets/audio/swirl-planet/*.wav
+/assets/audio/swirl-planet/*.pkf
+
 # Listening-portfolio originals stay local; publish the copies under aiff/.
 /assets/audio/dd-demo/*.aif
 /assets/audio/dd-demo/*.aiff

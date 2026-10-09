@@ -30,6 +30,7 @@ The format is based on [Keep a Changelog](https://keepachangelog.com/).
 
 - RSS feed at `/notes/feed.xml` is generated on GitHub Pages (`jekyll-feed` listed under `plugins`) and linked from every page head
 - `og:locale` emitted once, as `en_GB`
+- Raw material for future Works pages (about 1.1 GB of recordings, videos, patches, and scores under `assets/audio/`) is ignored by Git and the build, and listed in `assets/audio/README.md`
 
 ### Removed
 
