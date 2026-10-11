@@ -5,6 +5,11 @@ The format is based on [Keep a Changelog](https://keepachangelog.com/).
 
 ## [Unreleased]
 
+### Added
+
+- Note “Reading the logs of a phone that wouldn’t boot”, on a failed iOS update and its repair
+- Table styles for notes
+
 ## [0.0.2] - 2026-10-09
 
 CV facts brought up to date, production work alongside research, and fixes for the feed, CSP, and typography.
