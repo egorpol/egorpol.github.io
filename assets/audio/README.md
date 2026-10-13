@@ -1,8 +1,9 @@
 # Audio excerpts
 
-Short excerpts for the Works page. Keep these to roughly 60–90 seconds and link
-full works out to an external host — the repository should stay small and the
-site's Content-Security-Policy blocks third-party embeds.
+Short excerpts for the Works page and full tracks for the release pages. Keep
+excerpts to roughly 60–90 seconds and link other full works out to an external
+host — the repository should stay small and the site's Content-Security-Policy
+blocks third-party embeds.
 
 To attach an excerpt, add `audio` (and optionally `audio_note`) to the relevant
 entry under `artistic_works` in `_data/cv.yml`:
@@ -24,6 +25,15 @@ Suggested encoding, which keeps a 90-second excerpt near 1.5 MB:
 ```bash
 ffmpeg -i source.wav -ac 2 -b:a 128k -movflags +faststart core-v2-excerpt.mp3
 ```
+
+## Release pages
+
+The players on `works/swirl-planet.md` and `works/rubber-duck-massacre.md` play
+full tracks from `swirl-planet/*.mp3` and from the Rubber Duck Massacre folder
+ending in `(SN056)/`; their waveform images are under
+`assets/images/releases/*-waveforms/`. The archive.org sidecars in the SN056
+folder (`SN056_*.xml`, `SN056_rules.conf`, the `*pxl.jpg` thumbnails) stay in
+the repository but are excluded from the build, as they carry no licence.
 
 ## Raw material for future Works pages (local only)
 
