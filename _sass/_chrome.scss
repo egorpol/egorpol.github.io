@@ -1196,6 +1196,7 @@ html:not([data-theme-frame])[data-theme="dark"] .pixel-theme-state-4,
     border-radius: 0;
     background: transparent;
     color: var(--text);
+    --focus: inherit;
 }
 
 [data-chrome="on"] .contact-panel h2,
