@@ -44,7 +44,9 @@
         container: waveEngine,
         media: audio,
         backend: 'MediaElement',
-        height: 'auto',
+        // A fixed height keeps WaveSurfer's shadow-root stylesheet identical at every width,
+        // so the style-src hash in _layouts/default.html matches; .release-waveform clips it.
+        height: 240,
         fillParent: true,
         hideScrollbar: true,
         autoScroll: false,

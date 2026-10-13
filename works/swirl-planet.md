@@ -11,7 +11,7 @@ breadcrumb:
   - title: Swirl Planet EP
 scripts:
   - /assets/lib/wavesurfer-7.12.11.min.js
-  - /assets/js/release-player.js?v=20260905-4
+  - /assets/js/release-player.js?v=20261013-1
 ---
 
 <article class="release-page" data-release-player>
