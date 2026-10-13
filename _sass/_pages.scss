@@ -631,13 +631,15 @@
 
 .post-body th,
 .post-body td {
-    padding: 0.5rem 0.9rem 0.5rem 0;
-    border-bottom: 1px solid var(--border);
+    padding: 0.5rem 0.75rem;
+    border: 1px solid var(--border);
+    background: var(--surface);
     text-align: left;
     vertical-align: top;
 }
 
 .post-body th {
+    background: var(--surface-soft);
     color: var(--heading);
     font-weight: var(--weight-strong);
 }
