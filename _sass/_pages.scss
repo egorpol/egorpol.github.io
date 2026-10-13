@@ -756,7 +756,8 @@
 
     .cv-entry,
     .reference-list li,
-    .works-list li {
+    .works-list li,
+    .notes-list li {
         grid-template-columns: 1fr;
         gap: 0.45rem;
     }
