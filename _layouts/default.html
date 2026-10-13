@@ -21,8 +21,6 @@
     <meta name="msvalidate.01" content="{{ page.bing_site_verification | escape }}">
     {% endif %}
 
-    <meta property="og:site_name" content="{{ site.title | escape }}">
-
     {% if page.structured_data %}
     <script type="application/ld+json">{{ page.structured_data | jsonify }}</script>
     {% endif %}
