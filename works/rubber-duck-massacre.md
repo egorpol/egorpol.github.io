@@ -10,10 +10,10 @@ breadcrumb:
   - title: The Rubber Duck Massacre EP
 scripts:
   - /assets/lib/wavesurfer-7.12.11.min.js
-  - /assets/js/release-player.js?v=20261013-1
+  - /assets/js/release-player.js?v=20261013-2
 ---
 
-<article class="release-page" data-release-player>
+<article class="release-page" data-release-player data-load="lazy">
   <header class="release-hero">
     <figure class="release-cover" data-release-cover data-pixel-cover="{{ '/assets/images/releases/two-unknown-guys-rubber-duck-massacre-zx.png' | relative_url }}" data-pixel-cover-dark="{{ '/assets/images/releases/two-unknown-guys-rubber-duck-massacre-zx-dark.png' | relative_url }}">
       <img src="{{ '/assets/images/releases/two-unknown-guys-rubber-duck-massacre-original.jpg' | relative_url }}" alt="A monumental yellow rubber duck beside the water" width="768" height="768" data-no-viewer>

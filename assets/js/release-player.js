@@ -23,6 +23,7 @@
     var playbackError = null;
     var retryTime = null;
     var trackDownload = null;
+    var downloadDeferred = false;
     var debugPlayback = new URLSearchParams(window.location.search).has('playerDebug');
 
     function logPlayback(event, error) {
@@ -168,10 +169,11 @@
         }
     }
 
-    function loadTrack(index, autoplay, resumeAt) {
+    function loadTrack(index, autoplay, resumeAt, deferDownload) {
         var sequence = ++loadSequence;
         if (trackDownload) trackDownload.abort();
         trackDownload = new AbortController();
+        downloadDeferred = Boolean(deferDownload);
         pendingPlay = null;
         playbackError = null;
         retryTime = Number.isFinite(resumeAt) ? resumeAt : null;
@@ -184,7 +186,7 @@
             candidate.setAttribute('aria-current', candidateIndex === currentIndex ? 'true' : 'false');
         });
 
-        isLoading = true;
+        isLoading = !downloadDeferred;
         wavesurfer.pause();
         nowTitle.textContent = String(currentIndex + 1).padStart(2, '0') + ' · ' + track.dataset.title;
         waveform.setAttribute('aria-label', 'Seek through ' + track.dataset.title);
@@ -192,6 +194,9 @@
         root.style.setProperty('--release-progress', '0%');
         renderPlaying();
         renderProgress(0);
+        /* The waveform image and duration come from the markup, so a deferred
+           track can be shown without its MP3. */
+        if (downloadDeferred) return;
 
         /* Load the selected MP3 completely so seeking uses a local Blob URL,
            avoiding interrupted HTTP range reads in the embedded browser.
@@ -218,6 +223,10 @@
     }
 
     play.addEventListener('click', function () {
+        if (downloadDeferred) {
+            loadTrack(currentIndex, true);
+            return;
+        }
         if (playbackError === 'LOAD ERROR' || audio.error) {
             loadTrack(currentIndex, true, wavesurfer.getCurrentTime());
             return;
@@ -229,13 +238,35 @@
     tracks.forEach(function (track, index) {
         track.addEventListener('click', function () { loadTrack(index, true); });
     });
+
+    /* Seeking a deferred track starts its download; the position is applied
+       on loadedmetadata, like a retry. WaveSurfer seeks on click and drags
+       from pointerdown, so both are kept from it until the file is loaded. */
+    function seekDeferred(seconds) {
+        loadTrack(currentIndex, false, seconds);
+        renderProgress(seconds);
+    }
+    ['pointerdown', 'click'].forEach(function (type) {
+        waveform.addEventListener(type, function (event) {
+            if (!downloadDeferred) return;
+            event.stopPropagation();
+            if (type !== 'click') return;
+            var box = waveEngine.getBoundingClientRect();
+            seekDeferred(Math.max(0, Math.min(1, (event.clientX - box.left) / box.width)) * duration());
+        }, true);
+    });
     waveform.addEventListener('keydown', function (event) {
         if (!['ArrowLeft', 'ArrowRight', 'Home', 'End'].includes(event.key)) return;
         event.preventDefault();
         var current = wavesurfer.getCurrentTime();
-        if (event.key === 'Home') wavesurfer.setTime(0);
-        else if (event.key === 'End') wavesurfer.setTime(duration());
-        else wavesurfer.setTime(Math.max(0, Math.min(duration(), current + (event.key === 'ArrowRight' ? 5 : -5))));
+        var target = event.key === 'Home' ? 0
+            : event.key === 'End' ? duration()
+                : Math.max(0, Math.min(duration(), current + (event.key === 'ArrowRight' ? 5 : -5)));
+        if (downloadDeferred) {
+            seekDeferred(target);
+            return;
+        }
+        wavesurfer.setTime(target);
         renderProgress();
     });
 
@@ -285,7 +316,8 @@
         audio.addEventListener(event, renderPlaying);
     });
 
-    loadTrack(0, false);
+    /* data-load="lazy" waits for Play, a track, or a seek before downloading. */
+    loadTrack(0, false, null, root.dataset.load === 'lazy');
 
     /* The cover uses the same scratch/reseal grammar as the homepage portrait:
        a deliberately tiny bitmap is enlarged without smoothing, pointer movement

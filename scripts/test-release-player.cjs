@@ -29,7 +29,7 @@ class Element {
 
 async function flush() { for (let i = 0; i < 20; i++) await Promise.resolve(); }
 
-async function player() {
+async function player({ lazy = false } = {}) {
     const selectors = ['.release-audio', '.release-play', '.release-waveform', '.release-wave-engine', '.release-wave-shape', '.release-wave-played', '.release-now-title', '.release-status', '.release-time'];
     const elements = Object.fromEntries(selectors.map(key => [key, new Element()]));
     const audio = elements['.release-audio'];
@@ -42,6 +42,8 @@ async function player() {
         return el;
     });
     const root = new Element();
+    if (lazy) root.dataset.load = 'lazy';
+    elements['.release-wave-engine'].getBoundingClientRect = () => ({ left: 0, width: 100 });
     root.querySelector = key => elements[key] || null;
     root.querySelectorAll = () => tracks;
     const ws = new Element();
@@ -88,6 +90,7 @@ async function player() {
     });
     await flush();
     return { audio, toggle, ws, requests, loads, downloads, warnings, tracks,
+        waveform: elements['.release-waveform'],
         click: () => toggle.emit('click'),
         status: () => elements['.release-status'].textContent,
         pressed: () => toggle.attributes['aria-pressed'] };
@@ -227,4 +230,53 @@ test('switching tracks cancels the obsolete download before loading the selected
     p.requests[0].resolve();
     await flush();
     assert.equal(p.status(), 'PLAYING');
+});
+
+test('an eager player downloads the first track on open', async () => {
+    const p = await player();
+    assert.equal(p.downloads.length, 1);
+    assert.equal(p.status(), 'READY');
+});
+
+test('a lazy player downloads nothing until Play, then plays the shown track', async () => {
+    const p = await player({ lazy: true });
+    assert.equal(p.downloads.length, 0);
+    assert.equal(p.status(), 'READY');
+    p.click();
+    assert.equal(p.status(), 'LOADING');
+    await flush();
+    assert.equal(p.downloads.length, 1);
+    assert.equal(p.audio.src, '/track-0.mp3');
+    p.requests[0].resolve();
+    await flush();
+    assert.equal(p.status(), 'PLAYING');
+});
+
+test('a key seek on a lazy player downloads the track and keeps the position, paused', async () => {
+    const p = await player({ lazy: true });
+    p.waveform.emit('keydown', { key: 'ArrowRight', preventDefault() {} });
+    await flush();
+    assert.equal(p.downloads.length, 1);
+    p.audio.emit('loadedmetadata');
+    await flush();
+    assert.equal(p.audio.currentTime, 5);
+    assert.equal(p.requests.length, 0);
+    assert.equal(p.status(), 'READY');
+});
+
+test('a waveform click on a lazy player is kept from WaveSurfer and seeks after the download', async () => {
+    const p = await player({ lazy: true });
+    let stopped = 0;
+    const event = { clientX: 50, stopPropagation() { stopped++; } };
+    p.waveform.emit('pointerdown', event);
+    assert.equal(p.downloads.length, 0);
+    p.waveform.emit('click', event);
+    await flush();
+    assert.equal(stopped, 2);
+    assert.equal(p.downloads.length, 1);
+    p.audio.emit('loadedmetadata');
+    assert.equal(p.audio.currentTime, 150);
+    p.waveform.emit('click', event);
+    assert.equal(stopped, 2);
+    assert.equal(p.downloads.length, 1);
 });
