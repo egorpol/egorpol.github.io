@@ -26,9 +26,7 @@ document.addEventListener('DOMContentLoaded', () => {
         if (persist) saveTheme(theme);
 
         if (toggle) {
-            const dark = theme === 'dark';
-            toggle.setAttribute('aria-pressed', String(dark));
-            toggle.setAttribute('aria-label', dark ? 'Use light theme' : 'Use dark theme');
+            toggle.setAttribute('aria-pressed', String(theme === 'dark'));
         }
     };
 

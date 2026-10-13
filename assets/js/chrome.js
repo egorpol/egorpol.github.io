@@ -319,9 +319,7 @@
         }
 
         if (toggle) {
-            var on = state === 'on';
-            toggle.setAttribute('aria-pressed', String(on));
-            toggle.setAttribute('aria-label', on ? 'Switch to plain view' : 'Switch to pixel view');
+            toggle.setAttribute('aria-pressed', String(state === 'on'));
         }
 
         if (state === 'on') startPortrait();
