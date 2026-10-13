@@ -6,7 +6,12 @@
     <meta name="color-scheme" content="light dark">
     <meta name="referrer" content="strict-origin-when-cross-origin">
     {% if page.robots %}<meta name="robots" content="{{ page.robots | escape }}">{% elsif page.sitemap == false %}<meta name="robots" content="noindex, nofollow">{% endif %}
-    <meta http-equiv="Content-Security-Policy" content="default-src 'self'; img-src 'self' data:; style-src 'self'; script-src 'self'; font-src 'self'; {% if page.audio_player %}connect-src 'self'; media-src 'self' blob:;{% else %}connect-src 'none';{% endif %} object-src 'none'; base-uri 'self'; form-action 'self'; upgrade-insecure-requests">
+    {%- comment -%}
+    The style-src hash allows the stylesheet that wavesurfer 7.12.11 injects into its shadow root
+    with height: 240 (assets/js/release-player.js); recompute it from the browser's CSP error
+    when either changes.
+    {%- endcomment %}
+    <meta http-equiv="Content-Security-Policy" content="default-src 'self'; img-src 'self' data:; style-src 'self'{% if page.audio_player %} 'sha256-q8eT0Q0uNe4qUYGwCupZ4weoOLvq3TS0yaHwZRMIT/Q='{% endif %}; script-src 'self'; font-src 'self'; {% if page.audio_player %}connect-src 'self'; media-src 'self' blob:;{% else %}connect-src 'none';{% endif %} object-src 'none'; base-uri 'self'; form-action 'self'; upgrade-insecure-requests">
     {% seo %}
     {% feed_meta %}
 
@@ -16,8 +21,6 @@
     {% if page.bing_site_verification %}
     <meta name="msvalidate.01" content="{{ page.bing_site_verification | escape }}">
     {% endif %}
-
-    <meta property="og:site_name" content="{{ site.title | escape }}">
 
     {% if page.structured_data %}
     <script type="application/ld+json">{{ page.structured_data | jsonify }}</script>
@@ -51,13 +54,13 @@
             </div>
             {% include site-nav.html %}
             <div class="header-controls">
-                <button id="chrome-toggle" class="view-switch" type="button" aria-label="Switch to plain view" aria-pressed="true">
+                <button id="chrome-toggle" class="view-switch" type="button" aria-label="Pixel view" aria-pressed="true">
                     <span class="view-switch-label">Pixel</span>
                     <span class="view-switch-track" aria-hidden="true"><span class="view-switch-thumb"></span></span>
                     <span class="view-switch-label">Plain</span>
                 </button>
                 <span class="control-divider" aria-hidden="true"></span>
-                <button id="theme-toggle" class="theme-toggle" type="button" aria-label="Use dark theme" aria-pressed="false">
+                <button id="theme-toggle" class="theme-toggle" type="button" aria-label="Dark theme" aria-pressed="false">
                     <svg class="toggle-smooth theme-mark" viewBox="0 0 24 24" aria-hidden="true" focusable="false">
                         <circle cx="12" cy="12" r="7" fill="none" stroke="currentColor" stroke-width="2"></circle>
                         <path d="M12 5 A 7 7 0 0 1 12 19 Z" fill="currentColor"></path>

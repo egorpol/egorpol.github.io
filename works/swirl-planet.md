@@ -11,10 +11,10 @@ breadcrumb:
   - title: Swirl Planet EP
 scripts:
   - /assets/lib/wavesurfer-7.12.11.min.js
-  - /assets/js/release-player.js?v=20260905-4
+  - /assets/js/release-player.js?v=20261013-2
 ---
 
-<article class="release-page" data-release-player>
+<article class="release-page" data-release-player data-load="lazy">
   <header class="release-hero">
     <figure class="release-cover" data-release-cover data-pixel-cover="{{ '/assets/images/releases/two-unknown-guys-swirl-planet-zx.png' | relative_url }}" data-pixel-cover-dark="{{ '/assets/images/releases/two-unknown-guys-swirl-planet-zx-dark.png' | relative_url }}">
       <img src="{{ '/assets/images/releases/two-unknown-guys-swirl-planet-original.jpg' | relative_url }}" alt="A weathered, eye-like planet floating against a dark field of stars" width="600" height="600" data-no-viewer>

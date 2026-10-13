@@ -10,6 +10,20 @@ The format is based on [Keep a Changelog](https://keepachangelog.com/).
 - Note “Reading the logs of a phone that wouldn’t boot”, on a failed iOS update and its repair
 - Table styles for notes
 
+### Changed
+
+- Unreferenced files (old cover exports, unused IBM Plex Serif fonts, archive.org sidecars) and the default theme’s stylesheet are no longer published (about 8.3 MB)
+- Release players download a track only after Play, a track choice, or a seek, not on page open (15–16 MB)
+
+### Fixed
+
+- Space before the Discogs profile names in the mastering section
+- Release players: WaveSurfer’s stylesheet is allowed by the CSP at every width, so clicks seek to the right place
+- Focus ring visible on the contact panel (plain view, light theme) and in the image viewer
+- Notes list stacks on phones like the Works list
+- View and theme toggles keep stable accessible names; the state is in `aria-pressed`
+- `og:site_name` emitted once
+
 ## [0.0.2] - 2026-10-09
 
 CV facts brought up to date, production work alongside research, and fixes for the feed, CSP, and typography.

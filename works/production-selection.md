@@ -11,7 +11,7 @@ breadcrumb:
   - title: Selected Productions
 scripts:
   - /assets/lib/wavesurfer-7.12.11.min.js
-  - /assets/js/release-player.js?v=20261008-1
+  - /assets/js/release-player.js?v=20261013-1
 ---
 {% assign demo = site.data.dd_demo %}
 {% assign first = demo.tracks | first %}

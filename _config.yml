@@ -24,6 +24,10 @@ sass:
   sass_dir: _sass
   style: compressed
 
+# The github-pages gem adds jekyll-theme-primer by default; the site uses none of it,
+# and the theme's own assets/css/style.css would otherwise be published.
+theme: null
+
 # GitHub Pages only runs plugins listed here.
 plugins:
   - jekyll-feed
@@ -85,6 +89,13 @@ exclude:
   - assets/audio/dd-demo/*.zip
   - assets/audio/dd-demo/01_adada-dd.mp3
   - assets/audio/dd-demo/SHANDY MANDIES - Baby Blue [1366364827].mp3
+  # Unreferenced exports, unused fonts and archive.org sidecars stay in the repo only.
+  - assets/images/releases/*-pixel.png
+  - assets/images/releases/*-pixel.webp
+  - assets/fonts/IBMPlexSerif-*.woff2
+  - "assets/audio/* (SN056)/SN056_*.xml"
+  - "assets/audio/* (SN056)/SN056_rules.conf"
+  - "assets/audio/* (SN056)/sn056-2unkown-guys_*pxl.jpg"
   - _site/
   - cv/
   - scripts/

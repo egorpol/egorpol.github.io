@@ -277,6 +277,8 @@
     border-radius: 0.8rem;
     background: var(--panel-strong);
     color: #eef6f7;
+    /* The light-theme focus colour is too dark on this panel. */
+    --focus: #f0b44b;
 }
 
 .contact-panel h2,
