@@ -1,7 +1,7 @@
 ---
 layout: page
 title: Notes
-description: "Working notes on computational musicology, research software, audio analysis, and machine-learning experiments by Egor Polyakov."
+description: "Occasional notes on computational musicology, research software, machine-learning experiments, and debugging by Egor Polyakov."
 permalink: /notes/
 breadcrumb:
   - title: Notes
@@ -10,7 +10,7 @@ breadcrumb:
 <header class="page-intro">
   <p class="eyebrow">Lab notebook</p>
   <h1>Notes</h1>
-  <p class="lead">Working notes on research software, analysis workflows, and experiments — written as they happen rather than as finished results.</p>
+  <p class="lead">Occasional notes on research software, data workflows, experiments, and debugging — written while the details are fresh rather than as finished results.</p>
 </header>
 
 <ul class="notes-list">
