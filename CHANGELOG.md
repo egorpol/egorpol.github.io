@@ -14,6 +14,7 @@ The format is based on [Keep a Changelog](https://keepachangelog.com/).
 
 - Unreferenced files (old cover exports, unused IBM Plex Serif fonts, archive.org sidecars) and the default theme’s stylesheet are no longer published (about 8.3 MB)
 - Release players download a track only after Play, a track choice, or a seek, not on page open (15–16 MB)
+- Notes intro and description reworded: occasional notes, now including debugging
 
 ### Fixed
 
