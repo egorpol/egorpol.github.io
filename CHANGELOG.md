@@ -7,6 +7,7 @@ The format is based on [Keep a Changelog](https://keepachangelog.com/).
 
 ### Added
 
+- Release pages fall back to the browser’s own audio player when JavaScript is off or the waveform library fails to load
 - Note “Reading the logs of a phone that wouldn’t boot”, on a failed iOS update and its repair
 - Note “The Public Domain Sheet Music Finder, three years later”, on rebuilding the 2023 tool as eu-pd-composers
 - Table styles for notes
@@ -24,6 +25,8 @@ The format is based on [Keep a Changelog](https://keepachangelog.com/).
 
 ### Fixed
 
+- Release players: Up and Down keys seek like Left and Right, and the Play button keeps one name and reports playback as pressed
+- Pixel view: the release players’ Play button has a 44 px hit area and meets 3:1 contrast in the dark theme
 - Space before the Discogs profile names in the mastering section
 - Release players: WaveSurfer’s stylesheet is allowed by the CSP at every width, so clicks seek to the right place
 - Focus ring visible on the contact panel (plain view, light theme) and in the image viewer

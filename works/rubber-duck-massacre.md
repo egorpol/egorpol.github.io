@@ -10,7 +10,7 @@ breadcrumb:
   - title: The Rubber Duck Massacre EP
 scripts:
   - /assets/lib/wavesurfer-7.12.11.min.js
-  - /assets/js/release-player.js?v=20261013-2
+  - /assets/js/release-player.js?v=20261028-1
 ---
 
 <article class="release-page" data-release-player data-load="lazy">
@@ -67,6 +67,21 @@ scripts:
         </div>
         <time class="release-time">00:00 / 06:45</time>
       </div>
+    </div>
+
+    <div class="release-fallback">
+      <p><strong>Open Source</strong></p>
+      <audio controls preload="none" src="{{ '/assets/audio/Two Unknown Guys ‎– The Rubber Duck Massacre EP (SN056)/SN056_1_two-unknown-guys_open-source_The-rubber-duck-masacre_sinergy-networks.mp3' | relative_url }}" aria-label="Open Source"></audio>
+      <p><strong>Aegis</strong></p>
+      <audio controls preload="none" src="{{ '/assets/audio/Two Unknown Guys ‎– The Rubber Duck Massacre EP (SN056)/SN056_2_two-unknown-guys_Aegis_The-rubber-duck-masacre_sinergy-networks.mp3' | relative_url }}" aria-label="Aegis"></audio>
+      <p><strong>Catalyst</strong></p>
+      <audio controls preload="none" src="{{ '/assets/audio/Two Unknown Guys ‎– The Rubber Duck Massacre EP (SN056)/SN056_3_two-unknown-guys_Catalyst_The-rubber-duck-masacre_sinergy-networks.mp3' | relative_url }}" aria-label="Catalyst"></audio>
+      <p><strong>Dampflok</strong></p>
+      <audio controls preload="none" src="{{ '/assets/audio/Two Unknown Guys ‎– The Rubber Duck Massacre EP (SN056)/SN056_4_two-unknown-guys_Dampflok_The-rubber-duck-masacre_sinergy-networks.mp3' | relative_url }}" aria-label="Dampflok"></audio>
+      <p><strong>Bloodnight (Christoph Schindling Remix)</strong></p>
+      <audio controls preload="none" src="{{ '/assets/audio/Two Unknown Guys ‎– The Rubber Duck Massacre EP (SN056)/SN056_5_two-unknown-guys_bloodnight-christoph-schindling-remix_The-rubber-duck-masacre_sinergy-networks.mp3' | relative_url }}" aria-label="Bloodnight (Christoph Schindling Remix)"></audio>
+      <p><strong>Bloodnight (Original Version)</strong></p>
+      <audio controls preload="none" src="{{ '/assets/audio/Two Unknown Guys ‎– The Rubber Duck Massacre EP (SN056)/Bloodnight.mp3' | relative_url }}" aria-label="Bloodnight (Original Version)"></audio>
     </div>
 
     <ol class="release-tracks" aria-label="Track list">

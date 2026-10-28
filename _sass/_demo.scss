@@ -94,12 +94,6 @@
     max-width: var(--reading-width);
 }
 
-.demo-native-players audio {
-    display: block;
-    width: 100%;
-    margin-bottom: 1.5rem;
-}
-
 @media (max-width: 520px) {
     .demo-track-downloads {
         padding-left: 3.35rem;

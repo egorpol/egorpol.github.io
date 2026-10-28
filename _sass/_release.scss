@@ -96,6 +96,26 @@
     display: none;
 }
 
+.release-fallback {
+    display: none;
+}
+
+:root:not([data-chrome]) .release-player-shell,
+[data-release-player].is-fallback .release-player-shell {
+    display: none;
+}
+
+:root:not([data-chrome]) .release-fallback,
+[data-release-player].is-fallback .release-fallback {
+    display: block;
+}
+
+.release-fallback audio {
+    display: block;
+    width: 100%;
+    margin-bottom: 1.5rem;
+}
+
 .release-player-meta,
 .release-transport {
     display: flex;
@@ -351,12 +371,24 @@
 
 [data-chrome="on"] .release-play {
     position: relative;
+    z-index: 1;
     width: 20px;
     height: 20px;
     padding: 3px;
-    border-color: var(--patch-line);
+    border-color: var(--patch-ink);
     border-radius: 0;
     background: var(--surface);
+}
+
+/* Expand the target without moving the patch or letting its objects cover it. */
+[data-chrome="on"] .release-play::before {
+    content: "";
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    width: 44px;
+    height: 44px;
+    transform: translate(-50%, -50%);
 }
 
 [data-chrome="on"] .release-play span {
@@ -369,7 +401,7 @@
 }
 
 [data-chrome="on"] .release-page.is-playing .release-play span {
-    background: var(--patch-line);
+    background: var(--patch-ink);
 }
 
 [data-chrome="on"] .release-play::after {
@@ -379,7 +411,7 @@
     left: 5px;
     width: 9px;
     height: 3px;
-    background: var(--patch-line);
+    background: var(--patch-ink);
 }
 
 [data-chrome="on"] .release-object {

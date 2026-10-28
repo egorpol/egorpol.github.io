@@ -11,7 +11,7 @@ breadcrumb:
   - title: Selected Productions
 scripts:
   - /assets/lib/wavesurfer-7.12.11.min.js
-  - /assets/js/release-player.js?v=20261013-1
+  - /assets/js/release-player.js?v=20261028-1
 ---
 {% assign demo = site.data.dd_demo %}
 {% assign first = demo.tracks | first %}
@@ -58,6 +58,13 @@ scripts:
       </div>
     </div>
 
+    <div class="release-fallback">
+      {% for track in demo.tracks %}
+      <p><strong>{{ track.artist | escape }} — {{ track.title | escape }}</strong></p>
+      <audio controls preload="none" aria-label="{{ track.artist | escape }} — {{ track.title | escape }}" src="{{ track.audio | relative_url }}"></audio>
+      {% endfor %}
+    </div>
+
     <ol class="release-tracks" id="tracks" aria-label="Selected productions">
       {% for track in demo.tracks %}
       <li>
@@ -76,15 +83,6 @@ scripts:
       </li>
       {% endfor %}
     </ol>
-
-    <noscript>
-      <div class="demo-native-players">
-        {% for track in demo.tracks %}
-        <p><strong>{{ track.artist | escape }} — {{ track.title | escape }}</strong></p>
-        <audio controls preload="none" aria-label="{{ track.artist | escape }} — {{ track.title | escape }}" src="{{ track.audio | relative_url }}"></audio>
-        {% endfor %}
-      </div>
-    </noscript>
   </section>
 
   <aside class="demo-source-note" aria-labelledby="source-note-title">
