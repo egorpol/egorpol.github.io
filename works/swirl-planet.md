@@ -11,7 +11,7 @@ breadcrumb:
   - title: Swirl Planet EP
 scripts:
   - /assets/lib/wavesurfer-7.12.11.min.js
-  - /assets/js/release-player.js?v=20261013-2
+  - /assets/js/release-player.js?v=20261028-1
 ---
 
 <article class="release-page" data-release-player data-load="lazy">
@@ -68,6 +68,26 @@ scripts:
         <time class="release-time">00:00 / 06:23</time>
       </div>
     </div>
+
+    <div class="release-fallback">
+      <p><strong>Swirl Planet</strong></p>
+      <audio controls preload="none" src="{{ '/assets/audio/swirl-planet/01-swirl-planet.mp3' | relative_url }}" aria-label="Swirl Planet"></audio>
+      <p><strong>Sand Movement</strong></p>
+      <audio controls preload="none" src="{{ '/assets/audio/swirl-planet/02-sand-movement.mp3' | relative_url }}" aria-label="Sand Movement"></audio>
+      <p><strong>Sand Movement (Christoph Schindling Remix)</strong></p>
+      <audio controls preload="none" src="{{ '/assets/audio/swirl-planet/03-sand-movement-christoph-schindling-remix.mp3' | relative_url }}" aria-label="Sand Movement (Christoph Schindling Remix)"></audio>
+      <p><strong>Sand Movement (Adverb Remix)</strong></p>
+      <audio controls preload="none" src="{{ '/assets/audio/swirl-planet/04-sand-movement-adverb-remix.mp3' | relative_url }}" aria-label="Sand Movement (Adverb Remix)"></audio>
+      <p><strong>All Night Long</strong></p>
+      <audio controls preload="none" src="{{ '/assets/audio/swirl-planet/05-all-night-long.mp3' | relative_url }}" aria-label="All Night Long"></audio>
+      <p><strong>Cold Frog</strong></p>
+      <audio controls preload="none" src="{{ '/assets/audio/swirl-planet/06-cold-frog.mp3' | relative_url }}" aria-label="Cold Frog"></audio>
+      <p><strong>Love Diffuser</strong></p>
+      <audio controls preload="none" src="{{ '/assets/audio/swirl-planet/07-love-diffuser.mp3' | relative_url }}" aria-label="Love Diffuser"></audio>
+      <p><strong>Medium Surf (with Christoph Schindling)</strong></p>
+      <audio controls preload="none" src="{{ '/assets/audio/swirl-planet/08-medium-surf.mp3' | relative_url }}" aria-label="Medium Surf (with Christoph Schindling)"></audio>
+    </div>
+
     <ol class="release-tracks" aria-label="Track list">
       <li>
         <button type="button" data-track data-title="Swirl Planet" data-duration="383.139025" data-src="{{ '/assets/audio/swirl-planet/01-swirl-planet.mp3' | relative_url }}" data-waveform="{{ '/assets/images/releases/swirl-planet-waveforms/01-swirl-planet.png' | relative_url }}" aria-current="true"><span>01</span><strong>Swirl Planet</strong><time>06:23</time></button>

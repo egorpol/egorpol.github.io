@@ -18,7 +18,16 @@ class Element {
         this.attributes = {};
         this.dataset = {};
         this.style = { setProperty() {} };
-        this.classList = { toggle() {} };
+        const classes = new Set();
+        this.classList = {
+            add(name) { classes.add(name); },
+            contains(name) { return classes.has(name); },
+            toggle(name, force = !classes.has(name)) {
+                if (force) classes.add(name);
+                else classes.delete(name);
+                return force;
+            }
+        };
         this.textContent = '';
     }
     addEventListener(type, callback) { (this.listeners[type] ||= []).push(callback); }
@@ -29,7 +38,7 @@ class Element {
 
 async function flush() { for (let i = 0; i < 20; i++) await Promise.resolve(); }
 
-async function player({ lazy = false } = {}) {
+async function player({ lazy = false, library = 'available' } = {}) {
     const selectors = ['.release-audio', '.release-play', '.release-waveform', '.release-wave-engine', '.release-wave-shape', '.release-wave-played', '.release-now-title', '.release-status', '.release-time'];
     const elements = Object.fromEntries(selectors.map(key => [key, new Element()]));
     const audio = elements['.release-audio'];
@@ -76,9 +85,11 @@ async function player({ lazy = false } = {}) {
     ws.getDuration = () => 300;
     ws.getCurrentTime = () => audio.currentTime;
     ws.setTime = seconds => { audio.currentTime = seconds; ws.emit('timeupdate', seconds); };
+    const window = { location: { search: '' } };
+    if (library !== 'missing') window.WaveSurfer = library === 'available' ? { create: () => ws } : {};
     runInNewContext(source, {
         document: { querySelector: () => root, documentElement: { dataset: { chrome: 'off' } } },
-        window: { WaveSurfer: { create: () => ws }, location: { search: '' } },
+        window,
         URLSearchParams,
         AbortController,
         fetch: async (src, options) => {
@@ -89,7 +100,7 @@ async function player({ lazy = false } = {}) {
         console: { warn: (...args) => warnings.push(args), debug() {} }
     });
     await flush();
-    return { audio, toggle, ws, requests, loads, downloads, warnings, tracks,
+    return { root, audio, toggle, ws, requests, loads, downloads, warnings, tracks,
         waveform: elements['.release-waveform'],
         click: () => toggle.emit('click'),
         status: () => elements['.release-status'].textContent,
@@ -280,3 +291,61 @@ test('a waveform click on a lazy player is kept from WaveSurfer and seeks after 
     assert.equal(stopped, 2);
     assert.equal(p.downloads.length, 1);
 });
+
+for (const lazy of [false, true]) {
+    for (const { key, start, target } of [
+        { key: 'ArrowUp', start: 120, target: 125 },
+        { key: 'ArrowDown', start: 120, target: 115 },
+        { key: 'ArrowUp', start: 298, target: 300 },
+        { key: 'ArrowDown', start: 2, target: 0 }
+    ]) {
+        test(`${key} seeks from ${start} to ${target} on ${lazy ? 'a lazy' : 'an eager'} player`, async () => {
+            const p = await player({ lazy });
+            assert.equal(p.downloads.length, lazy ? 0 : 1);
+            p.audio.currentTime = start;
+            let prevented = 0;
+            p.waveform.emit('keydown', { key, preventDefault() { prevented++; } });
+            assert.equal(prevented, 1);
+            assert.equal(p.waveform.attributes['aria-valuenow'], String(target));
+            await flush();
+            assert.equal(p.downloads.length, 1);
+            if (lazy) p.audio.emit('loadedmetadata');
+            assert.equal(p.audio.currentTime, target);
+            assert.equal(p.audio.paused, true);
+            assert.equal(p.requests.length, 0);
+            assert.equal(p.status(), 'READY');
+        });
+    }
+}
+
+test('Play keeps its name while pressed and names the selected track', async () => {
+    const p = await player();
+    assert.equal(p.toggle.attributes['aria-label'], 'Play Track 0');
+    assert.equal(p.pressed(), 'false');
+    p.click();
+    assert.equal(p.toggle.attributes['aria-label'], 'Play Track 0');
+    assert.equal(p.pressed(), 'true');
+    assert.equal(p.toggle.child.textContent, 'Ⅱ');
+    p.requests[0].resolve();
+    await flush();
+    assert.equal(p.toggle.attributes['aria-label'], 'Play Track 0');
+    p.tracks[1].emit('click');
+    await flush();
+    assert.equal(p.toggle.attributes['aria-label'], 'Play Track 1');
+    assert.equal(p.pressed(), 'true');
+});
+
+for (const library of ['missing', 'missing-create']) {
+    for (const lazy of [false, true]) {
+        test(`${lazy ? 'a lazy' : 'an eager'} player falls back without downloading when WaveSurfer is ${library}`, async () => {
+            const p = await player({ lazy, library });
+            assert.equal(p.root.classList.contains('is-fallback'), true);
+            assert.equal(p.downloads.length, 0);
+            assert.equal(p.loads.length, 0);
+            assert.equal(p.requests.length, 0);
+            assert.equal(p.warnings.length, 0);
+            assert.equal(Object.keys(p.toggle.listeners).length, 0);
+            assert.equal(Object.keys(p.waveform.listeners).length, 0);
+        });
+    }
+}

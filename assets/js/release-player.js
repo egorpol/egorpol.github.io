@@ -4,6 +4,11 @@
     var root = document.querySelector('[data-release-player]');
     if (!root) return;
 
+    if (!window.WaveSurfer || typeof window.WaveSurfer.create !== 'function') {
+        root.classList.add('is-fallback');
+        return;
+    }
+
     var page = document.documentElement;
     var audio = root.querySelector('.release-audio');
     var play = root.querySelector('.release-play');
@@ -95,7 +100,7 @@
            prevents the next click from cancelling a still-pending play request. */
         root.classList.toggle('is-playing', requestedPlayback);
         play.setAttribute('aria-pressed', String(requestedPlayback));
-        play.setAttribute('aria-label', (requestedPlayback ? 'Pause ' : 'Play ') + currentTrack().dataset.title);
+        play.setAttribute('aria-label', 'Play ' + currentTrack().dataset.title);
         play.querySelector('span').textContent = requestedPlayback ? 'Ⅱ' : '▶';
         status.textContent = isLoading
             ? 'LOADING'
@@ -256,12 +261,12 @@
         }, true);
     });
     waveform.addEventListener('keydown', function (event) {
-        if (!['ArrowLeft', 'ArrowRight', 'Home', 'End'].includes(event.key)) return;
+        if (!['ArrowLeft', 'ArrowRight', 'ArrowUp', 'ArrowDown', 'Home', 'End'].includes(event.key)) return;
         event.preventDefault();
         var current = wavesurfer.getCurrentTime();
         var target = event.key === 'Home' ? 0
             : event.key === 'End' ? duration()
-                : Math.max(0, Math.min(duration(), current + (event.key === 'ArrowRight' ? 5 : -5)));
+                : Math.max(0, Math.min(duration(), current + (event.key === 'ArrowRight' || event.key === 'ArrowUp' ? 5 : -5)));
         if (downloadDeferred) {
             seekDeferred(target);
             return;
