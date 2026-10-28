@@ -58,6 +58,7 @@ breadcrumb:
       <span class="reference-year">{{ item.year }}</span>
       <div class="reference-body">
         <p>{{ item.citation | markdownify | remove: '<p>' | remove: '</p>' }}</p>
+        {% if item.materials %}<a class="doi-link" href="{{ item.materials }}" target="_blank" rel="noopener noreferrer">Materials <span aria-hidden="true">↗</span></a>{% endif %}
       </div>
     </li>
     {% endfor %}
@@ -75,6 +76,7 @@ breadcrumb:
         <p>{{ item.title | markdownify | remove: '<p>' | remove: '</p>' }}</p>
         <p class="reference-meta">{{ item.venue }}{% if item.note %} — {{ item.note }}{% endif %}</p>
         <span class="reference-kind">{{ item.kind }}{% if item.status %} · {{ item.status }}{% endif %}</span>
+        {% if item.materials %}<a class="doi-link" href="{{ item.materials }}" target="_blank" rel="noopener noreferrer">Materials <span aria-hidden="true">↗</span></a>{% endif %}
       </div>
     </li>
     {% endfor %}

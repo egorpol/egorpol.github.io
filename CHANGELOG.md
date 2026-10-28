@@ -9,6 +9,10 @@ The format is based on [Keep a Changelog](https://keepachangelog.com/).
 
 - Note “Reading the logs of a phone that wouldn’t boot”, on a failed iOS update and its repair
 - Table styles for notes
+- German CV (PDF), generated from the same data as the English one, with a download button on the CV page
+- eu-pd-composers on the Projects page and as a dataset under Publications
+- Article “Time to Align!” (TISMIR, 2026) under Publications
+- Links to talk and chapter materials on the CV and Publications pages
 
 ### Changed
 
@@ -22,6 +26,7 @@ The format is based on [Keep a Changelog](https://keepachangelog.com/).
 - Release players: WaveSurfer’s stylesheet is allowed by the CSP at every width, so clicks seek to the right place
 - Focus ring visible on the contact panel (plain view, light theme) and in the image viewer
 - Notes list stacks on phones like the Works list
+- CV: InMusic26 talk dated 12–14 June 2026 and its co-speaker named; MEC 2025 abstract DOI points to the abstract itself; GfM 2024 venue given as Cologne
 - View and theme toggles keep stable accessible names; the state is in `aria-pressed`
 - `og:site_name` emitted once
 
