@@ -17,10 +17,11 @@ Output lands in `_site/`.
 
 ## Updating professional information
 
-`_data/cv.yml` drives the homepage, web CV, projects, publications, teaching, works, and the English PDF. After editing it:
+`_data/cv.yml` drives the homepage, web CV, projects, publications, teaching, works, and the English and German PDFs (German text in `<field>_de` keys). After editing it:
 
 ```bash
 ruby scripts/generate_cv_tex.rb --build
+ruby scripts/generate_cv_tex.rb --lang de --build
 ```
 
 TeX engines, Cyrillic fonts, and Tectonic notes are in [cv/README.md](cv/README.md).
@@ -39,13 +40,13 @@ TeX engines, Cyrillic fonts, and Tectonic notes are in [cv/README.md](cv/README.
 | `_layouts/default.html` | Site shell, CSP, nav |
 | `assets/css/main.scss` + `_sass/` | Design tokens and styles |
 | `assets/fonts/` | Self-hosted type (SIL OFL 1.1) |
-| `cv/cv.tex` | Generated LaTeX (rebuild artifacts under `cv/` are gitignored) |
-| `assets/cv/Egor_Polyakov_CV.pdf` | Published PDF |
+| `cv/cv.tex`, `cv/cv.de.tex` | Generated LaTeX, English and German (rebuild artifacts under `cv/` are gitignored) |
+| `assets/cv/Egor_Polyakov_CV.pdf`, `assets/cv/Egor_Polyakov_Lebenslauf.pdf` | Published PDFs, English and German |
 
 ## Privacy and security
 
 - The public CV omits family members’ names and ages, street address, telephone, and full birth date.
-- Only `assets/cv/Egor_Polyakov_CV.pdf` is published; other LaTeX build outputs under `cv/` are gitignored.
+- Only the two PDFs in `assets/cv/` are published; other LaTeX build outputs under `cv/` are gitignored.
 - No analytics; fonts and scripts are self-hosted (no third-party requests).
 - GitHub Pages can’t send response headers, so the Content Security Policy is a `<meta>` tag in the layout; header-only protections such as `frame-ancestors` aren’t available.
 - Pages with `audio_player: true` add a `style-src` hash for the stylesheet WaveSurfer injects. Recompute it from the browser’s CSP error when WaveSurfer or the player height in `assets/js/release-player.js` changes (see the comment in `_layouts/default.html`).
@@ -60,6 +61,7 @@ Before merging to `main`:
 ```bash
 bundle exec jekyll build
 ruby scripts/generate_cv_tex.rb --build
+ruby scripts/generate_cv_tex.rb --lang de --build
 ruby scripts/test-generate-cv.rb
 node --test scripts/test-release-player.cjs scripts/test-site-notice.cjs
 git diff --check

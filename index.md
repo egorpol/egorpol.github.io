@@ -133,7 +133,7 @@ structured_data:
     <a class="text-link project-all-plain" href="{{ '/projects/' | relative_url }}">All projects <span aria-hidden="true">→</span></a>
   </div>
   <div class="project-grid">
-    {% for project in cv.projects %}
+    {% for project in cv.projects limit: 4 %}
     <article class="project-card" data-patch="proj" data-col="{{ forloop.index }}">
       <h3><a href="{{ project.url }}" target="_blank" rel="noopener noreferrer">{{ project.name }}</a></h3>
       <p>{{ project.blurb }}</p>
@@ -141,7 +141,7 @@ structured_data:
       {% include patch-nubs.html %}
     </article>
     {% endfor %}
-    {% for project in cv.projects %}
+    {% for project in cv.projects limit: 4 %}
     <span class="patch-cord patch-cord-y" data-cord="p{{ forloop.index }}" aria-hidden="true"></span>
     {% endfor %}
     <a class="project-all" data-patch="sink" href="{{ '/projects/' | relative_url }}">All projects{% include patch-nubs.html %}</a>

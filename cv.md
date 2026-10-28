@@ -40,6 +40,7 @@ structured_data:
     <p class="lead">{{ cv.profile }}</p>
     <div class="cv-actions">
       <a class="button button-primary" href="{{ cv.pdf.path | relative_url }}" download="{{ cv.pdf.filename }}">Download PDF</a>
+      <a class="button button-secondary" href="{{ cv.pdf_de.path | relative_url }}" download="{{ cv.pdf_de.filename }}" hreflang="de" lang="de">Lebenslauf (PDF, Deutsch)</a>
       <a class="button button-secondary" href="mailto:{{ cv.contact.email }}">Email</a>
       <details class="cv-jump">
         <summary class="button button-secondary">Jump to section <span class="cv-jump-arrow" aria-hidden="true">↓</span></summary>
@@ -202,7 +203,7 @@ structured_data:
     <h3 class="cv-subheading">Under Review</h3>
     <ul class="publication-list">
       {% for pub in cv.publications.under_review %}
-      <li>{{ pub.citation | markdownify | remove: '<p>' | remove: '</p>' }}</li>
+      <li>{{ pub.citation | markdownify | remove: '<p>' | remove: '</p>' }}{% if pub.materials %} <a href="{{ pub.materials }}" target="_blank" rel="noopener noreferrer">Materials <span aria-hidden="true">↗</span></a>{% endif %}</li>
       {% endfor %}
     </ul>
     {% endif %}
@@ -214,7 +215,7 @@ structured_data:
       {% for talk in cv.talks %}
       <li>
         <span>{{ talk.year }}{% if talk.status %}<small>{{ talk.status }}</small>{% endif %}</span>
-        <div><strong>{{ talk.kind }}:</strong> “{{ talk.title }}”<br>{{ talk.venue }}{% if talk.note %} · {{ talk.note }}{% endif %}</div>
+        <div><strong>{{ talk.kind }}:</strong> “{{ talk.title }}”<br>{{ talk.venue }}{% if talk.note %} · {{ talk.note }}{% endif %}{% if talk.materials %} <a href="{{ talk.materials }}" target="_blank" rel="noopener noreferrer">Materials <span aria-hidden="true">↗</span></a>{% endif %}</div>
       </li>
       {% endfor %}
     </ul>

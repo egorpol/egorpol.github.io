@@ -8,13 +8,19 @@ The format is based on [Keep a Changelog](https://keepachangelog.com/).
 ### Added
 
 - Note “Reading the logs of a phone that wouldn’t boot”, on a failed iOS update and its repair
+- Note “The Public Domain Sheet Music Finder, three years later”, on rebuilding the 2023 tool as eu-pd-composers
 - Table styles for notes
+- German CV (PDF), generated from the same data as the English one, with a download button on the CV page
+- eu-pd-composers on the Projects page and as a dataset under Publications
+- Article “Time to Align!” (TISMIR, 2026) under Publications
+- Links to talk and chapter materials on the CV and Publications pages
 
 ### Changed
 
 - Unreferenced files (old cover exports, unused IBM Plex Serif fonts, archive.org sidecars) and the default theme’s stylesheet are no longer published (about 8.3 MB)
 - Release players download a track only after Play, a track choice, or a seek, not on page open (15–16 MB)
 - Notes intro and description reworded: occasional notes, now including debugging
+- The July 2023 note links the project’s repository under its new name, eu-pd-composers
 
 ### Fixed
 
@@ -22,6 +28,7 @@ The format is based on [Keep a Changelog](https://keepachangelog.com/).
 - Release players: WaveSurfer’s stylesheet is allowed by the CSP at every width, so clicks seek to the right place
 - Focus ring visible on the contact panel (plain view, light theme) and in the image viewer
 - Notes list stacks on phones like the Works list
+- CV: InMusic26 talk dated 12–14 June 2026 and its co-speaker named; MEC 2025 abstract DOI points to the abstract itself; GfM 2024 venue given as Cologne
 - View and theme toggles keep stable accessible names; the state is in `aria-pressed`
 - `og:site_name` emitted once
 
