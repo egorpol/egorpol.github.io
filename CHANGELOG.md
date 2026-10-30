@@ -15,6 +15,7 @@ The format is based on [Keep a Changelog](https://keepachangelog.com/).
 - eu-pd-composers on the Projects page and as a dataset under Publications
 - Article “Time to Align!” (TISMIR, 2026) under Publications
 - Links to talk and chapter materials on the CV and Publications pages
+- CV data check, run on every push and weekly, that flags a talk still marked “accepted” after its date, “presented” before it, or a homepage without exactly four highlights
 
 ### Changed
 
@@ -22,6 +23,7 @@ The format is based on [Keep a Changelog](https://keepachangelog.com/).
 - Release players download a track only after Play, a track choice, or a seek, not on page open (15–16 MB)
 - Notes intro and description reworded: occasional notes, now including debugging
 - The July 2023 note links the project’s repository under its new name, eu-pd-composers
+- The unused jekyll-paginate gem is no longer listed in the Gemfile
 
 ### Fixed
 
