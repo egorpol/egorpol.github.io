@@ -63,6 +63,8 @@ bundle exec jekyll build
 ruby scripts/generate_cv_tex.rb --build
 ruby scripts/generate_cv_tex.rb --lang de --build
 ruby scripts/test-generate-cv.rb
+ruby scripts/test-check-cv-data.rb
+ruby scripts/check-cv-data.rb
 node --test scripts/test-release-player.cjs scripts/test-site-notice.cjs
 git diff --check
 ```
