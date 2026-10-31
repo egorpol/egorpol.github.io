@@ -51,6 +51,7 @@ TeX engines, Cyrillic fonts, and Tectonic notes are in [cv/README.md](cv/README.
 - GitHub Pages can’t send response headers, so the Content Security Policy is a `<meta>` tag in the layout; header-only protections such as `frame-ancestors` aren’t available.
 - Pages with `audio_player: true` add a `style-src` hash for the stylesheet WaveSurfer injects. Recompute it from the browser’s CSP error when WaveSurfer or the player height in `assets/js/release-player.js` changes (see the comment in `_layouts/default.html`).
 - New-tab external links use `rel="noopener noreferrer"`.
+- The Impressum and privacy page (`impressum.md`, `datenschutz.md`) read the postal address from `_data/legal.yml`: a c/o address where legal mail reaches the owner, never a PO box. The privacy page lists the four `localStorage` keys and states that the site loads nothing from third parties; update it when either changes.
 
 ## Deployment
 
