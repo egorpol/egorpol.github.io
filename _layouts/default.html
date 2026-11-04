@@ -7,11 +7,11 @@
     <meta name="referrer" content="strict-origin-when-cross-origin">
     {% if page.robots %}<meta name="robots" content="{{ page.robots | escape }}">{% elsif page.sitemap == false %}<meta name="robots" content="noindex, nofollow">{% endif %}
     {%- comment -%}
-    The style-src hash allows the stylesheet that wavesurfer 7.12.11 injects into its shadow root
-    with height: 240 (assets/js/release-player.js); recompute it from the browser's CSP error
-    when either changes.
+    The style-src hash allows the stylesheet that wavesurfer 8.0.5 injects into its shadow root;
+    its text is the same at every height and width. Recompute the hash from the browser's CSP
+    error when wavesurfer changes.
     {%- endcomment %}
-    <meta http-equiv="Content-Security-Policy" content="default-src 'self'; img-src 'self' data:; style-src 'self'{% if page.audio_player %} 'sha256-q8eT0Q0uNe4qUYGwCupZ4weoOLvq3TS0yaHwZRMIT/Q='{% endif %}; script-src 'self'; font-src 'self'; {% if page.audio_player %}connect-src 'self'; media-src 'self' blob:;{% else %}connect-src 'none';{% endif %} object-src 'none'; base-uri 'self'; form-action 'self'; upgrade-insecure-requests">
+    <meta http-equiv="Content-Security-Policy" content="default-src 'self'; img-src 'self' data:; style-src 'self'{% if page.audio_player %} 'sha256-/wNXXQM7c2ofBcjrAABoSS5Ibbo1K6dLnomtT2ZNGIA='{% endif %}; script-src 'self'; font-src 'self'; {% if page.audio_player %}connect-src 'self'; media-src 'self' blob:;{% else %}connect-src 'none';{% endif %} object-src 'none'; base-uri 'self'; form-action 'self'; upgrade-insecure-requests">
     {% seo %}
     {% feed_meta %}
 

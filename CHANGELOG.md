@@ -24,6 +24,7 @@ The format is based on [Keep a Changelog](https://keepachangelog.com/).
 - Notes intro and description reworded: occasional notes, now including debugging
 - The July 2023 note links the project’s repository under its new name, eu-pd-composers
 - The unused jekyll-paginate gem is no longer listed in the Gemfile
+- Release players use WaveSurfer 8.0.5, and the fixed player height is gone: one CSP hash now covers every size
 
 ### Fixed
 
@@ -31,6 +32,7 @@ The format is based on [Keep a Changelog](https://keepachangelog.com/).
 - Pixel view: the release players’ Play button has a 44 px hit area and meets 3:1 contrast in the dark theme
 - Space before the Discogs profile names in the mastering section
 - Release players: WaveSurfer’s stylesheet is allowed by the CSP at every width, so clicks seek to the right place
+- Release players: when a track ends, the next one starts instead of the one after it
 - Focus ring visible on the contact panel (plain view, light theme) and in the image viewer
 - Notes list stacks on phones like the Works list
 - CV: InMusic26 talk dated 12–14 June 2026 and its co-speaker named; MEC 2025 abstract DOI points to the abstract itself; GfM 2024 venue given as Cologne

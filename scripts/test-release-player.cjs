@@ -38,7 +38,7 @@ class Element {
 
 async function flush() { for (let i = 0; i < 20; i++) await Promise.resolve(); }
 
-async function player({ lazy = false, library = 'available' } = {}) {
+async function player({ lazy = false, library = 'available', holdLoads = false } = {}) {
     const selectors = ['.release-audio', '.release-play', '.release-waveform', '.release-wave-engine', '.release-wave-shape', '.release-wave-played', '.release-now-title', '.release-status', '.release-time'];
     const elements = Object.fromEntries(selectors.map(key => [key, new Element()]));
     const audio = elements['.release-audio'];
@@ -78,7 +78,7 @@ async function player({ lazy = false, library = 'available' } = {}) {
         audio.src = blob.src;
         audio.error = null;
         audio.currentTime = 0;
-        load.resolve();
+        if (!holdLoads) load.resolve();
         return load.promise;
     };
     ws.isPlaying = () => !audio.paused && !audio.ended;
@@ -228,6 +228,22 @@ test('browser or OS pause is respected instead of forcing playback back on', asy
     assert.equal(p.pressed(), 'false');
     assert.equal(p.status(), 'READY');
     assert.equal(p.requests.length, 1);
+});
+
+test('a load superseded by a newer one rejects without showing LOAD ERROR', async () => {
+    const p = await player({ holdLoads: true });
+    p.tracks[1].emit('click');
+    await flush();
+    assert.equal(p.loads.length, 2);
+    p.loads[0].reject(Object.assign(new Error('superseded'), { name: 'AbortError' }));
+    await flush();
+    assert.equal(p.status(), 'LOADING');
+    p.loads[1].resolve();
+    await flush();
+    p.requests[0].resolve();
+    await flush();
+    assert.equal(p.status(), 'PLAYING');
+    assert.equal(p.warnings.length, 0);
 });
 
 test('switching tracks cancels the obsolete download before loading the selected file', async () => {

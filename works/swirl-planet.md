@@ -10,8 +10,8 @@ breadcrumb:
     url: /works/
   - title: Swirl Planet EP
 scripts:
-  - /assets/lib/wavesurfer-7.12.11.min.js
-  - /assets/js/release-player.js?v=20261028-1
+  - /assets/lib/wavesurfer-8.0.5.min.js
+  - /assets/js/release-player.js?v=20261104-1
 ---
 
 <article class="release-page" data-release-player data-load="lazy">
