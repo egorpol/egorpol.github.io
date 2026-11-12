@@ -16,6 +16,7 @@ The format is based on [Keep a Changelog](https://keepachangelog.com/).
 - Article “Time to Align!” (TISMIR, 2026) under Publications
 - Links to talk and chapter materials on the CV and Publications pages
 - CV data check, run on every push and weekly, that flags a talk still marked “accepted” after its date, “presented” before it, or a homepage without exactly four highlights
+- Impressum and privacy page (German), linked from the footer of every page
 
 ### Changed
 

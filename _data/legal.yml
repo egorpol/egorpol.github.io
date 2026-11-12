@@ -1,0 +1,7 @@
+# Postal address for the Impressum and the privacy page. It must be an
+# address where post, including legal mail, actually reaches the site owner
+# (a c/o or Impressum-service address works; a PO box does not).
+address:
+  - "c/o [ANBIETER]"
+  - "[STRASSE NR.]"
+  - "[PLZ ORT]"

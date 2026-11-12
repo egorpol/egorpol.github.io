@@ -1,5 +1,5 @@
 <!doctype html>
-<html lang="{{ site.lang | default: 'en' }}">
+<html lang="{{ page.lang | default: site.lang | default: 'en' }}">
 <head>
     <meta charset="utf-8">
     <meta name="viewport" content="width=device-width, initial-scale=1">
@@ -134,6 +134,10 @@
         <p class="site-archive-note">{{ site.data.site_notice.footer | escape }}{% if page.url == '/' %} <button class="site-notice-restore" type="button" data-site-notice-restore hidden>Show site note again</button>{% endif %}</p>
         {% endif %}
         <p class="copyright">© {{ site.time | date: '%Y' }} {{ site.title | escape }}</p>
+        <nav aria-label="Legal">
+            <a href="{{ '/impressum/' | relative_url }}" lang="de">Impressum</a>
+            <a href="{{ '/datenschutz/' | relative_url }}" lang="de">Datenschutz</a>
+        </nav>
     </footer>
 
     <script defer src="{{ '/assets/js/theme.js' | relative_url }}"></script>
