@@ -139,7 +139,9 @@ experience:
         Research and development for the DFG project
         *Development of a Comprehensive Cloud-Based Toolbox for Music Score Analysis*,
         alongside project head Prof. Dr. Martin Pfleiderer; responsible for scientific
-        conception and research execution. Co-applicant; total funding: €443,458.
+        conception and research execution, with substantial contribution to the grant
+        proposal (formal applicant and PI: Prof. Dr. Martin Pfleiderer; total funding:
+        €443,458).
       - >-
         Coordinate the research programme and supervise student
         assistants across technical and scholarly work packages.
@@ -153,7 +155,9 @@ experience:
         Research & Development im DFG-Projekt *Development of a Comprehensive
         Cloud-Based Toolbox for Music Score Analysis* mit Projektleiter Prof. Dr.
         Martin Pfleiderer; verantwortlich für wissenschaftliche Konzeption und
-        Durchführung. Mitantragsteller; Fördersumme: 443.458 Euro.
+        Durchführung, maßgebliche Mitwirkung an der Antragskonzeption (formale
+        Antragstellung und Projektleitung: Prof. Dr. Martin Pfleiderer; Fördersumme:
+        443.458 Euro).
       - >-
         Koordination des Forschungsprogramms und Anleitung studentischer Hilfskräfte
         in technischen und wissenschaftlichen Arbeitspaketen.
@@ -239,11 +243,13 @@ funding:
   - dates: 2025–2028
     title: Development of a Comprehensive Cloud-Based Toolbox for Music Score Analysis
     text: >-
-      DFG grant (€443,458) — co-applicant; research and development; project head and
-      organisational lead: Prof. Dr. Martin Pfleiderer.
+      DFG grant (€443,458) — substantial contribution to proposal and execution;
+      research and development; formal applicant and project head: Prof. Dr.
+      Martin Pfleiderer.
     text_de: >-
-      DFG-Förderung (443.458 Euro); Mitantragsteller; Research & Development;
-      Projektleitung und Organisation: Prof. Dr. Martin Pfleiderer.
+      DFG-Förderung (443.458 Euro); maßgebliche Mitwirkung an Antragskonzeption
+      und Durchführung; Research & Development; formale Antragstellung und
+      Projektleitung: Prof. Dr. Martin Pfleiderer.
   - dates: 2021–2022
     title: Computergestützte Musikanalyse
     text: >-
@@ -423,8 +429,8 @@ publications:
     - year: "2021"
       citation: >-
         Polyakov, E. (2021). Articles on George Crumb, loudspeaker orchestras,
-        orchestras and new media, and recording technology. In: *Lexikon des
-        Orchesters*. Laaber-Verlag.
+        orchestras and new media, and recording technology. In: Heidlberger, F.;
+        Schröder, G.; Wünsch, C. (eds.), *Lexikon des Orchesters*. Laaber-Verlag.
       citation_de: >-
         Polyakov, E. (2021). Artikel „Crumb, George“, „Lautsprecherorchester“,
         „Orchester (neue Medien, Internet)“ und „Tonaufzeichnung/Tontechnik“. In:
@@ -644,7 +650,7 @@ talks:
       ‚Immer ungenau und mangelhaft‘ – Beschreibung der instrumentalen Klangfarben
       in den ‚Grundlagen der Orchestration‘ von N. A. Rimski-Korsakow im Kontext
       aktueller Entwicklungen der computerbasierten Klanganalyse
-    venue: Rimsky-Korsakov at 175, St. Petersburg, 18–21 March 2019
+    venue: Rimsky-Korsakov at 175, St Petersburg, 18–21 March 2019
     venue_de: Konferenz Rimsky-Korsakov at 175, St. Petersburg, 18.–21. März 2019
   - year: "2017"
     kind: Talk
@@ -669,8 +675,8 @@ artistic_support:
   - year: "2017"
     title: Black Is the Colour
     artists: Fabian Russ
-    role: restoration and mastering for CD and online release
-    role_de: Restaurierung und Mastering für CD- und Online-Veröffentlichung
+    role: restoration and pre-mastering for CD and online release
+    role_de: Restaurierung und Pre-Mastering für CD- und Online-Veröffentlichung
     venue: "Label: Neue Meister (Edel)"
     venue_de: "Label: Neue Meister (Edel)"
   - year: "2016"
@@ -791,11 +797,11 @@ homepage:
       that musical path meticulously and studied classical music almost exclusively.
     - >-
       The connection between those two worlds became clear only much later. What I
-      have always enjoyed most is building a setup—musical, analytical, or
-      technical—then trying it out and discovering an interaction I could not quite
+      have always enjoyed most is building a setup — musical, analytical, or
+      technical — then trying it out and discovering an interaction I could not quite
       see before. Today that might mean turning a score into explorable data,
       translating a listening question into an experiment, or asking what a
-      machine-learning model can—and cannot—understand about musical features. At
+      machine-learning model can — and cannot — understand about musical features. At
       heart, I do this work because I have fun doing it. Building accessible tools
       lets me share that experience with others.
   journey:
@@ -901,11 +907,11 @@ projects:
       in the browser through Jupyter4NFDI.
   - name: AudioSpylt
     url: https://github.com/egorpol/audiospylt
-    blurb: Python audio analysis, signal processing, and interactive visualization, inspired by AudioSculpt and OpenMusic.
+    blurb: Python audio analysis, signal processing, and interactive visualisation, inspired by AudioSculpt and OpenMusic.
     detail: >-
       AudioSpylt is a Python toolbox, inspired by AudioSculpt and OpenMusic,
       built for in-depth audio analysis, advanced signal processing, and
-      interactive visualization.
+      interactive visualisation.
   - name: FFTimbre
     url: https://github.com/egorpol/FFTimbre
     blurb: FM/additive timbre matching with multi-metric evaluation.

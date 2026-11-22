@@ -40,7 +40,6 @@ social:
     - https://orcid.org/0000-0003-0913-0429
     - https://github.com/egorpol
     - https://www.linkedin.com/in/egor-polyakov-6a2114315/
-    - https://egorpol.github.io
 orcid: https://orcid.org/0000-0003-0913-0429
 
 feed:
@@ -105,6 +104,7 @@ exclude:
   - CHANGELOG.md
   - Gemfile
   - Gemfile.lock
+  - HANDOFF.md
   - LICENSE
   - POST_TEMPLATE.md
   - README.md

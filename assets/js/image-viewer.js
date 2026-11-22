@@ -20,13 +20,13 @@ class ImageViewer {
     createViewer() {
         const viewerHTML = `
             <div class="image-viewer" id="image-viewer" role="dialog" aria-modal="true" aria-label="Image viewer" aria-hidden="true">
-                <button class="close-btn" id="close-viewer" aria-label="Close image viewer">
+                <button type="button" class="close-btn" id="close-viewer" aria-label="Close image viewer">
                     <span aria-hidden="true">×</span>
                 </button>
-                <button class="nav-btn prev-btn" id="prev-image" aria-label="Previous image">
+                <button type="button" class="nav-btn prev-btn" id="prev-image" aria-label="Previous image">
                     <span aria-hidden="true">‹</span>
                 </button>
-                <button class="nav-btn next-btn" id="next-image" aria-label="Next image">
+                <button type="button" class="nav-btn next-btn" id="next-image" aria-label="Next image">
                     <span aria-hidden="true">›</span>
                 </button>
                 <div class="image-counter" id="image-counter"></div>
@@ -59,6 +59,11 @@ class ImageViewer {
             // Add clickable class and store image data
             img.classList.add('clickable-image');
             img.dataset.imageIndex = processedIndex; // Use processed index, not original index
+            if (!img.closest('a')) {
+                img.tabIndex = 0;
+                img.setAttribute('role', 'button');
+                img.setAttribute('aria-label', `Inspect image: ${img.alt || 'Image'}`);
+            }
             this.images.push({
                 src: img.src,
                 alt: img.alt || 'Image',
@@ -73,14 +78,60 @@ class ImageViewer {
     }
 
     setupImageClickHandler() {
-        // Remove any existing delegated listener
+        // Remove any existing delegated listeners
         if (this.boundClickHandler) {
-            document.removeEventListener('click', this.boundClickHandler);
+            document.removeEventListener('click', this.boundClickHandler, true);
+        }
+        if (this.boundKeydownHandler) {
+            document.removeEventListener('keydown', this.boundKeydownHandler, true);
+        }
+        if (this.boundKeyupHandler) {
+            document.removeEventListener('keyup', this.boundKeyupHandler, true);
         }
         
-        // Create bound handler for delegation
+        // Create bound handlers for delegation
         this.boundClickHandler = this.handleDelegatedClick.bind(this);
+        this.boundKeydownHandler = this.handleDelegatedKeydown.bind(this);
+        this.boundKeyupHandler = this.handleDelegatedKeyup.bind(this);
         document.addEventListener('click', this.boundClickHandler, true); // Use capture phase
+        document.addEventListener('keydown', this.boundKeydownHandler, true);
+        document.addEventListener('keyup', this.boundKeyupHandler, true);
+    }
+
+    findKeyboardTriggerImage(target) {
+        if (target.classList?.contains('clickable-image')) {
+            return target;
+        }
+        if (target.tagName === 'A') {
+            return target.querySelector('.clickable-image');
+        }
+        return null;
+    }
+
+    handleDelegatedKeydown(e) {
+        if (this.viewer.classList.contains('active') || e.repeat) return;
+        if (e.key !== 'Enter' && e.key !== ' ') return;
+        const img = this.findKeyboardTriggerImage(e.target);
+        if (!img || img.dataset.imageIndex === undefined) return;
+
+        // Anchors fire native click on Enter (handled by handleDelegatedClick).
+        if (e.key === 'Enter' && e.target.tagName === 'A') return;
+
+        e.preventDefault();
+        e.stopPropagation();
+        if (e.key === 'Enter') {
+            this.openViewer(parseInt(img.dataset.imageIndex, 10));
+        }
+    }
+
+    handleDelegatedKeyup(e) {
+        if (this.viewer.classList.contains('active') || e.key !== ' ') return;
+        const img = this.findKeyboardTriggerImage(e.target);
+        if (img && img.dataset.imageIndex !== undefined) {
+            e.preventDefault();
+            e.stopPropagation();
+            this.openViewer(parseInt(img.dataset.imageIndex, 10));
+        }
     }
 
     handleDelegatedClick(e) {
@@ -212,7 +263,11 @@ class ImageViewer {
         this.viewer.classList.add('active');
         this.viewer.setAttribute('aria-hidden', 'false');
         document.body.classList.add('viewer-open');
-        document.getElementById('close-viewer').focus();
+        window.requestAnimationFrame(() => {
+            if (this.viewer.classList.contains('active')) {
+                document.getElementById('close-viewer').focus();
+            }
+        });
     }
 
     closeViewer() {

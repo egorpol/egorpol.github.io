@@ -35,7 +35,7 @@ structured_data:
     - '@type': 'EducationalOrganization'
       name: 'University of Music and Theatre Leipzig'
     - '@type': 'EducationalOrganization'
-      name: 'University of Music and Performing Arts Stuttgart'
+      name: 'State University of Music and Performing Arts Stuttgart'
 ---
 {% assign cv = site.data.cv %}
 
@@ -61,7 +61,7 @@ structured_data:
 
 <section class="content-section prose-patch" aria-labelledby="motivation-title">
   <p class="section-label">What keeps me curious</p>
-  <h2 id="motivation-title">It started with a computer—and with having fun</h2>
+  <h2 id="motivation-title">It started with a computer — and with having fun</h2>
   <div class="prose-copy">
     {% for paragraph in cv.homepage.motivation %}
     <p>{{ paragraph }}</p>

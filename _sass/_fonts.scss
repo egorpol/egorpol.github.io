@@ -19,8 +19,7 @@
 /* Silkscreen, for patcher labels only. SIL Open Font License 1.1 —
    see /assets/fonts/Silkscreen-OFL.txt. Drawn on an 8px grid, so it must be
    set at 8px or a whole multiple of it; anywhere else it turns to mush.
-   Nothing uses it unless Pixel view is on, so it is never fetched in the
-   plain site. */
+   Preloaded in _layouts/default.html because Pixel view is the default. */
 @font-face {
     font-family: "Silkscreen";
     font-style: normal;

@@ -169,9 +169,21 @@
 .patch-hint p {
     margin: 0;
     color: var(--text-muted);
-    font-family: var(--font-pixel);
-    font-size: 8px;
-    line-height: 1.6;
+    font-family: var(--font-mono);
+    font-size: 0.78rem;
+    line-height: 1.5;
+}
+
+@media (max-width: 560px) {
+    .patch-hint {
+        right: auto;
+        left: 0;
+    }
+
+    .patch-hint::before {
+        right: auto;
+        left: 4.5rem;
+    }
 }
 
 .patch-hint-close {
@@ -280,6 +292,21 @@
 
     [data-chrome="on"] .site-nav::before {
         background: var(--patch-line);
+    }
+}
+
+@media (max-width: 560px) {
+    .header-controls {
+        gap: 0.5rem;
+    }
+
+    .control-divider {
+        display: none;
+    }
+
+    .view-switch {
+        gap: 0.35rem;
+        padding-inline: 0;
     }
 }
 
@@ -444,7 +471,7 @@ html:not([data-theme-frame])[data-theme="dark"] .pixel-theme-state-4,
         }
 
         .site-main-home .section-label {
-            font-size: 20px;
+            font-size: 16px;
         }
 
         .site-main-home .content-section h2,
@@ -457,13 +484,21 @@ html:not([data-theme-frame])[data-theme="dark"] .pixel-theme-state-4,
             max-width: none;
         }
 
-        /* Drawn-size captions. Too small for anything you have to read. */
+        /* Drawn-size captions stay strictly for decorative badges/copyright. */
         .note-tags span,
-        .breadcrumb,
-        .copyright,
-        .reference-body .reference-meta {
+        .copyright {
             font-family: var(--font-pixel);
             font-size: 8px;
+            font-weight: 400;
+            letter-spacing: 0;
+            line-height: 1.5;
+        }
+
+        /* Readable functional metadata stays in IBM Plex Mono rather than 8px Silkscreen. */
+        .breadcrumb,
+        .reference-body .reference-meta {
+            font-family: var(--font-mono);
+            font-size: 0.78rem;
             font-weight: 400;
             letter-spacing: 0;
             line-height: 1.5;
@@ -679,8 +714,8 @@ html:not([data-theme-frame])[data-theme="dark"] .pixel-theme-state-4,
     border: 1px solid var(--patch-line);
     background: var(--surface);
     color: var(--heading);
-    font-family: var(--font-pixel);
-    font-size: 12px;
+    font-family: var(--font-mono);
+    font-size: 0.78rem;
     font-weight: 400;
     letter-spacing: 0;
     line-height: 1.4;
