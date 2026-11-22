@@ -295,6 +295,21 @@
     }
 }
 
+@media (max-width: 560px) {
+    .header-controls {
+        gap: 0.5rem;
+    }
+
+    .control-divider {
+        display: none;
+    }
+
+    .view-switch {
+        gap: 0.35rem;
+        padding-inline: 0;
+    }
+}
+
 @media (prefers-reduced-motion: reduce) {
     .view-switch-thumb { transition: none; }
 }

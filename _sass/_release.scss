@@ -286,6 +286,7 @@
     color: var(--text-muted);
     font-family: var(--font-mono);
     font-size: 0.76rem;
+    white-space: nowrap;
 }
 
 .release-tracks strong {
@@ -493,7 +494,7 @@
     .release-player-meta { font-size: 0.68rem; }
     .release-transport { flex-wrap: wrap; }
     .release-time { margin-left: auto; }
-    .release-tracks button { grid-template-columns: 2rem minmax(0, 1fr) auto; gap: 0.6rem; }
+    .release-tracks button { grid-template-columns: 2.8rem minmax(0, 1fr) auto; gap: 0.6rem; }
 }
 
 @media (prefers-reduced-motion: reduce) {

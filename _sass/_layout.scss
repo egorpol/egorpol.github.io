@@ -281,6 +281,12 @@
             "identity identity"
             "controls menu"
             "nav nav";
+        column-gap: 0.5rem;
+    }
+
+    .nav-toggle {
+        gap: 0.35rem;
+        padding-inline: 0.55rem;
     }
 }
 

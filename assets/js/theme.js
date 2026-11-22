@@ -7,7 +7,8 @@ document.addEventListener('DOMContentLoaded', () => {
 
     const readSavedTheme = () => {
         try {
-            return localStorage.getItem('theme');
+            const saved = localStorage.getItem('theme');
+            return saved === 'dark' || saved === 'light' ? saved : null;
         } catch (_error) {
             return null;
         }

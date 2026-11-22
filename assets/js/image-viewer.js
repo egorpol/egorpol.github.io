@@ -82,22 +82,51 @@ class ImageViewer {
         if (this.boundClickHandler) {
             document.removeEventListener('click', this.boundClickHandler, true);
         }
-        if (this.boundKeyHandler) {
-            document.removeEventListener('keydown', this.boundKeyHandler, true);
+        if (this.boundKeydownHandler) {
+            document.removeEventListener('keydown', this.boundKeydownHandler, true);
+        }
+        if (this.boundKeyupHandler) {
+            document.removeEventListener('keyup', this.boundKeyupHandler, true);
         }
         
         // Create bound handlers for delegation
         this.boundClickHandler = this.handleDelegatedClick.bind(this);
-        this.boundKeyHandler = this.handleDelegatedKeydown.bind(this);
+        this.boundKeydownHandler = this.handleDelegatedKeydown.bind(this);
+        this.boundKeyupHandler = this.handleDelegatedKeyup.bind(this);
         document.addEventListener('click', this.boundClickHandler, true); // Use capture phase
-        document.addEventListener('keydown', this.boundKeyHandler, true);
+        document.addEventListener('keydown', this.boundKeydownHandler, true);
+        document.addEventListener('keyup', this.boundKeyupHandler, true);
+    }
+
+    findKeyboardTriggerImage(target) {
+        if (target.classList?.contains('clickable-image')) {
+            return target;
+        }
+        if (target.tagName === 'A') {
+            return target.querySelector('.clickable-image');
+        }
+        return null;
     }
 
     handleDelegatedKeydown(e) {
+        if (this.viewer.classList.contains('active') || e.repeat) return;
         if (e.key !== 'Enter' && e.key !== ' ') return;
-        const img = e.target.classList?.contains('clickable-image')
-            ? e.target
-            : (e.target.tagName === 'A' ? e.target.querySelector('.clickable-image') : null);
+        const img = this.findKeyboardTriggerImage(e.target);
+        if (!img || img.dataset.imageIndex === undefined) return;
+
+        // Anchors fire native click on Enter (handled by handleDelegatedClick).
+        if (e.key === 'Enter' && e.target.tagName === 'A') return;
+
+        e.preventDefault();
+        e.stopPropagation();
+        if (e.key === 'Enter') {
+            this.openViewer(parseInt(img.dataset.imageIndex, 10));
+        }
+    }
+
+    handleDelegatedKeyup(e) {
+        if (this.viewer.classList.contains('active') || e.key !== ' ') return;
+        const img = this.findKeyboardTriggerImage(e.target);
         if (img && img.dataset.imageIndex !== undefined) {
             e.preventDefault();
             e.stopPropagation();
@@ -234,7 +263,11 @@ class ImageViewer {
         this.viewer.classList.add('active');
         this.viewer.setAttribute('aria-hidden', 'false');
         document.body.classList.add('viewer-open');
-        document.getElementById('close-viewer').focus();
+        window.requestAnimationFrame(() => {
+            if (this.viewer.classList.contains('active')) {
+                document.getElementById('close-viewer').focus();
+            }
+        });
     }
 
     closeViewer() {
