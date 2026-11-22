@@ -11,7 +11,7 @@ breadcrumb:
 <header class="page-intro">
   <p class="eyebrow">Research output</p>
   <h1>Publications</h1>
-  <p class="lead">Book chapters, conference papers, and talks on computational score analysis, timbre and rhythm research, music encoding, and machine learning for musicology.</p>
+  <p class="lead">Journal articles, book chapters, conference papers, datasets, and talks on computational score analysis, timbre and rhythm research, music encoding, and machine learning for musicology.</p>
   <p><a class="text-link" href="{{ cv.contact.orcid }}" target="_blank" rel="noopener noreferrer">ORCID record <span aria-hidden="true">↗</span></a></p>
 </header>
 

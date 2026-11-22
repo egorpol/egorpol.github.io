@@ -38,6 +38,10 @@ The format is based on [Keep a Changelog](https://keepachangelog.com/).
 - CV: InMusic26 talk dated 12–14 June 2026 and its co-speaker named; MEC 2025 abstract DOI points to the abstract itself; GfM 2024 venue given as Cologne
 - View and theme toggles keep stable accessible names; the state is in `aria-pressed`
 - `og:site_name` emitted once
+- CV and PDFs: clarify DFG CAMAT grant role (proposal contribution; formal applicant and PI Prof. Dr. Martin Pfleiderer), align *Black Is the Colour* to pre-mastering across CV and mastering credits, add *Lexikon des Orchesters* editors in English, and align British spelling (`visualisation`)
+- Security and build hygiene: pin GitHub Actions to commit SHAs, tighten CSP (`base-uri 'none'`, `form-action 'none'`), drop self-referential `rel="me"`, add light/dark `theme-color`, and exclude `HANDOFF.md` from local Jekyll builds
+- Appearance and accessibility: fix mobile left-edge overflow on the first-visit Pixel hint, align Pixel-view Silkscreen sizes to the 8 px grid and use IBM Plex Mono for readable metadata, highlight Works in the nav on `/works/*` subpages, make standalone post images keyboard-openable in the lightbox, and fix *The Rubber Duck Massacre EP* cover dimensions and percent-encoded audio URLs
+- Notes and release copy: fix author attribution (Alexander Van de Kleut), architecture description, and Python snippet bugs in the July 2024 VAE note; tighten temporal/technical wording in the July 2023, October 2026 iPhone, and eu-pd-composers notes; fix dangling modifier, italics, and cross-link between the two Two Unknown Guys release pages
 
 ## [0.0.2] - 2026-10-09
 

@@ -11,7 +11,7 @@
     its text is the same at every height and width. Recompute the hash from the browser's CSP
     error when wavesurfer changes.
     {%- endcomment %}
-    <meta http-equiv="Content-Security-Policy" content="default-src 'self'; img-src 'self' data:; style-src 'self'{% if page.audio_player %} 'sha256-/wNXXQM7c2ofBcjrAABoSS5Ibbo1K6dLnomtT2ZNGIA='{% endif %}; script-src 'self'; font-src 'self'; {% if page.audio_player %}connect-src 'self'; media-src 'self' blob:;{% else %}connect-src 'none';{% endif %} object-src 'none'; base-uri 'self'; form-action 'self'; upgrade-insecure-requests">
+    <meta http-equiv="Content-Security-Policy" content="default-src 'self'; img-src 'self' data:; style-src 'self'{% if page.audio_player %} 'sha256-/wNXXQM7c2ofBcjrAABoSS5Ibbo1K6dLnomtT2ZNGIA='{% endif %}; script-src 'self'; font-src 'self'; {% if page.audio_player %}connect-src 'self'; media-src 'self' blob:;{% else %}connect-src 'none';{% endif %} object-src 'none'; base-uri 'none'; form-action 'none'; upgrade-insecure-requests">
     {% seo %}
     {% feed_meta %}
 
@@ -38,7 +38,8 @@
     <link rel="icon" href="{{ '/assets/images/favicon.svg' | relative_url }}" type="image/svg+xml">
     <link rel="icon" href="{{ '/favicon.ico' | relative_url }}" sizes="any">
     <link rel="apple-touch-icon" href="{{ '/assets/images/apple-touch-icon.png' | relative_url }}">
-    <meta name="theme-color" content="#102b3f">
+    <meta name="theme-color" content="#f6f0e5" media="(prefers-color-scheme: light)">
+    <meta name="theme-color" content="#0d2130" media="(prefers-color-scheme: dark)">
 </head>
 <body>
     <a href="#main-content" class="skip-link">Skip to main content</a>

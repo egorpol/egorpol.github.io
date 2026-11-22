@@ -20,13 +20,13 @@ class ImageViewer {
     createViewer() {
         const viewerHTML = `
             <div class="image-viewer" id="image-viewer" role="dialog" aria-modal="true" aria-label="Image viewer" aria-hidden="true">
-                <button class="close-btn" id="close-viewer" aria-label="Close image viewer">
+                <button type="button" class="close-btn" id="close-viewer" aria-label="Close image viewer">
                     <span aria-hidden="true">×</span>
                 </button>
-                <button class="nav-btn prev-btn" id="prev-image" aria-label="Previous image">
+                <button type="button" class="nav-btn prev-btn" id="prev-image" aria-label="Previous image">
                     <span aria-hidden="true">‹</span>
                 </button>
-                <button class="nav-btn next-btn" id="next-image" aria-label="Next image">
+                <button type="button" class="nav-btn next-btn" id="next-image" aria-label="Next image">
                     <span aria-hidden="true">›</span>
                 </button>
                 <div class="image-counter" id="image-counter"></div>
@@ -59,6 +59,11 @@ class ImageViewer {
             // Add clickable class and store image data
             img.classList.add('clickable-image');
             img.dataset.imageIndex = processedIndex; // Use processed index, not original index
+            if (!img.closest('a')) {
+                img.tabIndex = 0;
+                img.setAttribute('role', 'button');
+                img.setAttribute('aria-label', `Inspect image: ${img.alt || 'Image'}`);
+            }
             this.images.push({
                 src: img.src,
                 alt: img.alt || 'Image',
@@ -73,14 +78,31 @@ class ImageViewer {
     }
 
     setupImageClickHandler() {
-        // Remove any existing delegated listener
+        // Remove any existing delegated listeners
         if (this.boundClickHandler) {
-            document.removeEventListener('click', this.boundClickHandler);
+            document.removeEventListener('click', this.boundClickHandler, true);
+        }
+        if (this.boundKeyHandler) {
+            document.removeEventListener('keydown', this.boundKeyHandler, true);
         }
         
-        // Create bound handler for delegation
+        // Create bound handlers for delegation
         this.boundClickHandler = this.handleDelegatedClick.bind(this);
+        this.boundKeyHandler = this.handleDelegatedKeydown.bind(this);
         document.addEventListener('click', this.boundClickHandler, true); // Use capture phase
+        document.addEventListener('keydown', this.boundKeyHandler, true);
+    }
+
+    handleDelegatedKeydown(e) {
+        if (e.key !== 'Enter' && e.key !== ' ') return;
+        const img = e.target.classList?.contains('clickable-image')
+            ? e.target
+            : (e.target.tagName === 'A' ? e.target.querySelector('.clickable-image') : null);
+        if (img && img.dataset.imageIndex !== undefined) {
+            e.preventDefault();
+            e.stopPropagation();
+            this.openViewer(parseInt(img.dataset.imageIndex, 10));
+        }
     }
 
     handleDelegatedClick(e) {

@@ -9,7 +9,7 @@ excerpt: "An iOS update failed twice at the very end. Finder’s logs showed why
 
 This one has nothing to do with music. But after more than two quiet years, it’s as good an occasion as any to start posting notes again.
 
-On Sunday afternoon, 11 October 2026, I updated my iPhone 13 from iOS 26.6.1 to iOS 27.0.1 through Finder. The progress bar reached almost the end, and then Finder reported `Unknown error (100). 06A6.0064`. The phone stayed frozen on the Apple logo.
+On Sunday afternoon, 11 October 2026, I updated my iPhone 13 from iOS 26.6.1 to iOS 27.0.1 through Finder. The progress bar almost reached the end, and then Finder reported `Unknown error (100). 06A6.0064`. The phone stayed frozen on the Apple logo.
 
 The phone holds my banking app, authenticator apps, and the eSIM for my mobile number. An update that ends in a wipe can lock you out of most of your digital life for days.
 
@@ -54,11 +54,11 @@ So before trying anything that might wipe the phone, I wanted to know what a wip
 | Car                                                    | The physical key card.                                                                                                                               |
 
 
-Yes, Steam is on the list. I care a lot about the *LEGO Star Wars: The Skywalker Saga* playthrough I started with my son two days ago.
+Yes, Steam is on the list. I care a lot about the *LEGO Star Wars: The Skywalker Saga* playthrough I started with my son two days earlier.
 
 Once it was written down, the pattern was obvious: almost everything falls back to an SMS to the same number. The eSIM is the master key. Losing the phone would have been an inconvenience; losing the number would have locked me out of nearly everything.
 
-GitHub was the instructive case. I was still logged in on the other Mac, so I tried to add a second factor that didn’t live on the phone: a passkey, or at least an SSH key. GitHub’s sudo mode wanted a confirmation through GitHub Mobile, which was on the frozen phone, and refused. The token of the `gh` CLI lacked the `admin:public_key` scope, so that route was closed too, and formal account recovery would have taken days. GitHub did exactly the right thing: a session on a second machine should not be enough to add a new way in.
+GitHub was the instructive case. I was still logged in on the other Mac, so I tried to add a backup method that didn’t live on the phone: a passkey, or at least an SSH key for Git access. GitHub’s sudo mode wanted a confirmation through GitHub Mobile, which was on the frozen phone, and refused. The `gh` CLI token lacked the `admin:public_key` scope, so that route was closed too, and formal account recovery would have taken days. GitHub did exactly the right thing: a session on a second machine should not be enough to add a new way in.
 
 ## Reading the logs
 
@@ -71,7 +71,7 @@ ramrod_splat_install: install handler failed
 CHECKPOINT FAILURE:(FAILURE:100) [0x06A6] install_splat [0]D(failed to install splat)
 ```
 
-So error 100 is not mysterious after all. `/mnt9` is the Preboot volume. The file being written is a cryptex, the part of the system that Apple ships as a separate image: here SystemOS (5,734 MB) plus AppOS (16 MB). The phone tried to reserve 6,012,534,784 bytes for it and didn’t have the room.
+So error 100 is not mysterious after all. `/mnt9` is the Preboot volume. The file being written is a cryptex, the part of the system that Apple ships as a separate image: here SystemOS (5,734 MB) plus AppOS (16 MB). The phone tried to reserve 6,012,534,784 bytes for SystemOS (`os.dmg`) and didn’t have the room.
 
 Two more details mattered. By the time of the failure, the new system volume had already been installed: the second attempt reports “previous OS version: 24A446”, the very version it was updating to. And the Data volume, where my data lives, mounted normally every time. The phone was stuck halfway, but my data hadn’t been touched. That changed the question from how to save my data to how to get the last step to finish.
 
@@ -116,7 +116,7 @@ But hadn’t iOS told me that 8 to 10 GB were available? It had: Settings counts
 
 ## The fix
 
-The workaround from [the Reddit guide](https://www.reddit.com/r/applehelp/comments/1wsvwrm/guide_fixed_iphone_error_100_06a6_install_splat/) turns this around. If a passing check is the problem, make it fail. Raise `MinimumSystemPartition` in the firmware’s Update identity, and the phone concludes that it needs more room than it has. With 10400 instead of 8572, and the volume sizes from the second attempt, the space needed becomes about 1.05 × 10,400 − 2,948 ≈ 7,970 MB, against 6,450 MB free. (The 2,948 MB are the current System and Preboot volumes minus the cryptexes.)
+The workaround from [the Reddit guide](https://www.reddit.com/r/applehelp/comments/1wsvwrm/guide_fixed_iphone_error_100_06a6_install_splat/) turns this around. If a passing check is the problem, make it fail. Raise `MinimumSystemPartition` in the firmware’s Update identity, and the phone concludes that it needs more room than it has. With `10400` instead of `8572`, and the volume sizes from the second attempt, the space needed becomes about 1.05 × 10,400 − 2,948 ≈ 7,970 MB, against 6,450 MB free. (The 2,948 MB are the current System and Preboot volumes minus the cryptexes.)
 
 Finder offers no way to do that. idevicerestore, the open-source [restore tool](https://github.com/libimobiledevice/idevicerestore) from the libimobiledevice project, does: it accepts an unpacked IPSW directory in place of the `.ipsw` file, so the original firmware never has to be modified.
 
@@ -127,7 +127,7 @@ The steps, in order:
 1. **Secure the evidence.** I reformatted a spare 1 TB NVMe drive (ext4, from an old Linux workstation) to exFAT, so that both the Mac and Linux can read it, then copied the backup and the logs to it and verified the copy.
 2. **Get the firmware again.** After the failed attempts, Finder had silently deleted its cached 11 GB IPSW. I downloaded the same build again and checked it against the SHA-256 listed by the [ipsw.me API](https://api.ipsw.me/v4/device/iPhone14,5?type=ipsw).
 3. **Build idevicerestore.** Homebrew has no formula for it, so I built it from source with the project’s `limd-build-macos.sh` script.
-4. **Change one value.** I unpacked the IPSW into a directory and changed `MinimumSystemPartition` from 8572 to 10400 in the Update identity: the build identity for `d17ap` whose variant is “Customer Upgrade Install (IPSW)”. A diff against the original manifest showed one changed line.
+4. **Change one value.** I unpacked the IPSW into a directory and changed `MinimumSystemPartition` from `8572` to `10400` in the Update identity: the build identity for `d17ap` whose variant is “Customer Upgrade Install (IPSW)”. A diff against the original manifest showed one changed line.
 5. **Pin the variant, and read before confirming.** With the phone in Recovery Mode, I ran idevicerestore with the variant set explicitly. Before it sends anything to the device, idevicerestore prints `Variant: …` and then either `This restore will update the device without erasing user data.` or `This restore will erase all device data.` That line is the checkpoint.
 
 The command, with the flags to avoid:
@@ -149,7 +149,7 @@ The build had its own small obstacles, noted here for anyone with a similar setu
 - zsh, with interactive comments switched off, treated the `#` comments in pasted commands as text and got stuck at a `quote>` prompt.
 - Homebrew now labels Intel macOS as an unsupported Tier 3 platform, which will matter for this kind of tooling.
 
-For the record, the build was `idevicerestore 1.0.0-278-g4b3e847`, with libirecovery 1.3.1-12-g93c117c and libtatsu 1.0.5-6-ge7d6ad1.
+For the record, the build was `idevicerestore 1.0.0-278-g4b3e847`, with `libirecovery 1.3.1-12-g93c117c` and `libtatsu 1.0.5-6-ge7d6ad1`.
 
 ## What is proven and what isn’t
 

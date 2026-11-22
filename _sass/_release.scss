@@ -35,9 +35,11 @@
 
 .release-cover-pixel {
     position: absolute;
-    inset: 0;
+    top: 0;
+    left: 0;
     display: none;
     width: 100%;
+    height: auto;
     aspect-ratio: 1;
     cursor: crosshair;
     image-rendering: pixelated;
@@ -344,9 +346,9 @@
 [data-chrome="on"] .release-tracks button > span,
 [data-chrome="on"] .release-tracks time,
 [data-chrome="on"] .release-tracks small {
-    font-family: var(--font-pixel);
-    font-size: 8px;
-    letter-spacing: 0;
+    font-family: var(--font-mono);
+    font-size: 0.76rem;
+    letter-spacing: 0.02em;
 }
 
 [data-chrome="on"] .release-waveform {
@@ -360,8 +362,8 @@
     align-items: end;
     justify-content: space-between;
     gap: 1.25rem;
-    font-family: var(--font-pixel);
-    font-size: 8px;
+    font-family: var(--font-mono);
+    font-size: 0.76rem;
 }
 
 [data-chrome="on"] .release-patch {
@@ -470,8 +472,9 @@
 
 [data-chrome="on"] .release-tracks strong {
     font-family: var(--font-pixel);
-    font-size: 10px;
+    font-size: 16px;
     font-weight: var(--weight-normal);
+    line-height: 1.35;
 }
 
 @media (max-width: 720px) {

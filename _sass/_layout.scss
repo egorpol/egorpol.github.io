@@ -3,8 +3,6 @@
     z-index: 20;
     border-bottom: 1px solid var(--border);
     background: var(--background);
-    background: color-mix(in srgb, var(--background) 92%, transparent);
-    backdrop-filter: blur(14px);
 }
 
 .site-header-inner {
