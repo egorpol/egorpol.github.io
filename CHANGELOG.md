@@ -10,6 +10,7 @@ The format is based on [Keep a Changelog](https://keepachangelog.com/).
 - Release pages fall back to the browser’s own audio player when JavaScript is off or the waveform library fails to load
 - Note “Reading the logs of a phone that wouldn’t boot”, on a failed iOS update and its repair
 - Note “The Public Domain Sheet Music Finder, three years later”, on rebuilding the 2023 tool as eu-pd-composers
+- Note “What the checks missed: notes on claude-orchestrator”, on handing coding work to several agents, how that compares with other agent setups, what a control-session test showed, five cases where their work passed a check and was still wrong, and the provider terms and harness limits behind a port to Google Antigravity
 - Table styles for notes
 - German CV (PDF), generated from the same data as the English one, with a download button on the CV page
 - eu-pd-composers on the Projects page and as a dataset under Publications
@@ -23,6 +24,7 @@ The format is based on [Keep a Changelog](https://keepachangelog.com/).
 - Release players download a track only after Play, a track choice, or a seek, not on page open (15–16 MB)
 - Notes intro and description reworded: occasional notes, now including debugging
 - The July 2023 note links the project’s repository under its new name, eu-pd-composers
+- The Public Domain Sheet Music Finder note links the new claude-orchestrator note
 - The unused jekyll-paginate gem is no longer listed in the Gemfile
 - Release players use WaveSurfer 8.0.5, and the fixed player height is gone: one CSP hash now covers every size
 
