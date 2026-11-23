@@ -39,7 +39,7 @@ Open licences are a separate axis from public domain. On IMSLP, 5,573 works have
 
 ## How I built it
 
-The project was also a testbed for [claude-orchestrator](https://github.com/egorpol/claude-orchestrator), a setup I keep refining around my own use. Claude Code is the main agent, and Codex and Cursor run on their own subscriptions, so I juggle three accounts. Claude keeps design, data checks and review, and hands well-specified parts to whichever of the other two has quota to spare, each in its own git worktree. The other vendor’s agent reviews the result and Claude reads the diff, with tests before anything is merged. Sessions are kept short, each handing its state to the next in a file, and most of the rules started as a lesson from one of my sessions. The setup will get a note of its own.
+The project was also a testbed for [claude-orchestrator](https://github.com/egorpol/claude-orchestrator), a setup I keep refining around my own use. Claude Code is the main agent, and Codex and Cursor run on their own subscriptions, so I juggle three accounts. Claude keeps design, data checks and review, and hands well-specified parts to whichever of the other two has quota to spare, each in its own git worktree. The other vendor’s agent reviews the result and Claude reads the diff, with tests before anything is merged. Sessions are kept short, each handing its state to the next in a file, and most of the rules started as a lesson from one of my sessions. The setup now has [a note of its own]({% post_url 2026-11-23-what-the-checks-missed %}).
 
 ## Where the models come in
 
